@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Script arguments &mdash; fridadrp-tutorials 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The scene YAML file" href="scene_yaml.html" />
+    <link rel="prev" title="Initial example" href="initial_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            fridadrp-tutorials
+              <img src="../_static/logo_FRIDA.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installing the development version</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Running the IFU simulator</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="initial_example.html">Initial example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Script arguments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-scene-lt-string-gt-code"><span class="raw-html"><code>--scene &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-grating-lt-string-gt-code"><span class="raw-html"><code>--grating &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-scale-lt-float-gt-code"><span class="raw-html"><code>--scale &lt;float&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code"><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code"><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code"><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-noversampling-whitelight-lt-integer-gt-code"><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-flatpix2pix-lt-default-none-gt-code"><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-seed-lt-integer-gt-code"><span class="raw-html"><code>--seed &lt;integer&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-prefix-intermediate-fits-lt-string-gt-code"><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-verbose-code"><span class="raw-html"><code>--verbose</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-plots-code"><span class="raw-html"><code>--plots</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-echo-code"><span class="raw-html"><code>--echo</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-version-code"><span class="raw-html"><code>--version</code></span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scene_yaml.html">The scene YAML file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Some scene examples</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fridadrp-tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Running the IFU simulator</a></li>
+      <li class="breadcrumb-item active">Script arguments</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/ifu_simulator/script_arguments.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="script-arguments">
+<h1>Script arguments<a class="headerlink" href="#script-arguments" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">megaradrp-ifu_simulator</span></code> accepts a number of arguments. A quick list and
+explanation can be easily obtained using the <code class="docutils literal notranslate"><span class="pre">--help</span></code> (<code class="docutils literal notranslate"><span class="pre">-h</span></code> for short)
+argument.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--help
+<span class="go">usage: fridadrp-ifu_simulator [-h] [--scene SCENE]</span>
+<span class="go">                              [--grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}]</span>
+<span class="go">                              [--scale {fine,medium,coarse}]</span>
+<span class="go">                              [--ra_teles_deg RA_TELES_DEG]</span>
+<span class="go">                              [--dec_teles_deg DEC_TELES_DEG]</span>
+<span class="go">                              [--delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC]</span>
+<span class="go">                              [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]</span>
+<span class="go">                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]</span>
+<span class="go">                              [--seeing_psf {gaussian}]</span>
+<span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
+<span class="go">                              [--atmosphere_transmission {default,none}]</span>
+<span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
+<span class="go">                              [--seed SEED]</span>
+<span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
+<span class="go">                              [-v] [--plots] [--echo] [--version]</span>
+
+<span class="go">description: simulator of FRIDA IFU images (0.1.dev89+g0e67f81.d20240429)</span>
+
+<span class="go">options:</span>
+<span class="go">  -h, --help            show this help message and exit</span>
+<span class="go">  --scene SCENE         YAML scene file name</span>
+<span class="go">  --grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}</span>
+<span class="go">                        Grating name</span>
+<span class="go">  --scale {fine,medium,coarse}</span>
+<span class="go">                        Scale</span>
+<span class="go">  --ra_teles_deg RA_TELES_DEG</span>
+<span class="go">                        Telescope central RA (deg)</span>
+<span class="go">  --dec_teles_deg DEC_TELES_DEG</span>
+<span class="go">                        Telescope central DEC (deg)</span>
+<span class="go">  --delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC</span>
+<span class="go">                        Offset in RA (arcsec)</span>
+<span class="go">  --delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC</span>
+<span class="go">                        Offset in DEC (arcsec)</span>
+<span class="go">  --seeing_fwhm_arcsec SEEING_FWHM_ARCSEC</span>
+<span class="go">                        Seeing FWHM (arcsec)</span>
+<span class="go">  --seeing_psf {gaussian}</span>
+<span class="go">                        Seeing PSF</span>
+<span class="go">  --noversampling_whitelight NOVERSAMPLING_WHITELIGHT</span>
+<span class="go">                        Oversampling white light image</span>
+<span class="go">  --atmosphere_transmission {default,none}</span>
+<span class="go">                        Atmosphere transmission</span>
+<span class="go">  --rnoise RNOISE       Readout noise standard deviation (ADU)</span>
+<span class="go">  --flatpix2pix {default,none}</span>
+<span class="go">                        Pixel-to-pixel flat field</span>
+<span class="go">  --seed SEED           Seed for random number generator</span>
+<span class="go">  --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS</span>
+<span class="go">                        Prefix for intermediate FITS files</span>
+<span class="go">  -v, --verbose         increase program verbosity</span>
+<span class="go">  --plots               Plot intermediate results</span>
+<span class="go">  --echo                Display full command line</span>
+<span class="go">  --version             Display version</span>
+</pre></div>
+</div>
+<p>An additional description of the different arguments is provided below.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As the code is still under development, some of the arguments shown below
+are not fully functional and only support some of the possible values. In
+such cases, an explanatory note is included.</p>
+</div>
+<section id="code-scene-lt-string-gt-code">
+<span id="scene"></span><h2><span class="raw-html"><code>--scene &lt;string&gt;</code></span><a class="headerlink" href="#code-scene-lt-string-gt-code" title="Link to this heading"></a></h2>
+<p>External YAML file where the user defines one or several sources to
+be simulated. Each source has an associated spectrum.</p>
+</section>
+<section id="code-grating-lt-string-gt-code">
+<span id="grating"></span><h2><span class="raw-html"><code>--grating &lt;string&gt;</code></span><a class="headerlink" href="#code-grating-lt-string-gt-code" title="Link to this heading"></a></h2>
+<p>Grating name. It should be one of the following: <code class="docutils literal notranslate"><span class="pre">low-zJ</span></code>, <code class="docutils literal notranslate"><span class="pre">low-JH</span></code>,
+<code class="docutils literal notranslate"><span class="pre">medium-z</span></code>, <code class="docutils literal notranslate"><span class="pre">medium-J</span></code>, <code class="docutils literal notranslate"><span class="pre">medium-H</span></code>, <code class="docutils literal notranslate"><span class="pre">medium-K</span></code>, <code class="docutils literal notranslate"><span class="pre">high-H</span></code> or
+<code class="docutils literal notranslate"><span class="pre">high-K</span></code>.</p>
+<p><strong>Note</strong>: at present only the <code class="docutils literal notranslate"><span class="pre">medium-K</span></code> has been properly defined.</p>
+</section>
+<section id="code-scale-lt-float-gt-code">
+<span id="scale"></span><h2><span class="raw-html"><code>--scale &lt;float&gt;</code></span><a class="headerlink" href="#code-scale-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Camera scale. It should be one of the following: <code class="docutils literal notranslate"><span class="pre">fine</span></code> (0.01 arcsec/pixel),
+<code class="docutils literal notranslate"><span class="pre">medium</span></code> (0.02 arcsec/pixel) or <code class="docutils literal notranslate"><span class="pre">coarse</span></code> (0.04 arcsec/pixel).</p>
+</section>
+<section id="code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code">
+<span id="ra-dec-teles"></span><h2><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span><a class="headerlink" href="#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Central coordinates (right ascension and declination) of the Field of View. By
+default these values are set to <span class="math notranslate nohighlight">\({\rm RA}=0.0~{\rm deg}\)</span> and
+<span class="math notranslate nohighlight">\({\rm DEC}=0.0~{\rm deg}\)</span>. These coordinates must be expressed in decimal
+degrees.</p>
+</section>
+<section id="code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code">
+<span id="delta-ra-dec-teles"></span><h2><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span><a class="headerlink" href="#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Additional offset in right ascension and declination in arcseconds. These
+parameters allow simulating small shifts in the telescope pointing using units
+closer to the FRIDA IFU’s field of view.</p>
+</section>
+<section id="code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code">
+<span id="seeing-fwhm-psf"></span><h2><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span><a class="headerlink" href="#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code" title="Link to this heading"></a></h2>
+<p>FWHM of the seeing, in arcseconds, and mathematical function to reproduce the
+seeing.</p>
+<p><strong>Note</strong>: so far only <code class="docutils literal notranslate"><span class="pre">--seeing_psf</span> <span class="pre">gaussian</span></code> has been defined.</p>
+</section>
+<section id="code-noversampling-whitelight-lt-integer-gt-code">
+<span id="noversampling-whitelight"></span><h2><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span><a class="headerlink" href="#code-noversampling-whitelight-lt-integer-gt-code" title="Link to this heading"></a></h2>
+<p>Oversampling factor to generate one of the white-image views of the simulated
+3D data cube. The simulator generates two versions of the white-image view:</p>
+<ul class="simple">
+<li><p>file <code class="docutils literal notranslate"><span class="pre">test_ifu_white2D_method0_os1.fits</span></code>: 2D projection of the 3D data cube
+using <code class="docutils literal notranslate"><span class="pre">NAXIS1=64</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=60</span></code>. This sampling is close to the actual
+sampling at the Hawaii detector, in which each slice spreads ~64 pixels in
+the spatial direction, and 2 pixels in the wavelength axis. Since the FRIDA’s
+IFU is covered by 30 slices, this means that there are <span class="math notranslate nohighlight">\(2 \times 30 =
+60\)</span> pixels in direction of the IFU perpendicular to the slices.</p></li>
+<li><p>file <code class="docutils literal notranslate"><span class="pre">test_ifu_white2D_method0_os10.fits</span></code>: oversampled 2D projection of the
+3D data cube, using the chosen oversampling number. By default
+<code class="docutils literal notranslate"><span class="pre">--noversampling_whitelight</span> <span class="pre">10</span></code> is employed, which means that each IFU
+pixel is subdivided in <span class="math notranslate nohighlight">\(10 \times 10\)</span> subpixels. In this case, the
+while-light image dimension is given by <code class="docutils literal notranslate"><span class="pre">NAXIS1=640</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=600</span></code>.
+This version of the white-light image can help to check how well a
+combination of IFU exposures are coadded when using a dithering technique
+with non-integer offsets (in pixel units).</p></li>
+</ul>
+</section>
+<section id="code-atmosphere-transmission-lt-default-none-gt-code">
+<span id="atmosphere-transmission"></span><h2><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span><a class="headerlink" href="#code-atmosphere-transmission-lt-default-none-gt-code" title="Link to this heading"></a></h2>
+<p>The default value makes use of the predicted transmission fraction of the
+atmosphere obtained with <a class="reference external" href="https://www.eso.org/observing/etc/bin/gen/form?INS.MODE=swspectr+INS.NAME=SKYCALC">SKYCALC Sky Model Calculator</a>
+(version 2.0.9) using the default input parameters for the model. The
+prediction is stored in the file <code class="docutils literal notranslate"><span class="pre">skycalc_800-2600nm_step0_01nm.fits</span></code>, which
+is one of the auxiliary files automatically downloaded in a cache directory the
+first time <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code> is executed. This file contains not only
+the atmosphere transmission, but also the sky emission radiance flux (in
+ph/s/m2/micron/arcsec2), for the wavelength range from 800 to 2600 nm, with a
+sampling of 0.01 nm.</p>
+<p>A plot of the atmosphere transmission data is shown below.</p>
+<a class="reference internal image-reference" href="../_images/plot_transmission_fraction.png"><img alt="plot of the transmission fraction of the atmosphere" src="../_images/plot_transmission_fraction.png" style="width: 100%;" /></a>
+<p>When executing <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>, the atmospheric transmission
+probability at the wavelength of each simulated photon is evaluated, and a
+random number between 0 and 1 is generated in each case. If the obtained number
+is greater than the transmission probability, the photon is discarded.</p>
+</section>
+<section id="code-rnoise-lt-float-gt-code">
+<span id="rnoise"></span><h2><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span><a class="headerlink" href="#code-rnoise-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Readout noise (positive number or zero) to be added to the simulated data (in
+ADU). By default this parameter is set to zero.</p>
+</section>
+<section id="code-flatpix2pix-lt-default-none-gt-code">
+<span id="flatpix2pix"></span><h2><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span><a class="headerlink" href="#code-flatpix2pix-lt-default-none-gt-code" title="Link to this heading"></a></h2>
+<p>The default value makes use of a predefined flatfield image stored in one of
+the auxiliary files automatically downloaded in a cache directory the first
+time <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code> is executed. The name of this type of file has
+the form <code class="docutils literal notranslate"><span class="pre">simulated_flat_pix2pix_&lt;grating&gt;.fits</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;grating&gt;</span></code> is the
+grating name.</p>
+</section>
+<section id="code-seed-lt-integer-gt-code">
+<span id="seed"></span><h2><span class="raw-html"><code>--seed &lt;integer&gt;</code></span><a class="headerlink" href="#code-seed-lt-integer-gt-code" title="Link to this heading"></a></h2>
+<p>Seed to initialize the <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html">Numpy Random Generator</a>. By default is
+set to a particular integer sequence (<code class="docutils literal notranslate"><span class="pre">1234</span></code>).</p>
+</section>
+<section id="code-prefix-intermediate-fits-lt-string-gt-code">
+<span id="prefix-intermediate-fits"></span><h2><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span><a class="headerlink" href="#code-prefix-intermediate-fits-lt-string-gt-code" title="Link to this heading"></a></h2>
+<p>Prefix to be added before the name of the FITS files generated during the
+simulator execution. By default this string is <code class="docutils literal notranslate"><span class="pre">test</span></code>. Note that an
+underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> symbol is also added between this prefix and the filename.</p>
+</section>
+<section id="code-verbose-code">
+<span id="verbose"></span><h2><span class="raw-html"><code>--verbose</code></span><a class="headerlink" href="#code-verbose-code" title="Link to this heading"></a></h2>
+<p>If this argument is present, additional information is displayed in the
+terminal while executing the code.</p>
+</section>
+<section id="code-plots-code">
+<span id="plots"></span><h2><span class="raw-html"><code>--plots</code></span><a class="headerlink" href="#code-plots-code" title="Link to this heading"></a></h2>
+<p>When this argument is present, intermediate plots are also displayed.</p>
+</section>
+<section id="code-echo-code">
+<span id="echo"></span><h2><span class="raw-html"><code>--echo</code></span><a class="headerlink" href="#code-echo-code" title="Link to this heading"></a></h2>
+<p>Display in the terminal the command line employed to invoke the execution
+of the simulator.</p>
+</section>
+<section id="code-version-code">
+<span id="version"></span><h2><span class="raw-html"><code>--version</code></span><a class="headerlink" href="#code-version-code" title="Link to this heading"></a></h2>
+<p>Display the code version number.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="initial_example.html" class="btn btn-neutral float-left" title="Initial example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scene_yaml.html" class="btn btn-neutral float-right" title="The scene YAML file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Nicolás Cardiel, Sergio Pascual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The scene YAML file &mdash; fridadrp-tutorials 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/tabs.js?v=3030b3cb"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Some scene examples" href="examples.html" />
+    <link rel="prev" title="Script arguments" href="script_arguments.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            fridadrp-tutorials
+              <img src="../_static/logo_FRIDA.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installing the development version</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Running the IFU simulator</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="initial_example.html">Initial example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_arguments.html">Script arguments</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The scene YAML file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scene-block-name">scene_block_name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spectrum">spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry">geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nphotons">nphotons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apply-seeing">apply_seeing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apply-atmosphere-transmission">apply_atmosphere_transmission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#render">render</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Some scene examples</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fridadrp-tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Running the IFU simulator</a></li>
+      <li class="breadcrumb-item active">The scene YAML file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/ifu_simulator/scene_yaml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-scene-yaml-file">
+<h1>The scene YAML file<a class="headerlink" href="#the-scene-yaml-file" title="Link to this heading"></a></h1>
+<p>As already introduced in <a class="reference internal" href="initial_example.html#the-scene-file-of-the-initial-example"><span class="std std-ref">The scene file of the initial example</span></a>, the
+<em>scene</em> is an auxiliary external YAML file that contains a description of the
+sources and associated spectra to be simulated.</p>
+<p>YAML is a human-friendly data serialization language that can be easily
+generated and modified with any text editor. See <a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Syntax description</a>
+for more information.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Basic rules of YAML files:</strong></p>
+<ul class="simple">
+<li><p>Indentation matters and plays an important part in structuring the data.</p></li>
+<li><p>The number of spaces doesn’t matter, as long as the child node indentation
+is greater that its parent. In any case, it is a good practice to keep the
+same number of spaces to define the indentation level.</p></li>
+<li><p>Never use tabs outside of quoted strings, especially for indentation. The
+tab character is illegal within YAML files.</p></li>
+<li><p>YAML is case sensitive.</p></li>
+<li><p>YAML’s comments start with a <code class="docutils literal notranslate"><span class="pre">#</span></code> and go until the end of the line.</p></li>
+</ul>
+</div>
+<p>The <em>scene</em> file may contain several sources, each one separated by a line
+containing <code class="docutils literal notranslate"><span class="pre">---</span></code> (the end of directives marker in YAML). For each object, a
+first level of keys must be specified:
+<code class="docutils literal notranslate"><span class="pre">scene_block_name</span></code>, <code class="docutils literal notranslate"><span class="pre">spectrum</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry</span></code>, <code class="docutils literal notranslate"><span class="pre">nphotons</span></code>,
+<code class="docutils literal notranslate"><span class="pre">apply_seeing</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_atmosphere_transmission</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+<p>Here’s a skeleton of a YAML scene file containing several sources (note that
+<code class="docutils literal notranslate"><span class="pre">...</span></code> indicates lines to be filled in; see explanation below):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nn">---</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nn">---</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>The following provides a detailed description of the different sections that
+make up each block in a scene.</p>
+<section id="scene-block-name">
+<h2>scene_block_name<a class="headerlink" href="#scene-block-name" title="Link to this heading"></a></h2>
+<p>The value of this first-level key is a user-defined text string. Its value has
+no numerical effect on the execution of the simulator, but it allows the user
+to see which astronomical source is being simulated at any given time in the
+terminal. This is useful when the scene to be simulated contains multiple
+sources. Ideally, the text string should not be repeated in different blocks,
+although this has no impact.</p>
+</section>
+<section id="spectrum">
+<h2>spectrum<a class="headerlink" href="#spectrum" title="Link to this heading"></a></h2>
+<p>This first-level key opens an indented section that contains all the
+information required to define the kind of spectrum to be associated to the
+geometry described below.</p>
+<p>The following tabs show the different options available. In each case, a
+general description and an example are provided.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">constant-flux</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">skycalc-radiance</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">tabulated-spectrum</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">delta-lines</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p><strong>General description</strong></p>
+<p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">spectrum</span></code> level is not relevant.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="w">  </span><span class="nt">wave_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">    </span><span class="c1"># optional (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">    </span><span class="c1"># optional (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;unit&gt;</span><span class="w">    </span><span class="c1"># optional (default value: m)</span>
+</pre></div>
+</div>
+<p>Simulate spectrum with constant flux (in PHOTLAM units). This is the type
+of spectrum that we simulated in <a class="reference internal" href="initial_example.html#the-scene-file-of-the-initial-example"><span class="std std-ref">The scene file of the initial example</span></a>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">wave_unit</span></code> is not specified, the default FRIDA <code class="docutils literal notranslate"><span class="pre">wave_unit</span></code> is
+assumed (meter, which is the basic <em>irreducible</em> unit adopted in
+astropy). Otherwise, a valid astropy unit should be employed. Valid
+options are <code class="docutils literal notranslate"><span class="pre">angstrom</span></code>, <code class="docutils literal notranslate"><span class="pre">nm</span></code>, etc.</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">wave_min</span></code> and <code class="docutils literal notranslate"><span class="pre">wave_max</span></code> are optional. If they are not
+specified, the minimum and maximum wavelengths covered by the adopted
+<a class="reference internal" href="script_arguments.html#grating"><span class="std std-ref">grating</span></a> are used.</p>
+<p><strong>Example</strong></p>
+<p>Unless there is a specific need to use one of the optional parameters, in
+most cases it is sufficient to use:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p><strong>General description</strong></p>
+<p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">spectrum</span></code> level is not relevant.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skycalc-radiance</span>
+<span class="w">  </span><span class="nt">wave_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;unit&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: m)</span>
+</pre></div>
+</div>
+<p>This options simulates a spectrum that makes use of the predicted sky
+radiance (sky emission lines) obtained with <a class="reference external" href="https://www.eso.org/observing/etc/bin/gen/form?INS.MODE=swspectr+INS.NAME=SKYCALC">SKYCALC Sky Model Calculator</a>
+(version 2.0.9) using the default input parameters for the model. The
+prediction is stored in the file <code class="docutils literal notranslate"><span class="pre">skycalc_800-2600nm_step0_01nm.fits</span></code>,
+which is one of the auxiliary files automatically downloaded in a cache
+directory the first time <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code> is executed.</p>
+<p>A plot of the sky radiance prediction is shown below.</p>
+<a class="reference internal image-reference" href="../_images/plot_sky_radiance.png"><img alt="plot of the sky radiance" src="../_images/plot_sky_radiance.png" style="width: 100%;" /></a>
+<p>Both <code class="docutils literal notranslate"><span class="pre">wave_min</span></code> and <code class="docutils literal notranslate"><span class="pre">wave_max</span></code> are optional. If they are not
+specified, the minimum and maximum wavelengths covered by the adopted
+<a class="reference internal" href="script_arguments.html#grating"><span class="std std-ref">grating</span></a> are used. If any of these parameters are used,
+it is also advisable to specify <code class="docutils literal notranslate"><span class="pre">wave_unit</span></code>.</p>
+<p><strong>Example</strong></p>
+<p>Unless there is a specific need to use one of the optional parameters, in
+most cases it is sufficient to use:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skycalc-radiance</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p><strong>General description</strong></p>
+<p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">spectrum</span></code> level is not relevant.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tabulated-spectrum</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">              </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">wave_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;integer&gt;</span><span class="w">          </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">flux_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;integer&gt;</span><span class="w">          </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">flux_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">             </span><span class="c1"># mandatory (options: flam or photlam)</span>
+<span class="w">  </span><span class="nt">wave_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;unit&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: m)</span>
+<span class="w">  </span><span class="nt">redshift</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default 0.0)</span>
+<span class="w">  </span><span class="nt">convolve_sigma_km_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">    </span><span class="c1"># optional  (default 0.0)</span>
+</pre></div>
+</div>
+<p>This option allows to simulate a spectrum whose flux is tabulated in the
+external ASCII file given in <code class="docutils literal notranslate"><span class="pre">filename</span></code>, where the wavelength and flux
+are in different columns of the file (<code class="docutils literal notranslate"><span class="pre">wave_column</span></code> and
+<code class="docutils literal notranslate"><span class="pre">flux_column</span></code>, respectively). The file must be accessible from the
+directory where the simulator is running (a relative path to that
+directory can be specified).  In the simulation, the flux is evaluated
+using a simple linear interpolation of the tabulated data.</p>
+<p>In this case, it is important to specify <code class="docutils literal notranslate"><span class="pre">wave_unit</span></code> (otherwise the
+default value will be assumed, which may not correspond to the units
+employed in the tabulated data).</p>
+<p>It is possible to specify a redshift value to be applied to the tabulated
+wavelengths. In addition, it is also possible to convolve the spectrum
+using a Gaussian kernel with a standard deviation given by the
+<code class="docutils literal notranslate"><span class="pre">convolve_sigma_km_s</span></code> value (in km/s).</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">wave_min</span></code> and <code class="docutils literal notranslate"><span class="pre">wave_max</span></code> are optional. If they are not
+specified, the minimum and maximum wavelengths covered by the adopted
+<a class="reference internal" href="script_arguments.html#grating"><span class="std std-ref">grating</span></a> are used.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tabulated-spectrum</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">T06000G45P00.DAT</span>
+<span class="w">  </span><span class="nt">wave_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">flux_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">flux_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flam</span>
+<span class="w">  </span><span class="nt">wave_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">angstrom</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><p><strong>General description</strong></p>
+<p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">spectrum</span></code> level is not relevant.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delta-lines</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">              </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">wave_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;integer&gt;</span><span class="w">          </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">flux_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;integer&gt;</span><span class="w">          </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">wave_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: null)</span>
+<span class="w">  </span><span class="nt">wave_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;unit&gt;</span><span class="w">               </span><span class="c1"># optional  (default value: m)</span>
+</pre></div>
+</div>
+<p>This option is designed to simulate a spectrum formed by infinitely
+narrow emission lines (e.g., an arc spectrum). Note that although it is
+assumed that the lines have no spectral width, the use of a seeing value
+will broaden the observed profile of the lines in the spectral direction.</p>
+<p>In this case, it is important to specify <code class="docutils literal notranslate"><span class="pre">wave_unit</span></code> (otherwise the
+default value will be assumed, which may not correspond to the units
+employed in the tabulated data).</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">wave_min</span></code> and <code class="docutils literal notranslate"><span class="pre">wave_max</span></code> are optional. If they are not
+specified, the minimum and maximum wavelengths covered by the adopted
+<a class="reference internal" href="script_arguments.html#grating"><span class="std std-ref">grating</span></a> are used.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delta-lines</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lines_argon_neon_xenon_empirical_EMIR.dat</span>
+<span class="w">  </span><span class="nt">wave_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">flux_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">wave_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">angstrom</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="geometry">
+<h2>geometry<a class="headerlink" href="#geometry" title="Link to this heading"></a></h2>
+<p>This first-level key opens an indented section that indicates how the photons
+generated following the previous spectrum type are going to be distributed in
+the IFU field of view.</p>
+<p>The following tabs show the different options available. In each case, a
+general description and an example are provided.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">flatfield</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">point-like</button><button aria-controls="panel-1-1-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-2" name="1-2" role="tab" tabindex="-1">gaussian</button><button aria-controls="panel-1-1-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-3" name="1-3" role="tab" tabindex="-1">from-FITS-image</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><p><strong>General description</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flatfield</span>
+</pre></div>
+</div>
+<p>This option redistributes the photons homogeneously over the entire field
+of view of the IFU. It is the appropriate procedure to generate, for
+example, the contribution of sky emission.</p>
+<p><strong>Example</strong></p>
+<p>This case is very simple. There are no additional parameters.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flatfield</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">geometry</span></code> level is not relevant.</p>
+<p><strong>General description</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">point-like</span>
+<span class="w">  </span><span class="nt">ra_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">             </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">dec_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">            </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">    </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">   </span><span class="c1"># optional (default value: 0.0)</span>
+</pre></div>
+</div>
+<p>All the photons are initially placed at the same point of the field of
+view. The corresponding coordinates can be modified using <code class="docutils literal notranslate"><span class="pre">ra_deg</span></code> and
+<code class="docutils literal notranslate"><span class="pre">dec_deg</span></code> (right ascension and declination, in decimal degrees). In
+addition, it is also possible to include additional coordinate offsets
+using <code class="docutils literal notranslate"><span class="pre">delta_ra_arcsec</span></code> and <code class="docutils literal notranslate"><span class="pre">delta_dec_arcsec</span></code> (in arcseconds). It is
+important to remember that the coordinates at the center of the IFU field
+of view are the ones stablished by the script arguments <a class="reference internal" href="script_arguments.html#ra-dec-teles"><span class="std std-ref">ra_teles,
+dec_teles</span></a>, <a class="reference internal" href="script_arguments.html#delta-ra-dec-teles"><span class="std std-ref">delta_ra_teles_arcsec</span></a>, and <a class="reference internal" href="script_arguments.html#delta-ra-dec-teles"><span class="std std-ref">delta_dec_teles_arcsec</span></a>.  By default, all of the script arguments are set
+to zero.</p>
+<p>In general, the simplest thing to do is to use the script arguments to
+set the reference position and use the scene parameters to relocate
+different sources as part of the same simulation.</p>
+<p>Even though the initial coordinates of all photons are the same, the
+final positions will be modified when the seeing effect is introduced.</p>
+<p><strong>Example</strong></p>
+<p>To simulate a point source at the center of the IFU’s field of view,
+simply use the following (assuming that we have left the default values
+of the script arguments that modify the telescope pointing):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">point-like</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-2" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-2" name="1-2" role="tabpanel" tabindex="0"><p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">geometry</span></code> level is not relevant.</p>
+<p><strong>General description</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">      </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">fwhm_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">     </span><span class="c1"># optional (default value: fwhm_ra_arcsec)</span>
+<span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">  </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">ra_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">              </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">dec_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">             </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">     </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">    </span><span class="c1"># optional (default value: 0.0)</span>
+</pre></div>
+</div>
+<p>This option redistributes the photons spatially in the IFU’s focal plane
+following a two-dimensional Gaussian probability distribution, whose
+parameters are <code class="docutils literal notranslate"><span class="pre">fwhm_ra_arcsec</span></code>, <code class="docutils literal notranslate"><span class="pre">fwhm_dec_arcsec</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">position_angle_deg</span></code>.
+If the value of <code class="docutils literal notranslate"><span class="pre">fwhm_dec_arcsec</span></code> is not specified, the same value as
+<code class="docutils literal notranslate"><span class="pre">fwhm_ar_arcsec</span></code> is assumed.</p>
+<p>The position of the object in the field of view is determined by the same
+parameters as in the <code class="docutils literal notranslate"><span class="pre">geometry:</span> <span class="pre">point-like</span></code> case previously
+described.</p>
+<p><strong>Example</strong></p>
+<p>To simulate a symmetric Gaussian source at the center of the IFU’s field
+of view with a FWHM of 0.05 arcsec, simply use the following (assuming
+that we have left the default values of the script arguments that modify
+the telescope pointing):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-3" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-3" name="1-3" role="tabpanel" tabindex="0"><p>Note: The order of the different <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs within the
+<code class="docutils literal notranslate"><span class="pre">geometry</span></code> level is not relevant.</p>
+<p><strong>General description</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from-FITS-image</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">                        </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">diagonal_fov_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">              </span><span class="c1"># mandatory</span>
+<span class="w">  </span><span class="nt">background_to_subtract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string | float&gt;</span><span class="w">  </span><span class="c1"># mandatory (options for string: mode, median, none; or float number)</span>
+<span class="w">  </span><span class="nt">ra_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">                           </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">dec_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">                          </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">                  </span><span class="c1"># optional (default value: 0.0)</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;float&gt;</span><span class="w">                 </span><span class="c1"># optional (default value: 0.0)</span>
+</pre></div>
+</div>
+<p>This option allows the photons to be redistributed in the IFU’s focal
+plane using an arbitrary FITS image as a probability distribution. This
+makes it easy to simulate objects with an arbitrary geometry. The
+<code class="docutils literal notranslate"><span class="pre">diagonal_fov_arcsec</span></code> parameter sets the size of the FITS image in the
+diagonal direction, in arcseconds. The position of the center of the
+image is fixed by the same parameters as in the <code class="docutils literal notranslate"><span class="pre">geometry:</span> <span class="pre">point-like</span></code>
+case previously described.</p>
+<p><strong>Example</strong></p>
+<p>To simulate a galaxy like M51 at the center of the IFU’s field of view,
+simply use the following (assuming that we have left the default values
+of the script arguments that modify the telescope pointing):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from-FITS-image</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m51_dss1.fits</span>
+<span class="w">  </span><span class="nt">diagonal_fov_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.80</span>
+<span class="w">  </span><span class="nt">background_to_subtract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mode</span>
+</pre></div>
+</div>
+<p>In this case, the file <code class="docutils literal notranslate"><span class="pre">m51_dss1.fits</span></code> is the FITS file downloaded from
+the <a class="reference external" href="https://archive.eso.org/dss/dss">ESO Online Digitized Sky Survey</a>
+selecting <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">Name:</span> <span class="pre">M51</span></code> with a field of view of <span class="math notranslate nohighlight">\(15 \times
+15\;{\rm arcmin}^2\)</span>. The image mode is subtracted and the resulting
+pixels with negative signal are set to zero in order to use the result as
+a valid probability distribution function. The size of the FITS image in
+the diagonal direction is reduced so that it occupies an extent of 0.80
+arcseconds in the IFU’s focal plane.</p>
+</div></div>
+</section>
+<section id="nphotons">
+<h2>nphotons<a class="headerlink" href="#nphotons" title="Link to this heading"></a></h2>
+<p>The value of this first-level key indicates the initial number of photons to be
+simulated.</p>
+<p>If atmospheric transmission is considered in the simulation, a fraction of the
+simulated photons will not reach the detector. This means that the final number
+of simulated photons that reach the detector will be less than this initial
+number.</p>
+<p>Additionally, seeing can cause simulated photons on the edges of the IFU’s
+field of view to fall outside the IFU when this effect is taken into account,
+which means that the final number of photons reaching the detector may be even
+smaller.</p>
+</section>
+<section id="apply-seeing">
+<h2>apply_seeing<a class="headerlink" href="#apply-seeing" title="Link to this heading"></a></h2>
+<p>Boolean first-level key indicating whether seeing must be taken into account.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, each simulated photon is randomly displaced in the focal plane of
+the IFU according to a probability distribution that is determined by the
+seeing PSF.</p>
+<p>The script arguments <a class="reference internal" href="script_arguments.html#seeing-fwhm-psf"><span class="std std-ref">seeing_fwhm_arcsec</span></a> and
+<a class="reference internal" href="script_arguments.html#seeing-fwhm-psf"><span class="std std-ref">seeing_psf</span></a> define the
+seeing FWHM and the mathematical function employed to reproduce the PSF. Note
+that this arguments are ignored for those scene sources for which
+<code class="docutils literal notranslate"><span class="pre">apply_seeing:</span> <span class="pre">False</span></code>.</p>
+</section>
+<section id="apply-atmosphere-transmission">
+<h2>apply_atmosphere_transmission<a class="headerlink" href="#apply-atmosphere-transmission" title="Link to this heading"></a></h2>
+<p>Boolean first-level key indicating whether the atmosphere transmission must be
+considered.  If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the atmosphere transmission defined in the script
+argument <a class="reference internal" href="script_arguments.html#atmosphere-transmission"><span class="std std-ref">atmosphere_transmission</span></a> will be
+used.</p>
+</section>
+<section id="render">
+<h2>render<a class="headerlink" href="#render" title="Link to this heading"></a></h2>
+<p>Boolean first-level key indicate whether the considered scene block must be
+simulated.</p>
+<p>It may be useful to set this key to False when we want to simulate images
+with several sources in the IFU field of view and one needs to
+remove some particular objects from the simulation without deleting the
+corresponding lines in the YAML file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="script_arguments.html" class="btn btn-neutral float-left" title="Script arguments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Some scene examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Nicolás Cardiel, Sergio Pascual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

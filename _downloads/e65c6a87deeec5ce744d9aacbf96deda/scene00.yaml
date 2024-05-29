@@ -1,0 +1,9 @@
+scene_block_name: constant flux
+spectrum:
+  type: constant-flux
+geometry: 
+  type: point-like
+nphotons: 2E6
+apply_seeing: True
+apply_atmosphere_transmission: True
+render: True
