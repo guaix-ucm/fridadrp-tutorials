@@ -19,10 +19,11 @@
         <script src="../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running a simple test recipe" href="../tests/test1.html" />
+    <link rel="next" title="Running a simple test recipe" href="../example_recipes/test1.html" />
     <link rel="prev" title="The scene YAML file" href="scene_yaml.html" /> 
 </head>
 
@@ -60,7 +61,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tests/test1.html">Running a simple test recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_recipes/test1.html">Running a simple test recipe</a></li>
 </ul>
 
         </div>
@@ -226,6 +227,10 @@ images.</p>
 <span class="n">render</span><span class="p">:</span> <span class="kc">True</span>
 </pre></div>
 </div>
+<p>We aim to simulate a galaxy resembling the morphology of Messier 51. To achieve
+this, we generated a <span class="math notranslate nohighlight">\({15 \times 15}~{\rm arcmin}^2\)</span> image using the <a class="reference external" href="https://archive.eso.org/dss/dss">ESO
+Online Digitized Sky Survey</a>. The
+corresponding file is <a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits">m51_dss1.fits</a>.</p>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--scene<span class="w"> </span>scene02.yaml<span class="w"> </span><span class="se">\</span>
@@ -258,7 +263,7 @@ images.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="scene_yaml.html" class="btn btn-neutral float-left" title="The scene YAML file" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../tests/test1.html" class="btn btn-neutral float-right" title="Running a simple test recipe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../example_recipes/test1.html" class="btn btn-neutral float-right" title="Running a simple test recipe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
