@@ -19,5 +19,5 @@ FRIDA tutorials
 
    installation/installation
    ifu_simulator/index
-   tests/test1
+   example_recipes/test1
 

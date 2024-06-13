@@ -46,9 +46,16 @@ Example 2: M51-like galaxy
 --------------------------
 
 Here we are using the file :download:`scene02.yaml
-<scene02/scene02.yaml>`.
+<scene02/scene02.yaml>`. 
+
 
 .. literalinclude:: scene02/scene02.yaml
+
+We aim to simulate a galaxy resembling the morphology of Messier 51. To achieve
+this, we generated a :math:`{15 \times 15}~{\rm arcmin}^2` image using the `ESO
+Online Digitized Sky Survey <https://archive.eso.org/dss/dss>`_. The
+corresponding file is `m51_dss1.fits
+<https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits>`_.
 
 Execute ``fridadrp-ifu_simulator``:
 
