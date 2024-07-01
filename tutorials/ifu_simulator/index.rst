@@ -12,7 +12,7 @@ system:
 .. code-block:: console
 
    (venv_frida) $ fridadrp-ifu_simulator --version
-   0.1.dev89+g0e67f81.d20240429
+   0.1.dev98+g0c982ee
 
 The script accepts a number of arguments, which are displayed when invoking the
 script name without any parameter:
@@ -34,7 +34,8 @@ script name without any parameter:
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]
                                  [--seed SEED]
                                  [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]
-                                 [-v] [--plots] [--echo] [--version]
+                                 [--stop_after_ifu_3D_method0] [-v] [--plots]
+                                 [--echo] [--version]
    
 The simulator uses a file called *scene* as its basic input, which contains
 information about the image to be simulated. This file must be written in YAML

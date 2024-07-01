@@ -30,4 +30,4 @@ html_logo = 'logo_FRIDA.png'
 html_theme_options = {
     'logo_only': False,
 }
-html_static_path = ['_static']
+#html_static_path = ['_static']
