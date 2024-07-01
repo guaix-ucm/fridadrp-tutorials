@@ -65,6 +65,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#code-flatpix2pix-lt-default-none-gt-code"><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-seed-lt-integer-gt-code"><span class="raw-html"><code>--seed &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-prefix-intermediate-fits-lt-string-gt-code"><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-stop-after-ifu-3d-method0-code"><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-verbose-code"><span class="raw-html"><code>--verbose</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-plots-code"><span class="raw-html"><code>--plots</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-echo-code"><span class="raw-html"><code>--echo</code></span></a></li>
@@ -123,9 +124,10 @@ argument.</p>
 <span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
 <span class="go">                              [--seed SEED]</span>
 <span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
-<span class="go">                              [-v] [--plots] [--echo] [--version]</span>
+<span class="go">                              [--stop_after_ifu_3D_method0] [-v] [--plots]</span>
+<span class="go">                              [--echo] [--version]</span>
 
-<span class="go">description: simulator of FRIDA IFU images (0.1.dev89+g0e67f81.d20240429)</span>
+<span class="go">description: simulator of FRIDA IFU images (0.1.dev98+g0c982ee)</span>
 
 <span class="go">options:</span>
 <span class="go">  -h, --help            show this help message and exit</span>
@@ -156,6 +158,8 @@ argument.</p>
 <span class="go">  --seed SEED           Seed for random number generator</span>
 <span class="go">  --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS</span>
 <span class="go">                        Prefix for intermediate FITS files</span>
+<span class="go">  --stop_after_ifu_3D_method0</span>
+<span class="go">                        Stop after computing ifu_3D_method0 image</span>
 <span class="go">  -v, --verbose         increase program verbosity</span>
 <span class="go">  --plots               Plot intermediate results</span>
 <span class="go">  --echo                Display full command line</span>
@@ -267,6 +271,12 @@ set to a particular integer sequence (<code class="docutils literal notranslate"
 <p>Prefix to be added before the name of the FITS files generated during the
 simulator execution. By default this string is <code class="docutils literal notranslate"><span class="pre">test</span></code>. Note that an
 underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> symbol is also added between this prefix and the filename.</p>
+</section>
+<section id="code-stop-after-ifu-3d-method0-code">
+<span id="stop-after-ifu-3d-method0"></span><h2><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span><a class="headerlink" href="#code-stop-after-ifu-3d-method0-code" title="Link to this heading"></a></h2>
+<p>If this argument is present, the simulator stops just after generating
+the file <code class="docutils literal notranslate"><span class="pre">test_ifu_3D_method0.fits</span></code>. This is useful for debugging
+purposes.</p>
 </section>
 <section id="code-verbose-code">
 <span id="verbose"></span><h2><span class="raw-html"><code>--verbose</code></span><a class="headerlink" href="#code-verbose-code" title="Link to this heading"></a></h2>

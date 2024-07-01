@@ -25,9 +25,10 @@ argument.
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]
                                  [--seed SEED]
                                  [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]
-                                 [-v] [--plots] [--echo] [--version]
+                                 [--stop_after_ifu_3D_method0] [-v] [--plots]
+                                 [--echo] [--version]
    
-   description: simulator of FRIDA IFU images (0.1.dev89+g0e67f81.d20240429)
+   description: simulator of FRIDA IFU images (0.1.dev98+g0c982ee)
    
    options:
      -h, --help            show this help message and exit
@@ -58,6 +59,8 @@ argument.
      --seed SEED           Seed for random number generator
      --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS
                            Prefix for intermediate FITS files
+     --stop_after_ifu_3D_method0
+                           Stop after computing ifu_3D_method0 image
      -v, --verbose         increase program verbosity
      --plots               Plot intermediate results
      --echo                Display full command line
@@ -210,11 +213,20 @@ set to a particular integer sequence (``1234``).
 .. _--prefix_intermediate_FITS:
 
 :raw-html:`<code>--prefix_intermediate_FITS &lt;string&gt;</code>`
--------------------------------------------------------------------
+------------------------------------------------------------------
 
 Prefix to be added before the name of the FITS files generated during the
 simulator execution. By default this string is ``test``. Note that an
 underscore ``_`` symbol is also added between this prefix and the filename.
+
+.. _--stop_after_ifu_3D_method0:
+
+:raw-html:`<code>--stop_after_ifu_3D_method0</code>`
+----------------------------------------------------
+
+If this argument is present, the simulator stops just after generating
+the file ``test_ifu_3D_method0.fits``. This is useful for debugging
+purposes.
 
 .. _--verbose:
 

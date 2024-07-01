@@ -93,7 +93,7 @@ development and testing of reduction recipes.</p>
 <p>After installing <code class="docutils literal notranslate"><span class="pre">megardrp</span></code>, the IFU simulator should be available in your
 system:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--version
-<span class="go">0.1.dev89+g0e67f81.d20240429</span>
+<span class="go">0.1.dev98+g0c982ee</span>
 </pre></div>
 </div>
 <p>The script accepts a number of arguments, which are displayed when invoking the
@@ -113,7 +113,8 @@ script name without any parameter:</p>
 <span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
 <span class="go">                              [--seed SEED]</span>
 <span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
-<span class="go">                              [-v] [--plots] [--echo] [--version]</span>
+<span class="go">                              [--stop_after_ifu_3D_method0] [-v] [--plots]</span>
+<span class="go">                              [--echo] [--version]</span>
 </pre></div>
 </div>
 <p>The simulator uses a file called <em>scene</em> as its basic input, which contains
@@ -140,6 +141,7 @@ spectrum of the astronomical sources to be simulated.</p>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-flatpix2pix-lt-default-none-gt-code"><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-seed-lt-integer-gt-code"><span class="raw-html"><code>--seed &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-prefix-intermediate-fits-lt-string-gt-code"><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-stop-after-ifu-3d-method0-code"><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-verbose-code"><span class="raw-html"><code>--verbose</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-plots-code"><span class="raw-html"><code>--plots</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-echo-code"><span class="raw-html"><code>--echo</code></span></a></li>
