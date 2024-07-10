@@ -59,6 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code"><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code"><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code"><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-instrument-pa-deg-lt-float-gt-code"><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-noversampling-whitelight-lt-integer-gt-code"><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>
@@ -119,6 +120,7 @@ argument.</p>
 <span class="go">                              [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]</span>
 <span class="go">                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]</span>
 <span class="go">                              [--seeing_psf {gaussian}]</span>
+<span class="go">                              [--instrument_pa_deg INSTRUMENT_PA_DEG]</span>
 <span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
 <span class="go">                              [--atmosphere_transmission {default,none}]</span>
 <span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
@@ -148,6 +150,8 @@ argument.</p>
 <span class="go">                        Seeing FWHM (arcsec)</span>
 <span class="go">  --seeing_psf {gaussian}</span>
 <span class="go">                        Seeing PSF</span>
+<span class="go">  --instrument_pa_deg INSTRUMENT_PA_DEG</span>
+<span class="go">                        Instrument Position Angle (deg)</span>
 <span class="go">  --noversampling_whitelight NOVERSAMPLING_WHITELIGHT</span>
 <span class="go">                        Oversampling white light image</span>
 <span class="go">  --atmosphere_transmission {default,none}</span>
@@ -208,6 +212,10 @@ closer to the FRIDA IFU’s field of view.</p>
 <p>FWHM of the seeing, in arcseconds, and mathematical function to reproduce the
 seeing.</p>
 <p><strong>Note</strong>: so far only <code class="docutils literal notranslate"><span class="pre">--seeing_psf</span> <span class="pre">gaussian</span></code> has been defined.</p>
+</section>
+<section id="code-instrument-pa-deg-lt-float-gt-code">
+<span id="instrument-pa-deg"></span><h2><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span><a class="headerlink" href="#code-instrument-pa-deg-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Instrument position angle (degrees), measured North through East.</p>
 </section>
 <section id="code-noversampling-whitelight-lt-integer-gt-code">
 <span id="noversampling-whitelight"></span><h2><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span><a class="headerlink" href="#code-noversampling-whitelight-lt-integer-gt-code" title="Link to this heading"></a></h2>

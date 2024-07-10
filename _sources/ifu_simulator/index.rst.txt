@@ -29,6 +29,7 @@ script name without any parameter:
                                  [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]
                                  [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]
                                  [--seeing_psf {gaussian}]
+                                 [--instrument_pa_deg INSTRUMENT_PA_DEG] 
                                  [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
                                  [--atmosphere_transmission {default,none}]
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]

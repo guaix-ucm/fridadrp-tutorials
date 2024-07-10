@@ -20,6 +20,7 @@ argument.
                                  [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]
                                  [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]
                                  [--seeing_psf {gaussian}]
+                                 [--instrument_pa_deg INSTRUMENT_PA_DEG]
                                  [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
                                  [--atmosphere_transmission {default,none}]
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]
@@ -49,6 +50,8 @@ argument.
                            Seeing FWHM (arcsec)
      --seeing_psf {gaussian}
                            Seeing PSF
+     --instrument_pa_deg INSTRUMENT_PA_DEG
+                           Instrument Position Angle (deg)
      --noversampling_whitelight NOVERSAMPLING_WHITELIGHT
                            Oversampling white light image
      --atmosphere_transmission {default,none}
@@ -130,6 +133,13 @@ FWHM of the seeing, in arcseconds, and mathematical function to reproduce the
 seeing. 
 
 **Note**: so far only ``--seeing_psf gaussian`` has been defined.
+
+.. _--instrument_pa_deg:
+
+:raw-html:`<code>--instrument_pa_deg &lt;float&gt;</code>`
+----------------------------------------------------------
+
+Instrument position angle (degrees), measured North through East.
 
 .. _--noversampling_whitelight:
 
