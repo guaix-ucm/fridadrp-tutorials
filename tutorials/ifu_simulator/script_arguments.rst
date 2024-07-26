@@ -21,6 +21,8 @@ argument.
                                  [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]
                                  [--seeing_psf {gaussian}]
                                  [--instrument_pa_deg INSTRUMENT_PA_DEG]
+                                 [--airmass AIRMASS]
+                                 [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]
                                  [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
                                  [--atmosphere_transmission {default,none}]
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]
@@ -52,6 +54,9 @@ argument.
                            Seeing PSF
      --instrument_pa_deg INSTRUMENT_PA_DEG
                            Instrument Position Angle (deg)
+     --airmass AIRMASS     Airmass
+     --parallactic_angle_deg PARALLACTIC_ANGLE_DEG
+                           Parallactic angle (deg)
      --noversampling_whitelight NOVERSAMPLING_WHITELIGHT
                            Oversampling white light image
      --atmosphere_transmission {default,none}
@@ -140,6 +145,31 @@ seeing.
 ----------------------------------------------------------
 
 Instrument position angle (degrees), measured North through East.
+
+.. _--airmass:
+
+:raw-html:`<code>--airmass &lt;float&gt;</code>`
+------------------------------------------------
+
+Airmass. If this value is > 1.0, it is employed to compute the atmospheric
+differential refraction (ADR) as a function of wavelength, using Eq. (1)-(3) in
+`Filippenko (1982)
+<https://ui.adsabs.harvard.edu/abs/1982PASP...94..715F/abstract>`_.
+
+The ADR effect is computed determining the difference in the refraction angle
+of each simulated photon computed at its simulated wavelength and at the
+central wavelength of the simulated data cube.
+
+By default ``--airmass 1.0`` and no ADR effect is computed unless a different
+value is specified.
+
+.. _--parallactic_angle_deg:
+
+:raw-html:`<code>--parallactic_angle_deg &lt;float&gt;</code>`
+--------------------------------------------------------------
+
+Parallactic angle (degrees). This value is employed to compute the atmospheric
+differential refraction when airmass > 1.0 (see above).
 
 .. _--noversampling_whitelight:
 
