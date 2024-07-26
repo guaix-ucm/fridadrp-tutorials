@@ -12,7 +12,7 @@ system:
 .. code-block:: console
 
    (venv_frida) $ fridadrp-ifu_simulator --version
-   0.1.dev98+g0c982ee
+   0.1.dev122+g9cc23a9
 
 The script accepts a number of arguments, which are displayed when invoking the
 script name without any parameter:
@@ -30,6 +30,8 @@ script name without any parameter:
                                  [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]
                                  [--seeing_psf {gaussian}]
                                  [--instrument_pa_deg INSTRUMENT_PA_DEG] 
+                                 [--airmass AIRMASS]
+                                 [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]
                                  [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
                                  [--atmosphere_transmission {default,none}]
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]

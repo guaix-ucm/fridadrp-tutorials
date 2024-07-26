@@ -27,7 +27,7 @@ effectively allows a command to span multiple lines.
      --seeing_fwhm_arcsec 0.05 \
      --rnoise 4
    Welcome to fridadrp-ifu_simulator
-   version 0.1.dev89+g0e67f81.d20240429
+   version 0.1.dev122+g9cc23a9
    
    * Processing: constant flux
    Saving file: test_ifu_white2D_method0_os10.fits
@@ -37,6 +37,7 @@ effectively allows a command to span multiple lines.
    Saving file: test_detector_2D_method0.fits
    Saving file: test_rss_2D_method1.fits
    Saving file: test_ifu_3D_method1.fits
+   Program stopped
 
 The first parameter, ``--scene``, indicates the name of the external YAML file
 that contains the *scene* description. Its content is explained next.
@@ -197,7 +198,53 @@ Since we are not using oversampling, in this case ``NAXIS1=64`` and
    LATPOLE =                  0.0 / [deg] Native latitude of celestial pole        
    MJDREF  =                  0.0 / [d] MJD of fiducial time                       
    RADESYS = 'ICRS'               / Equatorial coordinate system   
-
+   OBSERVAT= 'ORM     '           / Name of the observatory (IRAF style)           
+   TELESCOP= 'GTC     '           / Telescope name                                 
+   ORIGIN  = 'fridadrp-ifu_simulator' / FITS file originator                       
+   LATITUDE= '+28:45:43.2'        / Telescope latitude (degrees), +28:45:43.2      
+   LONGITUD= '+17:52:39.5'        / Telescope longitude (degrees), +17:52:39.5     
+   HEIGHT  =                 2348 / Telescope height above sea level (m)           
+   AIRMASS =                  1.0 / Airmass                                        
+   IPA     =                  0.0 / Instrument position angle (degrees)            
+   PARANGLE=                  0.0 / Parallactic angle (degrees)                    
+   INSTRUME= 'FRIDA   '           / Instrument name                                
+   OBSMODE = 'IFS     '           / Observation mode                               
+   SCALE   = 'FINE    '           / Camera scale                                   
+   GRATING = 'MEDIUM-K'           / Grating                                        
+   RA      = '00:00:00.000'       / Telescope right ascension (HH:MM:SS)           
+   DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)               
+   RADEG   =                  0.0 / Telescope right ascension (degrees)            
+   DECDEG  =                  0.0 / Telescope declination (degrees)                
+   HISTORY -------------------------                                               
+   HISTORY Date: 2024-07-26 19:54:49                                               
+   HISTORY -------------------------                                               
+   HISTORY Node: Nicolass-MacBook-Pro.local                                        
+   HISTORY Python: /Users/cardiel/venv_frida/bin/python3.12                        
+   HISTORY $ fridadrp-ifu_simulator                                                
+   HISTORY (version: 0.1.dev122+g9cc23a9)                                          
+   HISTORY --scene scene00.yaml                                                    
+   HISTORY --grating medium-K                                                      
+   HISTORY --scale fine                                                            
+   HISTORY --ra_teles_deg 0.0                                                      
+   HISTORY --dec_teles_deg 0.0                                                     
+   HISTORY --delta_ra_teles_arcsec 0.0                                             
+   HISTORY --delta_dec_teles_arcsec 0.0                                            
+   HISTORY --seeing_fwhm_arcsec 0.05                                               
+   HISTORY --seeing_psf gaussian                                                   
+   HISTORY --instrument_pa_deg 0.0                                                 
+   HISTORY --airmass 1.0                                                           
+   HISTORY --parallactic_angle_deg 0.0                                             
+   HISTORY --noversampling_whitelight 10                                           
+   HISTORY --atmosphere_transmission default                                       
+   HISTORY --rnoise 4.0                                                            
+   HISTORY --flatpix2pix default                                                   
+   HISTORY --seed None                                                             
+   HISTORY --prefix_intermediate_FITS test                                         
+   HISTORY --stop_after_ifu_3D_method0 False                                       
+   HISTORY --verbose False                                                         
+   HISTORY --plots False                                                           
+   HISTORY --echo False                                                            
+   HISTORY --version False 
 
 It is possible to have a look to this image using QFitsView
 

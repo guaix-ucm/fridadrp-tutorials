@@ -60,6 +60,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code"><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code"><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-instrument-pa-deg-lt-float-gt-code"><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-airmass-lt-float-gt-code"><span class="raw-html"><code>--airmass &lt;float&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-parallactic-angle-deg-lt-float-gt-code"><span class="raw-html"><code>--parallactic_angle_deg &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-noversampling-whitelight-lt-integer-gt-code"><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>
@@ -121,6 +123,8 @@ argument.</p>
 <span class="go">                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]</span>
 <span class="go">                              [--seeing_psf {gaussian}]</span>
 <span class="go">                              [--instrument_pa_deg INSTRUMENT_PA_DEG]</span>
+<span class="go">                              [--airmass AIRMASS]</span>
+<span class="go">                              [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]</span>
 <span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
 <span class="go">                              [--atmosphere_transmission {default,none}]</span>
 <span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
@@ -152,6 +156,9 @@ argument.</p>
 <span class="go">                        Seeing PSF</span>
 <span class="go">  --instrument_pa_deg INSTRUMENT_PA_DEG</span>
 <span class="go">                        Instrument Position Angle (deg)</span>
+<span class="go">  --airmass AIRMASS     Airmass</span>
+<span class="go">  --parallactic_angle_deg PARALLACTIC_ANGLE_DEG</span>
+<span class="go">                        Parallactic angle (deg)</span>
 <span class="go">  --noversampling_whitelight NOVERSAMPLING_WHITELIGHT</span>
 <span class="go">                        Oversampling white light image</span>
 <span class="go">  --atmosphere_transmission {default,none}</span>
@@ -216,6 +223,22 @@ seeing.</p>
 <section id="code-instrument-pa-deg-lt-float-gt-code">
 <span id="instrument-pa-deg"></span><h2><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span><a class="headerlink" href="#code-instrument-pa-deg-lt-float-gt-code" title="Link to this heading"></a></h2>
 <p>Instrument position angle (degrees), measured North through East.</p>
+</section>
+<section id="code-airmass-lt-float-gt-code">
+<span id="airmass"></span><h2><span class="raw-html"><code>--airmass &lt;float&gt;</code></span><a class="headerlink" href="#code-airmass-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Airmass. If this value is &gt; 1.0, it is employed to compute the atmospheric
+differential refraction (ADR) as a function of wavelength, using Eq. (1)-(3) in
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1982PASP...94..715F/abstract">Filippenko (1982)</a>.</p>
+<p>The ADR effect is computed determining the difference in the refraction angle
+of each simulated photon computed at its simulated wavelength and at the
+central wavelength of the simulated data cube.</p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">--airmass</span> <span class="pre">1.0</span></code> and no ADR effect is computed unless a different
+value is specified.</p>
+</section>
+<section id="code-parallactic-angle-deg-lt-float-gt-code">
+<span id="parallactic-angle-deg"></span><h2><span class="raw-html"><code>--parallactic_angle_deg &lt;float&gt;</code></span><a class="headerlink" href="#code-parallactic-angle-deg-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Parallactic angle (degrees). This value is employed to compute the atmospheric
+differential refraction when airmass &gt; 1.0 (see above).</p>
 </section>
 <section id="code-noversampling-whitelight-lt-integer-gt-code">
 <span id="noversampling-whitelight"></span><h2><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span><a class="headerlink" href="#code-noversampling-whitelight-lt-integer-gt-code" title="Link to this heading"></a></h2>

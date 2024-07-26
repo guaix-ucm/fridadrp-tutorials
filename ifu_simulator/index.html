@@ -93,7 +93,7 @@ development and testing of reduction recipes.</p>
 <p>After installing <code class="docutils literal notranslate"><span class="pre">megardrp</span></code>, the IFU simulator should be available in your
 system:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--version
-<span class="go">0.1.dev98+g0c982ee</span>
+<span class="go">0.1.dev122+g9cc23a9</span>
 </pre></div>
 </div>
 <p>The script accepts a number of arguments, which are displayed when invoking the
@@ -109,6 +109,8 @@ script name without any parameter:</p>
 <span class="go">                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]</span>
 <span class="go">                              [--seeing_psf {gaussian}]</span>
 <span class="go">                              [--instrument_pa_deg INSTRUMENT_PA_DEG]</span>
+<span class="go">                              [--airmass AIRMASS]</span>
+<span class="go">                              [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]</span>
 <span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
 <span class="go">                              [--atmosphere_transmission {default,none}]</span>
 <span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
@@ -137,6 +139,8 @@ spectrum of the astronomical sources to be simulated.</p>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code"><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code"><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-instrument-pa-deg-lt-float-gt-code"><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-airmass-lt-float-gt-code"><span class="raw-html"><code>--airmass &lt;float&gt;</code></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-parallactic-angle-deg-lt-float-gt-code"><span class="raw-html"><code>--parallactic_angle_deg &lt;float&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-noversampling-whitelight-lt-integer-gt-code"><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>

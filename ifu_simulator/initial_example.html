@@ -119,7 +119,7 @@ effectively allows a command to span multiple lines.</p>
 <span class="w">  </span>--seeing_fwhm_arcsec<span class="w"> </span><span class="m">0</span>.05<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--rnoise<span class="w"> </span><span class="m">4</span>
 <span class="go">Welcome to fridadrp-ifu_simulator</span>
-<span class="go">version 0.1.dev89+g0e67f81.d20240429</span>
+<span class="go">version 0.1.dev122+g9cc23a9</span>
 
 <span class="go">* Processing: constant flux</span>
 <span class="go">Saving file: test_ifu_white2D_method0_os10.fits</span>
@@ -129,6 +129,7 @@ effectively allows a command to span multiple lines.</p>
 <span class="go">Saving file: test_detector_2D_method0.fits</span>
 <span class="go">Saving file: test_rss_2D_method1.fits</span>
 <span class="go">Saving file: test_ifu_3D_method1.fits</span>
+<span class="go">Program stopped</span>
 </pre></div>
 </div>
 <p>The first parameter, <code class="docutils literal notranslate"><span class="pre">--scene</span></code>, indicates the name of the external YAML file
@@ -282,6 +283,53 @@ when running <code class="docutils literal notranslate"><span class="pre">fridad
 <span class="go">LATPOLE =                  0.0 / [deg] Native latitude of celestial pole</span>
 <span class="go">MJDREF  =                  0.0 / [d] MJD of fiducial time</span>
 <span class="go">RADESYS = &#39;ICRS&#39;               / Equatorial coordinate system</span>
+<span class="go">OBSERVAT= &#39;ORM     &#39;           / Name of the observatory (IRAF style)</span>
+<span class="go">TELESCOP= &#39;GTC     &#39;           / Telescope name</span>
+<span class="go">ORIGIN  = &#39;fridadrp-ifu_simulator&#39; / FITS file originator</span>
+<span class="go">LATITUDE= &#39;+28:45:43.2&#39;        / Telescope latitude (degrees), +28:45:43.2</span>
+<span class="go">LONGITUD= &#39;+17:52:39.5&#39;        / Telescope longitude (degrees), +17:52:39.5</span>
+<span class="go">HEIGHT  =                 2348 / Telescope height above sea level (m)</span>
+<span class="go">AIRMASS =                  1.0 / Airmass</span>
+<span class="go">IPA     =                  0.0 / Instrument position angle (degrees)</span>
+<span class="go">PARANGLE=                  0.0 / Parallactic angle (degrees)</span>
+<span class="go">INSTRUME= &#39;FRIDA   &#39;           / Instrument name</span>
+<span class="go">OBSMODE = &#39;IFS     &#39;           / Observation mode</span>
+<span class="go">SCALE   = &#39;FINE    &#39;           / Camera scale</span>
+<span class="go">GRATING = &#39;MEDIUM-K&#39;           / Grating</span>
+<span class="go">RA      = &#39;00:00:00.000&#39;       / Telescope right ascension (HH:MM:SS)</span>
+<span class="go">DEC     = &#39;00:00:00.000&#39;       / Telescope declination (DD:MM:SS)</span>
+<span class="go">RADEG   =                  0.0 / Telescope right ascension (degrees)</span>
+<span class="go">DECDEG  =                  0.0 / Telescope declination (degrees)</span>
+<span class="go">HISTORY -------------------------</span>
+<span class="go">HISTORY Date: 2024-07-26 19:54:49</span>
+<span class="go">HISTORY -------------------------</span>
+<span class="go">HISTORY Node: Nicolass-MacBook-Pro.local</span>
+<span class="go">HISTORY Python: /Users/cardiel/venv_frida/bin/python3.12</span>
+<span class="go">HISTORY $ fridadrp-ifu_simulator</span>
+<span class="go">HISTORY (version: 0.1.dev122+g9cc23a9)</span>
+<span class="go">HISTORY --scene scene00.yaml</span>
+<span class="go">HISTORY --grating medium-K</span>
+<span class="go">HISTORY --scale fine</span>
+<span class="go">HISTORY --ra_teles_deg 0.0</span>
+<span class="go">HISTORY --dec_teles_deg 0.0</span>
+<span class="go">HISTORY --delta_ra_teles_arcsec 0.0</span>
+<span class="go">HISTORY --delta_dec_teles_arcsec 0.0</span>
+<span class="go">HISTORY --seeing_fwhm_arcsec 0.05</span>
+<span class="go">HISTORY --seeing_psf gaussian</span>
+<span class="go">HISTORY --instrument_pa_deg 0.0</span>
+<span class="go">HISTORY --airmass 1.0</span>
+<span class="go">HISTORY --parallactic_angle_deg 0.0</span>
+<span class="go">HISTORY --noversampling_whitelight 10</span>
+<span class="go">HISTORY --atmosphere_transmission default</span>
+<span class="go">HISTORY --rnoise 4.0</span>
+<span class="go">HISTORY --flatpix2pix default</span>
+<span class="go">HISTORY --seed None</span>
+<span class="go">HISTORY --prefix_intermediate_FITS test</span>
+<span class="go">HISTORY --stop_after_ifu_3D_method0 False</span>
+<span class="go">HISTORY --verbose False</span>
+<span class="go">HISTORY --plots False</span>
+<span class="go">HISTORY --echo False</span>
+<span class="go">HISTORY --version False</span>
 </pre></div>
 </div>
 <p>It is possible to have a look to this image using QFitsView</p>
