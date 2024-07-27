@@ -333,8 +333,8 @@ versions of the data cubes.
 
 .. code-block:: console
 
-   (venv_frida) $ numina-r6-extract_2d_slice_from_3d_cube test_ifu_3D_method0.fits
-   (venv_frida) $ numina-r6-extract_2d_slice_from_3d_cube test_ifu_3D_method1.fits
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test_ifu_3D_method0.fits
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test_ifu_3D_method1.fits
 
 .. image:: scene00/projected_3D_method0.png
    :width: 49%
