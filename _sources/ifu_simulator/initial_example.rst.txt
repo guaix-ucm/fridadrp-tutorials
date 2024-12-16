@@ -87,8 +87,8 @@ identified:
   - ``fixed``: the simulated wavelengths are assigned by uniformly sampling the
     cumulative distribution function of the simulated spectrum (i.e., avoding
     the Poissonian noise). This last
-    method should provide a perfectly constant flux (+/- 1 ADU due to rounding) 
-    for an object with constant PHOTLAM, when using the parameter
+    method should provide a perfectly constant flux (+/- 1 photon due to
+    rounding) for an object with constant PHOTLAM, when using the parameter
     ``--spectral_blurring_pixel 0``.
 
 - ``apply_seeing``: boolean key indicating whether seeing must be taken into
