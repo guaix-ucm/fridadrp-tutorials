@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -6,19 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Initial example &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -148,6 +145,7 @@ seeing FWHM is 0.05 arcsec and the detector readout noise 4 ADU.</p>
 <span class="n">geometry</span><span class="p">:</span> 
   <span class="nb">type</span><span class="p">:</span> <span class="n">point</span><span class="o">-</span><span class="n">like</span>
 <span class="n">nphotons</span><span class="p">:</span> <span class="mf">2E6</span>
+<span class="n">wavelength_sampling</span><span class="p">:</span> <span class="n">random</span>
 <span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">True</span>
 <span class="n">apply_atmosphere_transmission</span><span class="p">:</span> <span class="kc">True</span>
 <span class="n">render</span><span class="p">:</span> <span class="kc">True</span>
@@ -169,6 +167,21 @@ distributed in the IFU field of view.  In this example, we are using <code class
 <span class="pre">point-like</span></code>, meaning that we want to place all the simulated photons at
 the same point (by default, the center of the IFU field of view).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nphotons</span></code>: total number of photons to be simulated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wavelength_sampling</span></code>: method employed to assing the wavelength to each
+simulated photon. Two methods have been implemented:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">random</span></code>: the simulated wavelengths are assigned by randomly sampling
+the cumulative distribution function of the simulated spectrum. This method
+mimics the Poissonian arrival of photons. <em>This should be the default
+value</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code>: the simulated wavelengths are assigned by uniformly sampling the
+cumulative distribution function of the simulated spectrum (i.e., avoding
+the Poissonian noise). This last
+method should provide a perfectly constant flux (+/- 1 ADU due to rounding)
+for an object with constant PHOTLAM, when using the parameter
+<code class="docutils literal notranslate"><span class="pre">--spectral_blurring_pixel</span> <span class="pre">0</span></code>.</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">apply_seeing</span></code>: boolean key indicating whether seeing must be taken into
 account. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, each simulated photon is randomly displaced in the
 focal plane of the IFU according to a probability distribution that is
@@ -238,14 +251,16 @@ oversampling can be modified using the parameter <code class="docutils literal n
 when running <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu-simulator</span></code>.</p>
 <p>Note that due to the oversampling factor, the shape of this image is
 <code class="docutils literal notranslate"><span class="pre">NAXIS1=640</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=600</span></code>.</p>
-<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os10.png"><img alt="image test_ifu_white2D_method0_os10.fits" src="../_images/test_ifu_white2D_method0_os10.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os10.png"><img alt="image test_ifu_white2D_method0_os10.fits" src="../_images/test_ifu_white2D_method0_os10.png" style="width: 100%;" />
+</a>
 </section>
 <section id="code-test-ifu-white2d-method0-os1-fits-code">
 <h3><span class="raw-html"><code>test_ifu_white2D_method0_os1.fits</code></span><a class="headerlink" href="#code-test-ifu-white2d-method0-os1-fits-code" title="Link to this heading"></a></h3>
 <p>White-light image without oversampling.</p>
 <p>Since we are not using oversampling, in this case <code class="docutils literal notranslate"><span class="pre">NAXIS1=64</span></code> and
 <code class="docutils literal notranslate"><span class="pre">NAXIS2=60</span></code>.</p>
-<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os1.png"><img alt="image test_ifu_white2D_method0_os1.fits" src="../_images/test_ifu_white2D_method0_os1.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os1.png"><img alt="image test_ifu_white2D_method0_os1.fits" src="../_images/test_ifu_white2D_method0_os1.png" style="width: 100%;" />
+</a>
 </section>
 <section id="code-test-ifu-3d-method0-fits-code">
 <h3><span class="raw-html"><code>test_ifu_3D_method0.fits</code></span><a class="headerlink" href="#code-test-ifu-3d-method0-fits-code" title="Link to this heading"></a></h3>
@@ -336,8 +351,10 @@ when running <code class="docutils literal notranslate"><span class="pre">fridad
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>qfitsview<span class="w"> </span>test_ifu_3D_method0.fits
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/test_ifu_3D_method0_plot1.png"><img alt="image test_ifu_3D_method0.fits, plot 1" src="../_images/test_ifu_3D_method0_plot1.png" style="width: 100%;" /></a>
-<a class="reference internal image-reference" href="../_images/test_ifu_3D_method0_plot2.png"><img alt="image test_ifu_3D_method0.fits, plot 2" src="../_images/test_ifu_3D_method0_plot2.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/test_ifu_3D_method0_plot1.png"><img alt="image test_ifu_3D_method0.fits, plot 1" src="../_images/test_ifu_3D_method0_plot1.png" style="width: 100%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_ifu_3D_method0_plot2.png"><img alt="image test_ifu_3D_method0.fits, plot 2" src="../_images/test_ifu_3D_method0_plot2.png" style="width: 100%;" />
+</a>
 </section>
 <section id="code-test-rss-2d-method0-fits-code">
 <h3><span class="raw-html"><code>test_rss_2D_method0.fits</code></span><a class="headerlink" href="#code-test-rss-2d-method0-fits-code" title="Link to this heading"></a></h3>
@@ -348,7 +365,8 @@ is the number of the IFU slices, and 64 is the number of pixels along the
 NAXIS1 spatial direction of the white-ligth images.</p>
 <p>Note that here the slices are vertically ordered in ascending order, from 1 to
 30, starting from the bottom left corner of the image.</p>
-<a class="reference internal image-reference" href="../_images/test_rss_2D_method0.png"><img alt="image test_rss_2D_method0.fits" src="../_images/test_rss_2D_method0.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method0.png"><img alt="image test_rss_2D_method0.fits" src="../_images/test_rss_2D_method0.png" style="width: 100%;" />
+</a>
 </section>
 <section id="code-test-detector-2d-method0-fits-code">
 <h3><span class="raw-html"><code>test_detector_2D_method0.fits</code></span><a class="headerlink" href="#code-test-detector-2d-method0-fits-code" title="Link to this heading"></a></h3>
@@ -369,7 +387,8 @@ simulated flatfield image is assumed for the adopted grating.</p></li>
 distribution employed to generate the random values to be introduced in each
 pixel of the detector.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/test_detector_2D_method0.png"><img alt="image test_detector_2D_method0.fits" src="../_images/test_detector_2D_method0.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/test_detector_2D_method0.png"><img alt="image test_detector_2D_method0.fits" src="../_images/test_detector_2D_method0.png" style="width: 100%;" />
+</a>
 </section>
 <section id="code-test-rss-2d-method1-fits-code">
 <h3><span class="raw-html"><code>test_rss_2D_method1.fits</code></span><a class="headerlink" href="#code-test-rss-2d-method1-fits-code" title="Link to this heading"></a></h3>
@@ -378,7 +397,8 @@ into account the geometric distortions of the image. This tests the procedure
 that will be applied in the FRIDA pipeline based on real observations.</p>
 <p>As expected, the shape of this image is <code class="docutils literal notranslate"><span class="pre">NAXIS1=2048</span></code> (spectral axis) and
 <code class="docutils literal notranslate"><span class="pre">NAXIS2=1920</span></code>.</p>
-<a class="reference internal image-reference" href="../_images/test_rss_2D_method1.png"><img alt="image test_rss_2D_method1.fits" src="../_images/test_rss_2D_method1.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method1.png"><img alt="image test_rss_2D_method1.fits" src="../_images/test_rss_2D_method1.png" style="width: 100%;" />
+</a>
 </section>
 <section id="code-test-ifu-3d-method1-fits-code">
 <h3><span class="raw-html"><code>test_ifu_3D_method1.fits</code></span><a class="headerlink" href="#code-test-ifu-3d-method1-fits-code" title="Link to this heading"></a></h3>
@@ -392,8 +412,10 @@ versions of the data cubes.</p>
 <span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>test_ifu_3D_method1.fits
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/projected_3D_method0.png"><img alt="../_images/projected_3D_method0.png" src="../_images/projected_3D_method0.png" style="width: 49%;" /></a>
-<a class="reference internal image-reference" href="../_images/projected_3D_method1.png"><img alt="../_images/projected_3D_method1.png" src="../_images/projected_3D_method1.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="../_images/projected_3D_method0.png"><img alt="../_images/projected_3D_method0.png" src="../_images/projected_3D_method0.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/projected_3D_method1.png"><img alt="../_images/projected_3D_method1.png" src="../_images/projected_3D_method1.png" style="width: 49%;" />
+</a>
 </section>
 </section>
 </section>

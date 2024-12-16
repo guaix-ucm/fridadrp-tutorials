@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -6,20 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Running the IFU simulator &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -114,6 +111,7 @@ script name without any parameter:</p>
 <span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
 <span class="go">                              [--atmosphere_transmission {default,none}]</span>
 <span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
+<span class="go">                              [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]</span>
 <span class="go">                              [--seed SEED]</span>
 <span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
 <span class="go">                              [--stop_after_ifu_3D_method0] [-v] [--plots]</span>
@@ -145,6 +143,7 @@ spectrum of the astronomical sources to be simulated.</p>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-flatpix2pix-lt-default-none-gt-code"><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-spectral-blurring-pixel-lt-float-gt-code"><span class="raw-html"><code>--spectral_blurring_pixel &lt;float&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-seed-lt-integer-gt-code"><span class="raw-html"><code>--seed &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-prefix-intermediate-fits-lt-string-gt-code"><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-stop-after-ifu-3d-method0-code"><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span></a></li>
@@ -159,6 +158,7 @@ spectrum of the astronomical sources to be simulated.</p>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#spectrum">spectrum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#geometry">geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#nphotons">nphotons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#wavelength-sampling">wavelength_sampling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#apply-seeing">apply_seeing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#apply-atmosphere-transmission">apply_atmosphere_transmission</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html#render">render</a></li>

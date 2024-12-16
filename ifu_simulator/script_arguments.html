@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -6,20 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Script arguments &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -66,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-flatpix2pix-lt-default-none-gt-code"><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-spectral-blurring-pixel-lt-float-gt-code"><span class="raw-html"><code>--spectral_blurring_pixel &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-seed-lt-integer-gt-code"><span class="raw-html"><code>--seed &lt;integer&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-prefix-intermediate-fits-lt-string-gt-code"><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-stop-after-ifu-3d-method0-code"><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span></a></li>
@@ -127,7 +125,9 @@ argument.</p>
 <span class="go">                              [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]</span>
 <span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
 <span class="go">                              [--atmosphere_transmission {default,none}]</span>
-<span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
+<span class="go">                              [--rnoise RNOISE]</span>
+<span class="go">                              [--flatpix2pix {default,none}]</span>
+<span class="go">                              [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]</span>
 <span class="go">                              [--seed SEED]</span>
 <span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
 <span class="go">                              [--stop_after_ifu_3D_method0] [-v] [--plots]</span>
@@ -166,6 +166,9 @@ argument.</p>
 <span class="go">  --rnoise RNOISE       Readout noise standard deviation (ADU)</span>
 <span class="go">  --flatpix2pix {default,none}</span>
 <span class="go">                        Pixel-to-pixel flat field</span>
+<span class="go">  --spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL</span>
+<span class="go">                        Spectral blurring when converting the original 3D data</span>
+<span class="go">                        cube to the original 2D RSS (in pixel units)</span>
 <span class="go">  --seed SEED           Seed for random number generator</span>
 <span class="go">  --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS</span>
 <span class="go">                        Prefix for intermediate FITS files</span>
@@ -273,7 +276,8 @@ the atmosphere transmission, but also the sky emission radiance flux (in
 ph/s/m2/micron/arcsec2), for the wavelength range from 800 to 2600 nm, with a
 sampling of 0.01 nm.</p>
 <p>A plot of the atmosphere transmission data is shown below.</p>
-<a class="reference internal image-reference" href="../_images/plot_transmission_fraction.png"><img alt="plot of the transmission fraction of the atmosphere" src="../_images/plot_transmission_fraction.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/plot_transmission_fraction.png"><img alt="plot of the transmission fraction of the atmosphere" src="../_images/plot_transmission_fraction.png" style="width: 100%;" />
+</a>
 <p>When executing <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>, the atmospheric transmission
 probability at the wavelength of each simulated photon is evaluated, and a
 random number between 0 and 1 is generated in each case. If the obtained number
@@ -291,6 +295,14 @@ the auxiliary files automatically downloaded in a cache directory the first
 time <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code> is executed. The name of this type of file has
 the form <code class="docutils literal notranslate"><span class="pre">simulated_flat_pix2pix_&lt;grating&gt;.fits</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;grating&gt;</span></code> is the
 grating name.</p>
+</section>
+<section id="code-spectral-blurring-pixel-lt-float-gt-code">
+<span id="spectral-blurring-pixel"></span><h2><span class="raw-html"><code>--spectral_blurring_pixel &lt;float&gt;</code></span><a class="headerlink" href="#code-spectral-blurring-pixel-lt-float-gt-code" title="Link to this heading"></a></h2>
+<p>Extra degradation to be introduced in the spectral direction to each simulated
+photon. In particular, a Gaussian random shift is applied (in pixel units) when
+converting the original 3D data cube into the original 2D RSS image. The value
+of this parameter provides the standard deviation of the Gaussian distribution.
+By default, <code class="docutils literal notranslate"><span class="pre">spectral_blurring_pixel</span> <span class="pre">=</span> <span class="pre">1.0</span></code>.</p>
 </section>
 <section id="code-seed-lt-integer-gt-code">
 <span id="seed"></span><h2><span class="raw-html"><code>--seed &lt;integer&gt;</code></span><a class="headerlink" href="#code-seed-lt-integer-gt-code" title="Link to this heading"></a></h2>

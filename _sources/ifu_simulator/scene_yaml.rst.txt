@@ -34,7 +34,8 @@ The *scene* file may contain several sources, each one separated by a line
 containing ``---`` (the end of directives marker in YAML). For each object, a
 first level of keys must be specified:
 ``scene_block_name``, ``spectrum``, ``geometry``, ``nphotons``,
-``apply_seeing``, ``apply_atmosphere_transmission`` and ``render``.
+``wavelength_sampling``, ``apply_seeing``, ``apply_atmosphere_transmission`` 
+and ``render``.
 
 Here's a skeleton of a YAML scene file containing several sources (note that
 ``...`` indicates lines to be filled in; see explanation below):
@@ -49,6 +50,7 @@ Here's a skeleton of a YAML scene file containing several sources (note that
      ...
      ...
    nphotons: <number>
+   wavelength_sampling: <random | fixed>
    apply_seeing: <True | False>
    apply_atmosphere_transmission: <True | False>
    render: <True | False>
@@ -61,6 +63,7 @@ Here's a skeleton of a YAML scene file containing several sources (note that
      ...
      ...
    nphotons: <number>
+   wavelength_sampling: <random | fixed>
    apply_seeing: <True | False>
    apply_atmosphere_transmission: <True | False>
    render: <True | False>
@@ -458,6 +461,22 @@ Additionally, seeing can cause simulated photons on the edges of the IFU's
 field of view to fall outside the IFU when this effect is taken into account,
 which means that the final number of photons reaching the detector may be even
 smaller.
+
+wavelength_sampling
+-------------------
+
+Method employed to assing the wavelength to each simulated photon. Two methods
+have been implemented:
+
+- ``random``: the simulated wavelengths are assigned by randomly sampling the
+  cumulative distribution function of the simulated spectrum. This method
+  mimics the Poissonian arrival of photons. *This should be the default value.*
+
+- ``fixed``: the simulated wavelengths are assigned by uniformly sampling the
+  cumulative distribution function of the simulated spectrum (i.e., avoding the
+  Poissonian noise). This last method should provide a perfectly constant flux
+  (+/- 1 ADU due to rounding) for an object with constant PHOTLAM, when using
+  the parameter ``--spectral_blurring_pixel 0``.
 
 apply_seeing
 ------------

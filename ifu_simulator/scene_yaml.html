@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -6,21 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The scene YAML file &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../_static/tabs.js?v=3030b3cb"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/tabs.js?v=3030b3cb"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -59,6 +57,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#spectrum">spectrum</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#geometry">geometry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nphotons">nphotons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wavelength-sampling">wavelength_sampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apply-seeing">apply_seeing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apply-atmosphere-transmission">apply_atmosphere_transmission</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#render">render</a></li>
@@ -121,7 +120,8 @@ tab character is illegal within YAML files.</p></li>
 containing <code class="docutils literal notranslate"><span class="pre">---</span></code> (the end of directives marker in YAML). For each object, a
 first level of keys must be specified:
 <code class="docutils literal notranslate"><span class="pre">scene_block_name</span></code>, <code class="docutils literal notranslate"><span class="pre">spectrum</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry</span></code>, <code class="docutils literal notranslate"><span class="pre">nphotons</span></code>,
-<code class="docutils literal notranslate"><span class="pre">apply_seeing</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_atmosphere_transmission</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">wavelength_sampling</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_seeing</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_atmosphere_transmission</span></code>
+and <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
 <p>Here’s a skeleton of a YAML scene file containing several sources (note that
 <code class="docutils literal notranslate"><span class="pre">...</span></code> indicates lines to be filled in; see explanation below):</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
@@ -132,6 +132,7 @@ first level of keys must be specified:
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;random | fixed&gt;</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
 <span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
 <span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
@@ -144,6 +145,7 @@ first level of keys must be specified:
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;random | fixed&gt;</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
 <span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
 <span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
@@ -213,7 +215,8 @@ prediction is stored in the file <code class="docutils literal notranslate"><spa
 which is one of the auxiliary files automatically downloaded in a cache
 directory the first time <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code> is executed.</p>
 <p>A plot of the sky radiance prediction is shown below.</p>
-<a class="reference internal image-reference" href="../_images/plot_sky_radiance.png"><img alt="plot of the sky radiance" src="../_images/plot_sky_radiance.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/plot_sky_radiance.png"><img alt="plot of the sky radiance" src="../_images/plot_sky_radiance.png" style="width: 100%;" />
+</a>
 <p>Both <code class="docutils literal notranslate"><span class="pre">wave_min</span></code> and <code class="docutils literal notranslate"><span class="pre">wave_max</span></code> are optional. If they are not
 specified, the minimum and maximum wavelengths covered by the adopted
 <a class="reference internal" href="script_arguments.html#grating"><span class="std std-ref">grating</span></a> are used. If any of these parameters are used,
@@ -444,6 +447,21 @@ number.</p>
 field of view to fall outside the IFU when this effect is taken into account,
 which means that the final number of photons reaching the detector may be even
 smaller.</p>
+</section>
+<section id="wavelength-sampling">
+<h2>wavelength_sampling<a class="headerlink" href="#wavelength-sampling" title="Link to this heading"></a></h2>
+<p>Method employed to assing the wavelength to each simulated photon. Two methods
+have been implemented:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">random</span></code>: the simulated wavelengths are assigned by randomly sampling the
+cumulative distribution function of the simulated spectrum. This method
+mimics the Poissonian arrival of photons. <em>This should be the default value.</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code>: the simulated wavelengths are assigned by uniformly sampling the
+cumulative distribution function of the simulated spectrum (i.e., avoding the
+Poissonian noise). This last method should provide a perfectly constant flux
+(+/- 1 ADU due to rounding) for an object with constant PHOTLAM, when using
+the parameter <code class="docutils literal notranslate"><span class="pre">--spectral_blurring_pixel</span> <span class="pre">0</span></code>.</p></li>
+</ul>
 </section>
 <section id="apply-seeing">
 <h2>apply_seeing<a class="headerlink" href="#apply-seeing" title="Link to this heading"></a></h2>

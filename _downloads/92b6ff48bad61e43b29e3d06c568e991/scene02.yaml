@@ -7,6 +7,7 @@ geometry:
   diagonal_fov_arcsec: 0.80
   background_to_subtract: mode
 nphotons: 1E7
+wavelength_sampling: random
 apply_seeing: True
 apply_atmosphere_transmission: True
 render: True
@@ -17,6 +18,7 @@ spectrum:
 geometry:
   type: flatfield
 nphotons: 1E7
+wavelength_sampling: random
 apply_seeing: False
 apply_atmosphere_transmission: False
 render: True

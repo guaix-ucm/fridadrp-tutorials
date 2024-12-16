@@ -35,6 +35,7 @@ script name without any parameter:
                                  [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
                                  [--atmosphere_transmission {default,none}]
                                  [--rnoise RNOISE] [--flatpix2pix {default,none}]
+                                 [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]
                                  [--seed SEED]
                                  [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]
                                  [--stop_after_ifu_3D_method0] [-v] [--plots]

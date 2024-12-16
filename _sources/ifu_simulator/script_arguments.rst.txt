@@ -25,7 +25,9 @@ argument.
                                  [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]
                                  [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
                                  [--atmosphere_transmission {default,none}]
-                                 [--rnoise RNOISE] [--flatpix2pix {default,none}]
+                                 [--rnoise RNOISE] 
+                                 [--flatpix2pix {default,none}]
+                                 [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]
                                  [--seed SEED]
                                  [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]
                                  [--stop_after_ifu_3D_method0] [-v] [--plots]
@@ -64,6 +66,9 @@ argument.
      --rnoise RNOISE       Readout noise standard deviation (ADU)
      --flatpix2pix {default,none}
                            Pixel-to-pixel flat field
+     --spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL
+                           Spectral blurring when converting the original 3D data
+                           cube to the original 2D RSS (in pixel units)
      --seed SEED           Seed for random number generator
      --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS
                            Prefix for intermediate FITS files
@@ -240,6 +245,17 @@ the auxiliary files automatically downloaded in a cache directory the first
 time ``fridadrp-ifu_simulator`` is executed. The name of this type of file has
 the form ``simulated_flat_pix2pix_<grating>.fits``, where ``<grating>`` is the
 grating name.
+
+.. _--spectral_blurring_pixel:
+
+:raw-html:`<code>--spectral_blurring_pixel &lt;float&gt;</code>`
+----------------------------------------------------------------
+
+Extra degradation to be introduced in the spectral direction to each simulated
+photon. In particular, a Gaussian random shift is applied (in pixel units) when
+converting the original 3D data cube into the original 2D RSS image. The value
+of this parameter provides the standard deviation of the Gaussian distribution.
+By default, ``spectral_blurring_pixel = 1.0``.
 
 .. _--seed:
 
