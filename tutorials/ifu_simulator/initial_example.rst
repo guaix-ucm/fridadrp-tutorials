@@ -77,6 +77,20 @@ identified:
 
 - ``nphotons``: total number of photons to be simulated.
 
+- ``wavelength_sampling``: method employed to assing the wavelength to each
+  simulated photon. Two methods have been implemented:
+
+  - ``random``: the simulated wavelengths are assigned by randomly sampling
+    the cumulative distribution function of the simulated spectrum. This method
+    mimics the Poissonian arrival of photons. *This should be the default
+    value*.
+  - ``fixed``: the simulated wavelengths are assigned by uniformly sampling the
+    cumulative distribution function of the simulated spectrum (i.e., avoding
+    the Poissonian noise). This last
+    method should provide a perfectly constant flux (+/- 1 ADU due to rounding) 
+    for an object with constant PHOTLAM, when using the parameter
+    ``--spectral_blurring_pixel 0``.
+
 - ``apply_seeing``: boolean key indicating whether seeing must be taken into
   account. If ``True``, each simulated photon is randomly displaced in the
   focal plane of the IFU according to a probability distribution that is
