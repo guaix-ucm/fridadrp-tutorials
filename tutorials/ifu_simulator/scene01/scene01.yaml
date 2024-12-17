@@ -9,10 +9,7 @@ geometry:
   delta_ra_arcsec: 0.0
   delta_dec_arcsec: 0.0
 nphotons: 1E5
-wavelength_sampling: random
 apply_seeing: False
-apply_atmosphere_transmission: True
-render: True
 ---
 scene_block_name: Gaussian top left
 spectrum:
@@ -25,10 +22,7 @@ geometry:
   delta_ra_arcsec: 0.18
   delta_dec_arcsec: 0.15
 nphotons: 1E6
-wavelength_sampling: random
 apply_seeing: False
-apply_atmosphere_transmission: True
-render: True
 ---
 scene_block_name: Gaussian bottom left
 spectrum:
@@ -41,10 +35,7 @@ geometry:
   delta_ra_arcsec: 0.18
   delta_dec_arcsec: -0.15
 nphotons: 5E5
-wavelength_sampling: random
 apply_seeing: False
-apply_atmosphere_transmission: True
-render: True
 ---
 scene_block_name: Gaussian top right
 spectrum:
@@ -59,8 +50,6 @@ geometry:
 nphotons: 3E5
 wavelength_sampling: random
 apply_seeing: False
-apply_atmosphere_transmission: True
-render: True
 ---
 scene_block_name: Gaussian bottom right
 spectrum:
@@ -73,9 +62,4 @@ geometry:
   delta_ra_arcsec: -0.18
   delta_dec_arcsec: -0.15
 nphotons: 1E6
-wavelength_sampling: random
 apply_seeing: False
-apply_atmosphere_transmission: True
-render: True
-
-
