@@ -4,7 +4,7 @@ spectrum:
 geometry: 
   type: point-like
 nphotons: 2E6
-wavelength_sampling: random
-apply_seeing: True
-apply_atmosphere_transmission: True
-render: True
+wavelength_sampling: random            # optional: default=random
+apply_seeing: True                     # optional: default=True
+apply_atmosphere_transmission: True    # optional: default=True
+render: True                           # optional: default=True

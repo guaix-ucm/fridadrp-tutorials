@@ -42,32 +42,35 @@ Here's a skeleton of a YAML scene file containing several sources (note that
 
 .. code-block:: yaml
 
-   scene_block_name: <string>
-   spectrum:
+   scene_block_name: <string>                         # mandatory
+   spectrum:                                          # mandatory
      type: <string>
      ...
-   geometry:
+     ...
+   geometry:                                          # mandatory
      ...
      ...
-   nphotons: <number>
-   wavelength_sampling: <random | fixed>
-   apply_seeing: <True | False>
-   apply_atmosphere_transmission: <True | False>
-   render: <True | False>
+   nphotons: <number>                                 # mandatory
+   wavelength_sampling: <random | fixed>              # default: random
+   apply_seeing: <True | False>                       # default: True
+   apply_atmosphere_transmission: <True | False>      # default: True
+   render: <True | False>                             # default: True
    ---
-   scene_block_name: <string>
-   spectrum:
+   scene_block_name: <string>                         # mandatory
+   spectrum:                                          # mandatory
      type: <string>
      ...
-   geometry:
+     ...
+   geometry:                                          # mandatory
      ...
      ...
-   nphotons: <number>
-   wavelength_sampling: <random | fixed>
-   apply_seeing: <True | False>
-   apply_atmosphere_transmission: <True | False>
-   render: <True | False>
+   nphotons: <number>                                 # mandatory
+   wavelength_sampling: <random | fixed>              # default: random
+   apply_seeing: <True | False>                       # default: True
+   apply_atmosphere_transmission: <True | False>      # default: True
+   render: <True | False>                             # default: True
    ---
+   ...
    ...
 
 The following provides a detailed description of the different sections that
@@ -83,12 +86,16 @@ terminal. This is useful when the scene to be simulated contains multiple
 sources. Ideally, the text string should not be repeated in different blocks,
 although this has no impact.
 
+*This key is mandatory (it has no default value).*
+
 spectrum
 --------
 
 This first-level key opens an indented section that contains all the
 information required to define the kind of spectrum to be associated to the
 geometry described below.
+
+*This key is mandatory (it has no default value).*
 
 The following tabs show the different options available. In each case, a
 general description and an example are provided.
@@ -280,6 +287,8 @@ This first-level key opens an indented section that indicates how the photons
 generated following the previous spectrum type are going to be distributed in
 the IFU field of view.
 
+*This key is mandatory (it has no default value).*
+
 The following tabs show the different options available. In each case, a
 general description and an example are provided.
 
@@ -462,6 +471,8 @@ field of view to fall outside the IFU when this effect is taken into account,
 which means that the final number of photons reaching the detector may be even
 smaller.
 
+*This key is mandatory (it has no default value).*
+
 wavelength_sampling
 -------------------
 
@@ -478,6 +489,8 @@ have been implemented:
   (+/- 1 photon due to rounding) for an object with constant PHOTLAM, when using
   the parameter ``--spectral_blurring_pixel 0``.
 
+*This key is not mandatory* (default value: ``random``)
+
 apply_seeing
 ------------
 
@@ -492,6 +505,8 @@ seeing FWHM and the mathematical function employed to reproduce the PSF. Note
 that this arguments are ignored for those scene sources for which
 ``apply_seeing: False``.
 
+*This key is not mandatory* (default value: ``True``).
+
 apply_atmosphere_transmission
 -----------------------------
 
@@ -499,6 +514,8 @@ Boolean first-level key indicating whether the atmosphere transmission must be
 considered.  If ``True``, the atmosphere transmission defined in the script
 argument :ref:`atmosphere_transmission <--atmosphere_transmission>` will be
 used.
+
+*This key is not mandatory* (default value: ``True``).
 
 render
 ------
@@ -510,3 +527,6 @@ It may be useful to set this key to False when we want to simulate images
 with several sources in the IFU field of view and one needs to
 remove some particular objects from the simulation without deleting the
 corresponding lines in the YAML file.
+
+*This key is not mandatory* (default value: ``True``).
+

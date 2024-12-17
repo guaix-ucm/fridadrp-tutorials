@@ -145,35 +145,42 @@ seeing FWHM is 0.05 arcsec and the detector readout noise 4 ADU.</p>
 <span class="n">geometry</span><span class="p">:</span> 
   <span class="nb">type</span><span class="p">:</span> <span class="n">point</span><span class="o">-</span><span class="n">like</span>
 <span class="n">nphotons</span><span class="p">:</span> <span class="mf">2E6</span>
-<span class="n">wavelength_sampling</span><span class="p">:</span> <span class="n">random</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">True</span>
-<span class="n">apply_atmosphere_transmission</span><span class="p">:</span> <span class="kc">True</span>
-<span class="n">render</span><span class="p">:</span> <span class="kc">True</span>
+<span class="n">wavelength_sampling</span><span class="p">:</span> <span class="n">random</span>            <span class="c1"># optional: default=random</span>
+<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">True</span>                     <span class="c1"># optional: default=True</span>
+<span class="n">apply_atmosphere_transmission</span><span class="p">:</span> <span class="kc">True</span>    <span class="c1"># optional: default=True</span>
+<span class="n">render</span><span class="p">:</span> <span class="kc">True</span>                           <span class="c1"># optional: default=True</span>
 </pre></div>
 </div>
 <p>The relevant information is provided as mappings and collections using
 indentation for scope. In this case the following first-order keys are
 identified:</p>
-<ul class="simple">
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">scene_block_name</span></code>: the provided string is an arbitrary label defined by
-the user to identify this <em>scene block</em>.</p></li>
+the user to identify this <em>scene block</em>.</p>
+<p>This key has no default value (it is mandatory).</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">spectrum</span></code>: this key opens an indented section that contains all the
 information required to define the kind of spectrum to be associated to the
 geometry described next. In this example we want to simulate a constant flux
-spectrum, which is indicated by the key <code class="docutils literal notranslate"><span class="pre">type:</span> <span class="pre">constant-flux</span></code>.</p></li>
+spectrum, which is indicated by the key <code class="docutils literal notranslate"><span class="pre">type:</span> <span class="pre">constant-flux</span></code>.</p>
+<p>This key has no default value (it is mandatory).</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">geometry</span></code>: this key opens an indented section that indicates how the
 photons generated following the previous spectrum type are going to be
 distributed in the IFU field of view.  In this example, we are using <code class="docutils literal notranslate"><span class="pre">type:</span>
 <span class="pre">point-like</span></code>, meaning that we want to place all the simulated photons at
-the same point (by default, the center of the IFU field of view).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nphotons</span></code>: total number of photons to be simulated.</p></li>
+the same point (by default, the center of the IFU field of view).</p>
+<p>This key has no default value (it is mandatory).</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nphotons</span></code>: total number of photons to be simulated.</p>
+<p>This key has no default value (it is mandatory).</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">wavelength_sampling</span></code>: method employed to assing the wavelength to each
 simulated photon. Two methods have been implemented:</p>
-<ul>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">random</span></code>: the simulated wavelengths are assigned by randomly sampling
 the cumulative distribution function of the simulated spectrum. This method
-mimics the Poissonian arrival of photons. <em>This should be the default
-value</em>.</p></li>
+mimics the Poissonian arrival of photons.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code>: the simulated wavelengths are assigned by uniformly sampling the
 cumulative distribution function of the simulated spectrum (i.e., avoding
 the Poissonian noise). This last
@@ -181,24 +188,31 @@ method should provide a perfectly constant flux (+/- 1 photon due to
 rounding) for an object with constant PHOTLAM, when using the parameter
 <code class="docutils literal notranslate"><span class="pre">--spectral_blurring_pixel</span> <span class="pre">0</span></code>.</p></li>
 </ul>
+<p><em>Default value:</em> <code class="docutils literal notranslate"><span class="pre">random</span></code>.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">apply_seeing</span></code>: boolean key indicating whether seeing must be taken into
 account. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, each simulated photon is randomly displaced in the
 focal plane of the IFU according to a probability distribution that is
-determined by the seeing PSF.</p></li>
+determined by the seeing PSF.</p>
+<p><em>Default value:</em> <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">apply_atmosphere_transmission</span></code>: boolean key indicating whether the
 atmosphere transmission must be considered. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the atmospheric
 transmission probability at the wavelength of each simulated photon is
 evaluated, and a random number between 0 and 1 is generated in each case. If
 the obtained number is greater than the transmission probability, the photon
-is discarded.</p></li>
+is discarded.</p>
+<p><em>Default value:</em> <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">render</span></code>: boolean key indicate whether the considered scene block must be
 simulated. In this case, in which we only have a single scene block, this key
 is not very relevant (it only makes sense <code class="docutils literal notranslate"><span class="pre">render:</span> <span class="pre">True</span></code>). But in more
 complicated cases, it is useful to be able to set this key to <code class="docutils literal notranslate"><span class="pre">False</span></code> when
 we want to simulate images with several objects and components in the IFU
 field of view and one needs to remove some particular objects from the
-simulation without deleting the corresponding lines in the YAML file.</p></li>
+simulation without deleting the corresponding lines in the YAML file.</p>
+<p><em>Default value:</em> <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</li>
 </ul>
 </section>
 <section id="files-generated-by-the-ifu-simulator">

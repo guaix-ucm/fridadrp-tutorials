@@ -124,32 +124,35 @@ first level of keys must be specified:
 and <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
 <p>Here’s a skeleton of a YAML scene file containing several sources (note that
 <code class="docutils literal notranslate"><span class="pre">...</span></code> indicates lines to be filled in; see explanation below):</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
-<span class="nt">spectrum</span><span class="p">:</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">                         </span><span class="c1"># mandatory</span>
+<span class="nt">spectrum</span><span class="p">:</span><span class="w">                                          </span><span class="c1"># mandatory</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w">                                          </span><span class="c1"># mandatory</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span>
-<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;random | fixed&gt;</span>
-<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
-<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
-<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span><span class="w">                                 </span><span class="c1"># mandatory</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;random | fixed&gt;</span><span class="w">              </span><span class="c1"># default: random</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span><span class="w">                       </span><span class="c1"># default: True</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span><span class="w">      </span><span class="c1"># default: True</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span><span class="w">                             </span><span class="c1"># default: True</span>
 <span class="nn">---</span>
-<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
-<span class="nt">spectrum</span><span class="p">:</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">                         </span><span class="c1"># mandatory</span>
+<span class="nt">spectrum</span><span class="p">:</span><span class="w">                                          </span><span class="c1"># mandatory</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w">                                          </span><span class="c1"># mandatory</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span>
-<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;random | fixed&gt;</span>
-<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
-<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
-<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;number&gt;</span><span class="w">                                 </span><span class="c1"># mandatory</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;random | fixed&gt;</span><span class="w">              </span><span class="c1"># default: random</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span><span class="w">                       </span><span class="c1"># default: True</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span><span class="w">      </span><span class="c1"># default: True</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;True | False&gt;</span><span class="w">                             </span><span class="c1"># default: True</span>
 <span class="nn">---</span>
+<span class="nn">...</span>
 <span class="nn">...</span>
 </pre></div>
 </div>
@@ -163,12 +166,14 @@ to see which astronomical source is being simulated at any given time in the
 terminal. This is useful when the scene to be simulated contains multiple
 sources. Ideally, the text string should not be repeated in different blocks,
 although this has no impact.</p>
+<p><em>This key is mandatory (it has no default value).</em></p>
 </section>
 <section id="spectrum">
 <h2>spectrum<a class="headerlink" href="#spectrum" title="Link to this heading"></a></h2>
 <p>This first-level key opens an indented section that contains all the
 information required to define the kind of spectrum to be associated to the
 geometry described below.</p>
+<p><em>This key is mandatory (it has no default value).</em></p>
 <p>The following tabs show the different options available. In each case, a
 general description and an example are provided.</p>
 <div class="sphinx-tabs docutils container">
@@ -310,6 +315,7 @@ specified, the minimum and maximum wavelengths covered by the adopted
 <p>This first-level key opens an indented section that indicates how the photons
 generated following the previous spectrum type are going to be distributed in
 the IFU field of view.</p>
+<p><em>This key is mandatory (it has no default value).</em></p>
 <p>The following tabs show the different options available. In each case, a
 general description and an example are provided.</p>
 <div class="sphinx-tabs docutils container">
@@ -447,6 +453,7 @@ number.</p>
 field of view to fall outside the IFU when this effect is taken into account,
 which means that the final number of photons reaching the detector may be even
 smaller.</p>
+<p><em>This key is mandatory (it has no default value).</em></p>
 </section>
 <section id="wavelength-sampling">
 <h2>wavelength_sampling<a class="headerlink" href="#wavelength-sampling" title="Link to this heading"></a></h2>
@@ -462,6 +469,7 @@ Poissonian noise). This last method should provide a perfectly constant flux
 (+/- 1 photon due to rounding) for an object with constant PHOTLAM, when using
 the parameter <code class="docutils literal notranslate"><span class="pre">--spectral_blurring_pixel</span> <span class="pre">0</span></code>.</p></li>
 </ul>
+<p><em>This key is not mandatory</em> (default value: <code class="docutils literal notranslate"><span class="pre">random</span></code>)</p>
 </section>
 <section id="apply-seeing">
 <h2>apply_seeing<a class="headerlink" href="#apply-seeing" title="Link to this heading"></a></h2>
@@ -474,6 +482,7 @@ seeing PSF.</p>
 seeing FWHM and the mathematical function employed to reproduce the PSF. Note
 that this arguments are ignored for those scene sources for which
 <code class="docutils literal notranslate"><span class="pre">apply_seeing:</span> <span class="pre">False</span></code>.</p>
+<p><em>This key is not mandatory</em> (default value: <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
 </section>
 <section id="apply-atmosphere-transmission">
 <h2>apply_atmosphere_transmission<a class="headerlink" href="#apply-atmosphere-transmission" title="Link to this heading"></a></h2>
@@ -481,6 +490,7 @@ that this arguments are ignored for those scene sources for which
 considered.  If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the atmosphere transmission defined in the script
 argument <a class="reference internal" href="script_arguments.html#atmosphere-transmission"><span class="std std-ref">atmosphere_transmission</span></a> will be
 used.</p>
+<p><em>This key is not mandatory</em> (default value: <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
 </section>
 <section id="render">
 <h2>render<a class="headerlink" href="#render" title="Link to this heading"></a></h2>
@@ -490,6 +500,7 @@ simulated.</p>
 with several sources in the IFU field of view and one needs to
 remove some particular objects from the simulation without deleting the
 corresponding lines in the YAML file.</p>
+<p><em>This key is not mandatory</em> (default value: <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
 </section>
 </section>
 
