@@ -53,3 +53,4 @@ spectrum of the astronomical sources to be simulated.
    script_arguments
    scene_yaml
    examples
+   data_cube_mosaics
