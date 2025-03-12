@@ -1,0 +1,12 @@
+scene_block_name: M51 DSS1
+spectrum:
+  type: constant-flux
+geometry: 
+  type: from-FITS-image
+  filename: m51_dss1.fits
+  diagonal_fov_arcsec: 3.0
+  background_to_subtract: mode
+nphotons: 1E7
+apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
