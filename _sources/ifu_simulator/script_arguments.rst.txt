@@ -11,7 +11,11 @@ argument.
 .. code-block:: console
 
    (venv_frida) $ fridadrp-ifu_simulator --help
-   usage: fridadrp-ifu_simulator [-h] [--scene SCENE]
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
+   usage: fridadrp-ifu_simulator [-h] [--scene SCENE] [--flux_factor FLUX_FACTOR]
                                  [--grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}]
                                  [--scale {fine,medium,coarse}]
                                  [--ra_teles_deg RA_TELES_DEG]
@@ -38,6 +42,9 @@ argument.
    options:
      -h, --help            show this help message and exit
      --scene SCENE         YAML scene file name
+     --flux_factor FLUX_FACTOR
+                           Multiplicative factor to be applied to the number of
+                           photons defined in the scene file (default=1.0)
      --grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}
                            Grating name
      --scale {fine,medium,coarse}
@@ -94,6 +101,14 @@ An additional description of the different arguments is provided below.
 
 External YAML file where the user defines one or several sources to
 be simulated. Each source has an associated spectrum.
+
+.. _--flux_factor:
+
+:raw-html:`<code>--flux_factor &lt;string&gt;</code>`
+-----------------------------------------------------
+
+Multiplicative factor (float number) to be applied to the number of photons
+defined in the scene file. The resulting number is rounded to an integer value.
 
 .. _--grating:
 

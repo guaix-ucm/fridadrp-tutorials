@@ -20,4 +20,5 @@ FRIDA DRP tutorials
    installation/installation
    ifu_simulator/index
    example_recipes/test1
+   auxiliary_tools/index
 

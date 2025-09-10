@@ -9,6 +9,8 @@
   <title>Running a simple test recipe &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ac5f0f31" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -16,10 +18,13 @@
       <script src="../_static/documentation_options.js?v=2709fde1"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=d2c30f9d"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Generation of data cube mosaics" href="../ifu_simulator/data_cube_mosaics.html" /> 
+    <link rel="next" title="Auxiliary tools" href="../auxiliary_tools/index.html" />
+    <link rel="prev" title="Some scene examples" href="../ifu_simulator/examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#running-the-reduction-recipe">Running the reduction recipe</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../auxiliary_tools/index.html">Auxiliary tools</a></li>
 </ul>
 
         </div>
@@ -86,7 +92,7 @@ very simple reduction recipe.</p>
 <section id="initialize-the-file-tree">
 <h2>Initialize the file tree<a class="headerlink" href="#initialize-the-file-tree" title="Link to this heading"></a></h2>
 <p>Download the following file <a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/fridadrp_initial_tree_test1.tgz">fridadrp_initial_tree_test1.tgz</a></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>mkdir<span class="w"> </span>test1
+<div class="no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>mkdir<span class="w"> </span>test1
 <span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>test1
 
 <span class="gp"># </span>copy<span class="w"> </span>here<span class="w"> </span>the<span class="w"> </span>downloaded<span class="w"> </span>tgz<span class="w"> </span>file
@@ -96,15 +102,17 @@ very simple reduction recipe.</p>
 <span class="go">...</span>
 <span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>rm<span class="w"> </span>fridadrp_initial_tree_test1.tgz
 <span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>tree
-<span class="go">.</span>
-<span class="go">├── control.yaml</span>
-<span class="go">├── data</span>
-<span class="go">│   ├── master_bpm_zeros.fits</span>
-<span class="go">│   ├── master_dark_zeros.fits</span>
-<span class="go">│   └── master_flat_ones.fits</span>
-<span class="go">├── scene_sky.yaml</span>
-<span class="go">├── scene_target.yaml</span>
-<span class="go">└── test1.yaml</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── control.yaml
+├── data
+│   ├── master_bpm_zeros.fits
+│   ├── master_dark_zeros.fits
+│   └── master_flat_ones.fits
+├── scene_sky.yaml
+├── scene_target.yaml
+└── test1.yaml
 </pre></div>
 </div>
 </section>
@@ -116,15 +124,17 @@ very simple reduction recipe.</p>
 <span class="w"> </span>--grating<span class="w"> </span>medium-K<span class="w"> </span><span class="se">\</span>
 <span class="w"> </span>--scale<span class="w"> </span>fine<span class="w"> </span><span class="se">\</span>
 <span class="w"> </span>--prefix_intermediate_FITS<span class="w"> </span>target
-<span class="go">...</span>
-<span class="go">...</span>
-<span class="go">Saving file: target_ifu_white2D_method0_os10.fits</span>
-<span class="go">Saving file: target_ifu_white2D_method0_os1.fits</span>
-<span class="go">Saving file: target_ifu_3D_method0.fits</span>
-<span class="go">Saving file: target_rss_2D_method0.fits</span>
-<span class="go">Saving file: target_detector_2D_method0.fits</span>
-<span class="go">Saving file: target_rss_2D_method1.fits</span>
-<span class="go">Saving file: target_ifu_3D_method1.fits</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_ifu_white2D_method0_os10</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_ifu_white2D_method0_os1</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_rss_2D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_rss_2D_method1</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">target_ifu_3D_method1</span><span class="o">.</span><span class="n">fits</span>
 </pre></div>
 </div>
 <p>Copy the simulated detector image in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> subdirectory</p>
@@ -139,15 +149,17 @@ very simple reduction recipe.</p>
 <span class="w">  </span>--grating<span class="w"> </span>medium-K<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--scale<span class="w"> </span>fine<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--prefix_intermediate_FITS<span class="w"> </span>sky
-<span class="go">...</span>
-<span class="go">...</span>
-<span class="go">Saving file: sky_ifu_white2D_method0_os10.fits</span>
-<span class="go">Saving file: sky_ifu_white2D_method0_os1.fits</span>
-<span class="go">Saving file: sky_ifu_3D_method0.fits</span>
-<span class="go">Saving file: sky_rss_2D_method0.fits</span>
-<span class="go">Saving file: sky_detector_2D_method0.fits</span>
-<span class="go">Saving file: sky_rss_2D_method1.fits</span>
-<span class="go">Saving file: sky_ifu_3D_method1.fits</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_ifu_white2D_method0_os10</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_ifu_white2D_method0_os1</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_rss_2D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_rss_2D_method1</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">sky_ifu_3D_method1</span><span class="o">.</span><span class="n">fits</span>
 </pre></div>
 </div>
 <p>Copy the simulated detector image in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> subdirectory</p>
@@ -175,18 +187,22 @@ in YAML format.</p>
 <p>We are going to execute <code class="docutils literal notranslate"><span class="pre">numina</span></code> using the observation result file
 <code class="docutils literal notranslate"><span class="pre">test1.yaml</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cat<span class="w"> </span>test1.yaml
-<span class="go">id: _test1</span>
-<span class="go">instrument: FRIDA</span>
-<span class="go">mode: test1</span>
-<span class="go">frames:</span>
-<span class="go">  - target_detector_2D_method0.fits</span>
-<span class="go">  - sky_detector_2D_method0.fits</span>
-<span class="go">enabled: True</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">:</span> <span class="n">_test1</span>
+<span class="n">instrument</span><span class="p">:</span> <span class="n">FRIDA</span>
+<span class="n">mode</span><span class="p">:</span> <span class="n">test1</span>
+<span class="n">frames</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">target_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
+  <span class="o">-</span> <span class="n">sky_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">enabled</span><span class="p">:</span> <span class="kc">True</span>
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina<span class="w"> </span>run<span class="w"> </span>test1.yaml<span class="w"> </span>-r<span class="w"> </span>control.yaml
-<span class="go">...</span>
-<span class="go">...</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 <p>After the execution of the previous command, two subdirectories should have
@@ -199,15 +215,17 @@ subdirectories in order to preserve the original files. The results of the
 execution of the reduction recipe are stored in the corresponding
 <code class="docutils literal notranslate"><span class="pre">...results</span></code> subdirectory.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>tree<span class="w"> </span>obsid_test1_*
-<span class="go">obsid_test1_results</span>
-<span class="go">├── processing.log</span>
-<span class="go">├── reduced_image.fits</span>
-<span class="go">├── result.json</span>
-<span class="go">└── task.json</span>
-<span class="go">obsid_test1_work</span>
-<span class="go">├── index.pkl</span>
-<span class="go">├── sky_detector_2D_method0.fits -&gt; /Users/cardiel/test1/data/sky_detector_2D_method0.fits</span>
-<span class="go">└── target_detector_2D_method0.fits -&gt; /Users/cardiel/test1/data/target_detector_2D_method0.fits</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span>obsid_test1_results
+├── processing.log
+├── reduced_image.fits
+├── result.json
+└── task.json
+obsid_test1_work
+├── index.pkl
+├── sky_detector_2D_method0.fits -&gt; /Users/cardiel/test1/data/sky_detector_2D_method0.fits
+└── target_detector_2D_method0.fits -&gt; /Users/cardiel/test1/data/target_detector_2D_method0.fits
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/reduced_image.png"><img alt="image reduced_image.png" src="../_images/reduced_image.png" style="width: 100%;" />
@@ -219,7 +237,8 @@ execution of the reduction recipe are stored in the corresponding
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ifu_simulator/data_cube_mosaics.html" class="btn btn-neutral float-left" title="Generation of data cube mosaics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ifu_simulator/examples.html" class="btn btn-neutral float-left" title="Some scene examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../auxiliary_tools/index.html" class="btn btn-neutral float-right" title="Auxiliary tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

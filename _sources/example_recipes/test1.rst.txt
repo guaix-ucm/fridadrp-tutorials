@@ -11,6 +11,7 @@ Initialize the file tree
 Download the following file `fridadrp_initial_tree_test1.tgz <https://guaix.fis.ucm.es/data/fridadrp/fridadrp_initial_tree_test1.tgz>`_
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $ mkdir test1
    (venv_frida) $ cd test1
@@ -22,6 +23,10 @@ Download the following file `fridadrp_initial_tree_test1.tgz <https://guaix.fis.
    ...
    (venv_frida) $ rm fridadrp_initial_tree_test1.tgz
    (venv_frida) $ tree
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    .
    ├── control.yaml
    ├── data
@@ -44,6 +49,10 @@ Simulate the target exposure
     --grating medium-K \
     --scale fine \
     --prefix_intermediate_FITS target
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    ...
    ...
    Saving file: target_ifu_white2D_method0_os10.fits
@@ -74,6 +83,10 @@ Simulate the sky exposure
      --grating medium-K \
      --scale fine \
      --prefix_intermediate_FITS sky
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    ...
    ...
    Saving file: sky_ifu_white2D_method0_os10.fits
@@ -122,6 +135,10 @@ We are going to execute ``numina`` using the observation result file
 .. code-block:: console
 
    (venv_frida) $ cat test1.yaml 
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    id: _test1
    instrument: FRIDA
    mode: test1
@@ -133,6 +150,10 @@ We are going to execute ``numina`` using the observation result file
 .. code-block:: console
 
    (venv_frida) $ numina run test1.yaml -r control.yaml
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    ...
    ...
 
@@ -150,6 +171,10 @@ execution of the reduction recipe are stored in the corresponding
 .. code-block:: console
 
    (venv_frida) $ tree obsid_test1_*
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    obsid_test1_results
    ├── processing.log
    ├── reduced_image.fits

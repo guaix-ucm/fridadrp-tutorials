@@ -9,6 +9,8 @@
   <title>Running the IFU simulator &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ac5f0f31" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -16,6 +18,8 @@
       <script src="../_static/documentation_options.js?v=2709fde1"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=d2c30f9d"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -52,10 +56,10 @@
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html">Script arguments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html">The scene YAML file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html">Some scene examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_cube_mosaics.html">Generation of data cube mosaics</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../example_recipes/test1.html">Running a simple test recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auxiliary_tools/index.html">Auxiliary tools</a></li>
 </ul>
 
         </div>
@@ -91,32 +95,36 @@ development and testing of reduction recipes.</p>
 <p>After installing <code class="docutils literal notranslate"><span class="pre">megardrp</span></code>, the IFU simulator should be available in your
 system:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--version
-<span class="go">0.1.dev122+g9cc23a9</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span><span class="o">.</span><span class="n">dev122</span><span class="o">+</span><span class="n">g9cc23a9</span>
 </pre></div>
 </div>
 <p>The script accepts a number of arguments, which are displayed when invoking the
 script name without any parameter:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator
-<span class="go">usage: fridadrp-ifu_simulator [-h] [--scene SCENE]</span>
-<span class="go">                              [--grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}]</span>
-<span class="go">                              [--scale {fine,medium,coarse}]</span>
-<span class="go">                              [--ra_teles_deg RA_TELES_DEG]</span>
-<span class="go">                              [--dec_teles_deg DEC_TELES_DEG]</span>
-<span class="go">                              [--delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC]</span>
-<span class="go">                              [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]</span>
-<span class="go">                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]</span>
-<span class="go">                              [--seeing_psf {gaussian}]</span>
-<span class="go">                              [--instrument_pa_deg INSTRUMENT_PA_DEG]</span>
-<span class="go">                              [--airmass AIRMASS]</span>
-<span class="go">                              [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]</span>
-<span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
-<span class="go">                              [--atmosphere_transmission {default,none}]</span>
-<span class="go">                              [--rnoise RNOISE] [--flatpix2pix {default,none}]</span>
-<span class="go">                              [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]</span>
-<span class="go">                              [--seed SEED]</span>
-<span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
-<span class="go">                              [--stop_after_ifu_3D_method0] [-v] [--plots]</span>
-<span class="go">                              [--echo] [--version]</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">fridadrp</span><span class="o">-</span><span class="n">ifu_simulator</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">scene</span> <span class="n">SCENE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">flux_factor</span> <span class="n">FLUX_FACTOR</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">grating</span> <span class="p">{</span><span class="n">low</span><span class="o">-</span><span class="n">zJ</span><span class="p">,</span><span class="n">low</span><span class="o">-</span><span class="n">JH</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">z</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">J</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">K</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">scale</span> <span class="p">{</span><span class="n">fine</span><span class="p">,</span><span class="n">medium</span><span class="p">,</span><span class="n">coarse</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">ra_teles_deg</span> <span class="n">RA_TELES_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">dec_teles_deg</span> <span class="n">DEC_TELES_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">delta_ra_teles_arcsec</span> <span class="n">DELTA_RA_TELES_ARCSEC</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">delta_dec_teles_arcsec</span> <span class="n">DELTA_DEC_TELES_ARCSEC</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">seeing_fwhm_arcsec</span> <span class="n">SEEING_FWHM_ARCSEC</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">seeing_psf</span> <span class="p">{</span><span class="n">gaussian</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">instrument_pa_deg</span> <span class="n">INSTRUMENT_PA_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">airmass</span> <span class="n">AIRMASS</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">parallactic_angle_deg</span> <span class="n">PARALLACTIC_ANGLE_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">noversampling_whitelight</span> <span class="n">NOVERSAMPLING_WHITELIGHT</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">atmosphere_transmission</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">rnoise</span> <span class="n">RNOISE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">flatpix2pix</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">spectral_blurring_pixel</span> <span class="n">SPECTRAL_BLURRING_PIXEL</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">seed</span> <span class="n">SEED</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">prefix_intermediate_FITS</span> <span class="n">PREFIX_INTERMEDIATE_FITS</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">stop_after_ifu_3D_method0</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">plots</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">echo</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The simulator uses a file called <em>scene</em> as its basic input, which contains
@@ -132,6 +140,7 @@ spectrum of the astronomical sources to be simulated.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="script_arguments.html">Script arguments</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-scene-lt-string-gt-code"><span class="raw-html"><code>--scene &lt;string&gt;</code></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-flux-factor-lt-string-gt-code"><span class="raw-html"><code>--flux_factor &lt;string&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-grating-lt-string-gt-code"><span class="raw-html"><code>--grating &lt;string&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-scale-lt-float-gt-code"><span class="raw-html"><code>--scale &lt;float&gt;</code></span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code"><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span></a></li>
@@ -168,11 +177,6 @@ spectrum of the astronomical sources to be simulated.</p>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Some scene examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#example-1-collection-of-gaussian-objects">Example 1: collection of Gaussian objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#example-2-m51-like-galaxy">Example 2: M51-like galaxy</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="data_cube_mosaics.html">Generation of data cube mosaics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_cube_mosaics.html#combination-of-2d-images">Combination of 2D images</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_cube_mosaics.html#generation-of-example-3d-data-cubes">Generation of example 3D data cubes</a></li>
 </ul>
 </li>
 </ul>

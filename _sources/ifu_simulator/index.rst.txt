@@ -12,6 +12,10 @@ system:
 .. code-block:: console
 
    (venv_frida) $ fridadrp-ifu_simulator --version
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    0.1.dev122+g9cc23a9
 
 The script accepts a number of arguments, which are displayed when invoking the
@@ -20,7 +24,11 @@ script name without any parameter:
 .. code-block:: console
 
    (venv_frida) $ fridadrp-ifu_simulator
-   usage: fridadrp-ifu_simulator [-h] [--scene SCENE]
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
+   usage: fridadrp-ifu_simulator [-h] [--scene SCENE] [--flux_factor FLUX_FACTOR]
                                  [--grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}]
                                  [--scale {fine,medium,coarse}]
                                  [--ra_teles_deg RA_TELES_DEG]
@@ -53,4 +61,3 @@ spectrum of the astronomical sources to be simulated.
    script_arguments
    scene_yaml
    examples
-   data_cube_mosaics

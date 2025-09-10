@@ -9,6 +9,8 @@
   <title>Script arguments &mdash; fridadrp-tutorials 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ac5f0f31" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -16,6 +18,8 @@
       <script src="../_static/documentation_options.js?v=2709fde1"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=d2c30f9d"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -51,6 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="initial_example.html">Initial example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Script arguments</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#code-scene-lt-string-gt-code"><span class="raw-html"><code>--scene &lt;string&gt;</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-flux-factor-lt-string-gt-code"><span class="raw-html"><code>--flux_factor &lt;string&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-grating-lt-string-gt-code"><span class="raw-html"><code>--grating &lt;string&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-scale-lt-float-gt-code"><span class="raw-html"><code>--scale &lt;float&gt;</code></span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code"><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span></a></li>
@@ -75,10 +80,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html">The scene YAML file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html">Some scene examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_cube_mosaics.html">Generation of data cube mosaics</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../example_recipes/test1.html">Running a simple test recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auxiliary_tools/index.html">Auxiliary tools</a></li>
 </ul>
 
         </div>
@@ -112,73 +117,78 @@
 explanation can be easily obtained using the <code class="docutils literal notranslate"><span class="pre">--help</span></code> (<code class="docutils literal notranslate"><span class="pre">-h</span></code> for short)
 argument.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--help
-<span class="go">usage: fridadrp-ifu_simulator [-h] [--scene SCENE]</span>
-<span class="go">                              [--grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}]</span>
-<span class="go">                              [--scale {fine,medium,coarse}]</span>
-<span class="go">                              [--ra_teles_deg RA_TELES_DEG]</span>
-<span class="go">                              [--dec_teles_deg DEC_TELES_DEG]</span>
-<span class="go">                              [--delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC]</span>
-<span class="go">                              [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]</span>
-<span class="go">                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]</span>
-<span class="go">                              [--seeing_psf {gaussian}]</span>
-<span class="go">                              [--instrument_pa_deg INSTRUMENT_PA_DEG]</span>
-<span class="go">                              [--airmass AIRMASS]</span>
-<span class="go">                              [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]</span>
-<span class="go">                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]</span>
-<span class="go">                              [--atmosphere_transmission {default,none}]</span>
-<span class="go">                              [--rnoise RNOISE]</span>
-<span class="go">                              [--flatpix2pix {default,none}]</span>
-<span class="go">                              [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]</span>
-<span class="go">                              [--seed SEED]</span>
-<span class="go">                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]</span>
-<span class="go">                              [--stop_after_ifu_3D_method0] [-v] [--plots]</span>
-<span class="go">                              [--echo] [--version]</span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">fridadrp</span><span class="o">-</span><span class="n">ifu_simulator</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">scene</span> <span class="n">SCENE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">flux_factor</span> <span class="n">FLUX_FACTOR</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">grating</span> <span class="p">{</span><span class="n">low</span><span class="o">-</span><span class="n">zJ</span><span class="p">,</span><span class="n">low</span><span class="o">-</span><span class="n">JH</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">z</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">J</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">K</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">scale</span> <span class="p">{</span><span class="n">fine</span><span class="p">,</span><span class="n">medium</span><span class="p">,</span><span class="n">coarse</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">ra_teles_deg</span> <span class="n">RA_TELES_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">dec_teles_deg</span> <span class="n">DEC_TELES_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">delta_ra_teles_arcsec</span> <span class="n">DELTA_RA_TELES_ARCSEC</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">delta_dec_teles_arcsec</span> <span class="n">DELTA_DEC_TELES_ARCSEC</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">seeing_fwhm_arcsec</span> <span class="n">SEEING_FWHM_ARCSEC</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">seeing_psf</span> <span class="p">{</span><span class="n">gaussian</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">instrument_pa_deg</span> <span class="n">INSTRUMENT_PA_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">airmass</span> <span class="n">AIRMASS</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">parallactic_angle_deg</span> <span class="n">PARALLACTIC_ANGLE_DEG</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">noversampling_whitelight</span> <span class="n">NOVERSAMPLING_WHITELIGHT</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">atmosphere_transmission</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">rnoise</span> <span class="n">RNOISE</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">flatpix2pix</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">spectral_blurring_pixel</span> <span class="n">SPECTRAL_BLURRING_PIXEL</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">seed</span> <span class="n">SEED</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">prefix_intermediate_FITS</span> <span class="n">PREFIX_INTERMEDIATE_FITS</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">stop_after_ifu_3D_method0</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">plots</span><span class="p">]</span>
+                              <span class="p">[</span><span class="o">--</span><span class="n">echo</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
 
-<span class="go">description: simulator of FRIDA IFU images (0.1.dev98+g0c982ee)</span>
+<span class="n">description</span><span class="p">:</span> <span class="n">simulator</span> <span class="n">of</span> <span class="n">FRIDA</span> <span class="n">IFU</span> <span class="n">images</span> <span class="p">(</span><span class="mf">0.1</span><span class="o">.</span><span class="n">dev98</span><span class="o">+</span><span class="n">g0c982ee</span><span class="p">)</span>
 
-<span class="go">options:</span>
-<span class="go">  -h, --help            show this help message and exit</span>
-<span class="go">  --scene SCENE         YAML scene file name</span>
-<span class="go">  --grating {low-zJ,low-JH,medium-z,medium-J,medium-H,medium-K,high-H,high-K}</span>
-<span class="go">                        Grating name</span>
-<span class="go">  --scale {fine,medium,coarse}</span>
-<span class="go">                        Scale</span>
-<span class="go">  --ra_teles_deg RA_TELES_DEG</span>
-<span class="go">                        Telescope central RA (deg)</span>
-<span class="go">  --dec_teles_deg DEC_TELES_DEG</span>
-<span class="go">                        Telescope central DEC (deg)</span>
-<span class="go">  --delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC</span>
-<span class="go">                        Offset in RA (arcsec)</span>
-<span class="go">  --delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC</span>
-<span class="go">                        Offset in DEC (arcsec)</span>
-<span class="go">  --seeing_fwhm_arcsec SEEING_FWHM_ARCSEC</span>
-<span class="go">                        Seeing FWHM (arcsec)</span>
-<span class="go">  --seeing_psf {gaussian}</span>
-<span class="go">                        Seeing PSF</span>
-<span class="go">  --instrument_pa_deg INSTRUMENT_PA_DEG</span>
-<span class="go">                        Instrument Position Angle (deg)</span>
-<span class="go">  --airmass AIRMASS     Airmass</span>
-<span class="go">  --parallactic_angle_deg PARALLACTIC_ANGLE_DEG</span>
-<span class="go">                        Parallactic angle (deg)</span>
-<span class="go">  --noversampling_whitelight NOVERSAMPLING_WHITELIGHT</span>
-<span class="go">                        Oversampling white light image</span>
-<span class="go">  --atmosphere_transmission {default,none}</span>
-<span class="go">                        Atmosphere transmission</span>
-<span class="go">  --rnoise RNOISE       Readout noise standard deviation (ADU)</span>
-<span class="go">  --flatpix2pix {default,none}</span>
-<span class="go">                        Pixel-to-pixel flat field</span>
-<span class="go">  --spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL</span>
-<span class="go">                        Spectral blurring when converting the original 3D data</span>
-<span class="go">                        cube to the original 2D RSS (in pixel units)</span>
-<span class="go">  --seed SEED           Seed for random number generator</span>
-<span class="go">  --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS</span>
-<span class="go">                        Prefix for intermediate FITS files</span>
-<span class="go">  --stop_after_ifu_3D_method0</span>
-<span class="go">                        Stop after computing ifu_3D_method0 image</span>
-<span class="go">  -v, --verbose         increase program verbosity</span>
-<span class="go">  --plots               Plot intermediate results</span>
-<span class="go">  --echo                Display full command line</span>
-<span class="go">  --version             Display version</span>
+<span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">scene</span> <span class="n">SCENE</span>         <span class="n">YAML</span> <span class="n">scene</span> <span class="n">file</span> <span class="n">name</span>
+  <span class="o">--</span><span class="n">flux_factor</span> <span class="n">FLUX_FACTOR</span>
+                        <span class="n">Multiplicative</span> <span class="n">factor</span> <span class="n">to</span> <span class="n">be</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span>
+                        <span class="n">photons</span> <span class="n">defined</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">scene</span> <span class="n">file</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">grating</span> <span class="p">{</span><span class="n">low</span><span class="o">-</span><span class="n">zJ</span><span class="p">,</span><span class="n">low</span><span class="o">-</span><span class="n">JH</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">z</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">J</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">K</span><span class="p">}</span>
+                        <span class="n">Grating</span> <span class="n">name</span>
+  <span class="o">--</span><span class="n">scale</span> <span class="p">{</span><span class="n">fine</span><span class="p">,</span><span class="n">medium</span><span class="p">,</span><span class="n">coarse</span><span class="p">}</span>
+                        <span class="n">Scale</span>
+  <span class="o">--</span><span class="n">ra_teles_deg</span> <span class="n">RA_TELES_DEG</span>
+                        <span class="n">Telescope</span> <span class="n">central</span> <span class="n">RA</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">dec_teles_deg</span> <span class="n">DEC_TELES_DEG</span>
+                        <span class="n">Telescope</span> <span class="n">central</span> <span class="n">DEC</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">delta_ra_teles_arcsec</span> <span class="n">DELTA_RA_TELES_ARCSEC</span>
+                        <span class="n">Offset</span> <span class="ow">in</span> <span class="n">RA</span> <span class="p">(</span><span class="n">arcsec</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">delta_dec_teles_arcsec</span> <span class="n">DELTA_DEC_TELES_ARCSEC</span>
+                        <span class="n">Offset</span> <span class="ow">in</span> <span class="n">DEC</span> <span class="p">(</span><span class="n">arcsec</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">seeing_fwhm_arcsec</span> <span class="n">SEEING_FWHM_ARCSEC</span>
+                        <span class="n">Seeing</span> <span class="n">FWHM</span> <span class="p">(</span><span class="n">arcsec</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">seeing_psf</span> <span class="p">{</span><span class="n">gaussian</span><span class="p">}</span>
+                        <span class="n">Seeing</span> <span class="n">PSF</span>
+  <span class="o">--</span><span class="n">instrument_pa_deg</span> <span class="n">INSTRUMENT_PA_DEG</span>
+                        <span class="n">Instrument</span> <span class="n">Position</span> <span class="n">Angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">airmass</span> <span class="n">AIRMASS</span>     <span class="n">Airmass</span>
+  <span class="o">--</span><span class="n">parallactic_angle_deg</span> <span class="n">PARALLACTIC_ANGLE_DEG</span>
+                        <span class="n">Parallactic</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">noversampling_whitelight</span> <span class="n">NOVERSAMPLING_WHITELIGHT</span>
+                        <span class="n">Oversampling</span> <span class="n">white</span> <span class="n">light</span> <span class="n">image</span>
+  <span class="o">--</span><span class="n">atmosphere_transmission</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}</span>
+                        <span class="n">Atmosphere</span> <span class="n">transmission</span>
+  <span class="o">--</span><span class="n">rnoise</span> <span class="n">RNOISE</span>       <span class="n">Readout</span> <span class="n">noise</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="p">(</span><span class="n">ADU</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">flatpix2pix</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}</span>
+                        <span class="n">Pixel</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">pixel</span> <span class="n">flat</span> <span class="n">field</span>
+  <span class="o">--</span><span class="n">spectral_blurring_pixel</span> <span class="n">SPECTRAL_BLURRING_PIXEL</span>
+                        <span class="n">Spectral</span> <span class="n">blurring</span> <span class="n">when</span> <span class="n">converting</span> <span class="n">the</span> <span class="n">original</span> <span class="mi">3</span><span class="n">D</span> <span class="n">data</span>
+                        <span class="n">cube</span> <span class="n">to</span> <span class="n">the</span> <span class="n">original</span> <span class="mi">2</span><span class="n">D</span> <span class="n">RSS</span> <span class="p">(</span><span class="ow">in</span> <span class="n">pixel</span> <span class="n">units</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">seed</span> <span class="n">SEED</span>           <span class="n">Seed</span> <span class="k">for</span> <span class="n">random</span> <span class="n">number</span> <span class="n">generator</span>
+  <span class="o">--</span><span class="n">prefix_intermediate_FITS</span> <span class="n">PREFIX_INTERMEDIATE_FITS</span>
+                        <span class="n">Prefix</span> <span class="k">for</span> <span class="n">intermediate</span> <span class="n">FITS</span> <span class="n">files</span>
+  <span class="o">--</span><span class="n">stop_after_ifu_3D_method0</span>
+                        <span class="n">Stop</span> <span class="n">after</span> <span class="n">computing</span> <span class="n">ifu_3D_method0</span> <span class="n">image</span>
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">verbose</span>         <span class="n">increase</span> <span class="n">program</span> <span class="n">verbosity</span>
+  <span class="o">--</span><span class="n">plots</span>               <span class="n">Plot</span> <span class="n">intermediate</span> <span class="n">results</span>
+  <span class="o">--</span><span class="n">echo</span>                <span class="n">Display</span> <span class="n">full</span> <span class="n">command</span> <span class="n">line</span>
+  <span class="o">--</span><span class="n">version</span>             <span class="n">Display</span> <span class="n">version</span>
 </pre></div>
 </div>
 <p>An additional description of the different arguments is provided below.</p>
@@ -192,6 +202,11 @@ such cases, an explanatory note is included.</p>
 <span id="scene"></span><h2><span class="raw-html"><code>--scene &lt;string&gt;</code></span><a class="headerlink" href="#code-scene-lt-string-gt-code" title="Link to this heading"></a></h2>
 <p>External YAML file where the user defines one or several sources to
 be simulated. Each source has an associated spectrum.</p>
+</section>
+<section id="code-flux-factor-lt-string-gt-code">
+<span id="flux-factor"></span><h2><span class="raw-html"><code>--flux_factor &lt;string&gt;</code></span><a class="headerlink" href="#code-flux-factor-lt-string-gt-code" title="Link to this heading"></a></h2>
+<p>Multiplicative factor (float number) to be applied to the number of photons
+defined in the scene file. The resulting number is rounded to an integer value.</p>
 </section>
 <section id="code-grating-lt-string-gt-code">
 <span id="grating"></span><h2><span class="raw-html"><code>--grating &lt;string&gt;</code></span><a class="headerlink" href="#code-grating-lt-string-gt-code" title="Link to this heading"></a></h2>

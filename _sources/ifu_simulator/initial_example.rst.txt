@@ -26,6 +26,10 @@ effectively allows a command to span multiple lines.
      --scale fine \
      --seeing_fwhm_arcsec 0.05 \
      --rnoise 4
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    Welcome to fridadrp-ifu_simulator
    version 0.1.dev122+g9cc23a9
    
@@ -197,6 +201,10 @@ Since we are not using oversampling, in this case ``NAXIS1=64`` and
 .. code-block:: console
 
    (venv_frida) $ fitsheader test_ifu_3D_method0.fits 
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    # HDU 0 in test_ifu_3D_method0.fits:
    SIMPLE  =                    T / conforms to FITS standard                      
    BITPIX  =                  -32 / array data type                                
