@@ -1,0 +1,44 @@
+input_list: list0_2d_images.txt
+output_filename: combination_test0_2d.fits
+reproject_method: adaptive
+extname_image: PRIMARY
+extname_mask: None
+combination_function: mean
+output_3D_stack: None
+verbose: True
+echo: False
+
+* Reading: test0a_ifu_white2D_method0_os1.fits
+hdu2d_image.header['NAXIS1']=64
+hdu2d_image.header['NAXIS2']=60
+generating mask from np.nan values
+Number of masked pixels / total: 0 / 3840
+
+* Reading: test0b_ifu_white2D_method0_os1.fits
+hdu2d_image.header['NAXIS1']=64
+hdu2d_image.header['NAXIS2']=60
+generating mask from np.nan values
+Number of masked pixels / total: 0 / 3840
+
+* Reading: test0c_ifu_white2D_method0_os1.fits
+hdu2d_image.header['NAXIS1']=64
+hdu2d_image.header['NAXIS2']=60
+generating mask from np.nan values
+Number of masked pixels / total: 0 / 3840
+Total number of images to be combined: 3
+
+wcs_mosaic2d=WCS Keywords
+
+Number of WCS axes: 2
+CTYPE : 'RA---TAN' 'DEC--TAN' 
+CRVAL : 9.259258514947486e-06 0.0 
+CRPIX : 125.16666693574936 120.50000000417663 
+PC1_1 PC1_2  : 1.0 0.0 
+PC2_1 PC2_2  : 0.0 1.0 
+CDELT : -2.7777777777777233e-06 2.7777777777777233e-06 
+NAXIS : 0  0
+shape_mosaic2d=(240, 256)
+Reprojection method: adaptive
+Combination function: mean
+
+Saving combined 2D image: combination_test0_2d.fits

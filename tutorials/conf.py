@@ -14,11 +14,16 @@ release = '0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx_rtd_theme', 'sphinx_tabs.tabs']
+extensions = ['sphinx_rtd_theme', 
+              'sphinx_tabs.tabs', 
+              'sphinx_copybutton']
+copybutton_prompt_text = "(venv_frida) $ "
+copybutton_only_copy_prompt_lines = False
+# allow to exclude the copybutton in selected blocks
+copybutton_selector = "div:not(.no-copybutton) > div.highlight > pre"
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -30,4 +35,6 @@ html_logo = 'logo_FRIDA.png'
 html_theme_options = {
     'logo_only': False,
 }
-#html_static_path = ['_static']
+html_static_path = ['_static']
+def setup(app):
+    app.add_css_file("custom.css")

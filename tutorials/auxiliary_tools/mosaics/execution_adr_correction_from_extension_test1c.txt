@@ -1,0 +1,88 @@
+inputfile: test1c_ifu_3D_method0.fits
+extname_adr: adrtheor
+extname_mask: None
+final_celestial_wcs: None
+output: test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
+reproject_method: adaptive
+verbose: True
+echo: False
+Filename: test1c_ifu_3D_method0.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
+  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
+  2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D]   
+None
+Reading ADR correction from ADRTHEOR extension
+Generating mask from np.nan in PRIMARY HDU
+Number of masked pixels in the input 3D array: 0
+Center IFU coord: <SkyCoord (ICRS): (ra, dec) in deg
+    (4.29649529e-31, 0.)>
+
+wcs2d_blue:
+WCS Keywords
+
+Number of WCS axes: 2
+CTYPE : 'RA---TAN' 'DEC--TAN' 
+CRVAL : 0.0 0.0 
+CRPIX : 34.52910644625764 34.8514327982211 
+CD1_1 CD1_2  : -2.6102572799608e-06 -9.5005595368241e-07 
+CD2_1 CD2_2  : -9.5005595368241e-07 2.6102572799608e-06 
+NAXIS : 64  60
+
+wcs2d_red:
+WCS Keywords
+
+Number of WCS axes: 2
+CTYPE : 'RA---TAN' 'DEC--TAN' 
+CRVAL : 0.0 0.0 
+CRPIX : 31.135611152816494 27.574058672835317 
+CD1_1 CD1_2  : -2.6102572799608e-06 -9.5005595368241e-07 
+CD2_1 CD2_2  : -9.5005595368241e-07 2.6102572799608e-06 
+NAXIS : 64  60
+
+wcs_mosaic2d:
+WCS Keywords
+
+Number of WCS axes: 2
+CTYPE : 'RA---TAN' 'DEC--TAN' 
+CRVAL : 4.296495291499103e-31 0.0 
+CRPIX : 44.22578218603953 43.03043723461774 
+PC1_1 PC1_2  : 1.0 0.0 
+PC2_1 PC2_2  : 0.0 1.0 
+CDELT : -2.7777777777777233e-06 2.7777777777777233e-06 
+NAXIS : 0  0
+shape_mosaic2d: (84, 86)
+NAXIS1, NAXIS2, NAXIS3 of corrected 3D cube: 86, 84, 2048
+Reprojection method: adaptive (please wait...)
+Reprojection finished! (elapsed time: 13.578309 seconds)
+
+Flux check:
+- total counts in original  3D cube: 84480108
+- total counts in corrected 3D cube: 84274917.53627832
+- ratio original/corrected.........: 1.0024347750163427
+
+Footprint coverage (fraction): 0.4813119544011282
+
+header3d_corrected:
+WCSAXES =                    3 / Number of coordinate axes                      
+CRPIX1  =       44.22578218604 / Pixel coordinate of reference point            
+CRPIX2  =      43.030437234618 / Pixel coordinate of reference point            
+CRPIX3  =                  1.0 / Pixel coordinate of reference point            
+CDELT1  = -2.7777777777777E-06 / [deg] Coordinate increment at reference point  
+CDELT2  =  2.7777777777777E-06 / [deg] Coordinate increment at reference point  
+CDELT3  = 2.85000000000032E-10 / [m] Coordinate increment at reference point    
+CUNIT1  = 'deg'                / Units of coordinate increment and value        
+CUNIT2  = 'deg'                / Units of coordinate increment and value        
+CUNIT3  = 'm       '           / Units of coordinate increment and value        
+CTYPE1  = 'RA---TAN'           / Right ascension, gnomonic projection           
+CTYPE2  = 'DEC--TAN'           / Declination, gnomonic projection               
+CTYPE3  = 'WAVE    '           / Vacuum wavelength (linear)                     
+CRVAL1  =  4.2964952914991E-31 / [deg] Coordinate value at reference point      
+CRVAL2  =                  0.0 / [deg] Coordinate value at reference point      
+CRVAL3  =           1.9344E-06 / [m] Coordinate value at reference point        
+LONPOLE =                180.0 / [deg] Native longitude of celestial pole       
+LATPOLE =                  0.0 / [deg] Native latitude of celestial pole        
+MJDREF  =                  0.0 / [d] MJD of fiducial time                       
+RADESYS = 'ICRS'               / Equatorial coordinate system                   
+
+Saving file: test1c_ifu_3D_method0_corrected_ADRTHEOR.fits

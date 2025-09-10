@@ -1,25 +1,35 @@
 Generation of data cube mosaics
 ===============================
 
-Here is the procedure that can be used to generate mosaics with data cubes.
+The code described below for mosaic generation relies on the use of the
+**reproject** `package <https://reproject.readthedocs.io/en/stable/>`_, which
+implements image reprojection methods for astronomical images.
+
+The image combination assumes that the individual exposures to be combined are
+provided in flux units (e.g., ADU/s or something proportional).
+
+In this section, we’ll use auxiliary images that we’ll generate beforehand with
+the help of ``fridadrp-ifu_simulator``.
 
 .. warning::
 
    Please note that the code shown below is under development and may undergo
    modifications.
 
-
-Before tackling the combination of 3D data cubes, let's see how the ``numina``
-package facilitates the combination of 2D images.
-
 Combination of 2D images
 ------------------------
+
+Before tackling the combination of 3D data cubes, let's see how the **numina**
+package facilitates the combination of 2D FITS images.
+
+Generation of individual exposures
+..................................
 
 For this example we are using the files :download:`scene_m51_2d.yaml
 <mosaics/scene_m51_2d.yaml>` and :download:`m51_dss1.fits
 <mosaics/m51_dss1.fits>`.
 
-Execute ``fridadrp-ifu_simulator``:
+Execute ``fridadrp-ifu_simulator`` to generate the images to be combined:
 
 .. code-block:: console
 
@@ -32,7 +42,8 @@ Execute ``fridadrp-ifu_simulator``:
      --instrument_pa_deg 0.0 \
      --flatpix2pix none \
      --stop_after_ifu_3D_method0 \
-     --prefix_intermediate_FITS testa
+     --prefix_intermediate_FITS test0a \
+     --seed 1234
 
 .. code-block:: console
 
@@ -45,7 +56,8 @@ Execute ``fridadrp-ifu_simulator``:
      --instrument_pa_deg 40.0 \
      --flatpix2pix none \
      --stop_after_ifu_3D_method0 \
-     --prefix_intermediate_FITS testb
+     --prefix_intermediate_FITS test0b \
+     --seed 2345
 
 .. code-block:: console
 
@@ -58,82 +70,93 @@ Execute ``fridadrp-ifu_simulator``:
      --instrument_pa_deg 20.0 \
      --flatpix2pix none \
      --stop_after_ifu_3D_method0 \
-     --prefix_intermediate_FITS testc
+     --prefix_intermediate_FITS test0c \
+     --seed 3456
 
 We have used the parameter ``--stop_after_ifu_3D_method0`` because we do not
 need to execute all the steps of the simulator to generate the images we will
 need in this case. Note that the first execution uses ``--scale coarse``, while the
 next two use ``--scale fine``. Additionally, the values of
 ``--delta_ra_teles_arcsec``, ``--delta_dec_teles_arcsec``, and
-``--instrument_pa_deg are modified``.
+``--instrument_pa_deg`` are different. However, since the airmass value is not
+specified, it is assumed to be 1.0 in the three cases.
 
-.. image:: mosaics/individual_m51_exposures.png
-   :width: 100%
-
-The next step is to generate an auxiliary text file with the names of the FITS
-images to be combined.
+The files ``test0?_ifu_white2D_method0_os1.fits`` (with ``?`` equal to a, b or
+c) can be examined with any visualization tool. The **numina** package provides
+the auxiliary script ``numina-ximshow`` for this purpose
 
 .. code-block:: console
 
-   (venv_frida) $ ls test?_ifu_white2D_method0_os1.fits > list_2d_images.txt
-   (venv_frida) $ cat list_2d_images.txt
-   testa_ifu_white2D_method0_os1.fits
-   testb_ifu_white2D_method0_os1.fits
-   testc_ifu_white2D_method0_os1.fits
+   (venv_frida) $ numina-ximshow \
+   test0?_ifu_white2D_method0_os1.fits \
+   --cmap viridis \
+   --cbar_orientation vertical \
+   --aspect equal \
+   --z1z2 minmax
 
-To combine the 3 selected images, we only need to execute the following Numina
-script:
+.. image:: mosaics/test0a_2d.png
+   :width: 32%
+.. image:: mosaics/test0b_2d.png
+   :width: 32%
+.. image:: mosaics/test0c_2d.png
+   :width: 32%
+
+Note that it is also possible to visualize the collapsed view of the
+corresponding 3D data cubes, using in this case the **numina** script
+``numina-extract_2d_slice_from_3d_cube`` (if no parameters are specified, it is
+assumed that the collapse is performed along NAXIS3 and all pixels in that
+direction are summed):
+
+.. code-block:: console
+
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test0a_ifu_3D_method0.fits
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test0b_ifu_3D_method0.fits
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test0c_ifu_3D_method0.fits
+
+.. image:: mosaics/test0a_3d_collapsed.png
+   :width: 32%
+.. image:: mosaics/test0b_3d_collapsed.png
+   :width: 32%
+.. image:: mosaics/test0c_3d_collapsed.png
+   :width: 32%
+
+
+Combination of individual exposures
+...................................
+
+The combination of the images is carried out using the **numina** script
+``numina-generate_mosaic_of_2d_images``, which takes as input an ASCII file
+containing the list of 2D FITS images to be combined, and the name of the
+output file.
+
+The first step is then to generate an auxiliary text file with the names of the
+2D FITS images to be combined.
+
+.. code-block:: console
+
+   (venv_frida) $ ls test0?_ifu_white2D_method0_os1.fits > list0_2d_images.txt
+   (venv_frida) $ cat list0_2d_images.txt
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
+   test0a_ifu_white2D_method0_os1.fits
+   test0b_ifu_white2D_method0_os1.fits
+   test0c_ifu_white2D_method0_os1.fits
+
+To combine the 3 selected images, we only need to execute the **numina**
+script ``numina-generate_mosaic_of_2d_images``:
 
 .. code-block:: console
 
    (venv_frida) $ numina-generate_mosaic_of_2d_images \
-     list_2d_images.txt combination_2d.fits \
+     list0_2d_images.txt \
+     combination_test0_2d.fits \
      --verbose
-   input_list: list_2d_images.txt
-   output_filename: combination_2d.fits
-   reproject_method: adaptive
-   extname_image: PRIMARY
-   extname_mask: None
-   combination_function: mean
-   output_3D_stack: None
-   verbose: True
-   echo: False
 
-   * Reading: testa_ifu_white2D_method0_os1.fits
-   hdu2d_image.header['NAXIS1']=64
-   hdu2d_image.header['NAXIS2']=60
-   generating mask from np.nan values
-   Number of masked pixels / total: 0 / 3840
-   
-   * Reading: testb_ifu_white2D_method0_os1.fits
-   hdu2d_image.header['NAXIS1']=64
-   hdu2d_image.header['NAXIS2']=60
-   generating mask from np.nan values
-   Number of masked pixels / total: 0 / 3840
-   
-   * Reading: testc_ifu_white2D_method0_os1.fits
-   hdu2d_image.header['NAXIS1']=64
-   hdu2d_image.header['NAXIS2']=60
-   generating mask from np.nan values
-   Number of masked pixels / total: 0 / 3840
-   Total number of images to be combined: 3
-   
-   wcs_mosaic2d=WCS Keywords
-   
-   Number of WCS axes: 2
-   CTYPE : 'RA---TAN' 'DEC--TAN' 
-   CRVAL : 9.259258514947486e-06 0.0 
-   CRPIX : 125.16666693574936 120.50000000417663 
-   PC1_1 PC1_2  : 1.0 0.0 
-   PC2_1 PC2_2  : 0.0 1.0 
-   CDELT : -2.7777777777777233e-06 2.7777777777777233e-06 
-   NAXIS : 0  0
-   shape_mosaic2d=(240, 256)
-   Reprojection method: adaptive
-   Combination function: mean
-   
-   Saving combined 2D image: combination_2d.fits
-   
+.. literalinclude:: mosaics/execution_combination_test0_2d.txt
+   :class: my-special-block no-copybutton
+
 Next, we compare the result of the combination of the 3 simulated exposures 
 with the first exposure alone: both
 cover the field of the *coarse* camera. The improvement in spatial resolution
@@ -142,9 +165,19 @@ the *fine* camera.  Note that the combined image has the sampling corresponding
 to the *fine* camera. Hence, the number of counts shows such a different value
 in both images.
 
-.. image:: mosaics/comparison_combined_single.png
-   :width: 100%
+.. code-block:: console
 
+   (venv_frida) $ numina-ximshow \
+     combination_test0_2d.fits test0a_ifu_white2D_method0_os1.fits \
+     --cmap viridis \
+     --cbar_orientation vertical \
+     --aspect equal \
+     --z1z2 minmax
+
+.. image:: mosaics/combined_test0_2d.png
+   :width: 49%
+.. image:: mosaics/single_test0a_2d.png
+   :width: 49%
 
 The following figure shows the result of combining the two exposures obtained
 with the 'fine' camera, represented on top of the first exposure calculated
@@ -154,12 +187,91 @@ with an oversampling of 10 (file ``testa_ifu_white2D_method0_os10.fits``).
    :align: center
    :width: 70%
 
-Generation of example 3D data cubes
------------------------------------
 
-For this example we are using the files :download:`scene_m51_3d.yaml
-<mosaics/scene_m51_3d.yaml>` and :download:`m51_dss1.fits
-<mosaics/m51_dss1.fits>`.
+Combination of 3D data cubes: example 1
+---------------------------------------
+
+We can start by combining the three 3D cubes generated in the previous section.
+Let us recall that in this case, the three cubes cover different solid angles
+on the celestial sphere but span the same wavelength range. Likewise, we do not
+have issues with differential atmospheric refraction within each data cube
+because we have assumed an airmass of 1.0.
+
+The combination of the images is carried out using the **numina** script
+``numina-generate_mosaic_of_3d_cubes``, which takes as input an ASCII file
+containing the list of 3D FITS images to be combined, and the name of the
+output file.
+
+.. code-block:: console
+
+   (venv_frida) $ ls test0?_ifu_3D_method0.fits > list0_3d_cubes.txt
+
+.. code-block:: console
+
+   (venv_frida) $ cat list0_3d_cubes.txt 
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
+   test0a_ifu_3D_method0.fits
+   test0b_ifu_3D_method0.fits
+   test0c_ifu_3D_method0.fits
+
+.. code-block:: console
+
+   (venv_frida) $ numina-generate_mosaic_of_3d_cubes \ 
+    list0_3d_cubes.txt \
+    all0_3d.fits \
+    --reproject_method adaptive \
+    --footprint \
+    --verbose
+
+.. literalinclude:: mosaics/execution_combination_test0_3d.txt
+   :class: my-special-block no-copybutton
+
+We can visualize the result using ``ds9``:
+
+.. code-block:: console
+
+   (venv_frida) $ ds9 \
+     -scale mode minmax \
+     -geometry 1000x1000 \
+     -wcs degrees \
+     -multiframe \
+     test0a_ifu_3D_method0.fits \
+     test0b_ifu_3D_method0.fits \
+     test0c_ifu_3D_method0.fits \
+     all0_3d.fits \
+     -lock slice image \
+     -lock frame image \
+     -zoom to fit \
+     -cmap viridis \
+     -match frame colorbar \
+     -match frame wcs \
+     -colorbar lock yes \
+     -view multi yes
+
+.. image:: mosaics/result_example1_with_ds9.png
+   :align: center
+   :width: 70%
+
+In the first row, the three individual exposures are shown. In the bottom row,
+the image on the left corresponds to the combination of the three individual
+exposures, while the image in the center is the footprint of that combination.
+
+
+Combination of 3D data cubes: example 2
+---------------------------------------
+
+In this case, we will introduce the effect of differential atmospheric
+refraction, using exposures of the same region of the sky but with different
+airmasses and position angles.
+
+Generation of individual exposures
+..................................
+
+For this example we are using the file :download:`scene_m51_3d.yaml
+<mosaics/scene_m51_3d.yaml>`.
 
 Execute ``fridadrp-ifu_simulator``:
 
@@ -173,7 +285,7 @@ Execute ``fridadrp-ifu_simulator``:
      --parallactic_angle_deg 0 \
      --instrument_pa_deg 0 \
      --stop_after_ifu_3D_method0 \
-     --prefix_intermediate_FITS test_m51a \
+     --prefix_intermediate_FITS test1a \
      --seed 1234
      
 .. code-block:: console
@@ -182,11 +294,11 @@ Execute ``fridadrp-ifu_simulator``:
      --scene scene_m51_3d.yaml \
      --grating medium-K \
      --scale fine \
-     --airmass 3.00 \
+     --airmass 3.0 \
      --parallactic_angle_deg 45 \
      --instrument_pa_deg 20 \
      --stop_after_ifu_3D_method0 \
-     --prefix_intermediate_FITS test_m51b \
+     --prefix_intermediate_FITS test1b \
      --seed 2345
 
 .. code-block:: console
@@ -195,11 +307,11 @@ Execute ``fridadrp-ifu_simulator``:
      --scene scene_m51_3d.yaml \
      --grating medium-K \
      --scale fine \
-     --airmass 3.00 \
+     --airmass 3.0 \
      --parallactic_angle_deg -45 \
      --instrument_pa_deg 340 \
      --stop_after_ifu_3D_method0 \
-     --prefix_intermediate_FITS test_m51c \
+     --prefix_intermediate_FITS test1c \
      --seed 3456
 
 We have used again the parameter ``--stop_after_ifu_3D_method0`` because we do
@@ -209,70 +321,159 @@ the first exposure, the airmass is 1.0. In the next two exposures we have
 chosen a high airmass to exaggerate the effect of atmospheric refraction,
 modifying both the value of the parallactic angle and the instrument.
 
-We can quickly visualize the result with the help of the ``qfitsview`` program.
-With the idea of being able to change the slice in the spectral direction
-simultaneously in the three exposures, we will first generate an auxiliary
-image that performs a stack of the HDUs (header and data units) from different
-FITS files into a single FITS file.
+Examining the individual data cubes before combining them
+.........................................................
+
+We can quickly visualize the result with the help of the ``ds9`` program.
 
 .. code-block:: console
 
-   (venv_frida) $ fitsinfo test_m51*3D*.fits
-   Filename: test_m51a_ifu_3D_method0.fits
+   (venv_frida) $ ds9 \
+   -scale mode minmax \
+   -geometry 1000x1000 \
+   -wcs degrees \
+   -multiframe \
+   test1a_ifu_3D_method0.fits \
+   test1b_ifu_3D_method0.fits \
+   test1c_ifu_3D_method0.fits \
+   -lock slice image \
+   -lock frame image \
+   -zoom to fit \
+   -cmap viridis \
+   -match frame colorbar \
+   -colorbar lock yes \
+   -view multi yes
+
+.. image:: mosaics/individual_3d_m51_exposures_with_ds9.png
+   :width: 100%
+
+It is also possible to use ``qfitsview`` to visualize simultaneously the
+individual exposures. In this case, with the idea of being able to change the
+slice in the spectral direction simultaneously in the three exposures, we will
+first generate an auxiliary image that performs a stack of the HDUs (header and
+data units) from different FITS files into a single FITS file. For that
+purpose, we can employ the **numina** script ``numina-stack_hdus``.
+
+.. code-block:: console
+
+   (venv_frida) $ fitsinfo test1*3D*.fits
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
+   Filename: test1a_ifu_3D_method0.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      81   (64, 60, 2048)   float32   
-
-   Filename: test_m51b_ifu_3D_method0.fits
+     0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)   
+   
+   Filename: test1b_ifu_3D_method0.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      83   (64, 60, 2048)   float32   
-
-   Filename: test_m51c_ifu_3D_method0.fits
+     0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
+   
+   Filename: test1c_ifu_3D_method0.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      83   (64, 60, 2048)   float32   
+     0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
 
-   (venv_frida) $ ls test_m51*3D*.fits > list_3d_images.txt
+.. code-block:: console
 
-   (venv_frida) $ cat list_3d_images.txt
-   test_m51a_ifu_3D_method0.fits
-   test_m51b_ifu_3D_method0.fits
-   test_m51c_ifu_3D_method0.fits
+   (venv_frida) $ ls test1*3D*.fits > list1_3d_cubes.txt
 
-   (venv_frida) $ numina-stack_hdus list_3d_images.txt stack_3d.fits
+.. code-block:: console
 
-   (venv_frida) $ qfitsview stack_3d.fits
+   (venv_frida) $ cat list1_3d_cubes.txt
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
+   test1a_ifu_3D_method0.fits
+   test1b_ifu_3D_method0.fits
+   test1c_ifu_3D_method0.fits
+
+.. code-block:: console
+
+   (venv_frida) $ numina-stack_hdus list1_3d_cubes.txt stack1_3d.fits
+
+.. code-block:: console
+
+   (venv_frida) $ qfitsview stack1_3d.fits
 
 After executing the last command, select 'Read All' when ``qfitsview`` asks for
 the extension to read.
 
+.. image:: mosaics/individual_3d_m51_exposures_with_qfitsview.png
+   :width: 100%
+
 If we collapse the data cubes along the spectral direction (NAXIS3), the effect
 of atmospheric refraction is clearly noticeable.
 
-.. image:: mosaics/individual_3d_m51_exposures.png
-   :width: 100%
+.. code-block:: console
 
-If we combine the 3 data cubes ignoring the problem of atmospheric refraction,
-the result is not satisfactory.
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test1a_ifu_3D_method0.fits
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test1b_ifu_3D_method0.fits
+   (venv_frida) $ numina-extract_2d_slice_from_3d_cube test1c_ifu_3D_method0.fits
+
+.. image:: mosaics/test1a_3d_collapsed.png
+   :width: 32%
+.. image:: mosaics/test1b_3d_collapsed.png
+   :width: 32%
+.. image:: mosaics/test1c_3d_collapsed.png
+   :width: 32%
+
+
+Combination of individual data cubes
+....................................
+
+If we combine the previous 3 data cubes ignoring the problem of atmospheric
+refraction, the result is not satisfactory.
 
 .. code-block:: console
 
    (venv_frida) $ numina-generate_mosaic_of_3d_cubes \
-     list_3d_images.txt \
-     combination_3d.fits \
+     list1_3d_cubes.txt \
+     combination_test1_3d.fits \
+     --footprint \
      --verbose
 
-   $ fitsinfo combination_3d.fits
-   Filename: combination_3d.fits
+.. literalinclude:: mosaics/execution_combination_test1_3d.txt
+   :class: my-special-block no-copybutton
+
+.. code-block:: console
+
+   (venv_frida) $ fitsinfo combination_test1_3d.fits
+
+.. code-block:: console
+   :class: my-special-block no-copybutton
+
+   Filename: combination_test1_3d.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      27   (81, 78, 2048)   float32   
-     1  FOOTPRINT     1 ImageHDU        29   (81, 78, 2048)   uint8  
+     0  PRIMARY       1 PrimaryHDU      50   (81, 78, 2048)   float32   
+     1  FOOTPRINT     1 ImageHDU        29   (81, 78, 2048)   uint8 
 
-   $ qfitsview combination_3d.fits
+.. code-block:: console
 
-It is advisable to correct the individual exposures first before combining the
-different data cubes. 
+   (venv_frida) $ qfitsview combination_test1_3d.fits
 
-We can use an initial script that allows us to understand the expected effect
-of atmospheric refraction.
+The initial spatial cut shown by qfitsview corresponds to pixel 1024 along
+NAXIS3. The corresponding image looks apparently normal.
+
+.. image:: mosaics/combined_test1_3d_1024.png
+   :width: 70%
+   :align: center
+
+However, when we display the cut corresponding to pixel 1 or pixel 2048, the result is clearly not satisfactory.
+
+.. image:: mosaics/combined_test1_3d_0001.png
+   :width: 49%
+.. image:: mosaics/combined_test1_3d_2048.png
+   :width: 49%
+
+Differencial atmospheric refraction correction
+..............................................
+
+It is advisable to correct the individual exposures for differential
+atmospheric refraction (taking as reference the position of the image at the
+central wavelength along NAXIS3). To do this, we will start by using an
+auxiliary script that helps us visualize how significant the effect is in the
+images we are working with.
 
 .. code-block:: console
 
@@ -285,26 +486,9 @@ of atmospheric refraction.
       --wave_unit micron \
       --plots
 
-   Wavelength  ADR  
-     micron   arcsec
-   ---------- ------
-        1.000  0.483
-        1.100  0.355
-        1.200  0.257
-        1.300  0.181
-        1.400  0.121
-        1.500  0.072
-        1.600  0.033
-        1.700  0.000
-        1.800 -0.027
-        1.900 -0.051
-        2.000 -0.071
-        2.100 -0.088
-        2.200 -0.102
-        2.300 -0.115
-        2.400 -0.127
-        2.500 -0.137
-   
+.. literalinclude:: mosaics/execution_compute_adr_wavelength_airmass3.txt
+   :class: my-special-block no-copybutton
+
 .. image:: mosaics/adr_prediction.png
    :align: center
    :width: 60%
@@ -315,21 +499,38 @@ FITS file.
 
 .. code-block:: console
 
-   (venv_frida) $ numina-include_adrtheor_in_3d_cube \
-     test_m51b_ifu_3D_method0.fits \
-     --verbose --plots
+   (venv_frida) $ fitsheader -k airmass test1?_ifu_3D_method0.fits -f
+
+.. code-block:: console
+   :class: my-special-block no-copybutton
+
+            filename          AIRMASS
+   -------------------------- -------
+   test1a_ifu_3D_method0.fits     1.0
+   test1b_ifu_3D_method0.fits     3.0
+   test1c_ifu_3D_method0.fits     3.0
+
+Only the second and third images need to be corrected. The first one was obtained with an airmass of 1.0.
+
+.. code-block:: console
 
    (venv_frida) $ numina-include_adrtheor_in_3d_cube \
-     test_m51c_ifu_3D_method0.fits \
+     test1b_ifu_3D_method0.fits \
      --verbose --plots
 
-.. image:: mosaics/adr_m51b.png
+.. image:: mosaics/adr_test1b.png
    :align: center
-   :width: 60%
+   :width: 100%
 
-.. image:: mosaics/adr_m51c.png
+.. code-block:: console
+
+   (venv_frida) $ numina-include_adrtheor_in_3d_cube \
+     test1c_ifu_3D_method0.fits \
+     --verbose --plots
+
+.. image:: mosaics/adr_test1c.png
    :align: center
-   :width: 60%
+   :width: 100%
 
 **Important**: the previous step stores the correction to be applied but does
 not apply it to the data. To perform this process, we need to use an additional
@@ -339,20 +540,23 @@ We see that a new extension ``ADRTHEOR`` has appeared in each data cube.
 
 .. code-block:: console
 
-   (venv_frida) $ fitsinfo test_m51*3D*.fits
-   Filename: test_m51a_ifu_3D_method0.fits
-   No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      81   (64, 60, 2048)   float32   
-     1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
+   (venv_frida) $ fitsinfo test1*3D*.fits
 
-   Filename: test_m51b_ifu_3D_method0.fits
-   No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      83   (64, 60, 2048)   float32   
-     1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
+.. code-block:: console
+   :class: my-special-block no-copybutton
 
-   Filename: test_m51c_ifu_3D_method0.fits
+   Filename: test1a_ifu_3D_method0.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      83   (64, 60, 2048)   float32   
+     0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)   
+   
+   Filename: test1b_ifu_3D_method0.fits
+   No.    Name      Ver    Type      Cards   Dimensions   Format
+     0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
+     1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
+   
+   Filename: test1c_ifu_3D_method0.fits
+   No.    Name      Ver    Type      Cards   Dimensions   Format
+     0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
      1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
 
 We can also empirically measure atmospheric refraction in each data cube using
@@ -361,14 +565,16 @@ cross-correlation.
 .. code-block:: console
 
    (venv_frida) $ numina-measure_slice_xy_offsets_in_3d_cube \
-     test_m51b_ifu_3D_method0.fits \
+     test1b_ifu_3D_method0.fits \
      100 \
      --iterate \
      --extname adrcross \
      --verbose --iterate --plots
 
+.. code-block:: console
+
    (venv_frida) $ numina-measure_slice_xy_offsets_in_3d_cube \
-     test_m51c_ifu_3D_method0.fits \
+     test1c_ifu_3D_method0.fits \
      100 \
      --iterate \
      --extname adrcross \
@@ -379,37 +585,39 @@ corrected images.
 
 .. code-block:: console
 
-   (venv_frida) $ fitsinfo test_m51*3D*.fits
-   Filename: test_m51a_ifu_3D_method0.fits
-   No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      81   (64, 60, 2048)   float32   
-     1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
+   (venv_frida) $ fitsinfo test1*3D*.fits
 
-   Filename: test_m51b_ifu_3D_method0.fits
+.. code-block:: console
+   :class: my-special-block no-copybutton
+
+   Filename: test1a_ifu_3D_method0.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      83   (64, 60, 2048)   float32   
+     0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)   
+   
+   Filename: test1b_ifu_3D_method0.fits
+   No.    Name      Ver    Type      Cards   Dimensions   Format
+     0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
      1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
      2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D]   
-
-   Filename: test_m51c_ifu_3D_method0.fits
+   
+   Filename: test1c_ifu_3D_method0.fits
    No.    Name      Ver    Type      Cards   Dimensions   Format
-     0  PRIMARY       1 PrimaryHDU      83   (64, 60, 2048)   float32   
+     0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   
      1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   
-     2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D]  
+     2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D] 
 
 We can easily compare the expected atmospheric refraction with that calculated
 using the cross-correlation technique.
 
-
 .. code-block:: console
 
    (venv_frida) $ numina-compare_adr_extensions_in_3d_cube \
-     test_m51b_ifu_3D_method0.fits \
+     test1b_ifu_3D_method0.fits \
      adrcross adrtheor
 
 .. image:: mosaics/adrcross_adrtheor.png
    :align: center
-   :width: 80%
+   :width: 100%
 
 At this point, we can correct the exposures for atmospheric refraction using
 the preferred extension (in this case, ``ADRCROSS`` or ``ADRTHEOR``).
@@ -417,53 +625,120 @@ the preferred extension (in this case, ``ADRCROSS`` or ``ADRTHEOR``).
 .. code-block:: console
 
    (venv_frida) $ numina-adr_correction_from_extension_in_3d_cube \
-     test_m51b_ifu_3D_method0.fits \
+     test1b_ifu_3D_method0.fits \
      --extname_adr adrtheor \
      --extname_mask None \
-     --output test_m51b_ifu_3D_method0_corrected_ADRTHEOR.fits \
+     --output test1b_ifu_3D_method0_corrected_ADRTHEOR.fits \
      --verbose
 
-   (venv_frida) $ numina-adr_correction_from_extension_in_3d_cube \
-     test_m51c_ifu_3D_method0.fits \
-     --extname_adr adrtheor \
-     --extname_mask None \
-     --output test_m51c_ifu_3D_method0_corrected_ADRTHEOR.fits \
-     --verbose
+.. literalinclude:: mosaics/execution_adr_correction_from_extension_test1b.txt
+   :class: my-special-block no-copybutton
 
 .. code-block:: console
 
-   (venv_frida) $ ls test_m51a_ifu_3D_method0.fits \
-     test_m51*_ADRTHEOR.fits > list_3d_images_ADRTHEOR.txt
+   (venv_frida) $ numina-adr_correction_from_extension_in_3d_cube \
+     test1c_ifu_3D_method0.fits \
+     --extname_adr adrtheor \
+     --extname_mask None \
+     --output test1c_ifu_3D_method0_corrected_ADRTHEOR.fits \
+     --verbose
 
-   (venv_frida) cat list_3d_images_ADRTHEOR.txt
-   test_m51a_ifu_3D_method0.fits
-   test_m51b_ifu_3D_method0_corrected_ADRTHEOR.fits
-   test_m51c_ifu_3D_method0_corrected_ADRTHEOR.fits
+.. literalinclude:: mosaics/execution_adr_correction_from_extension_test1c.txt
+   :class: my-special-block no-copybutton
 
-Now we can add the 3 data cubes.
+Next, we add the 3 cubes (the first one uncorrected and the second and third
+cubes corrected).
 
+.. code-block:: console
+
+   (venv_frida) $ ls test1a_ifu_3D_method0.fits \
+     test1*_ADRTHEOR.fits > list1_3d_images_ADRTHEOR.txt
+
+.. code-block:: console
+
+   (venv_frida) $ cat list1_3d_images_ADRTHEOR.txt
+
+.. code-block:: console
+   :class: my-special-block no-copybutton
+
+   test1a_ifu_3D_method0.fits
+   test1b_ifu_3D_method0_corrected_ADRTHEOR.fits
+   test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
 
 .. code-block:: console
 
    (venv_frida) $ numina-generate_mosaic_of_3d_cubes \
-     list_3d_images_ADRTHEOR.txt \
-     combination_3d_ADRTHEOR.fits \
+     list1_3d_images_ADRTHEOR.txt \
+     combination_test1_3d_ADRTHEOR.fits \
      --verbose
 
-   (venv_frida) $ qfitsview combination_3d_ADRTHEOR.fits
+.. literalinclude:: mosaics/execution_combination_test1_3d_ADR.txt
+   :class: my-special-block no-copybutton
+
+.. code-block:: console
+
+   (venv_frida) $ ds9 \
+     -scale mode minmax \
+     -geometry 1000x1000 \
+     -wcs degrees \
+     -multiframe \
+     test1a_ifu_3D_method0.fits \
+     test1b_ifu_3D_method0_corrected_ADRTHEOR.fits \
+     test1c_ifu_3D_method0_corrected_ADRTHEOR.fits \
+     combination_test1_3d_ADRTHEOR.fits \
+     -lock slice image \
+     -lock frame image \
+     -zoom to fit \
+     -cmap viridis \
+     -match frame colorbar \
+     -match frame wcs \
+     -colorbar lock yes \
+     -view multi yes
+
+.. image:: mosaics/result_example1_ADRTHEOR_with_ds9.png
+   :align: center
+   :width: 100%
+
+In the upper image, from top to bottom and left to right, we have the cubes
+corresponding to: the first exposure, the second exposure corrected using
+``ADRTHEOR``, the mask of the previous cube, the third exposure corrected using
+``ADRTHEOR``, the mask of the previous cube, the combination of the 3 cubes, and
+the footprint of that combination. It is very interesting to move along the
+wavelength using the slider that ``ds9`` provides in an auxiliary window.
 
 Finally, we can compare the effect of correcting or not correcting for
 atmospheric refraction.
 
 .. code-block:: console
 
-   (venv_frida) $ ls combination_3d*.fits > list_3d_combinations.txt
+   (venv_frida) $ ds9 \
+     -scale mode minmax \
+     -geometry 1000x1000 \
+     -wcs degrees \
+     -multiframe \
+     combination_test1_3d.fits \
+     combination_test1_3d_ADRTHEOR.fits \
+     -lock slice image \
+     -lock frame image \
+     -zoom to fit \
+     -cmap viridis \
+     -match frame colorbar \
+     -match frame wcs \
+     -colorbar lock yes \
+     -view multi yes
 
-   (venv_frida) $ numina-stack_hdus list_3d_combinations.txt stack_3d_combinations.fits
+.. image:: mosaics/result_example1_without_with_ADR_ds9.png
+   :align: center
+   :width: 100%
 
-   (venv_frida) $ qfitsview stack_3d_combinations.fits
+The top row shows the combined cube and the associated footprint when the
+combination is carried out without taking into account the effect of
+differential atmospheric refraction, while the bottom row shows the result when
+this effect is taken into account. Once again, it is important to interact with
+the display by moving along the wavelength.
 
-ToDo: add the option to correct for atmospheric refraction by generating a
+
+**ToDo**: add the option to correct for atmospheric refraction by generating a
 corrected cube with a predefined celestial WCS with an arbitrary size.  In this
 way, instead of interpolating when correcting for atmospheric refraction and
 when combining cubes with different pointings, we would only perform a single

@@ -21,6 +21,10 @@ Execute ``fridadrp-ifu_simulator``:
      --grating medium-K \
      --scale fine \
      --flatpix2pix none
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    Welcome to fridadrp-ifu_simulator
    version 0.1.dev98+g0c982ee
 
@@ -67,6 +71,10 @@ Execute ``fridadrp-ifu_simulator``:
      --scale fine \
      --seeing_fwhm_arcsec 0.05 \
      --flatpix2pix none
+
+.. code-block::
+   :class: my-special-block no-copybutton
+
    Welcome to fridadrp-ifu_simulator
    version 0.1.dev98+g0c982ee
 

@@ -1,0 +1,76 @@
+input_list: list1_3d_images_ADRTHEOR.txt
+output_filename: combination_test1_3d_ADRTHEOR.fits
+crval3out: None
+cdelt3out: None
+naxis3out: None
+desired_celestial_2d_wcs: None
+reproject_method: adaptive
+parallel: False
+extname_image: PRIMARY
+output_celestial_2d_wcs: None
+footprint: True
+verbose: True
+echo: False
+Total number of images to be combined: 3
+hdu.header["NAXIS1"]=64, hdu.header["NAXIS2"]=60, hdu.header["NAXIS3"]=2048
+hdu.header["NAXIS1"]=86, hdu.header["NAXIS2"]=84, hdu.header["NAXIS3"]=2048
+hdu.header["NAXIS1"]=86, hdu.header["NAXIS2"]=84, hdu.header["NAXIS3"]=2048
+
+crval3out=<SpectralCoord 1.9344e-06 m>
+cdelt3out=<Quantity 2.85e-10 m / pix>
+naxis3out=2048
+wavemax  =<Quantity 2.517795e-06 m>
+
+wcs1d_spectral_mosaic=WCS Keywords
+
+Number of WCS axes: 1
+CTYPE : 'WAVE' 
+CRVAL : 1.9344e-06 
+CRPIX : 1.0 
+PC1_1  : 1.0 
+CDELT : 2.84999999999608e-10 
+NAXIS : 2048  0
+
+Celestial scales:
+Image 1: 0.010 arcsec, 0.010 arcsec
+Image 2: 0.010 arcsec, 0.010 arcsec
+Image 3: 0.010 arcsec, 0.010 arcsec
+Mosaic : 0.010 arcsec, 0.010 arcsec
+
+wcs_mosaic2d=WCS Keywords
+
+Number of WCS axes: 2
+CTYPE : 'RA---TAN' 'DEC--TAN' 
+CRVAL : 7.160825485831836e-31 0.0 
+CRPIX : 44.22578218656925 43.03043723364317 
+PC1_1 PC1_2  : 1.0 0.0 
+PC2_1 PC2_2  : 0.0 1.0 
+CDELT : -2.7777777777777e-06 2.7777777777777e-06 
+NAXIS : 0  0
+
+shape_mosaic2d=(84, 87)
+
+NAXIS1, NAXIS2, NAXIS3 of 3D mosaic: 87, 84, 2048
+Combined image will require 71.37 Mbyte
+
+* Working with: test1a_ifu_3D_method0.fits
+Old and new wavelength borders are the same.
+-> Copying original data without spectral resampling.
+Celestial WCS reprojection method: adaptive
+Processing time for test1a_ifu_3D_method0.fits: 0:00:00.736472
+
+* Working with: test1b_ifu_3D_method0_corrected_ADRTHEOR.fits
+Old and new wavelength borders are the same.
+-> Copying original data without spectral resampling.
+Celestial WCS reprojection method: adaptive
+Processing time for test1b_ifu_3D_method0_corrected_ADRTHEOR.fits: 0:00:01.206074
+
+* Working with: test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
+Old and new wavelength borders are the same.
+-> Copying original data without spectral resampling.
+Celestial WCS reprojection method: adaptive
+Processing time for test1c_ifu_3D_method0_corrected_ADRTHEOR.fits: 0:00:01.385879
+Saving: combination_test1_3d_ADRTHEOR.fits
+
+Total time: 0:00:03.422615
+Done!

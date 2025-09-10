@@ -18,6 +18,7 @@ user's root directory. In that case, we must execute the following
 instructions:
 
 .. code-block:: console
+   :class: no-copybutton
 
    $ cd
    $ python3 -m venv venv_frida
@@ -31,6 +32,7 @@ system.
 To activate the environment:
 
 .. code-block:: console
+   :class: no-copybutton
 
    $ . venv_frida/bin/activate
    (venv_frida) $
@@ -38,6 +40,7 @@ To activate the environment:
 From now on, the prompt
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $
 
@@ -46,6 +49,7 @@ will indicate that we are working in this specific environment.
 To stop using this environment, we only need to execute the following command:
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $ deactivate
    $
@@ -61,12 +65,14 @@ Conda users can also easily generate Python environments. It is also possible
 to specify a particular Python version, e.g.:
 
 .. code-block:: console
+   :class: no-copybutton
 
-   (base) $ conda create --name venv_frida python=3.11
+   (base) $ conda create --name venv_frida python=3.12
 
 To activate the new environment:
 
 .. code-block:: console
+   :class: no-copybutton
 
    (base) $ conda activate venv_frida
    (venv_frida) $ 
@@ -74,6 +80,7 @@ To activate the new environment:
 From now on, the prompt
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $ 
 
@@ -82,6 +89,7 @@ will indicate that we are working in this specific environment.
 To stop using this environment, we only need to execute the following command:
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $ conda deactivate
    (base) $ conda deactivate
@@ -104,6 +112,9 @@ it is advisable to install the development versions of both.
 
    (venv_frida) $ pip install git+https://github.com/guaix-ucm/numina.git@main#egg=numina
 
+
+.. code-block:: console
+
    (venv_frida) $ pip install git+https://github.com/nicocardiel/fridadrp.git@main#egg=fridadrp
 
 If the software is already installed but the user wants to make sure they have
@@ -120,6 +131,7 @@ environment and delete the directory in which the environment has been
 generated.
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $ deactivate
    $ cd 
@@ -129,6 +141,7 @@ If the software was installed using ``conda``, you can remove the environment
 using:
 
 .. code-block:: console
+   :class: no-copybutton
 
    (venv_frida) $ conda deactivate
    (base) $ conda remove --name venv_frida --all
