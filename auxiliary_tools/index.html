@@ -85,67 +85,9 @@
   <section id="auxiliary-tools">
 <h1>Auxiliary tools<a class="headerlink" href="#auxiliary-tools" title="Link to this heading"></a></h1>
 <p>This section describes various procedures that make use of auxiliary <strong>numina</strong>
-scripts that support the scientific analysis of images obtained with FRIDA.</p>
-<p>Among these tools we can highlight the following:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-compare_adr_extensions_in_3d_cube</span></code>: this script computes the
-correction for differential atmospheric refraction present in a 3D data cube,
-by reading the information from two specific extensions (e.g., <code class="docutils literal notranslate"><span class="pre">ADRCROSS</span></code>,
-<code class="docutils literal notranslate"><span class="pre">ADRTHEOR</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-compute_adr_wavelength</span></code>: this script calculates the effect of
-atmospheric refraction, using a predefined wavelength as reference.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-extract_2d_slice_from_3d_cube</span></code>: extracts a 2D section from a 3D
-FITS image. It allows specifying the axis to collapse and the interval (pixel
-range) along that axis.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-generate_mosaic_of_2d_images</span></code>: this script generates a mosaic of 2D
-images from a list of 2D FITS files.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-generate_mosaic_of_3d_images</span></code>: this script generates a mosaic of 3D
-data cubes from a list of 3D FITS files.</p>
-<ul>
-<li><p>It is possible to use arguments to fix the desired outupt celestial 2D WCS,
-as well as the output CRVAL3 and CDELT3 parameters that define the output
-linear wavelength sampling.</p></li>
-<li><p>If the input is a single 3D FITS cube, the code can be used to resample the
-initial cube with different values of CRVAL3 and CDELT3. In that case, it
-is recommended to use <code class="docutils literal notranslate"><span class="pre">interp</span></code> as the reprojection method to avoid the
-default Gaussian kernel used when the reprojection method is <code class="docutils literal notranslate"><span class="pre">adaptive</span></code>).</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-imath3d</span></code>: performs basic arithmetic operations with FITS images
-(addition, subtraction, multiplication, division) from the terminal command
-line.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-measure_slice_xy_offsets_in_3d_cube</span></code>:  this script calculates the
-spatial offset in the sky plane between a particular spatial slice and all
-the spatial slices of a given 3D cube. It does so using a cross-correlation
-method.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-pixel_solid_angle_arcsec2</span></code>: this script calculates the solid angle
-subtended by a pixel in a 2D FITS image (in arcsec^2).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-pixel_to_world</span></code>: auxiliary script to convert from pixel coordinates
-to celestial coordinates and wavelength.  There is also the script
-<code class="docutils literal notranslate"><span class="pre">numina-world_to_pixel</span></code>, which performs the inverse transformation.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-resample_wave_3d_cube</span></code>: this script resamples a 3D data cube by
-specifying the output values for CRVAL3, CDELT3 and NAXIS3. The celestial WCS
-is preserved, and the spectral WCS is modified in order to make use of the
-new wavelength sampling. This code does not use the functionality of the
-<strong>reproject</strong> package and instead performs a simple linear redistribution of
-the signal in the newly sampled wavelength grid. In this sense, it produces
-the same result as the <code class="docutils literal notranslate"><span class="pre">numina-generate_mosaic_of_3d_images</span></code> script when
-employed with a single input 3D FITS file and the reprojection method is
-<code class="docutils literal notranslate"><span class="pre">interp</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-sp3d_with_ds9</span></code>: this script opens a 3D FITS image in the <code class="docutils literal notranslate"><span class="pre">ds9</span></code>
-image browser and allows interactive selection of object and sky spaxels.
-Simultaneously, the corresponding spectra and their subtraction are
-displayed.  This interaction is similar to what is done with the program
-<code class="docutils literal notranslate"><span class="pre">qfitsview</span></code>. The reason for developing this code has been the more
-comfortable interaction with the Matplotlib window displaying the spectra,
-along with the ability to leverage the full functionality of the <code class="docutils literal notranslate"><span class="pre">ds9</span></code>
-program. The <code class="docutils literal notranslate"><span class="pre">ds9</span></code> session is launched automatically when running this
-script and must be closed manually upon completion.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numina-ximshow</span></code>: this is a tool for visualizing 2D FITS images using
-Matplotlib, which can be convenient when displaying multiple images
-consecutively and quickly saving the result to a PNG or PDF file.</p></li>
-</ul>
-<p>Some of these tools are employed in the examples described in following
+scripts (see <a class="reference external" href="https://guaix-ucm.github.io/numina-tools/">numina-tools</a>) that
+support the scientific analysis of images obtained with FRIDA.</p>
+<p>Some of these scripts are employed in the examples described in following
 procedures:</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -170,7 +112,7 @@ procedures:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Nicolás Cardiel, Sergio Pascual.</p>
+    <p>&#169; Copyright 2024-2025, Nicolás Cardiel, Sergio Pascual.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

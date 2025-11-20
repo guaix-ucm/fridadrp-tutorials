@@ -735,8 +735,8 @@ The top row shows the combined cube and the associated footprint when the
 combination is carried out without taking into account the effect of
 differential atmospheric refraction, while the bottom row shows the result when
 this effect is taken into account. Once again, it is important to interact with
-the display by moving along the wavelength.
-
+the display by moving along the wavelength axis. This clearly reveals the need
+to apply the correction.
 
 **ToDo**: add the option to correct for atmospheric refraction by generating a
 corrected cube with a predefined celestial WCS with an arbitrary size.  In this
