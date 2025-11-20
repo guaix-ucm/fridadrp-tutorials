@@ -4,8 +4,8 @@ Installing the development version
 In order to keep your current Python installation clean, it is highly
 recommended to install a Python 3 *virtual environment* as a first step.
 
-Creating and activating the python virtual environment
-------------------------------------------------------
+Creating and activating a python virtual environment
+----------------------------------------------------
 
 The following describes two different ways to generate a Python environment:
 ``venv`` and ``conda``.

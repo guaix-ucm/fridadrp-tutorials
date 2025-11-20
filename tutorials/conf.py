@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'fridadrp-tutorials'
-copyright = '2024, Nicolás Cardiel, Sergio Pascual'
+copyright = '2024-2025, Nicolás Cardiel, Sergio Pascual'
 author = 'Nicolás Cardiel, Sergio Pascual'
 release = '0.1'
 
