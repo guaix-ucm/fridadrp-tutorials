@@ -7,10 +7,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Script arguments &mdash; fridadrp-tutorials 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=42210275" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ac5f0f31" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3defd07e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -20,7 +20,6 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=d2c30f9d"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -54,28 +53,28 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Running the IFU simulator</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="initial_example.html">Initial example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Script arguments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#code-scene-lt-string-gt-code"><span class="raw-html"><code>--scene &lt;string&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-flux-factor-lt-string-gt-code"><span class="raw-html"><code>--flux_factor &lt;string&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-grating-lt-string-gt-code"><span class="raw-html"><code>--grating &lt;string&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-scale-lt-float-gt-code"><span class="raw-html"><code>--scale &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code"><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code"><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code"><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-instrument-pa-deg-lt-float-gt-code"><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-airmass-lt-float-gt-code"><span class="raw-html"><code>--airmass &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-parallactic-angle-deg-lt-float-gt-code"><span class="raw-html"><code>--parallactic_angle_deg &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-noversampling-whitelight-lt-integer-gt-code"><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-atmosphere-transmission-lt-default-none-gt-code"><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-rnoise-lt-float-gt-code"><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-flatpix2pix-lt-default-none-gt-code"><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-spectral-blurring-pixel-lt-float-gt-code"><span class="raw-html"><code>--spectral_blurring_pixel &lt;float&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-seed-lt-integer-gt-code"><span class="raw-html"><code>--seed &lt;integer&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-prefix-intermediate-fits-lt-string-gt-code"><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-stop-after-ifu-3d-method0-code"><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-verbose-code"><span class="raw-html"><code>--verbose</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-plots-code"><span class="raw-html"><code>--plots</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-echo-code"><span class="raw-html"><code>--echo</code></span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-version-code"><span class="raw-html"><code>--version</code></span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scene-string"><code>–scene &lt;string&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flux-factor-string"><code>–flux_factor &lt;string&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grating-string"><code>–grating &lt;string&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scale-float"><code>–scale &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ra-teles-float-dec-teles-float"><code>–ra_teles &lt;float&gt;</code>, <code>–dec_teles &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delta-ra-teles-arcsec-float-delta-dec-teles-arcsec-float"><code>–delta_ra_teles_arcsec &lt;float&gt;</code>, <code>–delta_dec_teles_arcsec &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seeing-fwhm-arcsec-float-seeing-psf-string"><code>–seeing_fwhm_arcsec &lt;float&gt;</code>, <code>–seeing_psf &lt;string&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instrument-pa-deg-float"><code>–instrument_pa_deg &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#airmass-float"><code>–airmass &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallactic-angle-deg-float"><code>–parallactic_angle_deg &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noversampling-whitelight-integer"><code>–noversampling_whitelight &lt;integer&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atmosphere-transmission-default-none"><code>–atmosphere_transmission &lt;[default] | none&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rnoise-float"><code>–rnoise &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flatpix2pix-default-none"><code>–flatpix2pix &lt;[default] | none&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spectral-blurring-pixel-float"><code>–spectral_blurring_pixel &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seed-integer"><code>–seed &lt;integer&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prefix-intermediate-fits-string"><code>–prefix_intermediate_FITS &lt;string&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stop-after-ifu-3d-method0"><code>–stop_after_ifu_3D_method0</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verbose"><code>–verbose</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plots"><code>–plots</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#echo"><code>–echo</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version"><code>–version</code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html">The scene YAML file</a></li>
@@ -103,7 +102,7 @@
           <li class="breadcrumb-item"><a href="index.html">Running the IFU simulator</a></li>
       <li class="breadcrumb-item active">Script arguments</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/ifu_simulator/script_arguments.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ifu_simulator/script_arguments.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -116,79 +115,10 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">megaradrp-ifu_simulator</span></code> accepts a number of arguments. A quick list and
 explanation can be easily obtained using the <code class="docutils literal notranslate"><span class="pre">--help</span></code> (<code class="docutils literal notranslate"><span class="pre">-h</span></code> for short)
 argument.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--help
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">fridadrp</span><span class="o">-</span><span class="n">ifu_simulator</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">scene</span> <span class="n">SCENE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">flux_factor</span> <span class="n">FLUX_FACTOR</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">grating</span> <span class="p">{</span><span class="n">low</span><span class="o">-</span><span class="n">zJ</span><span class="p">,</span><span class="n">low</span><span class="o">-</span><span class="n">JH</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">z</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">J</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">K</span><span class="p">}]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">scale</span> <span class="p">{</span><span class="n">fine</span><span class="p">,</span><span class="n">medium</span><span class="p">,</span><span class="n">coarse</span><span class="p">}]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">ra_teles_deg</span> <span class="n">RA_TELES_DEG</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">dec_teles_deg</span> <span class="n">DEC_TELES_DEG</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">delta_ra_teles_arcsec</span> <span class="n">DELTA_RA_TELES_ARCSEC</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">delta_dec_teles_arcsec</span> <span class="n">DELTA_DEC_TELES_ARCSEC</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">seeing_fwhm_arcsec</span> <span class="n">SEEING_FWHM_ARCSEC</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">seeing_psf</span> <span class="p">{</span><span class="n">gaussian</span><span class="p">}]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">instrument_pa_deg</span> <span class="n">INSTRUMENT_PA_DEG</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">airmass</span> <span class="n">AIRMASS</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">parallactic_angle_deg</span> <span class="n">PARALLACTIC_ANGLE_DEG</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">noversampling_whitelight</span> <span class="n">NOVERSAMPLING_WHITELIGHT</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">atmosphere_transmission</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">rnoise</span> <span class="n">RNOISE</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">flatpix2pix</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">spectral_blurring_pixel</span> <span class="n">SPECTRAL_BLURRING_PIXEL</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">seed</span> <span class="n">SEED</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">prefix_intermediate_FITS</span> <span class="n">PREFIX_INTERMEDIATE_FITS</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">stop_after_ifu_3D_method0</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">plots</span><span class="p">]</span>
-                              <span class="p">[</span><span class="o">--</span><span class="n">echo</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
-
-<span class="n">description</span><span class="p">:</span> <span class="n">simulator</span> <span class="n">of</span> <span class="n">FRIDA</span> <span class="n">IFU</span> <span class="n">images</span> <span class="p">(</span><span class="mf">0.1</span><span class="o">.</span><span class="n">dev98</span><span class="o">+</span><span class="n">g0c982ee</span><span class="p">)</span>
-
-<span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">scene</span> <span class="n">SCENE</span>         <span class="n">YAML</span> <span class="n">scene</span> <span class="n">file</span> <span class="n">name</span>
-  <span class="o">--</span><span class="n">flux_factor</span> <span class="n">FLUX_FACTOR</span>
-                        <span class="n">Multiplicative</span> <span class="n">factor</span> <span class="n">to</span> <span class="n">be</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span>
-                        <span class="n">photons</span> <span class="n">defined</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">scene</span> <span class="n">file</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">grating</span> <span class="p">{</span><span class="n">low</span><span class="o">-</span><span class="n">zJ</span><span class="p">,</span><span class="n">low</span><span class="o">-</span><span class="n">JH</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">z</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">J</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">medium</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">high</span><span class="o">-</span><span class="n">K</span><span class="p">}</span>
-                        <span class="n">Grating</span> <span class="n">name</span>
-  <span class="o">--</span><span class="n">scale</span> <span class="p">{</span><span class="n">fine</span><span class="p">,</span><span class="n">medium</span><span class="p">,</span><span class="n">coarse</span><span class="p">}</span>
-                        <span class="n">Scale</span>
-  <span class="o">--</span><span class="n">ra_teles_deg</span> <span class="n">RA_TELES_DEG</span>
-                        <span class="n">Telescope</span> <span class="n">central</span> <span class="n">RA</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">dec_teles_deg</span> <span class="n">DEC_TELES_DEG</span>
-                        <span class="n">Telescope</span> <span class="n">central</span> <span class="n">DEC</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">delta_ra_teles_arcsec</span> <span class="n">DELTA_RA_TELES_ARCSEC</span>
-                        <span class="n">Offset</span> <span class="ow">in</span> <span class="n">RA</span> <span class="p">(</span><span class="n">arcsec</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">delta_dec_teles_arcsec</span> <span class="n">DELTA_DEC_TELES_ARCSEC</span>
-                        <span class="n">Offset</span> <span class="ow">in</span> <span class="n">DEC</span> <span class="p">(</span><span class="n">arcsec</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">seeing_fwhm_arcsec</span> <span class="n">SEEING_FWHM_ARCSEC</span>
-                        <span class="n">Seeing</span> <span class="n">FWHM</span> <span class="p">(</span><span class="n">arcsec</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">seeing_psf</span> <span class="p">{</span><span class="n">gaussian</span><span class="p">}</span>
-                        <span class="n">Seeing</span> <span class="n">PSF</span>
-  <span class="o">--</span><span class="n">instrument_pa_deg</span> <span class="n">INSTRUMENT_PA_DEG</span>
-                        <span class="n">Instrument</span> <span class="n">Position</span> <span class="n">Angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">airmass</span> <span class="n">AIRMASS</span>     <span class="n">Airmass</span>
-  <span class="o">--</span><span class="n">parallactic_angle_deg</span> <span class="n">PARALLACTIC_ANGLE_DEG</span>
-                        <span class="n">Parallactic</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">noversampling_whitelight</span> <span class="n">NOVERSAMPLING_WHITELIGHT</span>
-                        <span class="n">Oversampling</span> <span class="n">white</span> <span class="n">light</span> <span class="n">image</span>
-  <span class="o">--</span><span class="n">atmosphere_transmission</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}</span>
-                        <span class="n">Atmosphere</span> <span class="n">transmission</span>
-  <span class="o">--</span><span class="n">rnoise</span> <span class="n">RNOISE</span>       <span class="n">Readout</span> <span class="n">noise</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="p">(</span><span class="n">ADU</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">flatpix2pix</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">none</span><span class="p">}</span>
-                        <span class="n">Pixel</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">pixel</span> <span class="n">flat</span> <span class="n">field</span>
-  <span class="o">--</span><span class="n">spectral_blurring_pixel</span> <span class="n">SPECTRAL_BLURRING_PIXEL</span>
-                        <span class="n">Spectral</span> <span class="n">blurring</span> <span class="n">when</span> <span class="n">converting</span> <span class="n">the</span> <span class="n">original</span> <span class="mi">3</span><span class="n">D</span> <span class="n">data</span>
-                        <span class="n">cube</span> <span class="n">to</span> <span class="n">the</span> <span class="n">original</span> <span class="mi">2</span><span class="n">D</span> <span class="n">RSS</span> <span class="p">(</span><span class="ow">in</span> <span class="n">pixel</span> <span class="n">units</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">seed</span> <span class="n">SEED</span>           <span class="n">Seed</span> <span class="k">for</span> <span class="n">random</span> <span class="n">number</span> <span class="n">generator</span>
-  <span class="o">--</span><span class="n">prefix_intermediate_FITS</span> <span class="n">PREFIX_INTERMEDIATE_FITS</span>
-                        <span class="n">Prefix</span> <span class="k">for</span> <span class="n">intermediate</span> <span class="n">FITS</span> <span class="n">files</span>
-  <span class="o">--</span><span class="n">stop_after_ifu_3D_method0</span>
-                        <span class="n">Stop</span> <span class="n">after</span> <span class="n">computing</span> <span class="n">ifu_3D_method0</span> <span class="n">image</span>
-  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">verbose</span>         <span class="n">increase</span> <span class="n">program</span> <span class="n">verbosity</span>
-  <span class="o">--</span><span class="n">plots</span>               <span class="n">Plot</span> <span class="n">intermediate</span> <span class="n">results</span>
-  <span class="o">--</span><span class="n">echo</span>                <span class="n">Display</span> <span class="n">full</span> <span class="n">command</span> <span class="n">line</span>
-  <span class="o">--</span><span class="n">version</span>             <span class="n">Display</span> <span class="n">version</span>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <p>An additional description of the different arguments is provided below.</p>
@@ -198,69 +128,70 @@ argument.</p>
 are not fully functional and only support some of the possible values. In
 such cases, an explanatory note is included.</p>
 </div>
-<section id="code-scene-lt-string-gt-code">
-<span id="scene"></span><h2><span class="raw-html"><code>--scene &lt;string&gt;</code></span><a class="headerlink" href="#code-scene-lt-string-gt-code" title="Link to this heading"></a></h2>
+<section id="scene-string">
+<span id="scene"></span><h2><code>–scene &lt;string&gt;</code><a class="headerlink" href="#scene-string" title="Link to this heading"></a></h2>
 <p>External YAML file where the user defines one or several sources to
 be simulated. Each source has an associated spectrum.</p>
 </section>
-<section id="code-flux-factor-lt-string-gt-code">
-<span id="flux-factor"></span><h2><span class="raw-html"><code>--flux_factor &lt;string&gt;</code></span><a class="headerlink" href="#code-flux-factor-lt-string-gt-code" title="Link to this heading"></a></h2>
+<section id="flux-factor-string">
+<span id="flux-factor"></span><h2><code>–flux_factor &lt;string&gt;</code><a class="headerlink" href="#flux-factor-string" title="Link to this heading"></a></h2>
 <p>Multiplicative factor (float number) to be applied to the number of photons
 defined in the scene file. The resulting number is rounded to an integer value.</p>
 </section>
-<section id="code-grating-lt-string-gt-code">
-<span id="grating"></span><h2><span class="raw-html"><code>--grating &lt;string&gt;</code></span><a class="headerlink" href="#code-grating-lt-string-gt-code" title="Link to this heading"></a></h2>
+<section id="grating-string">
+<span id="grating"></span><h2><code>–grating &lt;string&gt;</code><a class="headerlink" href="#grating-string" title="Link to this heading"></a></h2>
 <p>Grating name. It should be one of the following: <code class="docutils literal notranslate"><span class="pre">low-zJ</span></code>, <code class="docutils literal notranslate"><span class="pre">low-JH</span></code>,
 <code class="docutils literal notranslate"><span class="pre">medium-z</span></code>, <code class="docutils literal notranslate"><span class="pre">medium-J</span></code>, <code class="docutils literal notranslate"><span class="pre">medium-H</span></code>, <code class="docutils literal notranslate"><span class="pre">medium-K</span></code>, <code class="docutils literal notranslate"><span class="pre">high-H</span></code> or
 <code class="docutils literal notranslate"><span class="pre">high-K</span></code>.</p>
 <p><strong>Note</strong>: at present only the <code class="docutils literal notranslate"><span class="pre">medium-K</span></code> has been properly defined.</p>
 </section>
-<section id="code-scale-lt-float-gt-code">
-<span id="scale"></span><h2><span class="raw-html"><code>--scale &lt;float&gt;</code></span><a class="headerlink" href="#code-scale-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="scale-float">
+<span id="scale"></span><h2><code>–scale &lt;float&gt;</code><a class="headerlink" href="#scale-float" title="Link to this heading"></a></h2>
 <p>Camera scale. It should be one of the following: <code class="docutils literal notranslate"><span class="pre">fine</span></code> (0.01 arcsec/pixel),
 <code class="docutils literal notranslate"><span class="pre">medium</span></code> (0.02 arcsec/pixel) or <code class="docutils literal notranslate"><span class="pre">coarse</span></code> (0.04 arcsec/pixel).</p>
 </section>
-<section id="code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code">
-<span id="ra-dec-teles"></span><h2><span class="raw-html"><code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code></span><a class="headerlink" href="#code-ra-teles-lt-float-gt-code-code-dec-teles-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="ra-teles-float-dec-teles-float">
+<span id="ra-dec-teles"></span><h2><code>–ra_teles &lt;float&gt;</code>, <code>–dec_teles &lt;float&gt;</code><a class="headerlink" href="#ra-teles-float-dec-teles-float" title="Link to this heading"></a></h2>
 <p>Central coordinates (right ascension and declination) of the Field of View. By
-default these values are set to <span class="math notranslate nohighlight">\({\rm RA}=0.0~{\rm deg}\)</span> and
-<span class="math notranslate nohighlight">\({\rm DEC}=0.0~{\rm deg}\)</span>. These coordinates must be expressed in decimal
+default these values are set to :math:<code class="docutils literal notranslate"><span class="pre">{\rm</span> <span class="pre">RA}=0.0~{\rm</span> <span class="pre">deg}</span></code> and
+:math:<code class="docutils literal notranslate"><span class="pre">{\rm</span> <span class="pre">DEC}=0.0~{\rm</span> <span class="pre">deg}</span></code>. These coordinates must be expressed in decimal
 degrees.</p>
 </section>
-<section id="code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code">
-<span id="delta-ra-dec-teles"></span><h2><span class="raw-html"><code>--delta_ra_teles_arcsec &lt;float&gt;</code>, <code>--delta_dec_teles_arcsec &lt;float&gt;</code></span><a class="headerlink" href="#code-delta-ra-teles-arcsec-lt-float-gt-code-code-delta-dec-teles-arcsec-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="delta-ra-teles-arcsec-float-delta-dec-teles-arcsec-float">
+<span id="delta-ra-dec-teles"></span><h2><code>–delta_ra_teles_arcsec &lt;float&gt;</code>, <code>–delta_dec_teles_arcsec &lt;float&gt;</code><a class="headerlink" href="#delta-ra-teles-arcsec-float-delta-dec-teles-arcsec-float" title="Link to this heading"></a></h2>
 <p>Additional offset in right ascension and declination in arcseconds. These
 parameters allow simulating small shifts in the telescope pointing using units
 closer to the FRIDA IFU’s field of view.</p>
 </section>
-<section id="code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code">
-<span id="seeing-fwhm-psf"></span><h2><span class="raw-html"><code>--seeing_fwhm_arcsec &lt;float&gt;</code>, <code>--seeing_psf &lt;string&gt;</code></span><a class="headerlink" href="#code-seeing-fwhm-arcsec-lt-float-gt-code-code-seeing-psf-lt-string-gt-code" title="Link to this heading"></a></h2>
+<section id="seeing-fwhm-arcsec-float-seeing-psf-string">
+<span id="seeing-fwhm-psf"></span><h2><code>–seeing_fwhm_arcsec &lt;float&gt;</code>, <code>–seeing_psf &lt;string&gt;</code><a class="headerlink" href="#seeing-fwhm-arcsec-float-seeing-psf-string" title="Link to this heading"></a></h2>
 <p>FWHM of the seeing, in arcseconds, and mathematical function to reproduce the
 seeing.</p>
 <p><strong>Note</strong>: so far only <code class="docutils literal notranslate"><span class="pre">--seeing_psf</span> <span class="pre">gaussian</span></code> has been defined.</p>
 </section>
-<section id="code-instrument-pa-deg-lt-float-gt-code">
-<span id="instrument-pa-deg"></span><h2><span class="raw-html"><code>--instrument_pa_deg &lt;float&gt;</code></span><a class="headerlink" href="#code-instrument-pa-deg-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="instrument-pa-deg-float">
+<span id="instrument-pa-deg"></span><h2><code>–instrument_pa_deg &lt;float&gt;</code><a class="headerlink" href="#instrument-pa-deg-float" title="Link to this heading"></a></h2>
 <p>Instrument position angle (degrees), measured North through East.</p>
 </section>
-<section id="code-airmass-lt-float-gt-code">
-<span id="airmass"></span><h2><span class="raw-html"><code>--airmass &lt;float&gt;</code></span><a class="headerlink" href="#code-airmass-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="airmass-float">
+<span id="airmass"></span><h2><code>–airmass &lt;float&gt;</code><a class="headerlink" href="#airmass-float" title="Link to this heading"></a></h2>
 <p>Airmass. If this value is &gt; 1.0, it is employed to compute the atmospheric
 differential refraction (ADR) as a function of wavelength, using Eq. (1)-(3) in
-<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1982PASP...94..715F/abstract">Filippenko (1982)</a>.</p>
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1982PASP...94..715F/abstract">Filippenko
+(1982)</a>.</p>
 <p>The ADR effect is computed determining the difference in the refraction angle
 of each simulated photon computed at its simulated wavelength and at the
 central wavelength of the simulated data cube.</p>
 <p>By default <code class="docutils literal notranslate"><span class="pre">--airmass</span> <span class="pre">1.0</span></code> and no ADR effect is computed unless a different
 value is specified.</p>
 </section>
-<section id="code-parallactic-angle-deg-lt-float-gt-code">
-<span id="parallactic-angle-deg"></span><h2><span class="raw-html"><code>--parallactic_angle_deg &lt;float&gt;</code></span><a class="headerlink" href="#code-parallactic-angle-deg-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="parallactic-angle-deg-float">
+<span id="parallactic-angle-deg"></span><h2><code>–parallactic_angle_deg &lt;float&gt;</code><a class="headerlink" href="#parallactic-angle-deg-float" title="Link to this heading"></a></h2>
 <p>Parallactic angle (degrees). This value is employed to compute the atmospheric
 differential refraction when airmass &gt; 1.0 (see above).</p>
 </section>
-<section id="code-noversampling-whitelight-lt-integer-gt-code">
-<span id="noversampling-whitelight"></span><h2><span class="raw-html"><code>--noversampling_whitelight &lt;integer&gt;</code></span><a class="headerlink" href="#code-noversampling-whitelight-lt-integer-gt-code" title="Link to this heading"></a></h2>
+<section id="noversampling-whitelight-integer">
+<span id="noversampling-whitelight"></span><h2><code>–noversampling_whitelight &lt;integer&gt;</code><a class="headerlink" href="#noversampling-whitelight-integer" title="Link to this heading"></a></h2>
 <p>Oversampling factor to generate one of the white-image views of the simulated
 3D data cube. The simulator generates two versions of the white-image view:</p>
 <ul class="simple">
@@ -268,22 +199,22 @@ differential refraction when airmass &gt; 1.0 (see above).</p>
 using <code class="docutils literal notranslate"><span class="pre">NAXIS1=64</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=60</span></code>. This sampling is close to the actual
 sampling at the Hawaii detector, in which each slice spreads ~64 pixels in
 the spatial direction, and 2 pixels in the wavelength axis. Since the FRIDA’s
-IFU is covered by 30 slices, this means that there are <span class="math notranslate nohighlight">\(2 \times 30 =
-60\)</span> pixels in direction of the IFU perpendicular to the slices.</p></li>
+IFU is covered by 30 slices, this means that there are :math:<code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">\times</span> <span class="pre">30</span> <span class="pre">=</span> <span class="pre">60</span></code> pixels in direction of the IFU perpendicular to the slices.</p></li>
 <li><p>file <code class="docutils literal notranslate"><span class="pre">test_ifu_white2D_method0_os10.fits</span></code>: oversampled 2D projection of the
 3D data cube, using the chosen oversampling number. By default
 <code class="docutils literal notranslate"><span class="pre">--noversampling_whitelight</span> <span class="pre">10</span></code> is employed, which means that each IFU
-pixel is subdivided in <span class="math notranslate nohighlight">\(10 \times 10\)</span> subpixels. In this case, the
+pixel is subdivided in :math:<code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">\times</span> <span class="pre">10</span></code> subpixels. In this case, the
 while-light image dimension is given by <code class="docutils literal notranslate"><span class="pre">NAXIS1=640</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=600</span></code>.
 This version of the white-light image can help to check how well a
 combination of IFU exposures are coadded when using a dithering technique
 with non-integer offsets (in pixel units).</p></li>
 </ul>
 </section>
-<section id="code-atmosphere-transmission-lt-default-none-gt-code">
-<span id="atmosphere-transmission"></span><h2><span class="raw-html"><code>--atmosphere_transmission &lt;[default] | none&gt;</code></span><a class="headerlink" href="#code-atmosphere-transmission-lt-default-none-gt-code" title="Link to this heading"></a></h2>
+<section id="atmosphere-transmission-default-none">
+<span id="atmosphere-transmission"></span><h2><code>–atmosphere_transmission &lt;[default] | none&gt;</code><a class="headerlink" href="#atmosphere-transmission-default-none" title="Link to this heading"></a></h2>
 <p>The default value makes use of the predicted transmission fraction of the
-atmosphere obtained with <a class="reference external" href="https://www.eso.org/observing/etc/bin/gen/form?INS.MODE=swspectr+INS.NAME=SKYCALC">SKYCALC Sky Model Calculator</a>
+atmosphere obtained with <a class="reference external" href="https://www.eso.org/observing/etc/bin/gen/form?INS.MODE=swspectr+INS.NAME=SKYCALC">SKYCALC Sky Model
+Calculator</a>
 (version 2.0.9) using the default input parameters for the model. The
 prediction is stored in the file <code class="docutils literal notranslate"><span class="pre">skycalc_800-2600nm_step0_01nm.fits</span></code>, which
 is one of the auxiliary files automatically downloaded in a cache directory the
@@ -292,67 +223,69 @@ the atmosphere transmission, but also the sky emission radiance flux (in
 ph/s/m2/micron/arcsec2), for the wavelength range from 800 to 2600 nm, with a
 sampling of 0.01 nm.</p>
 <p>A plot of the atmosphere transmission data is shown below.</p>
-<a class="reference internal image-reference" href="../_images/plot_transmission_fraction.png"><img alt="plot of the transmission fraction of the atmosphere" src="../_images/plot_transmission_fraction.png" style="width: 100%;" />
-</a>
+<figure class="align-default">
+<img alt="../_images/plot_transmission_fraction.png" src="../_images/plot_transmission_fraction.png" />
+</figure>
 <p>When executing <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>, the atmospheric transmission
 probability at the wavelength of each simulated photon is evaluated, and a
 random number between 0 and 1 is generated in each case. If the obtained number
 is greater than the transmission probability, the photon is discarded.</p>
 </section>
-<section id="code-rnoise-lt-float-gt-code">
-<span id="rnoise"></span><h2><span class="raw-html"><code>--rnoise &lt;float&gt;</code></span><a class="headerlink" href="#code-rnoise-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="rnoise-float">
+<span id="rnoise"></span><h2><code>–rnoise &lt;float&gt;</code><a class="headerlink" href="#rnoise-float" title="Link to this heading"></a></h2>
 <p>Readout noise (positive number or zero) to be added to the simulated data (in
 ADU). By default this parameter is set to zero.</p>
 </section>
-<section id="code-flatpix2pix-lt-default-none-gt-code">
-<span id="flatpix2pix"></span><h2><span class="raw-html"><code>--flatpix2pix &lt;[default] | none&gt;</code></span><a class="headerlink" href="#code-flatpix2pix-lt-default-none-gt-code" title="Link to this heading"></a></h2>
+<section id="flatpix2pix-default-none">
+<span id="flatpix2pix"></span><h2><code>–flatpix2pix &lt;[default] | none&gt;</code><a class="headerlink" href="#flatpix2pix-default-none" title="Link to this heading"></a></h2>
 <p>The default value makes use of a predefined flatfield image stored in one of
 the auxiliary files automatically downloaded in a cache directory the first
 time <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code> is executed. The name of this type of file has
 the form <code class="docutils literal notranslate"><span class="pre">simulated_flat_pix2pix_&lt;grating&gt;.fits</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;grating&gt;</span></code> is the
 grating name.</p>
 </section>
-<section id="code-spectral-blurring-pixel-lt-float-gt-code">
-<span id="spectral-blurring-pixel"></span><h2><span class="raw-html"><code>--spectral_blurring_pixel &lt;float&gt;</code></span><a class="headerlink" href="#code-spectral-blurring-pixel-lt-float-gt-code" title="Link to this heading"></a></h2>
+<section id="spectral-blurring-pixel-float">
+<span id="spectral-blurring-pixel"></span><h2><code>–spectral_blurring_pixel &lt;float&gt;</code><a class="headerlink" href="#spectral-blurring-pixel-float" title="Link to this heading"></a></h2>
 <p>Extra degradation to be introduced in the spectral direction to each simulated
 photon. In particular, a Gaussian random shift is applied (in pixel units) when
 converting the original 3D data cube into the original 2D RSS image. The value
 of this parameter provides the standard deviation of the Gaussian distribution.
 By default, <code class="docutils literal notranslate"><span class="pre">spectral_blurring_pixel</span> <span class="pre">=</span> <span class="pre">1.0</span></code>.</p>
 </section>
-<section id="code-seed-lt-integer-gt-code">
-<span id="seed"></span><h2><span class="raw-html"><code>--seed &lt;integer&gt;</code></span><a class="headerlink" href="#code-seed-lt-integer-gt-code" title="Link to this heading"></a></h2>
-<p>Seed to initialize the <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html">Numpy Random Generator</a>. By default is
-set to a particular integer sequence (<code class="docutils literal notranslate"><span class="pre">1234</span></code>).</p>
+<section id="seed-integer">
+<span id="seed"></span><h2><code>–seed &lt;integer&gt;</code><a class="headerlink" href="#seed-integer" title="Link to this heading"></a></h2>
+<p>Seed to initialize the <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html">Numpy Random
+Generator</a>. By
+default is set to a particular integer sequence (<code class="docutils literal notranslate"><span class="pre">1234</span></code>).</p>
 </section>
-<section id="code-prefix-intermediate-fits-lt-string-gt-code">
-<span id="prefix-intermediate-fits"></span><h2><span class="raw-html"><code>--prefix_intermediate_FITS &lt;string&gt;</code></span><a class="headerlink" href="#code-prefix-intermediate-fits-lt-string-gt-code" title="Link to this heading"></a></h2>
+<section id="prefix-intermediate-fits-string">
+<span id="prefix-intermediate-fits"></span><h2><code>–prefix_intermediate_FITS &lt;string&gt;</code><a class="headerlink" href="#prefix-intermediate-fits-string" title="Link to this heading"></a></h2>
 <p>Prefix to be added before the name of the FITS files generated during the
 simulator execution. By default this string is <code class="docutils literal notranslate"><span class="pre">test</span></code>. Note that an
 underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> symbol is also added between this prefix and the filename.</p>
 </section>
-<section id="code-stop-after-ifu-3d-method0-code">
-<span id="stop-after-ifu-3d-method0"></span><h2><span class="raw-html"><code>--stop_after_ifu_3D_method0</code></span><a class="headerlink" href="#code-stop-after-ifu-3d-method0-code" title="Link to this heading"></a></h2>
+<section id="stop-after-ifu-3d-method0">
+<span id="id1"></span><h2><code>–stop_after_ifu_3D_method0</code><a class="headerlink" href="#stop-after-ifu-3d-method0" title="Link to this heading"></a></h2>
 <p>If this argument is present, the simulator stops just after generating
 the file <code class="docutils literal notranslate"><span class="pre">test_ifu_3D_method0.fits</span></code>. This is useful for debugging
 purposes.</p>
 </section>
-<section id="code-verbose-code">
-<span id="verbose"></span><h2><span class="raw-html"><code>--verbose</code></span><a class="headerlink" href="#code-verbose-code" title="Link to this heading"></a></h2>
+<section id="verbose">
+<span id="id2"></span><h2><code>–verbose</code><a class="headerlink" href="#verbose" title="Link to this heading"></a></h2>
 <p>If this argument is present, additional information is displayed in the
 terminal while executing the code.</p>
 </section>
-<section id="code-plots-code">
-<span id="plots"></span><h2><span class="raw-html"><code>--plots</code></span><a class="headerlink" href="#code-plots-code" title="Link to this heading"></a></h2>
+<section id="plots">
+<span id="id3"></span><h2><code>–plots</code><a class="headerlink" href="#plots" title="Link to this heading"></a></h2>
 <p>When this argument is present, intermediate plots are also displayed.</p>
 </section>
-<section id="code-echo-code">
-<span id="echo"></span><h2><span class="raw-html"><code>--echo</code></span><a class="headerlink" href="#code-echo-code" title="Link to this heading"></a></h2>
+<section id="echo">
+<span id="id4"></span><h2><code>–echo</code><a class="headerlink" href="#echo" title="Link to this heading"></a></h2>
 <p>Display in the terminal the command line employed to invoke the execution
 of the simulator.</p>
 </section>
-<section id="code-version-code">
-<span id="version"></span><h2><span class="raw-html"><code>--version</code></span><a class="headerlink" href="#code-version-code" title="Link to this heading"></a></h2>
+<section id="version">
+<span id="id5"></span><h2><code>–version</code><a class="headerlink" href="#version" title="Link to this heading"></a></h2>
 <p>Display the code version number.</p>
 </section>
 </section>

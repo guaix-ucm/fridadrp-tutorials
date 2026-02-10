@@ -8,12 +8,12 @@ div.my-special-block {
 
 /* Also style the <pre> inside the block */
 div.my-special-block pre {
-    background: #dddddd;
+    background: #eeeeee;
     color: inherit;
 }
 
 /* Override Pygments token coloring if needed */
 div.my-special-block span {
     background: transparent !important; /* kill inline bg */
-    color: inherit !important;          /* inherit turquoise */
+    /*color: inherit !important; */ /* [NCL] comentar para usar ANSI colors */
 }

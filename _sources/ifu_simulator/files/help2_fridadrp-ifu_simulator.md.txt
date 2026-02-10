@@ -1,0 +1,8 @@
+```console
+(venv_numina) $ fridadrp-ifu_simulator --help
+```
+
+```{code-block} ansi-shell-session
+:class: my-special-block no-copybutton
+
+```
