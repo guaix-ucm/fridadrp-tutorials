@@ -80,7 +80,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Installing the development version</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/installation/installation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/installation/installation.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -88,7 +88,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installing-the-development-version">
+  <section class="tex2jax_ignore mathjax_ignore" id="installing-the-development-version">
 <h1>Installing the development version<a class="headerlink" href="#installing-the-development-version" title="Link to this heading"></a></h1>
 <p>In order to keep your current Python installation clean, it is highly
 recommended to install a Python 3 <em>virtual environment</em> as a first step.</p>
@@ -137,11 +137,11 @@ to specify a particular Python version, e.g.:</p>
 </div>
 <p>To activate the new environment:</p>
 <div class="no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(base)</span> <span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>venv_frida
-<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$</span>
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>
 </pre></div>
 </div>
 <p>From now on, the prompt</p>
-<div class="no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$</span>
+<div class="no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>
 </pre></div>
 </div>
 <p>will indicate that we are working in this specific environment.</p>
@@ -151,15 +151,16 @@ to specify a particular Python version, e.g.:</p>
 </pre></div>
 </div>
 <p>For more information on the use of conda virtual environments, please consult
-<a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">this link</a>.</p>
+<a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">this
+link</a>.</p>
 </section>
 </section>
 <section id="installing-the-software">
 <h2>Installing the software<a class="headerlink" href="#installing-the-software" title="Link to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">fridadrp</span></code> <a class="reference external" href="https://github.com/guaix-ucm/fridadrp">package</a> utilizes
+<p>The <strong>fridadrp</strong> <a class="reference external" href="https://github.com/guaix-ucm/fridadrp">package</a> utilizes
 functionality common to other data reduction pipelines for GTC instruments,
-which is available in the <code class="docutils literal notranslate"><span class="pre">numina</span></code> package.</p>
-<p>Since both packages, <code class="docutils literal notranslate"><span class="pre">numina</span></code> and <code class="docutils literal notranslate"><span class="pre">fridadrp</span></code>, may contain recent changes,
+which is available in the <strong>numina</strong> package.</p>
+<p>Since both packages, <strong>numina</strong> and <strong>fridadrp</strong>, may contain recent changes,
 it is advisable to install the development versions of both.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/guaix-ucm/numina.git@main#egg<span class="o">=</span>numina
 </pre></div>
@@ -174,12 +175,11 @@ only need to re-run the two previous instructions.</p>
 <section id="uninstalling-the-software">
 <h2>Uninstalling the software<a class="headerlink" href="#uninstalling-the-software" title="Link to this heading"></a></h2>
 <p>If the software has been installed in an environment as described above using
-<code class="docutils literal notranslate"><span class="pre">venv</span></code>, its
-removal from the system is very simple. It is only necessary to disable the
-environment and delete the directory in which the environment has been
-generated.</p>
+<code class="docutils literal notranslate"><span class="pre">venv</span></code>, its removal from the system is very simple. It is only necessary to
+disable the environment and delete the directory in which the environment has
+been generated.</p>
 <div class="no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>deactivate
-<span class="gp">$ </span><span class="nb">cd</span>
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>
 <span class="gp">$ </span>rm<span class="w"> </span>-fr<span class="w"> </span>venv_frida
 </pre></div>
 </div>

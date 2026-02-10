@@ -20,7 +20,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=d2c30f9d"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -83,7 +84,7 @@
           <li class="breadcrumb-item"><a href="index.html">Running the IFU simulator</a></li>
       <li class="breadcrumb-item active">Some scene examples</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/ifu_simulator/examples.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ifu_simulator/examples.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -91,78 +92,78 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="some-scene-examples">
+  <section class="tex2jax_ignore mathjax_ignore" id="some-scene-examples">
 <h1>Some scene examples<a class="headerlink" href="#some-scene-examples" title="Link to this heading"></a></h1>
 <p>Below are some examples of ‘scene’ files as well as the resulting simulated
 images.</p>
 <section id="example-1-collection-of-gaussian-objects">
 <h2>Example 1: collection of Gaussian objects<a class="headerlink" href="#example-1-collection-of-gaussian-objects" title="Link to this heading"></a></h2>
 <p>Here we are using the file <a class="reference download internal" download="" href="../_downloads/8a09e9b49b5627c563d40c1e4b9e5fa9/scene01.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene01.yaml</span></code></a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scene_block_name</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">center</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">constant</span><span class="o">-</span><span class="n">flux</span>
-<span class="n">geometry</span><span class="p">:</span> 
-  <span class="nb">type</span><span class="p">:</span> <span class="n">gaussian</span>
-  <span class="n">fwhm_ra_arcsec</span><span class="p">:</span> <span class="mf">0.04</span>
-  <span class="n">fwhm_dec_arcsec</span><span class="p">:</span> <span class="mf">0.04</span>
-  <span class="n">position_angle_deg</span><span class="p">:</span> <span class="mf">0.0</span>
-  <span class="n">delta_ra_arcsec</span><span class="p">:</span> <span class="mf">0.0</span>
-  <span class="n">delta_dec_arcsec</span><span class="p">:</span> <span class="mf">0.0</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">1E5</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">False</span>
-<span class="o">---</span>
-<span class="n">scene_block_name</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">top</span> <span class="n">left</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">constant</span><span class="o">-</span><span class="n">flux</span>
-<span class="n">geometry</span><span class="p">:</span> 
-  <span class="nb">type</span><span class="p">:</span> <span class="n">gaussian</span>
-  <span class="n">fwhm_ra_arcsec</span><span class="p">:</span> <span class="mf">0.08</span>
-  <span class="n">fwhm_dec_arcsec</span><span class="p">:</span> <span class="mf">0.16</span>
-  <span class="n">position_angle_deg</span><span class="p">:</span> <span class="mf">0.0</span>
-  <span class="n">delta_ra_arcsec</span><span class="p">:</span> <span class="mf">0.18</span>
-  <span class="n">delta_dec_arcsec</span><span class="p">:</span> <span class="mf">0.15</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">1E6</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">False</span>
-<span class="o">---</span>
-<span class="n">scene_block_name</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">bottom</span> <span class="n">left</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">constant</span><span class="o">-</span><span class="n">flux</span>
-<span class="n">geometry</span><span class="p">:</span> 
-  <span class="nb">type</span><span class="p">:</span> <span class="n">gaussian</span>
-  <span class="n">fwhm_ra_arcsec</span><span class="p">:</span> <span class="mf">0.08</span>
-  <span class="n">fwhm_dec_arcsec</span><span class="p">:</span> <span class="mf">0.08</span>
-  <span class="n">position_angle_deg</span><span class="p">:</span> <span class="mf">0.0</span>
-  <span class="n">delta_ra_arcsec</span><span class="p">:</span> <span class="mf">0.18</span>
-  <span class="n">delta_dec_arcsec</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.15</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">5E5</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">False</span>
-<span class="o">---</span>
-<span class="n">scene_block_name</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">top</span> <span class="n">right</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">constant</span><span class="o">-</span><span class="n">flux</span>
-<span class="n">geometry</span><span class="p">:</span> 
-  <span class="nb">type</span><span class="p">:</span> <span class="n">gaussian</span>
-  <span class="n">fwhm_ra_arcsec</span><span class="p">:</span> <span class="mf">0.04</span>
-  <span class="n">fwhm_dec_arcsec</span><span class="p">:</span> <span class="mf">0.08</span>
-  <span class="n">position_angle_deg</span><span class="p">:</span> <span class="mf">0.0</span>
-  <span class="n">delta_ra_arcsec</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.18</span>
-  <span class="n">delta_dec_arcsec</span><span class="p">:</span> <span class="mf">0.15</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">3E5</span>
-<span class="n">wavelength_sampling</span><span class="p">:</span> <span class="n">random</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">False</span>
-<span class="o">---</span>
-<span class="n">scene_block_name</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">bottom</span> <span class="n">right</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">constant</span><span class="o">-</span><span class="n">flux</span>
-<span class="n">geometry</span><span class="p">:</span> 
-  <span class="nb">type</span><span class="p">:</span> <span class="n">gaussian</span>
-  <span class="n">fwhm_ra_arcsec</span><span class="p">:</span> <span class="mf">0.32</span>
-  <span class="n">fwhm_dec_arcsec</span><span class="p">:</span> <span class="mf">0.04</span>
-  <span class="n">position_angle_deg</span><span class="p">:</span> <span class="mi">45</span>
-  <span class="n">delta_ra_arcsec</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.18</span>
-  <span class="n">delta_dec_arcsec</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.15</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">1E6</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">False</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian center</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span>
+<span class="w">  </span><span class="nt">fwhm_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span>
+<span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E5</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nn">---</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian top left</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.08</span>
+<span class="w">  </span><span class="nt">fwhm_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.16</span>
+<span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.18</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E6</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nn">---</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian bottom left</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.08</span>
+<span class="w">  </span><span class="nt">fwhm_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.08</span>
+<span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.18</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.15</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5E5</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nn">---</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian top right</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span>
+<span class="w">  </span><span class="nt">fwhm_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.08</span>
+<span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.18</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3E5</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nn">---</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian bottom right</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaussian</span>
+<span class="w">  </span><span class="nt">fwhm_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.32</span>
+<span class="w">  </span><span class="nt">fwhm_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.04</span>
+<span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45</span>
+<span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.18</span>
+<span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.15</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E6</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
 </pre></div>
 </div>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>:</p>
@@ -173,21 +174,21 @@ images.</p>
 <span class="w">  </span>--flatpix2pix<span class="w"> </span>none
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Welcome</span> <span class="n">to</span> <span class="n">fridadrp</span><span class="o">-</span><span class="n">ifu_simulator</span>
-<span class="n">version</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev98</span><span class="o">+</span><span class="n">g0c982ee</span>
+<div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Welcome to fridadrp-ifu_simulator</span>
+<span class="go">version 0.1.dev98+g0c982ee</span>
 
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">center</span>
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">top</span> <span class="n">left</span>
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">bottom</span> <span class="n">left</span>
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">top</span> <span class="n">right</span>
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">Gaussian</span> <span class="n">bottom</span> <span class="n">right</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_white2D_method0_os10</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_white2D_method0_os1</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_rss_2D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_rss_2D_method1</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_3D_method1</span><span class="o">.</span><span class="n">fits</span>
+<span class="go">* Processing: Gaussian center</span>
+<span class="go">* Processing: Gaussian top left</span>
+<span class="go">* Processing: Gaussian bottom left</span>
+<span class="go">* Processing: Gaussian top right</span>
+<span class="go">* Processing: Gaussian bottom right</span>
+<span class="go">Saving file: test_ifu_white2D_method0_os10.fits</span>
+<span class="go">Saving file: test_ifu_white2D_method0_os1.fits</span>
+<span class="go">Saving file: test_ifu_3D_method0.fits</span>
+<span class="go">Saving file: test_rss_2D_method0.fits</span>
+<span class="go">Saving file: test_detector_2D_method0.fits</span>
+<span class="go">Saving file: test_rss_2D_method1.fits</span>
+<span class="go">Saving file: test_ifu_3D_method1.fits</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/Figure_1.png"><img alt="../_images/Figure_1.png" src="../_images/Figure_1.png" style="width: 49%;" />
@@ -198,30 +199,31 @@ images.</p>
 <section id="example-2-m51-like-galaxy">
 <h2>Example 2: M51-like galaxy<a class="headerlink" href="#example-2-m51-like-galaxy" title="Link to this heading"></a></h2>
 <p>Here we are using the file <a class="reference download internal" download="" href="../_downloads/92b6ff48bad61e43b29e3d06c568e991/scene02.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene02.yaml</span></code></a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scene_block_name</span><span class="p">:</span> <span class="n">M51</span> <span class="n">DSS1</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">constant</span><span class="o">-</span><span class="n">flux</span>
-<span class="n">geometry</span><span class="p">:</span> 
-  <span class="nb">type</span><span class="p">:</span> <span class="n">from</span><span class="o">-</span><span class="n">FITS</span><span class="o">-</span><span class="n">image</span>
-  <span class="n">filename</span><span class="p">:</span> <span class="n">m51_dss1</span><span class="o">.</span><span class="n">fits</span>
-  <span class="n">diagonal_fov_arcsec</span><span class="p">:</span> <span class="mf">0.80</span>
-  <span class="n">background_to_subtract</span><span class="p">:</span> <span class="n">mode</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">1E7</span>
-<span class="o">---</span>
-<span class="n">scene_block_name</span><span class="p">:</span> <span class="n">skycalc</span> <span class="n">radiance</span>
-<span class="n">spectrum</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">skycalc</span><span class="o">-</span><span class="n">radiance</span>
-<span class="n">geometry</span><span class="p">:</span>
-  <span class="nb">type</span><span class="p">:</span> <span class="n">flatfield</span>
-<span class="n">nphotons</span><span class="p">:</span> <span class="mf">1E7</span>
-<span class="n">apply_seeing</span><span class="p">:</span> <span class="kc">False</span>
-<span class="n">apply_atmosphere_transmission</span><span class="p">:</span> <span class="kc">False</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">M51 DSS1</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">from-FITS-image</span>
+<span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m51_dss1.fits</span>
+<span class="w">  </span><span class="nt">diagonal_fov_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.80</span>
+<span class="w">  </span><span class="nt">background_to_subtract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mode</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E7</span>
+<span class="nn">---</span>
+<span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skycalc radiance</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skycalc-radiance</span>
+<span class="nt">geometry</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flatfield</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E7</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
 </pre></div>
 </div>
 <p>We aim to simulate a galaxy resembling the morphology of Messier 51. To achieve
 this, we generated a <span class="math notranslate nohighlight">\({15 \times 15}~{\rm arcmin}^2\)</span> image using the <a class="reference external" href="https://archive.eso.org/dss/dss">ESO
 Online Digitized Sky Survey</a>. The
-corresponding file is <a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits">m51_dss1.fits</a>.</p>
+corresponding file is
+<a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits%3E">m51_dss1.fits</a>.</p>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--scene<span class="w"> </span>scene02.yaml<span class="w"> </span><span class="se">\</span>

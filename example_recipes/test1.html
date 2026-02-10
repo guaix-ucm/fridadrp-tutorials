@@ -76,7 +76,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Running a simple test recipe</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/example_recipes/test1.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/example_recipes/test1.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -84,14 +84,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="running-a-simple-test-recipe">
+  <section class="tex2jax_ignore mathjax_ignore" id="running-a-simple-test-recipe">
 <h1>Running a simple test recipe<a class="headerlink" href="#running-a-simple-test-recipe" title="Link to this heading"></a></h1>
 <p>The following example describes how to employ the <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>
 script to generate a couple of simple exposures (target and sky) and execute a
 very simple reduction recipe.</p>
 <section id="initialize-the-file-tree">
 <h2>Initialize the file tree<a class="headerlink" href="#initialize-the-file-tree" title="Link to this heading"></a></h2>
-<p>Download the following file <a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/fridadrp_initial_tree_test1.tgz">fridadrp_initial_tree_test1.tgz</a></p>
+<p>Download the following file
+<a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/fridadrp_initial_tree_test1.tgz">fridadrp_initial_tree_test1.tgz</a></p>
 <div class="no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>mkdir<span class="w"> </span>test1
 <span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>test1
 
@@ -138,9 +139,11 @@ very simple reduction recipe.</p>
 </pre></div>
 </div>
 <p>Copy the simulated detector image in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> subdirectory</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cp<span class="w"> </span>target_detector_2D_method0.fits<span class="w"> </span>data
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cp<span class="w"> </span>target_detector_2D_method0.fits<span class="w"> </span>data<span class="w"> </span>
 </pre></div>
 </div>
+<!-- numina-ximshow target_detector_2D_method0.fits --geometry 800,640,0,0
+--cbar_orientation vertical --z1z2 "[0, 5]" -->
 <a class="reference internal image-reference" href="../_images/target_detector_2D_method0.png"><img alt="image target_detector_2D_method0.png" src="../_images/target_detector_2D_method0.png" style="width: 100%;" />
 </a>
 <p>Simulate the sky exposure</p>
@@ -163,9 +166,11 @@ very simple reduction recipe.</p>
 </pre></div>
 </div>
 <p>Copy the simulated detector image in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> subdirectory</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cp<span class="w"> </span>sky_detector_2D_method0.fits<span class="w"> </span>data
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cp<span class="w"> </span>sky_detector_2D_method0.fits<span class="w"> </span>data<span class="w"> </span>
 </pre></div>
 </div>
+<!-- numina-ximshow sky_detector_2D_method0.fits --geometry 800,640,0,0
+--cbar_orientation vertical --z1z2 "[0, 5]" -->
 <a class="reference internal image-reference" href="../_images/sky_detector_2D_method0.png"><img alt="image sky_detector_2D_method0.png" src="../_images/sky_detector_2D_method0.png" style="width: 100%;" />
 </a>
 </section>
@@ -182,20 +187,21 @@ In order to execute PyEmir recipes you should type something like:</p>
 YAML format, and <code class="docutils literal notranslate"><span class="pre">&lt;requirements_files.yaml&gt;</span></code> is a requirements file, also
 in YAML format.</p>
 <p>YAML is a human-readable data serialization language (for details see
-<a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Syntax</a>)</p>
+<a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML
+Syntax</a>).</p>
 </div>
-<p>We are going to execute <code class="docutils literal notranslate"><span class="pre">numina</span></code> using the observation result file
+<p>We are going to execute <strong>numina</strong> using the observation result file
 <code class="docutils literal notranslate"><span class="pre">test1.yaml</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cat<span class="w"> </span>test1.yaml
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cat<span class="w"> </span>test1.yaml<span class="w"> </span>
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">:</span> <span class="n">_test1</span>
-<span class="n">instrument</span><span class="p">:</span> <span class="n">FRIDA</span>
-<span class="n">mode</span><span class="p">:</span> <span class="n">test1</span>
-<span class="n">frames</span><span class="p">:</span>
-  <span class="o">-</span> <span class="n">target_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
-  <span class="o">-</span> <span class="n">sky_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">enabled</span><span class="p">:</span> <span class="kc">True</span>
+<div class="my-special-block no-copybutton highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_test1</span>
+<span class="nt">instrument</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FRIDA</span>
+<span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+<span class="nt">frames</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_detector_2D_method0.fits</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sky_detector_2D_method0.fits</span>
+<span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina<span class="w"> </span>run<span class="w"> </span>test1.yaml<span class="w"> </span>-r<span class="w"> </span>control.yaml
@@ -228,6 +234,8 @@ obsid_test1_work
 └── target_detector_2D_method0.fits -&gt; /Users/cardiel/test1/data/target_detector_2D_method0.fits
 </pre></div>
 </div>
+<!-- numina-ximshow obsid_test1_results/reduced_image.fits --geometry
+800,640,0,0 --cbar_orientation vertical --z1z2 "[0, 5]" -->
 <a class="reference internal image-reference" href="../_images/reduced_image.png"><img alt="image reduced_image.png" src="../_images/reduced_image.png" style="width: 100%;" />
 </a>
 </section>

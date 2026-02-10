@@ -21,6 +21,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=d2c30f9d"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../_static/tabs.js?v=3030b3cb"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -98,7 +100,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="the-scene-yaml-file">
+  <section class="tex2jax_ignore mathjax_ignore" id="the-scene-yaml-file">
 <h1>The scene YAML file<a class="headerlink" href="#the-scene-yaml-file" title="Link to this heading"></a></h1>
 <p>As already introduced in :ref:<code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">scene</span> <span class="pre">file</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">initial</span> <span class="pre">example</span></code>, the
 <em>scene</em> is an auxiliary external YAML file that contains a description of the
@@ -437,8 +439,8 @@ of the script arguments that modify the telescope pointing):</p>
 </div>
 <p>In this case, the file <code class="docutils literal notranslate"><span class="pre">m51_dss1.fits</span></code> is the FITS file downloaded from
 the <a class="reference external" href="https://archive.eso.org/dss/dss">ESO Online Digitized Sky Survey</a>
-selecting <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">Name:</span> <span class="pre">M51</span></code> with a field of view of $15 \times
-15;{\rm arcmin}^2$. The image mode is subtracted and the resulting
+selecting <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">Name:</span> <span class="pre">M51</span></code> with a field of view of <span class="math notranslate nohighlight">\(15 \times
+15\;{\rm arcmin}^2\)</span>. The image mode is subtracted and the resulting
 pixels with negative signal are set to zero in order to use the result as
 a valid probability distribution function. The size of the FITS image in
 the diagonal direction is reduced so that it occupies an extent of 0.80

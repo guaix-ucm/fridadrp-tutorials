@@ -20,6 +20,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=d2c30f9d"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -110,7 +112,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="script-arguments">
+  <section class="tex2jax_ignore mathjax_ignore" id="script-arguments">
 <h1>Script arguments<a class="headerlink" href="#script-arguments" title="Link to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">megaradrp-ifu_simulator</span></code> accepts a number of arguments. A quick list and
 explanation can be easily obtained using the <code class="docutils literal notranslate"><span class="pre">--help</span></code> (<code class="docutils literal notranslate"><span class="pre">-h</span></code> for short)
@@ -221,8 +223,8 @@ defined in the scene file. The resulting number is rounded to an integer value.<
 <section id="ra-teles-float-dec-teles-float">
 <span id="ra-dec-teles"></span><h2><code>–ra_teles &lt;float&gt;</code>, <code>–dec_teles &lt;float&gt;</code><a class="headerlink" href="#ra-teles-float-dec-teles-float" title="Link to this heading"></a></h2>
 <p>Central coordinates (right ascension and declination) of the Field of View. By
-default these values are set to :math:<code class="docutils literal notranslate"><span class="pre">{\rm</span> <span class="pre">RA}=0.0~{\rm</span> <span class="pre">deg}</span></code> and
-:math:<code class="docutils literal notranslate"><span class="pre">{\rm</span> <span class="pre">DEC}=0.0~{\rm</span> <span class="pre">deg}</span></code>. These coordinates must be expressed in decimal
+default these values are set to <span class="math notranslate nohighlight">\({\rm RA}=0.0~{\rm deg}\)</span> and
+<span class="math notranslate nohighlight">\({\rm DEC}=0.0~{\rm deg}\)</span>. These coordinates must be expressed in decimal
 degrees.</p>
 </section>
 <section id="delta-ra-teles-arcsec-float-delta-dec-teles-arcsec-float">
@@ -267,11 +269,12 @@ differential refraction when airmass &gt; 1.0 (see above).</p>
 using <code class="docutils literal notranslate"><span class="pre">NAXIS1=64</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=60</span></code>. This sampling is close to the actual
 sampling at the Hawaii detector, in which each slice spreads ~64 pixels in
 the spatial direction, and 2 pixels in the wavelength axis. Since the FRIDA’s
-IFU is covered by 30 slices, this means that there are :math:<code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">\times</span> <span class="pre">30</span> <span class="pre">=</span> <span class="pre">60</span></code> pixels in direction of the IFU perpendicular to the slices.</p></li>
+IFU is covered by 30 slices, this means that there are <span class="math notranslate nohighlight">\(2 \times 30 =
+60\)</span> pixels in direction of the IFU perpendicular to the slices.</p></li>
 <li><p>file <code class="docutils literal notranslate"><span class="pre">test_ifu_white2D_method0_os10.fits</span></code>: oversampled 2D projection of the
 3D data cube, using the chosen oversampling number. By default
 <code class="docutils literal notranslate"><span class="pre">--noversampling_whitelight</span> <span class="pre">10</span></code> is employed, which means that each IFU
-pixel is subdivided in :math:<code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">\times</span> <span class="pre">10</span></code> subpixels. In this case, the
+pixel is subdivided in <span class="math notranslate nohighlight">\(10 \times 10\)</span> subpixels. In this case, the
 while-light image dimension is given by <code class="docutils literal notranslate"><span class="pre">NAXIS1=640</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=600</span></code>.
 This version of the white-light image can help to check how well a
 combination of IFU exposures are coadded when using a dithering technique

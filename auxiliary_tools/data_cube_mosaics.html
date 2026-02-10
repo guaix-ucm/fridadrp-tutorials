@@ -89,7 +89,7 @@
           <li class="breadcrumb-item"><a href="index.html">Auxiliary tools</a></li>
       <li class="breadcrumb-item active">Generation of data cube mosaics</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/auxiliary_tools/data_cube_mosaics.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/auxiliary_tools/data_cube_mosaics.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -97,7 +97,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="generation-of-data-cube-mosaics">
+  <section class="tex2jax_ignore mathjax_ignore" id="generation-of-data-cube-mosaics">
 <h1>Generation of data cube mosaics<a class="headerlink" href="#generation-of-data-cube-mosaics" title="Link to this heading"></a></h1>
 <p>The code described below for mosaic generation relies on the use of the
 <strong>reproject</strong> <a class="reference external" href="https://reproject.readthedocs.io/en/stable/">package</a>, which
@@ -158,22 +158,22 @@ package facilitates the combination of 2D FITS images.</p>
 <span class="w">  </span>--seed<span class="w"> </span><span class="m">3456</span>
 </pre></div>
 </div>
-<p>We have used the parameter <code class="docutils literal notranslate"><span class="pre">--stop_after_ifu_3D_method0</span></code> because we do not
-need to execute all the steps of the simulator to generate the images we will
-need in this case. Note that the first execution uses <code class="docutils literal notranslate"><span class="pre">--scale</span> <span class="pre">coarse</span></code>, while the
+<p>We have used the parameter <code class="docutils literal notranslate"><span class="pre">--stop_after_ifu_3D_method0</span></code> because we do not need
+to execute all the steps of the simulator to generate the images we will need
+in this case. Note that the first execution uses <code class="docutils literal notranslate"><span class="pre">--scale</span> <span class="pre">coarse</span></code>, while the
 next two use <code class="docutils literal notranslate"><span class="pre">--scale</span> <span class="pre">fine</span></code>. Additionally, the values of
 <code class="docutils literal notranslate"><span class="pre">--delta_ra_teles_arcsec</span></code>, <code class="docutils literal notranslate"><span class="pre">--delta_dec_teles_arcsec</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">--instrument_pa_deg</span></code> are different. However, since the airmass value is not
 specified, it is assumed to be 1.0 in the three cases.</p>
-<p>The files <code class="docutils literal notranslate"><span class="pre">test0?_ifu_white2D_method0_os1.fits</span></code> (with <code class="docutils literal notranslate"><span class="pre">?</span></code> equal to a, b or
-c) can be examined with any visualization tool. The <strong>numina</strong> package provides
+<p>The files <code class="docutils literal notranslate"><span class="pre">test0?_ifu_white2D_method0_os1.fits</span></code> (with <code class="docutils literal notranslate"><span class="pre">?</span></code> equal to a, b or c)
+can be examined with any visualization tool. The <strong>numina</strong> package provides
 the auxiliary script <code class="docutils literal notranslate"><span class="pre">numina-ximshow</span></code> for this purpose</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span><span class="se">\</span>
-test0?_ifu_white2D_method0_os1.fits<span class="w"> </span><span class="se">\</span>
---cmap<span class="w"> </span>viridis<span class="w"> </span><span class="se">\</span>
---cbar_orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
---aspect<span class="w"> </span>equal<span class="w"> </span><span class="se">\</span>
---z1z2<span class="w"> </span>minmax
+<span class="w">  </span>test0?_ifu_white2D_method0_os1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cmap<span class="w"> </span>viridis<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--aspect<span class="w"> </span>equal<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--z1z2<span class="w"> </span>minmax
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/test0a_2d.png"><img alt="../_images/test0a_2d.png" src="../_images/test0a_2d.png" style="width: 32%;" />
@@ -271,12 +271,11 @@ script <code class="docutils literal notranslate"><span class="pre">numina-gener
 </pre></div>
 </div>
 <p>Next, we compare the result of the combination of the 3 simulated exposures
-with the first exposure alone: both
-cover the field of the <em>coarse</em> camera. The improvement in spatial resolution
-in the combined image is noticeable after including the two pointings made with
-the <em>fine</em> camera.  Note that the combined image has the sampling corresponding
-to the <em>fine</em> camera. Hence, the number of counts shows such a different value
-in both images.</p>
+with the first exposure alone: both cover the field of the <em>coarse</em> camera. The
+improvement in spatial resolution in the combined image is noticeable after
+including the two pointings made with the <em>fine</em> camera.  Note that the
+combined image has the sampling corresponding to the <em>fine</em> camera. Hence, the
+number of counts shows such a different value in both images.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>combination_test0_2d.fits<span class="w"> </span>test0a_ifu_white2D_method0_os1.fits<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--cmap<span class="w"> </span>viridis<span class="w"> </span><span class="se">\</span>
@@ -310,7 +309,7 @@ output file.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>ls<span class="w"> </span>test0?_ifu_3D_method0.fits<span class="w"> </span>&gt;<span class="w"> </span>list0_3d_cubes.txt
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cat<span class="w"> </span>list0_3d_cubes.txt
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>cat<span class="w"> </span>list0_3d_cubes.txt<span class="w"> </span>
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test0a_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
@@ -318,12 +317,12 @@ output file.</p>
 <span class="n">test0c_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-generate_mosaic_of_3d_cubes<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span>list0_3d_cubes.txt<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span>all0_3d.fits<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span>--reproject_method<span class="w"> </span>adaptive<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span>--footprint<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span>--verbose
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-generate_mosaic_of_3d_cubes<span class="w"> </span><span class="se">\ </span>
+<span class="go">  list0_3d_cubes.txt \</span>
+<span class="go">  all0_3d.fits \</span>
+<span class="go">  --reproject_method adaptive \</span>
+<span class="go">  --footprint \</span>
+<span class="go">  --verbose</span>
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span>input_list: list0_3d_cubes.txt
@@ -486,20 +485,20 @@ modifying both the value of the parallactic angle and the instrument.</p>
 <h3>Examining the individual data cubes before combining them<a class="headerlink" href="#examining-the-individual-data-cubes-before-combining-them" title="Link to this heading"></a></h3>
 <p>We can quickly visualize the result with the help of the <code class="docutils literal notranslate"><span class="pre">ds9</span></code> program.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>ds9<span class="w"> </span><span class="se">\</span>
--scale<span class="w"> </span>mode<span class="w"> </span>minmax<span class="w"> </span><span class="se">\</span>
--geometry<span class="w"> </span>1000x1000<span class="w"> </span><span class="se">\</span>
--wcs<span class="w"> </span>degrees<span class="w"> </span><span class="se">\</span>
--multiframe<span class="w"> </span><span class="se">\</span>
-test1a_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
-test1b_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
-test1c_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
--lock<span class="w"> </span>slice<span class="w"> </span>image<span class="w"> </span><span class="se">\</span>
--lock<span class="w"> </span>frame<span class="w"> </span>image<span class="w"> </span><span class="se">\</span>
--zoom<span class="w"> </span>to<span class="w"> </span>fit<span class="w"> </span><span class="se">\</span>
--cmap<span class="w"> </span>viridis<span class="w"> </span><span class="se">\</span>
--match<span class="w"> </span>frame<span class="w"> </span>colorbar<span class="w"> </span><span class="se">\</span>
--colorbar<span class="w"> </span>lock<span class="w"> </span>yes<span class="w"> </span><span class="se">\</span>
--view<span class="w"> </span>multi<span class="w"> </span>yes
+<span class="w">  </span>-scale<span class="w"> </span>mode<span class="w"> </span>minmax<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-geometry<span class="w"> </span>1000x1000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-wcs<span class="w"> </span>degrees<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-multiframe<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>test1a_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>test1b_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>test1c_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-lock<span class="w"> </span>slice<span class="w"> </span>image<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-lock<span class="w"> </span>frame<span class="w"> </span>image<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-zoom<span class="w"> </span>to<span class="w"> </span>fit<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-cmap<span class="w"> </span>viridis<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-match<span class="w"> </span>frame<span class="w"> </span>colorbar<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-colorbar<span class="w"> </span>lock<span class="w"> </span>yes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-view<span class="w"> </span>multi<span class="w"> </span>yes
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/individual_3d_m51_exposures_with_ds9.png"><img alt="../_images/individual_3d_m51_exposures_with_ds9.png" src="../_images/individual_3d_m51_exposures_with_ds9.png" style="width: 100%;" />
@@ -515,15 +514,15 @@ purpose, we can employ the <strong>numina</strong> script <code class="docutils 
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Filename</span><span class="p">:</span> <span class="n">test1a_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
 <span class="n">No</span><span class="o">.</span>    <span class="n">Name</span>      <span class="n">Ver</span>    <span class="n">Type</span>      <span class="n">Cards</span>   <span class="n">Dimensions</span>   <span class="n">Format</span>
-  <span class="mi">0</span>  <span class="n">PRIMARY</span>       <span class="mi">1</span> <span class="n">PrimaryHDU</span>      <span class="mi">82</span>   <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>   <span class="n">int16</span> <span class="p">(</span><span class="n">rescales</span> <span class="n">to</span> <span class="n">uint16</span><span class="p">)</span>
-
+  <span class="mi">0</span>  <span class="n">PRIMARY</span>       <span class="mi">1</span> <span class="n">PrimaryHDU</span>      <span class="mi">82</span>   <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>   <span class="n">int16</span> <span class="p">(</span><span class="n">rescales</span> <span class="n">to</span> <span class="n">uint16</span><span class="p">)</span>   
+   
 <span class="n">Filename</span><span class="p">:</span> <span class="n">test1b_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
 <span class="n">No</span><span class="o">.</span>    <span class="n">Name</span>      <span class="n">Ver</span>    <span class="n">Type</span>      <span class="n">Cards</span>   <span class="n">Dimensions</span>   <span class="n">Format</span>
-  <span class="mi">0</span>  <span class="n">PRIMARY</span>       <span class="mi">1</span> <span class="n">PrimaryHDU</span>      <span class="mi">84</span>   <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>   <span class="n">int16</span> <span class="p">(</span><span class="n">rescales</span> <span class="n">to</span> <span class="n">uint16</span><span class="p">)</span>
-
+  <span class="mi">0</span>  <span class="n">PRIMARY</span>       <span class="mi">1</span> <span class="n">PrimaryHDU</span>      <span class="mi">84</span>   <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>   <span class="n">int16</span> <span class="p">(</span><span class="n">rescales</span> <span class="n">to</span> <span class="n">uint16</span><span class="p">)</span>   
+   
 <span class="n">Filename</span><span class="p">:</span> <span class="n">test1c_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
 <span class="n">No</span><span class="o">.</span>    <span class="n">Name</span>      <span class="n">Ver</span>    <span class="n">Type</span>      <span class="n">Cards</span>   <span class="n">Dimensions</span>   <span class="n">Format</span>
-  <span class="mi">0</span>  <span class="n">PRIMARY</span>       <span class="mi">1</span> <span class="n">PrimaryHDU</span>      <span class="mi">84</span>   <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>   <span class="n">int16</span> <span class="p">(</span><span class="n">rescales</span> <span class="n">to</span> <span class="n">uint16</span><span class="p">)</span>
+  <span class="mi">0</span>  <span class="n">PRIMARY</span>       <span class="mi">1</span> <span class="n">PrimaryHDU</span>      <span class="mi">84</span>   <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>   <span class="n">int16</span> <span class="p">(</span><span class="n">rescales</span> <span class="n">to</span> <span class="n">uint16</span><span class="p">)</span>   
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>ls<span class="w"> </span>test1*3D*.fits<span class="w"> </span>&gt;<span class="w"> </span>list1_3d_cubes.txt
@@ -655,8 +654,8 @@ Done!
 </div>
 <div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: combination_test1_3d.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      50   (81, 78, 2048)   float32</span>
-<span class="go">  1  FOOTPRINT     1 ImageHDU        29   (81, 78, 2048)   uint8</span>
+<span class="go">  0  PRIMARY       1 PrimaryHDU      50   (81, 78, 2048)   float32   </span>
+<span class="go">  1  FOOTPRINT     1 ImageHDU        29   (81, 78, 2048)   uint8 </span>
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>qfitsview<span class="w"> </span>combination_test1_3d.fits
@@ -666,7 +665,8 @@ Done!
 NAXIS3. The corresponding image looks apparently normal.</p>
 <a class="reference internal image-reference" href="../_images/combined_test1_3d_1024.png"><img alt="../_images/combined_test1_3d_1024.png" class="align-center" src="../_images/combined_test1_3d_1024.png" style="width: 70%;" />
 </a>
-<p>However, when we display the cut corresponding to pixel 1 or pixel 2048, the result is clearly not satisfactory.</p>
+<p>However, when we display the cut corresponding to pixel 1 or pixel 2048, the
+result is clearly not satisfactory.</p>
 <a class="reference internal image-reference" href="../_images/combined_test1_3d_0001.png"><img alt="../_images/combined_test1_3d_0001.png" src="../_images/combined_test1_3d_0001.png" style="width: 49%;" />
 </a>
 <a class="reference internal image-reference" href="../_images/combined_test1_3d_2048.png"><img alt="../_images/combined_test1_3d_2048.png" src="../_images/combined_test1_3d_2048.png" style="width: 49%;" />
@@ -680,13 +680,13 @@ central wavelength along NAXIS3). To do this, we will start by using an
 auxiliary script that helps us visualize how significant the effect is in the
 images we are working with.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-compute_adr_wavelength<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--airmass<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--reference_wave_vacuum<span class="w"> </span><span class="m">1</span>.7<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--wave_ini<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--wave_end<span class="w"> </span><span class="m">2</span>.5<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--wave_step<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--wave_unit<span class="w"> </span>micron<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>--plots
+<span class="w">  </span>--airmass<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reference_wave_vacuum<span class="w"> </span><span class="m">1</span>.7<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wave_ini<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wave_end<span class="w"> </span><span class="m">2</span>.5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wave_step<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wave_unit<span class="w"> </span>micron<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Wavelength</span>  <span class="n">ADR</span>  
@@ -725,7 +725,8 @@ FITS file.</p>
 <span class="go">test1c_ifu_3D_method0.fits     3.0</span>
 </pre></div>
 </div>
-<p>Only the second and third images need to be corrected. The first one was obtained with an airmass of 1.0.</p>
+<p>Only the second and third images need to be corrected. The first one was
+obtained with an airmass of 1.0.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-include_adrtheor_in_3d_cube<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>test1b_ifu_3D_method0.fits<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--verbose<span class="w"> </span>--plots
@@ -749,17 +750,17 @@ script.</p>
 </div>
 <div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: test1a_ifu_3D_method0.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)</span>
-
+<span class="go">  0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)   </span>
+<span class="go">   </span>
 <span class="go">Filename: test1b_ifu_3D_method0.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)</span>
-<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]</span>
-
+<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   </span>
+<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   </span>
+<span class="go">   </span>
 <span class="go">Filename: test1c_ifu_3D_method0.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)</span>
-<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]</span>
+<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   </span>
+<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   </span>
 </pre></div>
 </div>
 <p>We can also empirically measure atmospheric refraction in each data cube using
@@ -787,19 +788,19 @@ corrected images.</p>
 </div>
 <div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: test1a_ifu_3D_method0.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)</span>
-
+<span class="go">  0  PRIMARY       1 PrimaryHDU      82   (64, 60, 2048)   int16 (rescales to uint16)   </span>
+<span class="go">   </span>
 <span class="go">Filename: test1b_ifu_3D_method0.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)</span>
-<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]</span>
-<span class="go">  2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D]</span>
-
+<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   </span>
+<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   </span>
+<span class="go">  2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D]   </span>
+<span class="go">   </span>
 <span class="go">Filename: test1c_ifu_3D_method0.fits</span>
 <span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
-<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)</span>
-<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]</span>
-<span class="go">  2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D]</span>
+<span class="go">  0  PRIMARY       1 PrimaryHDU      84   (64, 60, 2048)   int16 (rescales to uint16)   </span>
+<span class="go">  1  ADRTHEOR      1 BinTableHDU     21   2048R x 2C   [D, D]   </span>
+<span class="go">  2  ADRCROSS      1 BinTableHDU     24   2048R x 2C   [D, D] </span>
 </pre></div>
 </div>
 <p>We can easily compare the expected atmospheric refraction with that calculated
