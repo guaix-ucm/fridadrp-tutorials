@@ -22,6 +22,11 @@ extensions = [
     'myst_parser',
 ]
 
+myst_enable_extensions = [
+    "amsmath",
+    "dollarmath",  # enables $...$ and $...$ math syntax
+]
+
 # Specify which file types to parse
 source_suffix = {
     '.rst': 'restructuredtext',

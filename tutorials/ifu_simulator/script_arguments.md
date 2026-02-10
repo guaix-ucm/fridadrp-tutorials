@@ -51,8 +51,8 @@ Camera scale. It should be one of the following: `fine` (0.01 arcsec/pixel),
 ## <code>--ra_teles &lt;float&gt;</code>, <code>--dec_teles &lt;float&gt;</code>
 
 Central coordinates (right ascension and declination) of the Field of View. By
-default these values are set to :math:`{\rm RA}=0.0~{\rm deg}` and 
-:math:`{\rm DEC}=0.0~{\rm deg}`. These coordinates must be expressed in decimal
+default these values are set to ${\rm RA}=0.0~{\rm deg}$ and 
+${\rm DEC}=0.0~{\rm deg}$. These coordinates must be expressed in decimal
 degrees.
 
 (--delta_ra_dec_teles)=
@@ -112,13 +112,13 @@ Oversampling factor to generate one of the white-image views of the simulated
   using `NAXIS1=64` and `NAXIS2=60`. This sampling is close to the actual
   sampling at the Hawaii detector, in which each slice spreads ~64 pixels in
   the spatial direction, and 2 pixels in the wavelength axis. Since the FRIDA's
-  IFU is covered by 30 slices, this means that there are :math:`2 \times 30 =
-  60` pixels in direction of the IFU perpendicular to the slices.
+  IFU is covered by 30 slices, this means that there are $2 \times 30 =
+  60$ pixels in direction of the IFU perpendicular to the slices.
 
 - file `test_ifu_white2D_method0_os10.fits`: oversampled 2D projection of the
   3D data cube, using the chosen oversampling number. By default
   `--noversampling_whitelight 10` is employed, which means that each IFU
-  pixel is subdivided in :math:`10 \times 10` subpixels. In this case, the
+  pixel is subdivided in $10 \times 10$ subpixels. In this case, the
   while-light image dimension is given by `NAXIS1=640` and `NAXIS2=600`.
   This version of the white-light image can help to check how well a
   combination of IFU exposures are coadded when using a dithering technique
