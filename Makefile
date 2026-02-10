@@ -21,6 +21,7 @@ clean:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@echo "Running preliminary scripts..."
+	tutorials/ifu_simulator/files/run_extract_blocks_ansi_version.sh
 	tutorials/ifu_simulator/files/run_extract_blocks_ansi_helps.sh
 	@echo "Generating documentation now..."
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

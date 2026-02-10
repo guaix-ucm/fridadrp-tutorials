@@ -8,14 +8,7 @@ development and testing of reduction recipes.
 After installing **megardrp**, the IFU simulator should be available in your
 system:
 
-```{code-block} console
-(venv_frida) $ fridadrp-ifu_simulator --version
-```
-
-```{code-block} console
-:class: my-special-block no-copybutton
-
-0.1.dev122+g9cc23a9
+```{include} files/version_fridadrp-ifu_simulator.md
 ```
 
 The script accepts a number of arguments, which are displayed when invoking the
