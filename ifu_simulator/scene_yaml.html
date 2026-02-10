@@ -21,7 +21,6 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=d2c30f9d"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../_static/tabs.js?v=3030b3cb"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -91,7 +90,7 @@
           <li class="breadcrumb-item"><a href="index.html">Running the IFU simulator</a></li>
       <li class="breadcrumb-item active">The scene YAML file</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/ifu_simulator/scene_yaml.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ifu_simulator/scene_yaml.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -101,11 +100,12 @@
              
   <section id="the-scene-yaml-file">
 <h1>The scene YAML file<a class="headerlink" href="#the-scene-yaml-file" title="Link to this heading"></a></h1>
-<p>As already introduced in <a class="reference internal" href="initial_example.html#the-scene-file-of-the-initial-example"><span class="std std-ref">The scene file of the initial example</span></a>, the
+<p>As already introduced in :ref:<code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">scene</span> <span class="pre">file</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">initial</span> <span class="pre">example</span></code>, the
 <em>scene</em> is an auxiliary external YAML file that contains a description of the
 sources and associated spectra to be simulated.</p>
 <p>YAML is a human-friendly data serialization language that can be easily
-generated and modified with any text editor. See <a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Syntax description</a>
+generated and modified with any text editor. See <a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Syntax
+description</a>
 for more information.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -355,8 +355,7 @@ view. The corresponding coordinates can be modified using <code class="docutils 
 addition, it is also possible to include additional coordinate offsets
 using <code class="docutils literal notranslate"><span class="pre">delta_ra_arcsec</span></code> and <code class="docutils literal notranslate"><span class="pre">delta_dec_arcsec</span></code> (in arcseconds). It is
 important to remember that the coordinates at the center of the IFU field
-of view are the ones stablished by the script arguments <a class="reference internal" href="script_arguments.html#ra-dec-teles"><span class="std std-ref">ra_teles,
-dec_teles</span></a>, <a class="reference internal" href="script_arguments.html#delta-ra-dec-teles"><span class="std std-ref">delta_ra_teles_arcsec</span></a>, and <a class="reference internal" href="script_arguments.html#delta-ra-dec-teles"><span class="std std-ref">delta_dec_teles_arcsec</span></a>.  By default, all of the script arguments are set
+of view are the ones stablished by the script arguments <a class="reference internal" href="script_arguments.html#ra-dec-teles"><span class="std std-ref">ra_teles, dec_teles</span></a>, <a class="reference internal" href="script_arguments.html#delta-ra-dec-teles"><span class="std std-ref">delta_ra_teles_arcsec</span></a>, and <a class="reference internal" href="script_arguments.html#delta-ra-dec-teles"><span class="std std-ref">delta_dec_teles_arcsec</span></a>.  By default, all of the script arguments are set
 to zero.</p>
 <p>In general, the simplest thing to do is to use the script arguments to
 set the reference position and use the scene parameters to relocate
@@ -438,8 +437,8 @@ of the script arguments that modify the telescope pointing):</p>
 </div>
 <p>In this case, the file <code class="docutils literal notranslate"><span class="pre">m51_dss1.fits</span></code> is the FITS file downloaded from
 the <a class="reference external" href="https://archive.eso.org/dss/dss">ESO Online Digitized Sky Survey</a>
-selecting <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">Name:</span> <span class="pre">M51</span></code> with a field of view of <span class="math notranslate nohighlight">\(15 \times
-15\;{\rm arcmin}^2\)</span>. The image mode is subtracted and the resulting
+selecting <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">Name:</span> <span class="pre">M51</span></code> with a field of view of $15 \times
+15;{\rm arcmin}^2$. The image mode is subtracted and the resulting
 pixels with negative signal are set to zero in order to use the result as
 a valid probability distribution function. The size of the FITS image in
 the diagonal direction is reduced so that it occupies an extent of 0.80
@@ -482,8 +481,8 @@ the parameter <code class="docutils literal notranslate"><span class="pre">--spe
 If <code class="docutils literal notranslate"><span class="pre">True</span></code>, each simulated photon is randomly displaced in the focal plane of
 the IFU according to a probability distribution that is determined by the
 seeing PSF.</p>
-<p>The script arguments <a class="reference internal" href="script_arguments.html#seeing-fwhm-psf"><span class="std std-ref">seeing_fwhm_arcsec</span></a> and
-<a class="reference internal" href="script_arguments.html#seeing-fwhm-psf"><span class="std std-ref">seeing_psf</span></a> define the
+<p>The script arguments :ref:<code class="docutils literal notranslate"><span class="pre">seeing_fwhm_arcsec</span> <span class="pre">&lt;--seeing_fwhm_psf&gt;</span></code> and
+:ref:<code class="docutils literal notranslate"><span class="pre">seeing_psf</span> <span class="pre">&lt;--seeing_fwhm_psf&gt;</span></code> define the
 seeing FWHM and the mathematical function employed to reproduce the PSF. Note
 that this arguments are ignored for those scene sources for which
 <code class="docutils literal notranslate"><span class="pre">apply_seeing:</span> <span class="pre">False</span></code>.</p>
@@ -493,7 +492,7 @@ that this arguments are ignored for those scene sources for which
 <h2>apply_atmosphere_transmission<a class="headerlink" href="#apply-atmosphere-transmission" title="Link to this heading"></a></h2>
 <p>Boolean first-level key indicating whether the atmosphere transmission must be
 considered.  If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the atmosphere transmission defined in the script
-argument <a class="reference internal" href="script_arguments.html#atmosphere-transmission"><span class="std std-ref">atmosphere_transmission</span></a> will be
+argument :ref:<code class="docutils literal notranslate"><span class="pre">atmosphere_transmission</span> <span class="pre">&lt;--atmosphere_transmission&gt;</span></code> will be
 used.</p>
 <p><em>This key is not mandatory</em> (default value: <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
 </section>
