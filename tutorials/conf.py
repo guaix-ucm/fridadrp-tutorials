@@ -14,9 +14,20 @@ release = '0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx_rtd_theme', 
-              'sphinx_tabs.tabs', 
-              'sphinx_copybutton']
+extensions = [
+    'sphinx_rtd_theme',
+    'sphinx_tabs.tabs', 
+    'sphinx_copybutton',
+    'click_extra.sphinx',
+    'myst_parser',
+]
+
+# Specify which file types to parse
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
+
 copybutton_prompt_text = "(venv_frida) $ "
 copybutton_only_copy_prompt_lines = False
 # allow to exclude the copybutton in selected blocks
