@@ -2,5 +2,6 @@ sphinx<9.0          # higher versions are incompatible with sphinx-tabs
 sphinx_rtd_theme
 sphinx-tabs
 sphinx-copybutton
+sphinx-new-tab-link
 click-extra[sphinx]
 myst-parser

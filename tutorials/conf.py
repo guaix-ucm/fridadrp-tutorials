@@ -15,11 +15,12 @@ release = '0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'myst_parser',
     'sphinx_rtd_theme',
     'sphinx_tabs.tabs', 
     'sphinx_copybutton',
     'click_extra.sphinx',
-    'myst_parser',
+    'sphinx_new_tab_link',  # external links open in new tab
 ]
 
 myst_enable_extensions = [
