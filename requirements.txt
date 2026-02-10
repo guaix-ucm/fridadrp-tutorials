@@ -4,3 +4,6 @@ sphinx-tabs
 sphinx-copybutton
 click-extra[sphinx]
 myst-parser
+
+# the following package is required to generate the help outputs
+fridadrp @ git+https://github.com/guaix-ucm/fridadrp.git
