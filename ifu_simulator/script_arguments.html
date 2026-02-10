@@ -47,7 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installing the development version</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Running the IFU simulator</a><ul class="current">
@@ -118,75 +118,75 @@ argument.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--help
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>usage: fridadrp-ifu_simulator [-h] [--scene SCENE] [--flux_factor FLUX_FACTOR]
-                              [--grating GRATING] [--scale SCALE]
-                              [--ra_teles_deg RA_TELES_DEG]
-                              [--dec_teles_deg DEC_TELES_DEG]
-                              [--delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC]
-                              [--delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC]
-                              [--seeing_fwhm_arcsec SEEING_FWHM_ARCSEC]
-                              [--seeing_psf {gaussian}]
-                              [--instrument_pa_deg INSTRUMENT_PA_DEG]
-                              [--airmass AIRMASS]
-                              [--parallactic_angle_deg PARALLACTIC_ANGLE_DEG]
-                              [--noversampling_whitelight NOVERSAMPLING_WHITELIGHT]
-                              [--atmosphere_transmission {default,none}]
-                              [--bias BIAS] [--rnoise RNOISE]
-                              [--flatpix2pix {default,none}]
-                              [--spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL]
-                              [--seed SEED] [--noparallel]
-                              [--prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS]
-                              [--stop_after_ifu_3D_method0] [-v] [--plots]
-                              [--echo] [--version]
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-BrightRed -C-BrightRed">Usage:</span> <span class=" -Color -Color-White -C-White">fridadrp-ifu_simulator</span> [<span class=" -Color -Color-Cyan -C-Cyan">-h</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--scene</span> <span class=" -Color -Color-Cyan -C-Cyan">SCENE</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--flux_factor</span> <span class=" -Color -Color-Cyan -C-Cyan">FLUX_FACTOR</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--grating</span> <span class=" -Color -Color-Cyan -C-Cyan">GRATING</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--scale</span> <span class=" -Color -Color-Cyan -C-Cyan">SCALE</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--ra_teles_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">RA_TELES_DEG</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--dec_teles_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">DEC_TELES_DEG</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--delta_ra_teles_arcsec</span> <span class=" -Color -Color-Cyan -C-Cyan">DELTA_RA_TELES_ARCSEC</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--delta_dec_teles_arcsec</span> <span class=" -Color -Color-Cyan -C-Cyan">DELTA_DEC_TELES_ARCSEC</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--seeing_fwhm_arcsec</span> <span class=" -Color -Color-Cyan -C-Cyan">SEEING_FWHM_ARCSEC</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--seeing_psf</span> <span class=" -Color -Color-Cyan -C-Cyan">{gaussian}</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--instrument_pa_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">INSTRUMENT_PA_DEG</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--airmass</span> <span class=" -Color -Color-Cyan -C-Cyan">AIRMASS</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--parallactic_angle_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">PARALLACTIC_ANGLE_DEG</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--noversampling_whitelight</span> <span class=" -Color -Color-Cyan -C-Cyan">NOVERSAMPLING_WHITELIGHT</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--atmosphere_transmission</span> <span class=" -Color -Color-Cyan -C-Cyan">{default,none}</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--bias</span> <span class=" -Color -Color-Cyan -C-Cyan">BIAS</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--rnoise</span> <span class=" -Color -Color-Cyan -C-Cyan">RNOISE</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--flatpix2pix</span> <span class=" -Color -Color-Cyan -C-Cyan">{default,none}</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-Cyan -C-Cyan">SPECTRAL_BLURRING_PIXEL</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-Cyan -C-Cyan">SEED</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--noparallel</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-Cyan -C-Cyan">PREFIX_INTERMEDIATE_FITS</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>] [<span class=" -Color -Color-Cyan -C-Cyan">-v</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--plots</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--echo</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--version</span>]
 
-description: simulator of FRIDA IFU images (0.1.dev151+g551dbd8d2)
+description: simulator of FRIDA IFU images (0.1.dev153+gea7254566)
 
-options:
-  -h, --help            show this help message and exit
-  --scene SCENE         YAML scene file name
-  --flux_factor FLUX_FACTOR
+<span class=" -Color -Color-BrightRed -C-BrightRed">Options:</span>
+  <span class=" -Color -Color-Cyan -C-Cyan">-h</span>, <span class=" -Color -Color-Cyan -C-Cyan">--help</span>            show this help message and exit
+  <span class=" -Color -Color-Cyan -C-Cyan">--scene</span> <span class=" -Color -Color-Cyan -C-Cyan">SCENE</span>         YAML scene file name
+  <span class=" -Color -Color-Cyan -C-Cyan">--flux_factor</span> <span class=" -Color -Color-Cyan -C-Cyan">FLUX_FACTOR</span>
                         Multiplicative factor to be applied to the number of
                         photons defined in the scene file (default=1.0)
-  --grating GRATING     Grating name
-  --scale SCALE         Scale
-  --ra_teles_deg RA_TELES_DEG
+  <span class=" -Color -Color-Cyan -C-Cyan">--grating</span> <span class=" -Color -Color-Cyan -C-Cyan">GRATING</span>     Grating name
+  <span class=" -Color -Color-Cyan -C-Cyan">--scale</span> <span class=" -Color -Color-Cyan -C-Cyan">SCALE</span>         Scale
+  <span class=" -Color -Color-Cyan -C-Cyan">--ra_teles_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">RA_TELES_DEG</span>
                         Telescope central RA (deg)
-  --dec_teles_deg DEC_TELES_DEG
+  <span class=" -Color -Color-Cyan -C-Cyan">--dec_teles_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">DEC_TELES_DEG</span>
                         Telescope central DEC (deg)
-  --delta_ra_teles_arcsec DELTA_RA_TELES_ARCSEC
+  <span class=" -Color -Color-Cyan -C-Cyan">--delta_ra_teles_arcsec</span> <span class=" -Color -Color-Cyan -C-Cyan">DELTA_RA_TELES_ARCSEC</span>
                         Offset in RA (arcsec)
-  --delta_dec_teles_arcsec DELTA_DEC_TELES_ARCSEC
+  <span class=" -Color -Color-Cyan -C-Cyan">--delta_dec_teles_arcsec</span> <span class=" -Color -Color-Cyan -C-Cyan">DELTA_DEC_TELES_ARCSEC</span>
                         Offset in DEC (arcsec)
-  --seeing_fwhm_arcsec SEEING_FWHM_ARCSEC
+  <span class=" -Color -Color-Cyan -C-Cyan">--seeing_fwhm_arcsec</span> <span class=" -Color -Color-Cyan -C-Cyan">SEEING_FWHM_ARCSEC</span>
                         Seeing FWHM (arcsec)
-  --seeing_psf {gaussian}
+  <span class=" -Color -Color-Cyan -C-Cyan">--seeing_psf</span> <span class=" -Color -Color-Cyan -C-Cyan">{gaussian}</span>
                         Seeing PSF
-  --instrument_pa_deg INSTRUMENT_PA_DEG
+  <span class=" -Color -Color-Cyan -C-Cyan">--instrument_pa_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">INSTRUMENT_PA_DEG</span>
                         Instrument Position Angle (deg)
-  --airmass AIRMASS     Airmass
-  --parallactic_angle_deg PARALLACTIC_ANGLE_DEG
+  <span class=" -Color -Color-Cyan -C-Cyan">--airmass</span> <span class=" -Color -Color-Cyan -C-Cyan">AIRMASS</span>     Airmass
+  <span class=" -Color -Color-Cyan -C-Cyan">--parallactic_angle_deg</span> <span class=" -Color -Color-Cyan -C-Cyan">PARALLACTIC_ANGLE_DEG</span>
                         Parallactic angle (deg)
-  --noversampling_whitelight NOVERSAMPLING_WHITELIGHT
+  <span class=" -Color -Color-Cyan -C-Cyan">--noversampling_whitelight</span> <span class=" -Color -Color-Cyan -C-Cyan">NOVERSAMPLING_WHITELIGHT</span>
                         Oversampling white light image
-  --atmosphere_transmission {default,none}
+  <span class=" -Color -Color-Cyan -C-Cyan">--atmosphere_transmission</span> <span class=" -Color -Color-Cyan -C-Cyan">{default,none}</span>
                         Atmosphere transmission
-  --bias BIAS           Bias level (ADU)
-  --rnoise RNOISE       Readout noise standard deviation (ADU)
-  --flatpix2pix {default,none}
+  <span class=" -Color -Color-Cyan -C-Cyan">--bias</span> <span class=" -Color -Color-Cyan -C-Cyan">BIAS</span>           Bias level (ADU)
+  <span class=" -Color -Color-Cyan -C-Cyan">--rnoise</span> <span class=" -Color -Color-Cyan -C-Cyan">RNOISE</span>       Readout noise standard deviation (ADU)
+  <span class=" -Color -Color-Cyan -C-Cyan">--flatpix2pix</span> <span class=" -Color -Color-Cyan -C-Cyan">{default,none}</span>
                         Pixel-to-pixel flat field
-  --spectral_blurring_pixel SPECTRAL_BLURRING_PIXEL
+  <span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-Cyan -C-Cyan">SPECTRAL_BLURRING_PIXEL</span>
                         Spectral blurring when converting the original 3D data
                         cube to the original 2D RSS (in pixel units)
-  --seed SEED           Seed for random number generator
-  --noparallel          Do not use parallel processing
-  --prefix_intermediate_FITS PREFIX_INTERMEDIATE_FITS
+  <span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-Cyan -C-Cyan">SEED</span>           Seed for random number generator
+  <span class=" -Color -Color-Cyan -C-Cyan">--noparallel</span>          Do not use parallel processing
+  <span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-Cyan -C-Cyan">PREFIX_INTERMEDIATE_FITS</span>
                         Prefix for intermediate FITS files
-  --stop_after_ifu_3D_method0
+  <span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>
                         Stop after computing ifu_3D_method0 image
-  -v, --verbose         increase program verbosity
-  --plots               Plot intermediate results
-  --echo                Display full command line
-  --version             Display version
+  <span class=" -Color -Color-Cyan -C-Cyan">-v</span>, <span class=" -Color -Color-Cyan -C-Cyan">--verbose</span>         increase program verbosity
+  <span class=" -Color -Color-Cyan -C-Cyan">--plots</span>               Plot intermediate results
+  <span class=" -Color -Color-Cyan -C-Cyan">--echo</span>                Display full command line
+  <span class=" -Color -Color-Cyan -C-Cyan">--version</span>             Display version
 </pre></div>
 </div>
 <p>An additional description of the different arguments is provided below.</p>
