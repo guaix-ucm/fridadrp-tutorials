@@ -1,0 +1,89 @@
+```{code-block}
+:class: my-special-block no-copybutton
+ 
+# HDU 0 in work/test_ifu_3D_method0.fits:
+SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                   16 / array data type                                
+NAXIS   =                    3 / number of array dimensions                     
+NAXIS1  =                   64                                                  
+NAXIS2  =                   60                                                  
+NAXIS3  =                 2048                                                  
+EXTEND  =                    T                                                  
+BSCALE  =                    1                                                  
+BZERO   =                32768                                                  
+COMMENT FITS (Flexible Image Transport System) format is defined in 'Astronomy  
+COMMENT and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H   
+WCSAXES =                    3 / Number of coordinate axes                      
+CRPIX1  =                 32.5 / Pixel coordinate of reference point            
+CRPIX2  =                 30.5 / Pixel coordinate of reference point            
+CRPIX3  =                  1.0 / Pixel coordinate of reference point            
+CD1_1   = -2.7777777777777E-06 / Coordinate transformation matrix element       
+CD2_2   =  2.7777777777778E-06 / Coordinate transformation matrix element       
+CD3_3   =             2.85E-10 / Coordinate transformation matrix element       
+CUNIT1  = 'deg'                / Units of coordinate increment and value        
+CUNIT2  = 'deg'                / Units of coordinate increment and value        
+CUNIT3  = 'm'                  / Units of coordinate increment and value        
+CTYPE1  = 'RA---TAN'           / Right ascension, gnomonic projection           
+CTYPE2  = 'DEC--TAN'           / Declination, gnomonic projection               
+CTYPE3  = 'WAVE'               / Vacuum wavelength (linear)                     
+CRVAL1  =                  0.0 / [deg] Coordinate value at reference point      
+CRVAL2  =                  0.0 / [deg] Coordinate value at reference point      
+CRVAL3  =           1.9344E-06 / [m] Coordinate value at reference point        
+LONPOLE =                180.0 / [deg] Native longitude of celestial pole       
+LATPOLE =                  0.0 / [deg] Native latitude of celestial pole        
+MJDREF  =                  0.0 / [d] MJD of fiducial time                       
+RADESYS = 'ICRS'               / Equatorial coordinate system                   
+OBSERVAT= 'ORM     '           / Name of the observatory (IRAF style)           
+TELESCOP= 'GTC     '           / Telescope name                                 
+ORIGIN  = 'fridadrp-ifu_simulator' / FITS file originator                       
+LATITUDE= '+28:45:43.2'        / Telescope latitude (degrees), +28:45:43.2      
+LONGITUD= '+17:52:39.5'        / Telescope longitude (degrees), +17:52:39.5     
+HEIGHT  =                 2348 / Telescope height above sea level (m)           
+AIRMASS =                  1.0 / Airmass                                        
+IPA     =                  0.0 / Instrument position angle (degrees)            
+PARANGLE=                  0.0 / Parallactic angle (degrees)                    
+INSTRUME= 'FRIDA   '           / Instrument name                                
+OBSMODE = 'IFS     '           / Observation mode                               
+SCALE   = 'FINE    '           / Camera scale                                   
+GRATING = 'MEDIUM-K'           / Grating                                        
+RA      = '00:00:00.000'       / Telescope right ascension (HH:MM:SS)           
+DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)               
+RADEG   =                  0.0 / Telescope right ascension (degrees)            
+DECDEG  =                  0.0 / Telescope declination (degrees)                
+HISTORY -------------------------                                               
+HISTORY Date: 2026-02-11 18:58:58                                               
+HISTORY -------------------------                                               
+HISTORY Node: iblax.fis.ucm.es                                                  
+HISTORY Python: /Users/cardiel/venv_frida/bin/python3.13                        
+HISTORY $ fridadrp-ifu_simulator                                                
+HISTORY (version: 0.1.dev156+gb081f58ec)                                        
+HISTORY --scene scene00.yaml                                                    
+HISTORY --flux_factor 1.0                                                       
+HISTORY --grating medium-K                                                      
+HISTORY --scale fine                                                            
+HISTORY --ra_teles_deg 0.0                                                      
+HISTORY --dec_teles_deg 0.0                                                     
+HISTORY --delta_ra_teles_arcsec 0.0                                             
+HISTORY --delta_dec_teles_arcsec 0.0                                            
+HISTORY --seeing_fwhm_arcsec 0.05                                               
+HISTORY --seeing_psf gaussian                                                   
+HISTORY --instrument_pa_deg 0.0                                                 
+HISTORY --airmass 1.0                                                           
+HISTORY --parallactic_angle_deg 0.0                                             
+HISTORY --noversampling_whitelight 10                                           
+HISTORY --atmosphere_transmission default                                       
+HISTORY --bias 100                                                              
+HISTORY --rnoise 4.0                                                            
+HISTORY --flatpix2pix default                                                   
+HISTORY --spectral_blurring_pixel 1.0                                           
+HISTORY --seed 1234                                                             
+HISTORY --noparallel False                                                      
+HISTORY --prefix_intermediate_FITS test                                         
+HISTORY --stop_after_ifu_3D_method0 False                                       
+HISTORY --plots False                                                           
+HISTORY --log_level INFO                                                        
+HISTORY --output_dir work                                                       
+HISTORY --record True                                                           
+HISTORY --echo False                                                            
+HISTORY --version False                                                         
+```

@@ -1,0 +1,10 @@
+scene_block_name: constant flux
+spectrum:
+  type: constant-flux
+geometry: 
+  type: point-like
+nphotons: 0
+wavelength_sampling: random            # optional: default=random
+apply_seeing: True                     # optional: default=True
+apply_atmosphere_transmission: True    # optional: default=True
+render: True                           # optional: default=True

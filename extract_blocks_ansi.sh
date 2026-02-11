@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Script to extract line ranges from a file and format them as a MyST code block
+# Usage: script.sh input.txt output.txt start1 end1 [start2 end2 ...]
+# Special cases:
+#   - start=0 end=0: inserts ellipsis (...)
+#   - end=-1: extracts from start to end of file
+
 # Check minimum number of arguments
 if [ "$#" -lt 4 ]; then
     echo "Usage: $0 input.txt output.txt start1 end1 [start2 end2 ...]"
@@ -29,6 +35,8 @@ while [ "$#" -ge 2 ]; do
     if [ "$start" -eq 0 ] && [ "$end" -eq 0 ]; then
         echo "..." >> "$output"
         echo "..." >> "$output"
+    elif [ "$end" -eq -1 ]; then
+        sed -n "${start},\$p" "$input" >> "$output"
     else
         sed -n "${start},${end}p" "$input" >> "$output"
     fi
