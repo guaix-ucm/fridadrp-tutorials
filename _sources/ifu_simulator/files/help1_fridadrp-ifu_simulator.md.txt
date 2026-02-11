@@ -23,6 +23,8 @@
                               [[36m--spectral_blurring_pixel[0m [38;5;36mSPECTRAL_BLURRING_PIXEL[0m]
                               [[36m--seed[0m [38;5;36mSEED[0m] [[36m--noparallel[0m]
                               [[36m--prefix_intermediate_FITS[0m [38;5;36mPREFIX_INTERMEDIATE_FITS[0m]
-                              [[36m--stop_after_ifu_3D_method0[0m] [[36m-v[0m] [[36m--plots[0m]
-                              [[36m--echo[0m] [[36m--version[0m]
+                              [[36m--stop_after_ifu_3D_method0[0m] [[36m--plots[0m]
+                              [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
+                              [[36m--output_dir[0m [38;5;36mOUTPUT_DIR[0m] [[36m--record[0m] [[36m--echo[0m]
+                              [[36m--version[0m]
 ```

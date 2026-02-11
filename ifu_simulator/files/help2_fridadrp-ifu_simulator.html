@@ -98,10 +98,12 @@
                               [<span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-C36 -C-C36">SPECTRAL_BLURRING_PIXEL</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--noparallel</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>] [<span class=" -Color -Color-Cyan -C-Cyan">-v</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--plots</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--echo</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--version</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--plots</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--log-level</span> <span class=" -Color -Color-C36 -C-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--output_dir</span> <span class=" -Color -Color-C36 -C-C36">OUTPUT_DIR</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--record</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--echo</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--version</span>]
 
-description: simulator of FRIDA IFU images (0.1.dev153+gea7254566)
+description: simulator of FRIDA IFU images (0.1.dev156+gb081f58ec)
 
 <span class=" -Color -Color-C208 -C-C208">Options:</span>
   <span class=" -Color -Color-Cyan -C-Cyan">-h</span>, <span class=" -Color -Color-Cyan -C-Cyan">--help</span>            show this help message and exit
@@ -145,8 +147,12 @@ description: simulator of FRIDA IFU images (0.1.dev153+gea7254566)
                         Prefix for intermediate FITS files
   <span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>
                         Stop after computing ifu_3D_method0 image
-  <span class=" -Color -Color-Cyan -C-Cyan">-v</span>, <span class=" -Color -Color-Cyan -C-Cyan">--verbose</span>         increase program verbosity
   <span class=" -Color -Color-Cyan -C-Cyan">--plots</span>               Plot intermediate results
+  <span class=" -Color -Color-Cyan -C-Cyan">--log-level</span> <span class=" -Color -Color-C36 -C-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+  <span class=" -Color -Color-Cyan -C-Cyan">--output_dir</span> <span class=" -Color -Color-C36 -C-C36">OUTPUT_DIR</span>
+                        Output directory
+  <span class=" -Color -Color-Cyan -C-Cyan">--record</span>              Record terminal output
   <span class=" -Color -Color-Cyan -C-Cyan">--echo</span>                Display full command line
   <span class=" -Color -Color-Cyan -C-Cyan">--version</span>             Display version
 </pre></div>

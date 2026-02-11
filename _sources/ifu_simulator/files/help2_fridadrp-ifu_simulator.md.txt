@@ -23,10 +23,12 @@
                               [[36m--spectral_blurring_pixel[0m [38;5;36mSPECTRAL_BLURRING_PIXEL[0m]
                               [[36m--seed[0m [38;5;36mSEED[0m] [[36m--noparallel[0m]
                               [[36m--prefix_intermediate_FITS[0m [38;5;36mPREFIX_INTERMEDIATE_FITS[0m]
-                              [[36m--stop_after_ifu_3D_method0[0m] [[36m-v[0m] [[36m--plots[0m]
-                              [[36m--echo[0m] [[36m--version[0m]
+                              [[36m--stop_after_ifu_3D_method0[0m] [[36m--plots[0m]
+                              [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
+                              [[36m--output_dir[0m [38;5;36mOUTPUT_DIR[0m] [[36m--record[0m] [[36m--echo[0m]
+                              [[36m--version[0m]
 
-[39mdescription: simulator of FRIDA IFU images (0.1.dev153+gea7254566)[0m
+[39mdescription: simulator of FRIDA IFU images (0.1.dev156+gb081f58ec)[0m
 
 [38;5;208mOptions:[0m
   [36m-h[0m, [36m--help[0m            [39mshow this help message and exit[0m
@@ -70,8 +72,12 @@
                         [39mPrefix for intermediate FITS files[0m
   [36m--stop_after_ifu_3D_method0[0m
                         [39mStop after computing ifu_3D_method0 image[0m
-  [36m-v[0m, [36m--verbose[0m         [39mincrease program verbosity[0m
   [36m--plots[0m               [39mPlot intermediate results[0m
+  [36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m
+                        [39mSet the logging level[0m
+  [36m--output_dir[0m [38;5;36mOUTPUT_DIR[0m
+                        [39mOutput directory[0m
+  [36m--record[0m              [39mRecord terminal output[0m
   [36m--echo[0m                [39mDisplay full command line[0m
   [36m--version[0m             [39mDisplay version[0m
 ```
