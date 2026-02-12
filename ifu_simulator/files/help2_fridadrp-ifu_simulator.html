@@ -96,7 +96,8 @@
                               [<span class=" -Color -Color-Cyan -C-Cyan">--bias</span> <span class=" -Color -Color-C36 -C-C36">BIAS</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--rnoise</span> <span class=" -Color -Color-C36 -C-C36">RNOISE</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--flatpix2pix</span> <span class=" -Color -Color-C36 -C-C36">{default,none}</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-C36 -C-C36">SPECTRAL_BLURRING_PIXEL</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--noparallel</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--bitpix_detector</span> <span class=" -Color -Color-C36 -C-C36">{-32,16}</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--parallel</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--plots</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--log-level</span> <span class=" -Color -Color-C36 -C-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
@@ -141,8 +142,10 @@ description: simulator of FRIDA IFU images (0.1.dev156+gb081f58ec)
   <span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-C36 -C-C36">SPECTRAL_BLURRING_PIXEL</span>
                         Spectral blurring when converting the original 3D data
                         cube to the original 2D RSS (in pixel units)
+  <span class=" -Color -Color-Cyan -C-Cyan">--bitpix_detector</span> <span class=" -Color -Color-C36 -C-C36">{-32,16}</span>
+                        BITPIX value for the detector output FITS file
   <span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>           Seed for random number generator
-  <span class=" -Color -Color-Cyan -C-Cyan">--noparallel</span>          Do not use parallel processing
+  <span class=" -Color -Color-Cyan -C-Cyan">--parallel</span>            Use parallel processing
   <span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>
                         Prefix for intermediate FITS files
   <span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>
