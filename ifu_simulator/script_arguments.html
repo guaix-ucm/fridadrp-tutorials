@@ -67,14 +67,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#parallactic-angle-deg-float"><code>–parallactic_angle_deg &lt;float&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#noversampling-whitelight-integer"><code>–noversampling_whitelight &lt;integer&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#atmosphere-transmission-default-none"><code>–atmosphere_transmission &lt;[default] | none&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bias-float"><code>–bias &lt;float&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rnoise-float"><code>–rnoise &lt;float&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#flatpix2pix-default-none"><code>–flatpix2pix &lt;[default] | none&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spectral-blurring-pixel-float"><code>–spectral_blurring_pixel &lt;float&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bitpix-detector-16-32"><code>–bitpix_detector &lt;16 | [-32]&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seed-integer"><code>–seed &lt;integer&gt;</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel"><code>–parallel</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#prefix-intermediate-fits-string"><code>–prefix_intermediate_FITS &lt;string&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stop-after-ifu-3d-method0"><code>–stop_after_ifu_3D_method0</code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#verbose"><code>–verbose</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#plots"><code>–plots</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log-level"><code>–log-level</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-dir"><code>–output_dir</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#record"><code>–record</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#echo"><code>–echo</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version"><code>–version</code></a></li>
 </ul>
@@ -311,6 +316,10 @@ probability at the wavelength of each simulated photon is evaluated, and a
 random number between 0 and 1 is generated in each case. If the obtained number
 is greater than the transmission probability, the photon is discarded.</p>
 </section>
+<section id="bias-float">
+<span id="bias"></span><h2><code>–bias &lt;float&gt;</code><a class="headerlink" href="#bias-float" title="Link to this heading"></a></h2>
+<p>Additive constant to be added to the simulated detector image.</p>
+</section>
 <section id="rnoise-float">
 <span id="rnoise"></span><h2><code>–rnoise &lt;float&gt;</code><a class="headerlink" href="#rnoise-float" title="Link to this heading"></a></h2>
 <p>Readout noise (positive number or zero) to be added to the simulated data (in
@@ -332,11 +341,26 @@ converting the original 3D data cube into the original 2D RSS image. The value
 of this parameter provides the standard deviation of the Gaussian distribution.
 By default, <code class="docutils literal notranslate"><span class="pre">spectral_blurring_pixel</span> <span class="pre">=</span> <span class="pre">1.0</span></code>.</p>
 </section>
+<section id="bitpix-detector-16-32">
+<span id="bitpix-detector"></span><h2><code>–bitpix_detector &lt;16 | [-32]&gt;</code><a class="headerlink" href="#bitpix-detector-16-32" title="Link to this heading"></a></h2>
+<p>BITPIX value to be employed to generate the simulated detector image.</p>
+<p>If this parameter is set to 16 and the output array contains negative numbers, they are set to zero. Similarly, numbers above 65535 are clamped to 65535.</p>
+</section>
 <section id="seed-integer">
 <span id="seed"></span><h2><code>–seed &lt;integer&gt;</code><a class="headerlink" href="#seed-integer" title="Link to this heading"></a></h2>
 <p>Seed to initialize the <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html" rel="noreferrer" target="_blank">Numpy Random
 Generator</a>. By
 default is set to a particular integer sequence (<code class="docutils literal notranslate"><span class="pre">1234</span></code>).</p>
+</section>
+<section id="parallel">
+<span id="id1"></span><h2><code>–parallel</code><a class="headerlink" href="#parallel" title="Link to this heading"></a></h2>
+<p>If this option is used, the code executes using <code class="docutils literal notranslate"><span class="pre">joblib.Parallel</span></code>, which
+increases execution speed.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In some cases, we have found problems (incorrect array values) in the resulting
+simulated images when using <code class="docutils literal notranslate"><span class="pre">--parallel</span></code>. Use this option with caution.</p>
+</div>
 </section>
 <section id="prefix-intermediate-fits-string">
 <span id="prefix-intermediate-fits"></span><h2><code>–prefix_intermediate_FITS &lt;string&gt;</code><a class="headerlink" href="#prefix-intermediate-fits-string" title="Link to this heading"></a></h2>
@@ -345,27 +369,35 @@ simulator execution. By default this string is <code class="docutils literal not
 underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> symbol is also added between this prefix and the filename.</p>
 </section>
 <section id="stop-after-ifu-3d-method0">
-<span id="id1"></span><h2><code>–stop_after_ifu_3D_method0</code><a class="headerlink" href="#stop-after-ifu-3d-method0" title="Link to this heading"></a></h2>
+<span id="id2"></span><h2><code>–stop_after_ifu_3D_method0</code><a class="headerlink" href="#stop-after-ifu-3d-method0" title="Link to this heading"></a></h2>
 <p>If this argument is present, the simulator stops just after generating
 the file <code class="docutils literal notranslate"><span class="pre">test_ifu_3D_method0.fits</span></code>. This is useful for debugging
 purposes.</p>
 </section>
-<section id="verbose">
-<span id="id2"></span><h2><code>–verbose</code><a class="headerlink" href="#verbose" title="Link to this heading"></a></h2>
-<p>If this argument is present, additional information is displayed in the
-terminal while executing the code.</p>
-</section>
 <section id="plots">
-<span id="id3"></span><h2><code>–plots</code><a class="headerlink" href="#plots" title="Link to this heading"></a></h2>
-<p>When this argument is present, intermediate plots are also displayed.</p>
+<span id="verbose"></span><span id="id3"></span><h2><code>–plots</code><a class="headerlink" href="#plots" title="Link to this heading"></a></h2>
+<p>If this argument is present, some intermediate plots are displayed.</p>
+</section>
+<section id="log-level">
+<span id="id4"></span><h2><code>–log-level</code><a class="headerlink" href="#log-level" title="Link to this heading"></a></h2>
+<p>Logging level. Valid options are DEBUG, INFO, WARNING, ERROR and CRITICAL.</p>
+</section>
+<section id="output-dir">
+<span id="id5"></span><h2><code>–output_dir</code><a class="headerlink" href="#output-dir" title="Link to this heading"></a></h2>
+<p>Output directory to store resulting simulated files. Default is <code class="docutils literal notranslate"><span class="pre">./</span></code>.</p>
+</section>
+<section id="record">
+<h2><code>–record</code><a class="headerlink" href="#record" title="Link to this heading"></a></h2>
+<p>If this argument is present, the terminal output is stored in a file called
+<code class="docutils literal notranslate"><span class="pre">terminal_output.txt</span></code>.</p>
 </section>
 <section id="echo">
-<span id="id4"></span><h2><code>–echo</code><a class="headerlink" href="#echo" title="Link to this heading"></a></h2>
+<span id="id6"></span><h2><code>–echo</code><a class="headerlink" href="#echo" title="Link to this heading"></a></h2>
 <p>Display in the terminal the command line employed to invoke the execution
 of the simulator.</p>
 </section>
 <section id="version">
-<span id="id5"></span><h2><code>–version</code><a class="headerlink" href="#version" title="Link to this heading"></a></h2>
+<span id="id7"></span><h2><code>–version</code><a class="headerlink" href="#version" title="Link to this heading"></a></h2>
 <p>Display the code version number.</p>
 </section>
 </section>
