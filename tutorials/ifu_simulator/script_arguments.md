@@ -149,6 +149,12 @@ probability at the wavelength of each simulated photon is evaluated, and a
 random number between 0 and 1 is generated in each case. If the obtained number
 is greater than the transmission probability, the photon is discarded.
 
+(--bias)=
+
+## <code>--bias &lt;float&gt;</code>
+
+Additive constant to be added to the simulated detector image.
+
 (--rnoise)=
 
 ## <code>--rnoise &lt;float&gt;</code>
@@ -176,6 +182,15 @@ converting the original 3D data cube into the original 2D RSS image. The value
 of this parameter provides the standard deviation of the Gaussian distribution.
 By default, `spectral_blurring_pixel = 1.0`.
 
+
+(--bitpix_detector)=
+
+## <code>--bitpix_detector &lt;16 | [-32]&gt;</code>
+
+BITPIX value to be employed to generate the simulated detector image.
+
+If this parameter is set to 16 and the output array contains negative numbers, they are set to zero. Similarly, numbers above 65535 are clamped to 65535.
+
 (--seed)=
 
 ## <code>--seed &lt;integer&gt;</code>
@@ -183,6 +198,18 @@ By default, `spectral_blurring_pixel = 1.0`.
 Seed to initialize the [Numpy Random
 Generator](https://numpy.org/doc/stable/reference/random/generator.html). By
 default is set to a particular integer sequence (`1234`).
+
+(--parallel)=
+
+## <code>--parallel</code>
+
+If this option is used, the code executes using `joblib.Parallel`, which
+increases execution speed.
+
+```{warning}
+In some cases, we have found problems (incorrect array values) in the resulting
+simulated images when using `--parallel`. Use this option with caution.
+```
 
 (--prefix_intermediate_FITS)=
 
@@ -202,16 +229,28 @@ purposes.
 
 (--verbose)=
 
-## <code>--verbose</code>
-
-If this argument is present, additional information is displayed in the
-terminal while executing the code.
-
 (--plots)=
 
 ## <code>--plots</code>
 
-When this argument is present, intermediate plots are also displayed.
+If this argument is present, some intermediate plots are displayed.
+
+(--log-level)=
+
+## <code>--log-level</code>
+
+Logging level. Valid options are DEBUG, INFO, WARNING, ERROR and CRITICAL.
+
+(--output_dir)=
+
+## <code>--output_dir</code>
+
+Output directory to store resulting simulated files. Default is `./`.
+
+## <code>--record</code>
+
+If this argument is present, the terminal output is stored in a file called
+`terminal_output.txt`.
 
 (--echo)=
 
