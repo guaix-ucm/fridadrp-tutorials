@@ -1,10 +1,9 @@
 #!/bin/bash
-# Replace sceneXX by the corresponding number
 
 # Store the command in a variable using a here-document
 read -r -d '' COMMAND << 'EOF'
 fridadrp-ifu_simulator \
-  --scene scene01.yaml \
+  --scene scene02.yaml \
   --flux_factor 10 \
   --grating medium-K \
   --scale fine \
@@ -60,4 +59,4 @@ numina-extract_2d_slice_from_3d_cube \
   work/test_ifu_3D_method1.fits --png ${output}
 
 # do not use .md as extension
-sed 's/sceneXX/scene01/g' ../common_example_block.txt > example_results.txt
+sed 's/sceneXX/scene02/g' ../common_example_block.txt > example_results.txt

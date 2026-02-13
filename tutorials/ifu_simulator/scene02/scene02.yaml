@@ -8,8 +8,11 @@ geometry:
   position_angle_deg: 0.0
   delta_ra_arcsec: 0.0
   delta_dec_arcsec: 0.0
-nphotons: 1E5
+nphotons: 1E4
+wavelength_sampling: random
 apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
 ---
 scene_block_name: Gaussian top left
 spectrum:
@@ -21,8 +24,11 @@ geometry:
   position_angle_deg: 0.0
   delta_ra_arcsec: 0.18
   delta_dec_arcsec: 0.15
-nphotons: 1E6
+nphotons: 1E5
+wavelength_sampling: random
 apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
 ---
 scene_block_name: Gaussian bottom left
 spectrum:
@@ -34,8 +40,11 @@ geometry:
   position_angle_deg: 0.0
   delta_ra_arcsec: 0.18
   delta_dec_arcsec: -0.15
-nphotons: 5E5
+nphotons: 5E4
+wavelength_sampling: random
 apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
 ---
 scene_block_name: Gaussian top right
 spectrum:
@@ -47,9 +56,11 @@ geometry:
   position_angle_deg: 0.0
   delta_ra_arcsec: -0.18
   delta_dec_arcsec: 0.15
-nphotons: 3E5
+nphotons: 3E4
 wavelength_sampling: random
 apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
 ---
 scene_block_name: Gaussian bottom right
 spectrum:
@@ -61,5 +72,8 @@ geometry:
   position_angle_deg: 45
   delta_ra_arcsec: -0.18
   delta_dec_arcsec: -0.15
-nphotons: 1E6
+nphotons: 1E5
+wavelength_sampling: random
 apply_seeing: False
+apply_atmosphere_transmission: False
+render: True

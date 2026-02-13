@@ -14,7 +14,7 @@ through 15 in the IFU field of view. Here we are using the file
 :language: yaml
 ```
 
-```{include} common_example_block.md
+```{include} scene01/example_results.txt
 ```
 
 ## Example 2: collection of Gaussian objects
@@ -26,41 +26,7 @@ Here we are using the file {download}`scene02.yaml
 :language: yaml
 ```
 
-Execute `fridadrp-ifu_simulator`:
-
-```{code-block} console
-(venv_frida) $ fridadrp-ifu_simulator \
-  --scene scene02.yaml \
-  --grating medium-K \
-  --scale fine \
-  --flatpix2pix none
-```
-
-```{code-block} console
-:class: my-special-block no-copybutton
-
-Welcome to fridadrp-ifu_simulator
-version 0.1.dev98+g0c982ee
-
-* Processing: Gaussian center
-* Processing: Gaussian top left
-* Processing: Gaussian bottom left
-* Processing: Gaussian top right
-* Processing: Gaussian bottom right
-Saving file: test_ifu_white2D_method0_os10.fits
-Saving file: test_ifu_white2D_method0_os1.fits
-Saving file: test_ifu_3D_method0.fits
-Saving file: test_rss_2D_method0.fits
-Saving file: test_detector_2D_method0.fits
-Saving file: test_rss_2D_method1.fits
-Saving file: test_ifu_3D_method1.fits
-```
-
-```{image} scene02/Figure_1.png
-:width: 49%
-```
-```{image} scene02/Figure_2.png
-:width: 49%
+```{include} scene02/example_results.txt
 ```
 
 ## Example 3: M51-like galaxy
