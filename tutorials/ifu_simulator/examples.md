@@ -44,39 +44,6 @@ Online Digitized Sky Survey](https://archive.eso.org/dss/dss). The
 corresponding file is
 [m51_dss1.fits](https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits>).
 
-Execute `fridadrp-ifu_simulator`:
-
-```{code-block} console
-(venv_frida) $ fridadrp-ifu_simulator \
-  --scene scene03.yaml \
-  --grating medium-K \
-  --scale fine \
-  --seeing_fwhm_arcsec 0.05 \
-  --flatpix2pix none
-```
-
-```{code-block}
-:class: my-special-block no-copybutton
-
-Welcome to fridadrp-ifu_simulator
-version 0.1.dev98+g0c982ee
-
-* Processing: M51 DSS1
-* Processing: skycalc radiance
-Ignoring wave_unit: m (assuming nm)
-Saving file: test_ifu_white2D_method0_os10.fits
-Saving file: test_ifu_white2D_method0_os1.fits
-Saving file: test_ifu_3D_method0.fits
-Saving file: test_rss_2D_method0.fits
-Saving file: test_detector_2D_method0.fits
-Saving file: test_rss_2D_method1.fits
-Saving file: test_ifu_3D_method1.fits
-```
-
-```{image} scene03/Figure_1.png
-:width: 49%
-```
-```{image} scene03/Figure_2.png
-:width: 49%
+```{include} scene03/example_results.txt
 ```
 

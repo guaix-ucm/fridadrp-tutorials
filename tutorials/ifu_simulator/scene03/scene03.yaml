@@ -6,13 +6,16 @@ geometry:
   filename: m51_dss1.fits
   diagonal_fov_arcsec: 0.80
   background_to_subtract: mode
-nphotons: 1E7
+nphotons: 1E6
+apply_atmosphere_transmission: True
+render: True
 ---
 scene_block_name: skycalc radiance
 spectrum:
   type: skycalc-radiance
 geometry:
   type: flatfield
-nphotons: 1E7
+nphotons: 1E6
 apply_seeing: False
 apply_atmosphere_transmission: False
+render: True
