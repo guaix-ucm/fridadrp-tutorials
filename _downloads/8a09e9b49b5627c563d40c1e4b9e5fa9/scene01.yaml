@@ -1,65 +1,10 @@
-scene_block_name: Gaussian center
+scene_block_name: constant flux
 spectrum:
   type: constant-flux
 geometry: 
-  type: gaussian
-  fwhm_ra_arcsec: 0.04
-  fwhm_dec_arcsec: 0.04
-  position_angle_deg: 0.0
-  delta_ra_arcsec: 0.0
-  delta_dec_arcsec: 0.0
-nphotons: 1E5
-apply_seeing: False
----
-scene_block_name: Gaussian top left
-spectrum:
-  type: constant-flux
-geometry: 
-  type: gaussian
-  fwhm_ra_arcsec: 0.08
-  fwhm_dec_arcsec: 0.16
-  position_angle_deg: 0.0
-  delta_ra_arcsec: 0.18
-  delta_dec_arcsec: 0.15
-nphotons: 1E6
-apply_seeing: False
----
-scene_block_name: Gaussian bottom left
-spectrum:
-  type: constant-flux
-geometry: 
-  type: gaussian
-  fwhm_ra_arcsec: 0.08
-  fwhm_dec_arcsec: 0.08
-  position_angle_deg: 0.0
-  delta_ra_arcsec: 0.18
-  delta_dec_arcsec: -0.15
-nphotons: 5E5
-apply_seeing: False
----
-scene_block_name: Gaussian top right
-spectrum:
-  type: constant-flux
-geometry: 
-  type: gaussian
-  fwhm_ra_arcsec: 0.04
-  fwhm_dec_arcsec: 0.08
-  position_angle_deg: 0.0
-  delta_ra_arcsec: -0.18
-  delta_dec_arcsec: 0.15
-nphotons: 3E5
-wavelength_sampling: random
-apply_seeing: False
----
-scene_block_name: Gaussian bottom right
-spectrum:
-  type: constant-flux
-geometry: 
-  type: gaussian
-  fwhm_ra_arcsec: 0.32
-  fwhm_dec_arcsec: 0.04
-  position_angle_deg: 45
-  delta_ra_arcsec: -0.18
-  delta_dec_arcsec: -0.15
-nphotons: 1E6
-apply_seeing: False
+  type: slices 1-15
+nphotons: 1.5E7
+wavelength_sampling: random            # optional: default=random
+apply_seeing: False                    # optional: default=True
+apply_atmosphere_transmission: False   # optional: default=True
+render: True                           # optional: default=True

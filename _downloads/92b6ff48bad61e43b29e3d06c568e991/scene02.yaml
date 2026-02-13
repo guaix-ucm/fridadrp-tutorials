@@ -1,18 +1,79 @@
-scene_block_name: M51 DSS1
+scene_block_name: Gaussian center
 spectrum:
   type: constant-flux
 geometry: 
-  type: from-FITS-image
-  filename: m51_dss1.fits
-  diagonal_fov_arcsec: 0.80
-  background_to_subtract: mode
-nphotons: 1E7
----
-scene_block_name: skycalc radiance
-spectrum:
-  type: skycalc-radiance
-geometry:
-  type: flatfield
-nphotons: 1E7
+  type: gaussian
+  fwhm_ra_arcsec: 0.04
+  fwhm_dec_arcsec: 0.04
+  position_angle_deg: 0.0
+  delta_ra_arcsec: 0.0
+  delta_dec_arcsec: 0.0
+nphotons: 1E4
+wavelength_sampling: random
 apply_seeing: False
 apply_atmosphere_transmission: False
+render: True
+---
+scene_block_name: Gaussian top left
+spectrum:
+  type: constant-flux
+geometry: 
+  type: gaussian
+  fwhm_ra_arcsec: 0.08
+  fwhm_dec_arcsec: 0.16
+  position_angle_deg: 0.0
+  delta_ra_arcsec: 0.18
+  delta_dec_arcsec: 0.15
+nphotons: 1E5
+wavelength_sampling: random
+apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
+---
+scene_block_name: Gaussian bottom left
+spectrum:
+  type: constant-flux
+geometry: 
+  type: gaussian
+  fwhm_ra_arcsec: 0.08
+  fwhm_dec_arcsec: 0.08
+  position_angle_deg: 0.0
+  delta_ra_arcsec: 0.18
+  delta_dec_arcsec: -0.15
+nphotons: 5E4
+wavelength_sampling: random
+apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
+---
+scene_block_name: Gaussian top right
+spectrum:
+  type: constant-flux
+geometry: 
+  type: gaussian
+  fwhm_ra_arcsec: 0.04
+  fwhm_dec_arcsec: 0.08
+  position_angle_deg: 0.0
+  delta_ra_arcsec: -0.18
+  delta_dec_arcsec: 0.15
+nphotons: 3E4
+wavelength_sampling: random
+apply_seeing: False
+apply_atmosphere_transmission: False
+render: True
+---
+scene_block_name: Gaussian bottom right
+spectrum:
+  type: constant-flux
+geometry: 
+  type: gaussian
+  fwhm_ra_arcsec: 0.32
+  fwhm_dec_arcsec: 0.04
+  position_angle_deg: 45
+  delta_ra_arcsec: -0.18
+  delta_dec_arcsec: -0.15
+nphotons: 1E5
+wavelength_sampling: random
+apply_seeing: False
+apply_atmosphere_transmission: False
+render: True

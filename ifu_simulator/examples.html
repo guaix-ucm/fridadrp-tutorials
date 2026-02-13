@@ -57,8 +57,9 @@
 <li class="toctree-l2"><a class="reference internal" href="script_arguments.html">Script arguments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene_yaml.html">The scene YAML file</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Some scene examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-1-collection-of-gaussian-objects">Example 1: collection of Gaussian objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example-2-m51-like-galaxy">Example 2: M51-like galaxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-1-selected-number-of-slices">Example 1: selected number of slices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-2-collection-of-gaussian-objects">Example 2: collection of Gaussian objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-3-m51-like-galaxy">Example 3: M51-like galaxy</a></li>
 </ul>
 </li>
 </ul>
@@ -96,9 +97,98 @@
 <h1>Some scene examples<a class="headerlink" href="#some-scene-examples" title="Link to this heading"></a></h1>
 <p>Below are some examples of ‘scene’ files as well as the resulting simulated
 images.</p>
-<section id="example-1-collection-of-gaussian-objects">
-<h2>Example 1: collection of Gaussian objects<a class="headerlink" href="#example-1-collection-of-gaussian-objects" title="Link to this heading"></a></h2>
-<p>Here we are using the file <a class="reference download internal" download="" href="../_downloads/8a09e9b49b5627c563d40c1e4b9e5fa9/scene01.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene01.yaml</span></code></a>.</p>
+<section id="example-1-selected-number-of-slices">
+<h2>Example 1: selected number of slices<a class="headerlink" href="#example-1-selected-number-of-slices" title="Link to this heading"></a></h2>
+<p>Let’s start with a simple example, simulating a flat illumination of slices 1
+through 15 in the IFU field of view. Here we are using the file
+<a class="reference download internal" download="" href="../_downloads/8a09e9b49b5627c563d40c1e4b9e5fa9/scene01.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene01.yaml</span></code></a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant flux</span>
+<span class="nt">spectrum</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
+<span class="nt">geometry</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slices 1-15</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.5E7</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span><span class="w">            </span><span class="c1"># optional: default=random</span>
+<span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w">                    </span><span class="c1"># optional: default=True</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w">   </span><span class="c1"># optional: default=True</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">                           </span><span class="c1"># optional: default=True</span>
+</pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>scene01.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flux_factor<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--grating<span class="w"> </span>medium-K<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scale<span class="w"> </span>fine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bias<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rnoise<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flatpix2pix<span class="w"> </span>none<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="w"> </span>work<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--record
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta">Welcome to fridadrp-ifu_simulator</span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ───────────────────────</span>
+Using fridadrp.tools.frida_ifu_simulator version <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">0.1</span>.dev156+gb081f58ec          
+Output directory: work                                                          
+Scene file: scene01.yaml                                                        
+<span class=" -Color -Color-Green -C-Green">* Processing: constant flux</span>                                                     
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">150000000</span>                     
+The maximum value in test_ifu_white2D_method0_os1.fits is greater than <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">65535</span>.   
+Saving the image using float32 to avoid saturation.                             
+Saving file: test_ifu_white2D_method0_os1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                     
+Saving file: test_ifu_white2D_method0_os10.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                     
+Saving file: test_ifu_3D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
+.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
+Saving file: test_rss_2D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
+Saving file: test_detector_2D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                         
+.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
+Saving file: test_rss_2D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
+Saving file: test_ifu_3D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
+Total time elapsed: <span class=" -Color -Color-Bold -Color-Bold-BrightGreen -C-Bold -C-BrightGreen">0:01:18</span>.<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">243415</span>                                              
+<span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta"> Goodbye! </span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_ifu_white2D_method0_os1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_ifu_white2D_method0_os10.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os1.png"><img alt="../_images/test_ifu_white2D_method0_os1.png" src="../_images/test_ifu_white2D_method0_os1.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os10.png"><img alt="../_images/test_ifu_white2D_method0_os10.png" src="../_images/test_ifu_white2D_method0_os10.png" style="width: 49%;" />
+</a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_rss_2D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_detector_2D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_rss_2D_method1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method0.png"><img alt="../_images/test_rss_2D_method0.png" src="../_images/test_rss_2D_method0.png" style="width: 32%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_detector_2D_method0.png"><img alt="../_images/test_detector_2D_method0.png" src="../_images/test_detector_2D_method0.png" style="width: 32%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method1.png"><img alt="../_images/test_rss_2D_method1.png" src="../_images/test_rss_2D_method1.png" style="width: 32%;" />
+</a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>work/test_ifu_3D_method0.fits
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>work/test_ifu_3D_method1.fits
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/projected_3D_method0.png"><img alt="../_images/projected_3D_method0.png" src="../_images/projected_3D_method0.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/projected_3D_method1.png"><img alt="../_images/projected_3D_method1.png" src="../_images/projected_3D_method1.png" style="width: 49%;" />
+</a>
+</section>
+<section id="example-2-collection-of-gaussian-objects">
+<h2>Example 2: collection of Gaussian objects<a class="headerlink" href="#example-2-collection-of-gaussian-objects" title="Link to this heading"></a></h2>
+<p>Here we are using the file <a class="reference download internal" download="" href="../_downloads/92b6ff48bad61e43b29e3d06c568e991/scene02.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene02.yaml</span></code></a>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian center</span>
 <span class="nt">spectrum</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
@@ -109,8 +199,11 @@ images.</p>
 <span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
 <span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
 <span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E5</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E4</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nn">---</span>
 <span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian top left</span>
 <span class="nt">spectrum</span><span class="p">:</span>
@@ -122,8 +215,11 @@ images.</p>
 <span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
 <span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.18</span>
 <span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E6</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E5</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nn">---</span>
 <span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian bottom left</span>
 <span class="nt">spectrum</span><span class="p">:</span>
@@ -135,8 +231,11 @@ images.</p>
 <span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
 <span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.18</span>
 <span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.15</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5E5</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5E4</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nn">---</span>
 <span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian top right</span>
 <span class="nt">spectrum</span><span class="p">:</span>
@@ -148,9 +247,11 @@ images.</p>
 <span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
 <span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.18</span>
 <span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3E5</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3E4</span>
 <span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nn">---</span>
 <span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaussian bottom right</span>
 <span class="nt">spectrum</span><span class="p">:</span>
@@ -162,43 +263,94 @@ images.</p>
 <span class="w">  </span><span class="nt">position_angle_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45</span>
 <span class="w">  </span><span class="nt">delta_ra_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.18</span>
 <span class="w">  </span><span class="nt">delta_dec_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.15</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E6</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E5</span>
+<span class="nt">wavelength_sampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">random</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 </pre></div>
 </div>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--scene<span class="w"> </span>scene01.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>scene02.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flux_factor<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--grating<span class="w"> </span>medium-K<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--scale<span class="w"> </span>fine<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--flatpix2pix<span class="w"> </span>none
+<span class="w">  </span>--bias<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rnoise<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flatpix2pix<span class="w"> </span>none<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="w"> </span>work<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--record
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Welcome to fridadrp-ifu_simulator</span>
-<span class="go">version 0.1.dev98+g0c982ee</span>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta">Welcome to fridadrp-ifu_simulator</span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ───────────────────────</span>
+Using fridadrp.tools.frida_ifu_simulator version <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">0.1</span>.dev156+gb081f58ec          
+Output directory: work                                                          
+Scene file: scene02.yaml                                                        
+<span class=" -Color -Color-Green -C-Green">* Processing: Gaussian center</span>                                                   
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">100000</span>                        
+<span class=" -Color -Color-Green -C-Green">* Processing: Gaussian top left</span>                                                 
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">1000000</span>                       
+<span class=" -Color -Color-Green -C-Green">* Processing: Gaussian bottom left</span>                                              
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">500000</span>                        
+<span class=" -Color -Color-Green -C-Green">* Processing: Gaussian top right</span>                                                
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">300000</span>                        
+<span class=" -Color -Color-Green -C-Green">* Processing: Gaussian bottom right</span>                                             
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">1000000</span>                       
+Saving file: test_ifu_white2D_method0_os1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                      
+Saving file: test_ifu_white2D_method0_os10.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                     
+Saving file: test_ifu_3D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
+.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
+Saving file: test_rss_2D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
+Saving file: test_detector_2D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                         
+.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
+Saving file: test_rss_2D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
+Saving file: test_ifu_3D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
+Total time elapsed: <span class=" -Color -Color-Bold -Color-Bold-BrightGreen -C-Bold -C-BrightGreen">0:00:04</span>.<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">291180</span>                                              
+<span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta"> Goodbye! </span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_ifu_white2D_method0_os1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
 
-<span class="go">* Processing: Gaussian center</span>
-<span class="go">* Processing: Gaussian top left</span>
-<span class="go">* Processing: Gaussian bottom left</span>
-<span class="go">* Processing: Gaussian top right</span>
-<span class="go">* Processing: Gaussian bottom right</span>
-<span class="go">Saving file: test_ifu_white2D_method0_os10.fits</span>
-<span class="go">Saving file: test_ifu_white2D_method0_os1.fits</span>
-<span class="go">Saving file: test_ifu_3D_method0.fits</span>
-<span class="go">Saving file: test_rss_2D_method0.fits</span>
-<span class="go">Saving file: test_detector_2D_method0.fits</span>
-<span class="go">Saving file: test_rss_2D_method1.fits</span>
-<span class="go">Saving file: test_ifu_3D_method1.fits</span>
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_ifu_white2D_method0_os10.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/Figure_1.png"><img alt="../_images/Figure_1.png" src="../_images/Figure_1.png" style="width: 49%;" />
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os11.png"><img alt="../_images/test_ifu_white2D_method0_os11.png" src="../_images/test_ifu_white2D_method0_os11.png" style="width: 49%;" />
 </a>
-<a class="reference internal image-reference" href="../_images/Figure_2.png"><img alt="../_images/Figure_2.png" src="../_images/Figure_2.png" style="width: 49%;" />
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os101.png"><img alt="../_images/test_ifu_white2D_method0_os101.png" src="../_images/test_ifu_white2D_method0_os101.png" style="width: 49%;" />
+</a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_rss_2D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_detector_2D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_rss_2D_method1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method01.png"><img alt="../_images/test_rss_2D_method01.png" src="../_images/test_rss_2D_method01.png" style="width: 32%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_detector_2D_method01.png"><img alt="../_images/test_detector_2D_method01.png" src="../_images/test_detector_2D_method01.png" style="width: 32%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method11.png"><img alt="../_images/test_rss_2D_method11.png" src="../_images/test_rss_2D_method11.png" style="width: 32%;" />
+</a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>work/test_ifu_3D_method0.fits
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>work/test_ifu_3D_method1.fits
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/projected_3D_method01.png"><img alt="../_images/projected_3D_method01.png" src="../_images/projected_3D_method01.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/projected_3D_method11.png"><img alt="../_images/projected_3D_method11.png" src="../_images/projected_3D_method11.png" style="width: 49%;" />
 </a>
 </section>
-<section id="example-2-m51-like-galaxy">
-<h2>Example 2: M51-like galaxy<a class="headerlink" href="#example-2-m51-like-galaxy" title="Link to this heading"></a></h2>
-<p>Here we are using the file <a class="reference download internal" download="" href="../_downloads/92b6ff48bad61e43b29e3d06c568e991/scene02.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene02.yaml</span></code></a>.</p>
+<section id="example-3-m51-like-galaxy">
+<h2>Example 3: M51-like galaxy<a class="headerlink" href="#example-3-m51-like-galaxy" title="Link to this heading"></a></h2>
+<p>Here we are using the file <a class="reference download internal" download="" href="../_downloads/3328f3a8b6c91f1e9c4a87192d748944/scene03.yaml"><code class="xref download docutils literal notranslate"><span class="pre">scene03.yaml</span></code></a>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">M51 DSS1</span>
 <span class="nt">spectrum</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">constant-flux</span>
@@ -207,16 +359,19 @@ images.</p>
 <span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">m51_dss1.fits</span>
 <span class="w">  </span><span class="nt">diagonal_fov_arcsec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.80</span>
 <span class="w">  </span><span class="nt">background_to_subtract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mode</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E7</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E6</span>
+<span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nn">---</span>
 <span class="nt">scene_block_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skycalc radiance</span>
 <span class="nt">spectrum</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skycalc-radiance</span>
 <span class="nt">geometry</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flatfield</span>
-<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E7</span>
+<span class="nt">nphotons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1E6</span>
 <span class="nt">apply_seeing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
 <span class="nt">apply_atmosphere_transmission</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 </pre></div>
 </div>
 <p>We aim to simulate a galaxy resembling the morphology of Messier 51. To achieve
@@ -226,31 +381,80 @@ corresponding file is
 <a class="reference external" href="https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits%3E" rel="noreferrer" target="_blank">m51_dss1.fits</a>.</p>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">fridadrp-ifu_simulator</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--scene<span class="w"> </span>scene02.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scene<span class="w"> </span>scene03.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flux_factor<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--grating<span class="w"> </span>medium-K<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--scale<span class="w"> </span>fine<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--seeing_fwhm_arcsec<span class="w"> </span><span class="m">0</span>.05<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--flatpix2pix<span class="w"> </span>none
+<span class="w">  </span>--bias<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rnoise<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flatpix2pix<span class="w"> </span>none<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="w"> </span>work<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--record
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Welcome</span> <span class="n">to</span> <span class="n">fridadrp</span><span class="o">-</span><span class="n">ifu_simulator</span>
-<span class="n">version</span> <span class="mf">0.1</span><span class="o">.</span><span class="n">dev98</span><span class="o">+</span><span class="n">g0c982ee</span>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta">Welcome to fridadrp-ifu_simulator</span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ───────────────────────</span>
+Using fridadrp.tools.frida_ifu_simulator version <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">0.1</span>.dev156+gb081f58ec          
+Output directory: work                                                          
+Scene file: scene03.yaml                                                        
+<span class=" -Color -Color-Green -C-Green">* Processing: M51 DSS1</span>                                                          
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: asumming scene_block</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">[</span><span class=" -Color -Color-Green -C-Green">&#39;wavelength_sampling&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">]</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-Green -C-Green">&#39;random&#39;</span>                   
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: asumming scene_block</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">[</span><span class=" -Color -Color-Green -C-Green">&#39;apply_seeing&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">]</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-BrightGreen -C-BrightGreen">True</span>                              
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">1000000</span>                       
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: </span><span class=" -Color -Color-Yellow -C-Yellow">apply_seeing</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-BrightGreen -C-BrightGreen">True</span><span class=" -Color -Color-Cyan -C-Cyan"> when </span><span class=" -Color -Color-Yellow -C-Yellow">seeing_fwhm_arcsec</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">&lt;</span><span class=" -Color -Color-Bold -Color-Bold-BrightMagenta -C-Bold -C-BrightMagenta">Quantity</span> <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">0</span>. arcsec<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">&gt;</span>         
+Seeing effect will not be applied!                                              
+<span class=" -Color -Color-Green -C-Green">* Processing: skycalc radiance</span>                                                  
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: asumming scene_block</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">[</span><span class=" -Color -Color-Green -C-Green">&#39;wavelength_sampling&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">]</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-Green -C-Green">&#39;random&#39;</span>                   
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">1000000</span>                       
+Ignoring wave_unit: m <span class=" -Color -Color-Bold -C-Bold">(</span>assuming nm<span class=" -Color -Color-Bold -C-Bold">)</span>                                             
+Saving file: test_ifu_white2D_method0_os1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                      
+Saving file: test_ifu_white2D_method0_os10.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                     
+Saving file: test_ifu_3D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
+.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
+Saving file: test_rss_2D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
+Saving file: test_detector_2D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                         
+.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
+Saving file: test_rss_2D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
+Saving file: test_ifu_3D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
+Total time elapsed: <span class=" -Color -Color-Bold -Color-Bold-BrightGreen -C-Bold -C-BrightGreen">0:00:05</span>.<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">176177</span>                                              
+<span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta"> Goodbye! </span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_ifu_white2D_method0_os1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
 
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">M51</span> <span class="n">DSS1</span>
-<span class="o">*</span> <span class="n">Processing</span><span class="p">:</span> <span class="n">skycalc</span> <span class="n">radiance</span>
-<span class="n">Ignoring</span> <span class="n">wave_unit</span><span class="p">:</span> <span class="n">m</span> <span class="p">(</span><span class="n">assuming</span> <span class="n">nm</span><span class="p">)</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_white2D_method0_os10</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_white2D_method0_os1</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_rss_2D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_detector_2D_method0</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_rss_2D_method1</span><span class="o">.</span><span class="n">fits</span>
-<span class="n">Saving</span> <span class="n">file</span><span class="p">:</span> <span class="n">test_ifu_3D_method1</span><span class="o">.</span><span class="n">fits</span>
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_ifu_white2D_method0_os10.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/Figure_11.png"><img alt="../_images/Figure_11.png" src="../_images/Figure_11.png" style="width: 49%;" />
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os12.png"><img alt="../_images/test_ifu_white2D_method0_os12.png" src="../_images/test_ifu_white2D_method0_os12.png" style="width: 49%;" />
 </a>
-<a class="reference internal image-reference" href="../_images/Figure_21.png"><img alt="../_images/Figure_21.png" src="../_images/Figure_21.png" style="width: 49%;" />
+<a class="reference internal image-reference" href="../_images/test_ifu_white2D_method0_os102.png"><img alt="../_images/test_ifu_white2D_method0_os102.png" src="../_images/test_ifu_white2D_method0_os102.png" style="width: 49%;" />
+</a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_rss_2D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_detector_2D_method0.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>work/test_rss_2D_method1.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span>--z1z2<span class="w"> </span>minmax<span class="w"> </span>--aspect<span class="w"> </span>equal
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method02.png"><img alt="../_images/test_rss_2D_method02.png" src="../_images/test_rss_2D_method02.png" style="width: 32%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_detector_2D_method02.png"><img alt="../_images/test_detector_2D_method02.png" src="../_images/test_detector_2D_method02.png" style="width: 32%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/test_rss_2D_method12.png"><img alt="../_images/test_rss_2D_method12.png" src="../_images/test_rss_2D_method12.png" style="width: 32%;" />
+</a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>work/test_ifu_3D_method0.fits
+
+<span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-extract_2d_slice_from_3d_cube<span class="w"> </span>work/test_ifu_3D_method1.fits
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/projected_3D_method02.png"><img alt="../_images/projected_3D_method02.png" src="../_images/projected_3D_method02.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/projected_3D_method12.png"><img alt="../_images/projected_3D_method12.png" src="../_images/projected_3D_method12.png" style="width: 49%;" />
 </a>
 </section>
 </section>

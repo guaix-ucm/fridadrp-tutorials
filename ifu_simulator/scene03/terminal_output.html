@@ -69,7 +69,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/ifu_simulator/scene00/terminal_output.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/ifu_simulator/scene03/terminal_output.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -80,9 +80,17 @@
   <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta">Welcome to fridadrp-ifu_simulator</span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ───────────────────────</span>
 Using fridadrp.tools.frida_ifu_simulator version <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">0.1</span>.dev156+gb081f58ec          
 Output directory: work                                                          
-Scene file: scene00.yaml                                                        
-<span class=" -Color -Color-Green -C-Green">* Processing: constant flux</span>                                                     
-Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">2000000</span>                       
+Scene file: scene03.yaml                                                        
+<span class=" -Color -Color-Green -C-Green">* Processing: M51 DSS1</span>                                                          
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: asumming scene_block</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">[</span><span class=" -Color -Color-Green -C-Green">&#39;wavelength_sampling&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">]</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-Green -C-Green">&#39;random&#39;</span>                   
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: asumming scene_block</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">[</span><span class=" -Color -Color-Green -C-Green">&#39;apply_seeing&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">]</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-BrightGreen -C-BrightGreen">True</span>                              
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">1000000</span>                       
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: </span><span class=" -Color -Color-Yellow -C-Yellow">apply_seeing</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-BrightGreen -C-BrightGreen">True</span><span class=" -Color -Color-Cyan -C-Cyan"> when </span><span class=" -Color -Color-Yellow -C-Yellow">seeing_fwhm_arcsec</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">&lt;</span><span class=" -Color -Color-Bold -Color-Bold-BrightMagenta -C-Bold -C-BrightMagenta">Quantity</span> <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">0</span>. arcsec<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">&gt;</span>         
+Seeing effect will not be applied!                                              
+<span class=" -Color -Color-Green -C-Green">* Processing: skycalc radiance</span>                                                  
+<span class=" -Color -Color-Cyan -C-Cyan">WARNING: asumming scene_block</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">[</span><span class=" -Color -Color-Green -C-Green">&#39;wavelength_sampling&#39;</span><span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">]</span><span class=" -Color -Color-Cyan -C-Cyan">=</span><span class=" -Color -Color-Green -C-Green">&#39;random&#39;</span>                   
+Number of photons to be simulated for this block: <span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">1000000</span>                       
+Ignoring wave_unit: m <span class=" -Color -Color-Bold -C-Bold">(</span>assuming nm<span class=" -Color -Color-Bold -C-Bold">)</span>                                             
 Saving file: test_ifu_white2D_method0_os1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                      
 Saving file: test_ifu_white2D_method0_os10.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                     
 Saving file: test_ifu_3D_method0.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">16</span><span class=" -Color -Color-Bold -C-Bold">)</span>                               
@@ -92,7 +100,7 @@ Saving file: test_detector_2D_method0.fits <span class=" -Color -Color-Bold -C-B
 .........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">10</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">20</span>.........<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">30</span>
 Saving file: test_rss_2D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
 Saving file: test_ifu_3D_method1.fits <span class=" -Color -Color-Bold -C-Bold">(</span><span class=" -Color -Color-Yellow -C-Yellow">BITPIX</span>=<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">-32</span><span class=" -Color -Color-Bold -C-Bold">)</span>                              
-Total time elapsed: <span class=" -Color -Color-Bold -Color-Bold-BrightGreen -C-Bold -C-BrightGreen">0:00:03</span>.<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">853503</span>                                              
+Total time elapsed: <span class=" -Color -Color-Bold -Color-Bold-BrightGreen -C-Bold -C-BrightGreen">0:00:05</span>.<span class=" -Color -Color-Bold -Color-Bold-Cyan -C-Bold -C-Cyan">176177</span>                                              
 <span class=" -Color -Color-BrightGreen -C-BrightGreen">────────────────────────────────── </span><span class=" -Color -Color-Bold -Color-Bold-Magenta -C-Bold -C-Magenta"> Goodbye! </span><span class=" -Color -Color-BrightGreen -C-BrightGreen"> ──────────────────────────────────</span>
 </pre></div>
 </div>
