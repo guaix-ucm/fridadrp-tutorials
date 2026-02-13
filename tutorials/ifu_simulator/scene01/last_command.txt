@@ -1,0 +1,13 @@
+```{code-block} console
+(venv_frida) $ fridadrp-ifu_simulator \
+  --scene scene01.yaml \
+  --flux_factor 10 \
+  --grating medium-K \
+  --scale fine \
+  --bias 0 \
+  --rnoise 0 \
+  --flatpix2pix none \
+  --seed 1234 \
+  --output_dir work \
+  --record
+```

@@ -1,3 +1,7 @@
+# directories with FITS files resulting from the execution of
+# fridadrp-ifu_simulator
+tutorials/ifu_simulator/scene??/work
+
 *~
 # Byte-compiled / optimized / DLL files
 __pycache__/

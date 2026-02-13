@@ -3,12 +3,26 @@
 Below are some examples of 'scene' files as well as the resulting simulated
 images.
 
-## Example 1: collection of Gaussian objects
+## Example 1: selected number of slices
 
-Here we are using the file {download}`scene01.yaml
-<scene01/scene01.yaml>`.
+
+Let's start with a simple example, simulating a flat illumination of slices 1
+through 15 in the IFU field of view. Here we are using the file
+{download}`scene01.yaml <scene01/scene01.yaml>`.
 
 ```{literalinclude} scene01/scene01.yaml
+:language: yaml
+```
+
+```{include} common_example_block.md
+```
+
+## Example 2: collection of Gaussian objects
+
+Here we are using the file {download}`scene02.yaml
+<scene02/scene02.yaml>`.
+
+```{literalinclude} scene02/scene02.yaml
 :language: yaml
 ```
 
@@ -16,7 +30,7 @@ Execute `fridadrp-ifu_simulator`:
 
 ```{code-block} console
 (venv_frida) $ fridadrp-ifu_simulator \
-  --scene scene01.yaml \
+  --scene scene02.yaml \
   --grating medium-K \
   --scale fine \
   --flatpix2pix none
@@ -42,19 +56,19 @@ Saving file: test_rss_2D_method1.fits
 Saving file: test_ifu_3D_method1.fits
 ```
 
-```{image} scene01/Figure_1.png
+```{image} scene02/Figure_1.png
 :width: 49%
 ```
-```{image} scene01/Figure_2.png
+```{image} scene02/Figure_2.png
 :width: 49%
 ```
 
-## Example 2: M51-like galaxy
+## Example 3: M51-like galaxy
 
-Here we are using the file {download}`scene02.yaml
-<scene02/scene02.yaml>`. 
+Here we are using the file {download}`scene03.yaml
+<scene03/scene03.yaml>`. 
 
-```{literalinclude} scene02/scene02.yaml
+```{literalinclude} scene03/scene03.yaml
 :language: yaml
 ```
 
@@ -68,7 +82,7 @@ Execute `fridadrp-ifu_simulator`:
 
 ```{code-block} console
 (venv_frida) $ fridadrp-ifu_simulator \
-  --scene scene02.yaml \
+  --scene scene03.yaml \
   --grating medium-K \
   --scale fine \
   --seeing_fwhm_arcsec 0.05 \
@@ -93,10 +107,10 @@ Saving file: test_rss_2D_method1.fits
 Saving file: test_ifu_3D_method1.fits
 ```
 
-```{image} scene02/Figure_1.png
+```{image} scene03/Figure_1.png
 :width: 49%
 ```
-```{image} scene02/Figure_2.png
+```{image} scene03/Figure_2.png
 :width: 49%
 ```
 

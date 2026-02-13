@@ -51,30 +51,30 @@ DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)
 RADEG   =                  0.0 / Telescope right ascension (degrees)            
 DECDEG  =                  0.0 / Telescope declination (degrees)                
 HISTORY -------------------------                                               
-HISTORY Date: 2026-02-13 09:07:18                                               
+HISTORY Date: 2026-02-13 09:02:16                                               
 HISTORY -------------------------                                               
 HISTORY Node: iblax.fis.ucm.es                                                  
 HISTORY Python: /Users/cardiel/venv_frida/bin/python3.13                        
 HISTORY $ fridadrp-ifu_simulator                                                
 HISTORY (version: 0.1.dev156+gb081f58ec)                                        
-HISTORY --scene scene00.yaml                                                    
-HISTORY --flux_factor 1.0                                                       
+HISTORY --scene scene01.yaml                                                    
+HISTORY --flux_factor 10.0                                                      
 HISTORY --grating medium-K                                                      
 HISTORY --scale fine                                                            
 HISTORY --ra_teles_deg 0.0                                                      
 HISTORY --dec_teles_deg 0.0                                                     
 HISTORY --delta_ra_teles_arcsec 0.0                                             
 HISTORY --delta_dec_teles_arcsec 0.0                                            
-HISTORY --seeing_fwhm_arcsec 0.05                                               
+HISTORY --seeing_fwhm_arcsec 0.0                                                
 HISTORY --seeing_psf gaussian                                                   
 HISTORY --instrument_pa_deg 0.0                                                 
 HISTORY --airmass 1.0                                                           
 HISTORY --parallactic_angle_deg 0.0                                             
 HISTORY --noversampling_whitelight 10                                           
 HISTORY --atmosphere_transmission default                                       
-HISTORY --bias 100                                                              
-HISTORY --rnoise 4.0                                                            
-HISTORY --flatpix2pix default                                                   
+HISTORY --bias 0                                                                
+HISTORY --rnoise 0.0                                                            
+HISTORY --flatpix2pix none                                                      
 HISTORY --spectral_blurring_pixel 1.0                                           
 HISTORY --bitpix_detector -32                                                   
 HISTORY --seed 1234                                                             

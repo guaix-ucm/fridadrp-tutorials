@@ -1,0 +1,56 @@
+Execute `fridadrp-ifu_simulator`:
+
+```{include} scene01/last_command.txt
+```
+```{include} scene01/terminal_output.md
+```
+
+```{code-block} console
+(venv_frida) $ numina-ximshow work/test_ifu_white2D_method0_os1.fits \
+  --cbar_orientation vertical --z1z2 minmax --aspect equal
+
+(venv_frida) $ numina-ximshow work/test_ifu_white2D_method0_os10.fits \
+  --cbar_orientation vertical --z1z2 minmax --aspect equal
+```
+
+```{image} scene01/test_ifu_white2D_method0_os1.png
+:width: 49%
+```
+```{image} scene01/test_ifu_white2D_method0_os10.png
+:width: 49%
+```
+
+```{code-block} console
+(venv_frida) $ numina-ximshow work/test_rss_2D_method0.fits \
+  --cbar_orientation vertical --z1z2 minmax --aspect equal
+
+(venv_frida) $ numina-ximshow work/test_detector_2D_method0.fits \
+  --cbar_orientation vertical --z1z2 minmax --aspect equal
+
+(venv_frida) $ numina-ximshow work/test_rss_2D_method1.fits \
+  --cbar_orientation vertical --z1z2 minmax --aspect equal
+```
+
+```{image} scene01/test_rss_2D_method0.png
+:width: 32%
+```
+```{image} scene01/test_detector_2D_method0.png
+:width: 32%
+```
+```{image} scene01/test_rss_2D_method1.png
+:width: 32%
+```
+
+```{code-block} console
+(venv_frida) $ numina-extract_2d_slice_from_3d_cube work/test_ifu_3D_method0.fits
+
+(venv_frida) $ numina-extract_2d_slice_from_3d_cube work/test_ifu_3D_method1.fits
+```
+
+```{image} scene01/projected_3D_method0.png
+:width: 49%
+```
+```{image} scene01/projected_3D_method1.png
+:width: 49%
+```
+
