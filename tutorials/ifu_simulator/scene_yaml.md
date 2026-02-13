@@ -299,6 +299,26 @@ geometry:
   type: flatfield
 ```
 ````
+````{tab} slices
+
+**General description**
+```yaml
+geometry:
+  type: slices <num1>-<num2>, <num3>-<num4>, <num5>, <num6>-<num7>, ...
+```
+
+This option redistributes the photons homogeneously over the selected slices in
+the field of view of the IFU. The selected slices are indicated as a
+comma-separated list of numbers and/or intervals.
+
+**Example**
+
+If we want to consider slices 1, 3, 4, 5, 10, 13, 14, and 15:
+```yaml
+geometry:
+  type: slices 1, 3-5, 10, 13-15
+```
+````
 ````{tab} point-like
 
 Note: The order of the different `key: value` pairs within the
