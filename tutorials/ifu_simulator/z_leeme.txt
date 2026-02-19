@@ -1,0 +1,13 @@
+Las carpetas scene??/work (y los ficheros que cuelgan de ellas) no aparecen al
+hacer "git status" porque dichas carpetas están en el fichero .gitignore
+general del proyecto.
+
+Para actualizar la documentación, conviene entrar en cada directorio scene?? y
+ejecutar los ficheros work.sh. Estos ficheros work.sh no son idénticos al
+cambiar de ejemplo.
+
+Al ejecutar fridadrp-ifu_simulator es útil utilizar el parámetro flux_factor.
+De esta forma, en los ficheros scene??.yaml usamos un número pequeño de
+fotones, lo que nos permite comprobar que todo funciona rápidamente, y luego al
+emplear un flux_factor grande, hacemos una ejecución con el número de fotones
+deseado.
