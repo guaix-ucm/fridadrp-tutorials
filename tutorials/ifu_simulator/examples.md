@@ -42,7 +42,7 @@ We aim to simulate a galaxy resembling the morphology of Messier 51. To achieve
 this, we generated a ${15 \times 15}~{\rm arcmin}^2$ image using the [ESO
 Online Digitized Sky Survey](https://archive.eso.org/dss/dss). The
 corresponding file is
-[m51_dss1.fits](https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits>).
+[m51_dss1.fits](https://guaix.fis.ucm.es/data/fridadrp/m51_dss1.fits).
 
 ```{include} scene03/example_results.txt
 ```
