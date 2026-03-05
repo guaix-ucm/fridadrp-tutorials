@@ -51,7 +51,7 @@ DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)
 RADEG   =                  0.0 / Telescope right ascension (degrees)            
 DECDEG  =                  0.0 / Telescope declination (degrees)                
 HISTORY -------------------------                                               
-HISTORY Date: 2026-02-13 09:02:16                                               
+HISTORY Date: 2026-03-05 20:21:01                                               
 HISTORY -------------------------                                               
 HISTORY Node: iblax.fis.ucm.es                                                  
 HISTORY Python: /Users/cardiel/venv_frida/bin/python3.13                        
@@ -78,7 +78,7 @@ HISTORY --flatpix2pix none
 HISTORY --spectral_blurring_pixel 1.0                                           
 HISTORY --bitpix_detector -32                                                   
 HISTORY --seed 1234                                                             
-HISTORY --parallel False                                                        
+HISTORY --ncores 1                                                              
 HISTORY --prefix_intermediate_FITS test                                         
 HISTORY --stop_after_ifu_3D_method0 False                                       
 HISTORY --plots False                                                           

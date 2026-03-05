@@ -199,16 +199,19 @@ Seed to initialize the [Numpy Random
 Generator](https://numpy.org/doc/stable/reference/random/generator.html). By
 default is set to a particular integer sequence (`1234`).
 
-(--parallel)=
+(--ncores)=
 
-## <code>--parallel</code>
+## <code>--ncores &lt;integer&gt;</code>
 
-If this option is used, the code executes using `joblib.Parallel`, which
-increases execution speed.
+If this number is greater than 1, the code executes using `multiprocessing`.
 
 ```{warning}
-In some cases, we have found problems (incorrect array values) in the resulting
-simulated images when using `--parallel`. Use this option with caution.
+The initial tests reveal that adding more parallel processes beyond a small
+number does not help: it simply increases contention on the memory bus, and the
+overhead of managing additional processes begins to dominate. In fact, in some
+cases using more than one process can even degrade performance due to this
+increased contention and overhead. This option is kept only for testing
+purposes.
 ```
 
 (--prefix_intermediate_FITS)=

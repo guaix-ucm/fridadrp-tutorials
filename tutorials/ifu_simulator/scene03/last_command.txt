@@ -1,7 +1,7 @@
 ```{code-block} console
 (venv_frida) $ fridadrp-ifu_simulator \
   --scene scene03.yaml \
-  --flux_factor 1 \
+  --flux_factor 10 \
   --grating medium-K \
   --scale fine \
   --bias 0 \

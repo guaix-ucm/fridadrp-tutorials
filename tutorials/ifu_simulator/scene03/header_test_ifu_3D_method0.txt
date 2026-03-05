@@ -51,14 +51,14 @@ DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)
 RADEG   =                  0.0 / Telescope right ascension (degrees)            
 DECDEG  =                  0.0 / Telescope declination (degrees)                
 HISTORY -------------------------                                               
-HISTORY Date: 2026-02-13 11:09:27                                               
+HISTORY Date: 2026-03-05 20:22:54                                               
 HISTORY -------------------------                                               
 HISTORY Node: iblax.fis.ucm.es                                                  
 HISTORY Python: /Users/cardiel/venv_frida/bin/python3.13                        
 HISTORY $ fridadrp-ifu_simulator                                                
 HISTORY (version: 0.1.dev156+gb081f58ec)                                        
 HISTORY --scene scene03.yaml                                                    
-HISTORY --flux_factor 1.0                                                       
+HISTORY --flux_factor 10.0                                                      
 HISTORY --grating medium-K                                                      
 HISTORY --scale fine                                                            
 HISTORY --ra_teles_deg 0.0                                                      
@@ -78,7 +78,7 @@ HISTORY --flatpix2pix none
 HISTORY --spectral_blurring_pixel 1.0                                           
 HISTORY --bitpix_detector -32                                                   
 HISTORY --seed 1234                                                             
-HISTORY --parallel False                                                        
+HISTORY --ncores 1                                                              
 HISTORY --prefix_intermediate_FITS test                                         
 HISTORY --stop_after_ifu_3D_method0 False                                       
 HISTORY --plots False                                                           
