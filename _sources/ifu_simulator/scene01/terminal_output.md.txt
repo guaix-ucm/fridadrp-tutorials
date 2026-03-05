@@ -13,11 +13,13 @@ Saving file: test_ifu_white2D_method0_os1.fits [1m([0m[33mBITPIX[0m=[1;36m-
 Saving file: test_ifu_white2D_method0_os10.fits [1m([0m[33mBITPIX[0m=[1;36m16[0m[1m)[0m                     
 Saving file: test_ifu_3D_method0.fits [1m([0m[33mBITPIX[0m=[1;36m16[0m[1m)[0m                               
 .........[1;36m10[0m.........[1;36m20[0m.........[1;36m30[0m
+Delta time: [1;36m40.70811915397644[0m                                                   
 Saving file: test_rss_2D_method0.fits [1m([0m[33mBITPIX[0m=[1;36m16[0m[1m)[0m                               
 Saving file: test_detector_2D_method0.fits [1m([0m[33mBITPIX[0m=[1;36m-32[0m[1m)[0m                         
 .........[1;36m10[0m.........[1;36m20[0m.........[1;36m30[0m
+Delta time: [1;36m2.570781946182251[0m                                                   
 Saving file: test_rss_2D_method1.fits [1m([0m[33mBITPIX[0m=[1;36m-32[0m[1m)[0m                              
 Saving file: test_ifu_3D_method1.fits [1m([0m[33mBITPIX[0m=[1;36m-32[0m[1m)[0m                              
-Total time elapsed: [1;92m0:01:18[0m.[1;36m243415[0m                                              
+Total time elapsed: [1;92m0:01:15[0m.[1;36m912423[0m                                              
 [92m────────────────────────────────── [0m[1;35m Goodbye! [0m[92m ──────────────────────────────────[0m
 ```

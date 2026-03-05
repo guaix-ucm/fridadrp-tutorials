@@ -22,7 +22,7 @@
                               [[36m--flatpix2pix[0m [38;5;36m{default,none}[0m]
                               [[36m--spectral_blurring_pixel[0m [38;5;36mSPECTRAL_BLURRING_PIXEL[0m]
                               [[36m--bitpix_detector[0m [38;5;36m{-32,16}[0m] [[36m--seed[0m [38;5;36mSEED[0m]
-                              [[36m--parallel[0m]
+                              [[36m--ncores[0m [38;5;36mNCORES[0m]
                               [[36m--prefix_intermediate_FITS[0m [38;5;36mPREFIX_INTERMEDIATE_FITS[0m]
                               [[36m--stop_after_ifu_3D_method0[0m] [[36m--plots[0m]
                               [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
@@ -70,7 +70,7 @@
   [36m--bitpix_detector[0m [38;5;36m{-32,16}[0m
                         [39mBITPIX value for the detector output FITS file[0m
   [36m--seed[0m [38;5;36mSEED[0m           [39mSeed for random number generator[0m
-  [36m--parallel[0m            [39mUse parallel processing[0m
+  [36m--ncores[0m [38;5;36mNCORES[0m       [39mNumber of cores to use for parallel processing[0m
   [36m--prefix_intermediate_FITS[0m [38;5;36mPREFIX_INTERMEDIATE_FITS[0m
                         [39mPrefix for intermediate FITS files[0m
   [36m--stop_after_ifu_3D_method0[0m

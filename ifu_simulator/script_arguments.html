@@ -73,7 +73,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#spectral-blurring-pixel-float"><code>–spectral_blurring_pixel &lt;float&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bitpix-detector-16-32"><code>–bitpix_detector &lt;16 | [-32]&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seed-integer"><code>–seed &lt;integer&gt;</code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#parallel"><code>–parallel</code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ncores-integer"><code>–ncores &lt;integer&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#prefix-intermediate-fits-string"><code>–prefix_intermediate_FITS &lt;string&gt;</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stop-after-ifu-3d-method0"><code>–stop_after_ifu_3D_method0</code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#plots"><code>–plots</code></a></li>
@@ -142,7 +142,7 @@ argument.</p>
                               [<span class=" -Color -Color-Cyan -C-Cyan">--flatpix2pix</span> <span class=" -Color -Color-C36 -C-C36">{default,none}</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-C36 -C-C36">SPECTRAL_BLURRING_PIXEL</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--bitpix_detector</span> <span class=" -Color -Color-C36 -C-C36">{-32,16}</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--parallel</span>]
+                              [<span class=" -Color -Color-Cyan -C-Cyan">--ncores</span> <span class=" -Color -Color-C36 -C-C36">NCORES</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--plots</span>]
                               [<span class=" -Color -Color-Cyan -C-Cyan">--log-level</span> <span class=" -Color -Color-C36 -C-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
@@ -190,7 +190,7 @@ description: simulator of FRIDA IFU images (0.1.dev156+gb081f58ec)
   <span class=" -Color -Color-Cyan -C-Cyan">--bitpix_detector</span> <span class=" -Color -Color-C36 -C-C36">{-32,16}</span>
                         BITPIX value for the detector output FITS file
   <span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>           Seed for random number generator
-  <span class=" -Color -Color-Cyan -C-Cyan">--parallel</span>            Use parallel processing
+  <span class=" -Color -Color-Cyan -C-Cyan">--ncores</span> <span class=" -Color -Color-C36 -C-C36">NCORES</span>       Number of cores to use for parallel processing
   <span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>
                         Prefix for intermediate FITS files
   <span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>
@@ -352,14 +352,17 @@ By default, <code class="docutils literal notranslate"><span class="pre">spectra
 Generator</a>. By
 default is set to a particular integer sequence (<code class="docutils literal notranslate"><span class="pre">1234</span></code>).</p>
 </section>
-<section id="parallel">
-<span id="id1"></span><h2><code>–parallel</code><a class="headerlink" href="#parallel" title="Link to this heading"></a></h2>
-<p>If this option is used, the code executes using <code class="docutils literal notranslate"><span class="pre">joblib.Parallel</span></code>, which
-increases execution speed.</p>
+<section id="ncores-integer">
+<span id="ncores"></span><h2><code>–ncores &lt;integer&gt;</code><a class="headerlink" href="#ncores-integer" title="Link to this heading"></a></h2>
+<p>If this number is greater than 1, the code executes using <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In some cases, we have found problems (incorrect array values) in the resulting
-simulated images when using <code class="docutils literal notranslate"><span class="pre">--parallel</span></code>. Use this option with caution.</p>
+<p>The initial tests reveal that adding more parallel processes beyond a small
+number does not help: it simply increases contention on the memory bus, and the
+overhead of managing additional processes begins to dominate. In fact, in some
+cases using more than one process can even degrade performance due to this
+increased contention and overhead. This option is kept only for testing
+purposes.</p>
 </div>
 </section>
 <section id="prefix-intermediate-fits-string">
@@ -369,21 +372,21 @@ simulator execution. By default this string is <code class="docutils literal not
 underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> symbol is also added between this prefix and the filename.</p>
 </section>
 <section id="stop-after-ifu-3d-method0">
-<span id="id2"></span><h2><code>–stop_after_ifu_3D_method0</code><a class="headerlink" href="#stop-after-ifu-3d-method0" title="Link to this heading"></a></h2>
+<span id="id1"></span><h2><code>–stop_after_ifu_3D_method0</code><a class="headerlink" href="#stop-after-ifu-3d-method0" title="Link to this heading"></a></h2>
 <p>If this argument is present, the simulator stops just after generating
 the file <code class="docutils literal notranslate"><span class="pre">test_ifu_3D_method0.fits</span></code>. This is useful for debugging
 purposes.</p>
 </section>
 <section id="plots">
-<span id="verbose"></span><span id="id3"></span><h2><code>–plots</code><a class="headerlink" href="#plots" title="Link to this heading"></a></h2>
+<span id="verbose"></span><span id="id2"></span><h2><code>–plots</code><a class="headerlink" href="#plots" title="Link to this heading"></a></h2>
 <p>If this argument is present, some intermediate plots are displayed.</p>
 </section>
 <section id="log-level">
-<span id="id4"></span><h2><code>–log-level</code><a class="headerlink" href="#log-level" title="Link to this heading"></a></h2>
+<span id="id3"></span><h2><code>–log-level</code><a class="headerlink" href="#log-level" title="Link to this heading"></a></h2>
 <p>Logging level. Valid options are DEBUG, INFO, WARNING, ERROR and CRITICAL.</p>
 </section>
 <section id="output-dir">
-<span id="id5"></span><h2><code>–output_dir</code><a class="headerlink" href="#output-dir" title="Link to this heading"></a></h2>
+<span id="id4"></span><h2><code>–output_dir</code><a class="headerlink" href="#output-dir" title="Link to this heading"></a></h2>
 <p>Output directory to store resulting simulated files. Default is <code class="docutils literal notranslate"><span class="pre">./</span></code>.</p>
 </section>
 <section id="record">
@@ -392,12 +395,12 @@ purposes.</p>
 <code class="docutils literal notranslate"><span class="pre">terminal_output.txt</span></code>.</p>
 </section>
 <section id="echo">
-<span id="id6"></span><h2><code>–echo</code><a class="headerlink" href="#echo" title="Link to this heading"></a></h2>
+<span id="id5"></span><h2><code>–echo</code><a class="headerlink" href="#echo" title="Link to this heading"></a></h2>
 <p>Display in the terminal the command line employed to invoke the execution
 of the simulator.</p>
 </section>
 <section id="version">
-<span id="id7"></span><h2><code>–version</code><a class="headerlink" href="#version" title="Link to this heading"></a></h2>
+<span id="id6"></span><h2><code>–version</code><a class="headerlink" href="#version" title="Link to this heading"></a></h2>
 <p>Display the code version number.</p>
 </section>
 </section>
