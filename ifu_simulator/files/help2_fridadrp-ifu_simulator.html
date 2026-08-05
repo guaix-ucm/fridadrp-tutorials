@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>&lt;no title&gt; &mdash; fridadrp-tutorials 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=42210275" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=932a37d4" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3defd07e" />
@@ -80,84 +80,84 @@
   <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-ifu_simulator<span class="w"> </span>--help
 </pre></div>
 </div>
-<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C208 -C-C208">Usage:</span> <span class=" -Color -Color-C244 -C-C244">fridadrp-ifu_simulator</span> [<span class=" -Color -Color-Cyan -C-Cyan">-h</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--scene</span> <span class=" -Color -Color-C36 -C-C36">SCENE</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--flux_factor</span> <span class=" -Color -Color-C36 -C-C36">FLUX_FACTOR</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--grating</span> <span class=" -Color -Color-C36 -C-C36">GRATING</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--scale</span> <span class=" -Color -Color-C36 -C-C36">SCALE</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--ra_teles_deg</span> <span class=" -Color -Color-C36 -C-C36">RA_TELES_DEG</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--dec_teles_deg</span> <span class=" -Color -Color-C36 -C-C36">DEC_TELES_DEG</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--delta_ra_teles_arcsec</span> <span class=" -Color -Color-C36 -C-C36">DELTA_RA_TELES_ARCSEC</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--delta_dec_teles_arcsec</span> <span class=" -Color -Color-C36 -C-C36">DELTA_DEC_TELES_ARCSEC</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--seeing_fwhm_arcsec</span> <span class=" -Color -Color-C36 -C-C36">SEEING_FWHM_ARCSEC</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--seeing_psf</span> <span class=" -Color -Color-C36 -C-C36">{gaussian}</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--instrument_pa_deg</span> <span class=" -Color -Color-C36 -C-C36">INSTRUMENT_PA_DEG</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--airmass</span> <span class=" -Color -Color-C36 -C-C36">AIRMASS</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--parallactic_angle_deg</span> <span class=" -Color -Color-C36 -C-C36">PARALLACTIC_ANGLE_DEG</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--noversampling_whitelight</span> <span class=" -Color -Color-C36 -C-C36">NOVERSAMPLING_WHITELIGHT</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--atmosphere_transmission</span> <span class=" -Color -Color-C36 -C-C36">{default,none}</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--bias</span> <span class=" -Color -Color-C36 -C-C36">BIAS</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--rnoise</span> <span class=" -Color -Color-C36 -C-C36">RNOISE</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--flatpix2pix</span> <span class=" -Color -Color-C36 -C-C36">{default,none}</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-C36 -C-C36">SPECTRAL_BLURRING_PIXEL</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--bitpix_detector</span> <span class=" -Color -Color-C36 -C-C36">{-32,16}</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--ncores</span> <span class=" -Color -Color-C36 -C-C36">NCORES</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--plots</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--log-level</span> <span class=" -Color -Color-C36 -C-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--output_dir</span> <span class=" -Color -Color-C36 -C-C36">OUTPUT_DIR</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--record</span>] [<span class=" -Color -Color-Cyan -C-Cyan">--echo</span>]
-                              [<span class=" -Color -Color-Cyan -C-Cyan">--version</span>]
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-ifu_simulator</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] [<span class="-Ansi -Ansi-Cyan">--scene</span> <span class="-Ansi -Ansi-C36">SCENE</span>] [<span class="-Ansi -Ansi-Cyan">--flux_factor</span> <span class="-Ansi -Ansi-C36">FLUX_FACTOR</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--grating</span> <span class="-Ansi -Ansi-C36">GRATING</span>] [<span class="-Ansi -Ansi-Cyan">--scale</span> <span class="-Ansi -Ansi-C36">SCALE</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--ra_teles_deg</span> <span class="-Ansi -Ansi-C36">RA_TELES_DEG</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--dec_teles_deg</span> <span class="-Ansi -Ansi-C36">DEC_TELES_DEG</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--delta_ra_teles_arcsec</span> <span class="-Ansi -Ansi-C36">DELTA_RA_TELES_ARCSEC</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--delta_dec_teles_arcsec</span> <span class="-Ansi -Ansi-C36">DELTA_DEC_TELES_ARCSEC</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--seeing_fwhm_arcsec</span> <span class="-Ansi -Ansi-C36">SEEING_FWHM_ARCSEC</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--seeing_psf</span> <span class="-Ansi -Ansi-C36">{gaussian}</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--instrument_pa_deg</span> <span class="-Ansi -Ansi-C36">INSTRUMENT_PA_DEG</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--airmass</span> <span class="-Ansi -Ansi-C36">AIRMASS</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--parallactic_angle_deg</span> <span class="-Ansi -Ansi-C36">PARALLACTIC_ANGLE_DEG</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--noversampling_whitelight</span> <span class="-Ansi -Ansi-C36">NOVERSAMPLING_WHITELIGHT</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--atmosphere_transmission</span> <span class="-Ansi -Ansi-C36">{default,none}</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--bias</span> <span class="-Ansi -Ansi-C36">BIAS</span>] [<span class="-Ansi -Ansi-Cyan">--rnoise</span> <span class="-Ansi -Ansi-C36">RNOISE</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--flatpix2pix</span> <span class="-Ansi -Ansi-C36">{default,none}</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--spectral_blurring_pixel</span> <span class="-Ansi -Ansi-C36">SPECTRAL_BLURRING_PIXEL</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--bitpix_detector</span> <span class="-Ansi -Ansi-C36">{-32,16}</span>] [<span class="-Ansi -Ansi-Cyan">--seed</span> <span class="-Ansi -Ansi-C36">SEED</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--ncores</span> <span class="-Ansi -Ansi-C36">NCORES</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--prefix_intermediate_FITS</span> <span class="-Ansi -Ansi-C36">PREFIX_INTERMEDIATE_FITS</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--stop_after_ifu_3D_method0</span>] [<span class="-Ansi -Ansi-Cyan">--plots</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--output_dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+                              [<span class="-Ansi -Ansi-Cyan">--version</span>]
 
-description: simulator of FRIDA IFU images (0.1.dev156+gb081f58ec)
+description: simulator of FRIDA IFU images (0.1.dev248+g830b3980e.d20260804)
 
-<span class=" -Color -Color-C208 -C-C208">Options:</span>
-  <span class=" -Color -Color-Cyan -C-Cyan">-h</span>, <span class=" -Color -Color-Cyan -C-Cyan">--help</span>            show this help message and exit
-  <span class=" -Color -Color-Cyan -C-Cyan">--scene</span> <span class=" -Color -Color-C36 -C-C36">SCENE</span>         YAML scene file name
-  <span class=" -Color -Color-Cyan -C-Cyan">--flux_factor</span> <span class=" -Color -Color-C36 -C-C36">FLUX_FACTOR</span>
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--scene</span> <span class="-Ansi -Ansi-C36">SCENE</span>         YAML scene file name
+  <span class="-Ansi -Ansi-Cyan">--flux_factor</span> <span class="-Ansi -Ansi-C36">FLUX_FACTOR</span>
                         Multiplicative factor to be applied to the number of
                         photons defined in the scene file (default=1.0)
-  <span class=" -Color -Color-Cyan -C-Cyan">--grating</span> <span class=" -Color -Color-C36 -C-C36">GRATING</span>     Grating name
-  <span class=" -Color -Color-Cyan -C-Cyan">--scale</span> <span class=" -Color -Color-C36 -C-C36">SCALE</span>         Scale
-  <span class=" -Color -Color-Cyan -C-Cyan">--ra_teles_deg</span> <span class=" -Color -Color-C36 -C-C36">RA_TELES_DEG</span>
+  <span class="-Ansi -Ansi-Cyan">--grating</span> <span class="-Ansi -Ansi-C36">GRATING</span>     Grating name
+  <span class="-Ansi -Ansi-Cyan">--scale</span> <span class="-Ansi -Ansi-C36">SCALE</span>         Scale
+  <span class="-Ansi -Ansi-Cyan">--ra_teles_deg</span> <span class="-Ansi -Ansi-C36">RA_TELES_DEG</span>
                         Telescope central RA (deg)
-  <span class=" -Color -Color-Cyan -C-Cyan">--dec_teles_deg</span> <span class=" -Color -Color-C36 -C-C36">DEC_TELES_DEG</span>
+  <span class="-Ansi -Ansi-Cyan">--dec_teles_deg</span> <span class="-Ansi -Ansi-C36">DEC_TELES_DEG</span>
                         Telescope central DEC (deg)
-  <span class=" -Color -Color-Cyan -C-Cyan">--delta_ra_teles_arcsec</span> <span class=" -Color -Color-C36 -C-C36">DELTA_RA_TELES_ARCSEC</span>
+  <span class="-Ansi -Ansi-Cyan">--delta_ra_teles_arcsec</span> <span class="-Ansi -Ansi-C36">DELTA_RA_TELES_ARCSEC</span>
                         Offset in RA (arcsec)
-  <span class=" -Color -Color-Cyan -C-Cyan">--delta_dec_teles_arcsec</span> <span class=" -Color -Color-C36 -C-C36">DELTA_DEC_TELES_ARCSEC</span>
+  <span class="-Ansi -Ansi-Cyan">--delta_dec_teles_arcsec</span> <span class="-Ansi -Ansi-C36">DELTA_DEC_TELES_ARCSEC</span>
                         Offset in DEC (arcsec)
-  <span class=" -Color -Color-Cyan -C-Cyan">--seeing_fwhm_arcsec</span> <span class=" -Color -Color-C36 -C-C36">SEEING_FWHM_ARCSEC</span>
+  <span class="-Ansi -Ansi-Cyan">--seeing_fwhm_arcsec</span> <span class="-Ansi -Ansi-C36">SEEING_FWHM_ARCSEC</span>
                         Seeing FWHM (arcsec)
-  <span class=" -Color -Color-Cyan -C-Cyan">--seeing_psf</span> <span class=" -Color -Color-C36 -C-C36">{gaussian}</span>
+  <span class="-Ansi -Ansi-Cyan">--seeing_psf</span> <span class="-Ansi -Ansi-C36">{gaussian}</span>
                         Seeing PSF
-  <span class=" -Color -Color-Cyan -C-Cyan">--instrument_pa_deg</span> <span class=" -Color -Color-C36 -C-C36">INSTRUMENT_PA_DEG</span>
+  <span class="-Ansi -Ansi-Cyan">--instrument_pa_deg</span> <span class="-Ansi -Ansi-C36">INSTRUMENT_PA_DEG</span>
                         Instrument Position Angle (deg)
-  <span class=" -Color -Color-Cyan -C-Cyan">--airmass</span> <span class=" -Color -Color-C36 -C-C36">AIRMASS</span>     Airmass
-  <span class=" -Color -Color-Cyan -C-Cyan">--parallactic_angle_deg</span> <span class=" -Color -Color-C36 -C-C36">PARALLACTIC_ANGLE_DEG</span>
+  <span class="-Ansi -Ansi-Cyan">--airmass</span> <span class="-Ansi -Ansi-C36">AIRMASS</span>     Airmass
+  <span class="-Ansi -Ansi-Cyan">--parallactic_angle_deg</span> <span class="-Ansi -Ansi-C36">PARALLACTIC_ANGLE_DEG</span>
                         Parallactic angle (deg)
-  <span class=" -Color -Color-Cyan -C-Cyan">--noversampling_whitelight</span> <span class=" -Color -Color-C36 -C-C36">NOVERSAMPLING_WHITELIGHT</span>
+  <span class="-Ansi -Ansi-Cyan">--noversampling_whitelight</span> <span class="-Ansi -Ansi-C36">NOVERSAMPLING_WHITELIGHT</span>
                         Oversampling white light image
-  <span class=" -Color -Color-Cyan -C-Cyan">--atmosphere_transmission</span> <span class=" -Color -Color-C36 -C-C36">{default,none}</span>
+  <span class="-Ansi -Ansi-Cyan">--atmosphere_transmission</span> <span class="-Ansi -Ansi-C36">{default,none}</span>
                         Atmosphere transmission
-  <span class=" -Color -Color-Cyan -C-Cyan">--bias</span> <span class=" -Color -Color-C36 -C-C36">BIAS</span>           Bias level (ADU)
-  <span class=" -Color -Color-Cyan -C-Cyan">--rnoise</span> <span class=" -Color -Color-C36 -C-C36">RNOISE</span>       Readout noise standard deviation (ADU)
-  <span class=" -Color -Color-Cyan -C-Cyan">--flatpix2pix</span> <span class=" -Color -Color-C36 -C-C36">{default,none}</span>
+  <span class="-Ansi -Ansi-Cyan">--bias</span> <span class="-Ansi -Ansi-C36">BIAS</span>           Bias level (ADU)
+  <span class="-Ansi -Ansi-Cyan">--rnoise</span> <span class="-Ansi -Ansi-C36">RNOISE</span>       Readout noise standard deviation (ADU)
+  <span class="-Ansi -Ansi-Cyan">--flatpix2pix</span> <span class="-Ansi -Ansi-C36">{default,none}</span>
                         Pixel-to-pixel flat field
-  <span class=" -Color -Color-Cyan -C-Cyan">--spectral_blurring_pixel</span> <span class=" -Color -Color-C36 -C-C36">SPECTRAL_BLURRING_PIXEL</span>
+  <span class="-Ansi -Ansi-Cyan">--spectral_blurring_pixel</span> <span class="-Ansi -Ansi-C36">SPECTRAL_BLURRING_PIXEL</span>
                         Spectral blurring when converting the original 3D data
                         cube to the original 2D RSS (in pixel units)
-  <span class=" -Color -Color-Cyan -C-Cyan">--bitpix_detector</span> <span class=" -Color -Color-C36 -C-C36">{-32,16}</span>
+  <span class="-Ansi -Ansi-Cyan">--bitpix_detector</span> <span class="-Ansi -Ansi-C36">{-32,16}</span>
                         BITPIX value for the detector output FITS file
-  <span class=" -Color -Color-Cyan -C-Cyan">--seed</span> <span class=" -Color -Color-C36 -C-C36">SEED</span>           Seed for random number generator
-  <span class=" -Color -Color-Cyan -C-Cyan">--ncores</span> <span class=" -Color -Color-C36 -C-C36">NCORES</span>       Number of cores to use for parallel processing
-  <span class=" -Color -Color-Cyan -C-Cyan">--prefix_intermediate_FITS</span> <span class=" -Color -Color-C36 -C-C36">PREFIX_INTERMEDIATE_FITS</span>
+  <span class="-Ansi -Ansi-Cyan">--seed</span> <span class="-Ansi -Ansi-C36">SEED</span>           Seed for random number generator
+  <span class="-Ansi -Ansi-Cyan">--ncores</span> <span class="-Ansi -Ansi-C36">NCORES</span>       Number of cores to use for parallel processing
+  <span class="-Ansi -Ansi-Cyan">--prefix_intermediate_FITS</span> <span class="-Ansi -Ansi-C36">PREFIX_INTERMEDIATE_FITS</span>
                         Prefix for intermediate FITS files
-  <span class=" -Color -Color-Cyan -C-Cyan">--stop_after_ifu_3D_method0</span>
+  <span class="-Ansi -Ansi-Cyan">--stop_after_ifu_3D_method0</span>
                         Stop after computing ifu_3D_method0 image
-  <span class=" -Color -Color-Cyan -C-Cyan">--plots</span>               Plot intermediate results
-  <span class=" -Color -Color-Cyan -C-Cyan">--log-level</span> <span class=" -Color -Color-C36 -C-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+  <span class="-Ansi -Ansi-Cyan">--plots</span>               Plot intermediate results
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
-  <span class=" -Color -Color-Cyan -C-Cyan">--output_dir</span> <span class=" -Color -Color-C36 -C-C36">OUTPUT_DIR</span>
+  <span class="-Ansi -Ansi-Cyan">--output_dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory
-  <span class=" -Color -Color-Cyan -C-Cyan">--record</span>              Record terminal output
-  <span class=" -Color -Color-Cyan -C-Cyan">--echo</span>                Display full command line
-  <span class=" -Color -Color-Cyan -C-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
 </pre></div>
 </div>
 

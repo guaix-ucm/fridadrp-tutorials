@@ -1,0 +1,825 @@
+# Determination of initial slice boundaries
+
+```{warning}
+
+Please note that the code shown below is under development and may undergo
+modifications.
+```
+
+## General procedure
+
+To determine the boundaries of each of the 30 slices obtained on the H2RG
+detector when using FRIDA in IFS mode, we start with a QTH lamp exposure. As a
+test, we use the images:
+
+- `0000000096-20260505-FRIDA-FridaSuccess-raw.fits`: QTH
+  (Quartz-Tungsten-Halogen) lamp
+
+- `0000000132-20260506-FRIDA-FridaSuccess-raw.fits`: spectral traces
+
+Both images are available in the subdirectory
+`Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent`, which contains some of the
+first calibration images obtained.
+
+The general procedure uses the following scripts:
+
+- `fridadrp-find_slice_boundary_borders_from_flat`: determination of the
+  boundaries of each slice.
+
+- `fridadrp-fit_slice_boundary_borders_with_polynomials`: fitting of the
+  boundaries using polynomials.
+
+- `fridadrp-overplot_slice_boundary_polynomials`: overlay of the detected
+  boundaries for each slice, as well as the resulting polynomial fits, on
+  arbitrary images. This script also allows overlaying the polynomial fit on
+  the spectral traces.
+
+- `fridadrp-predict_polynoimal_slice_borders`: extrapolation of the boundaries
+  of the first and last slices when either of these two falls outside the
+  detector.
+
+- `fridadrp-find_traces_within_slice_boundary_polynomials`: polynomial fitting
+  of the spectral traces contained within each slice.
+
+## Polynomial boundaries of the slices
+
+### Slice borders at a single column
+
+After testing different approaches, a method that seems to work well consists
+of taking vertical cuts of the image and using the positions of the first and
+second derivatives. The first derivatives indicate approximately where the
+signal rises and falls occur. The second derivative (searched for in the
+neighborhood of each first derivative) allows us to approximate the region
+where the signal has maximum concavity (which provides a more generous slice
+width than the first derivative). Finally, we opted to fit a straight line
+between the first and second derivative of each signal rise (or fall), and
+extrapolate that line until it intersects a value coinciding with the minimum
+signal between each pair of slices (after adding 1% of the 90th-percentile
+signal of the slice whose edge we want to estimate).
+
+```{include} files/help2_fridadrp-find_slice_boundary_borders_from_flat.md
+```
+
+We start by running the script using a single column `--colrange 501 501`. This
+way, the code shows us several figures that allow us to understand how the
+calculations are being performed.
+
+```console
+(venv_frida) $ fridadrp-find_slice_boundary_borders_from_flat \
+  --flatfile 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --colrange 501 501 \
+  --plots
+```
+
+```{include} files/terminal_output_find_borders1_00.md
+```
+
+```{figure} images/find_borders1_01.png
+:alt: mosaic with original and processed input exposure
+:name: fig-find_borders1_01
+:width: 100%
+
+Mosaic showing the initial processing of the QTH image. Top left, initial
+image. Top right, image smoothed with a median filter along the horizontal
+axis. The bottom images show the first (left) and second (right) derivatives
+when moving vertically along the image. The derivatives are computed using a
+Savitzky-Golay filter.  The default parameters for this filter are
+`--savgol-ywindow 5` and `--savgol-polyorder 2`.
+```
+
+When using the zoom option on any of the 4 images, that operation is applied
+identically to the other three.
+
+```{figure} images/find_borders1_01_zoom.png
+:alt: zoom mosaic with original and processed input exposure
+:name: fig-find_borders1_01_zoom
+:width: 100%
+
+Result of applying zoom to the previous figure ({numref}`fig-find_borders1_01`). This allows us to better
+visualize how both the first derivatives (with positive and negative sign) and
+the second derivatives (with positive sign) can be used as a first estimate of
+the slice boundaries.
+```
+
+After pressing `q` to close the previous figure, the code shows us, in a new
+figure, how the signal changes along the selected column (501 in this example).
+
+```{figure} images/find_borders1_02.png
+:alt: TBD
+:name: fig-find_borders1_02
+:width: 100%
+
+Vertical cut along column 501. Gray shows the original image. Blue
+shows the image after applying the median filter along the X axis (`--xmedian
+21` by default). The red filled circles show the positions where the first
+derivative has a maximum (large circle) and a minimum (small circle). The green
+filled circles indicate the positions where the second derivative has a maximum
+(i.e., has concave curvature seen from above); the large circle corresponds to
+the left edge and the small circle to the right edge. The black 'x' symbols
+mark the minimum between each pair of slices. The black filled circle indicates
+the 90th percentile of the smoothed image and is placed in the central region
+of each slice.
+```
+
+The previous figure clearly shows that, although the second derivatives seem to
+bound the slice edges fairly well, they underestimate their dimensions. After
+several tests, a good alternative consists of performing a linear fit between
+the positions of the first and second derivatives on each side of each slice,
+and extrapolating that value until it reaches a value close to the minimum
+signal reached in the gap between slices. The following figure shows what
+happens in the gaps between all the slices.
+
+```{figure} images/find_borders1_03.png
+:alt: TBD
+:name: fig-find_borders1_03
+:width: 100%
+
+Mosaic showing what happens in the gaps between consecutive slices. The red and
+green filled circles again correspond to the first and second derivatives. On
+both sides of each slice, a linear fit has been performed to these points. The
+extrapolation outward from each slice is carried out until reaching a signal
+that exceeds the minimum value in the corresponding gap by an amount equal to
+1% of the difference between the median signal within the slice and the minimum
+value in the gap. The black filled circles indicate that extrapolated
+positions.
+```
+
+For the left edge of the first slice and the right edge of the last slice, the
+extrapolation thresholds corresponding to the right and left edges of the
+respective slices are used.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border1_04-05
+
+```{image} images/find_borders1_04.png
+:alt: Left border
+:width: 100%
+```
+
+```{image} images/find_borders1_05.png
+:alt: Right border
+:width: 100%
+```
+
+Determination of the extrapolation of the left edge for the first slice (ID 30)
+and the right edge for the last slice (ID 15).
+````
+
+Once the boundaries of all slices have been determined, the script shows us a
+summary mosaic with the result.
+
+```{figure} images/find_borders1_06.png
+:alt: TBD
+:name: fig-find_borders1_06
+:width: 100%
+
+Final determination of the boundaries of all slices for column 501 of the
+image. The black dashed lines indicate the limits obtained. The curves
+corresponding to the first derivative (solid red line) and second derivative
+(solid green line) are overplotted.
+```
+
+Since we have only selected one column using `--colrange 501 501`, after
+pressing `q`, the script ends execution without generating any output file.
+
+```{include} files/terminal_output_find_borders1_01.md
+```
+
+We can compare the slice widths as a function of the slice ID.
+
+```{figure} images/find_borders1_07.png
+:alt: TBD
+:name: fig-find_borders1_07
+:width: 100%
+
+Comparison of the widths of the different slices, grouped into the two ID
+families, with the slices centered around its mid point.
+```
+
+```{figure} images/find_borders1_08.png
+:alt: TBD
+:name: fig-find_borders1_08
+:width: 100%
+
+Comparison of the widths of the different slices, grouped into the two ID
+families, with the slices aligned to the left border.
+```
+
+```{figure} images/find_borders1_09.png
+:alt: TBD
+:name: fig-find_borders1_09
+:width: 100%
+
+Comparison of the widths of the different slices, grouped into the two ID
+families, with the slices aligned to the right border.
+```
+
+Another way of representing the same information consists of plotting the slice
+width as a function of ID number.
+
+```{figure} images/find_borders1_10.png
+:alt: TBD
+:name: fig-find_borders1_10
+:width: 100%
+
+Comparison of the widths of the different slices, grouped into the two ID
+families. As will be discussed below, slice ID 15 shows a narrower width than
+expected. This is because it is partially located outside the useful region of
+the detector.
+```
+
+The most important aspect to highlight from the previous figure is that the
+variation in slice width appears to fit reasonably well to a 2nd degree
+polynomial. This will be useful later on, when we need to predict the location
+of the boundaries of a slice that may not appear complete on the detector.
+
+### Slice borders at multiple columns
+
+The `--colrange` parameter (column number along NAXIS1, starting at 1) allows
+one or more ranges to be defined. If there are several ranges, `--colrange N1
+N2` must be repeated. For example, we could use: `--colrange 10 800 --colrange
+1500 2000`. If `--colrange` is not specified, the script uses all initially
+valid columns of the H2RG detector (from 5 to 2044; the detector has an outer
+border of 4 pixels that contains no useful signal).
+
+Now that we have shown how the boundary of each slice is calculated for a
+particular column, we can run the script for all columns.
+
+```console
+(venv_frida) $ fridadrp-find_slice_boundary_borders_from_flat \
+  --flatfile 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --overwrite
+```
+
+```{include} files/terminal_output_find_borders2_00.md
+```
+
+Since in the last run we did not use the `--colrange` argument, the script
+makes use of all initially valid columns of the H2RG detector (columns 5 to
+2044 along NAXIS1).
+
+The result is stored in a FITS file, whose default name is
+`slice_boundary_borders_from_flat_1-30.fits`. The suffix `1-30` before the
+extension indicates that the script has fitted all 30 slices (see below for
+other cases). The output file name can be modified using `--output <filename>`.
+If the file already exists, the program raises an error unless `--overwrite` is
+used.
+
+The output file contains 3 extensions.
+
+```console
+(venv_frida) $ fitsinfo slice_boundary_borders_from_flat_1-30.fits 
+```
+
+```{code-block} console
+:class: my-special-block no-copybutton
+
+Filename: slice_boundary_borders_from_flat_1-30.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU      63   ()      
+  1  L-BORDER      1 ImageHDU         8   (2048, 30)   float64   
+  2  R-BORDER      1 ImageHDU         8   (2048, 30)   float64   
+  3  SLIWIDTH      1 ImageHDU         8   (2048, 30)   float64
+```
+
+The `L-BORDER` and `R-BORDER` extensions contain the coordinates (position
+along NAXIS2, using array indices, i.e., ranging from 0 to NAXIS2-1) of the
+points that could be computed. For some columns of the detector (positions
+along NAXIS1) these points could not be computed and their value is NaN. This
+happens when the peaks of the first and second derivatives do not maintain the
+expected order. Normally this is only a subset of the columns, so the
+boundaries should still be fittable. We leave this task for the script
+`fridadrp-fit_slice_boundary_borders_with_polynomials`.
+The `SLIWIDTH` extension contains the width of the slices as a function of
+column number (it inherits the NaNs from the two previous extensions).
+
+We can visualize the detected boundary borders using the script
+`fridadrp-overplot_slice_boundary_polynomials`.
+
+```{include} files/help2_fridadrp-overplot_slice_boundary_polynomials.md
+```
+
+We run this script using as inputs both the QTH image and the FITS file
+generated by the script `fridadrp-find_slice_boundary_borders_from_flat`.
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --borders slice_boundary_borders_from_flat_1-30.fits \
+  --image 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --sliceid
+```
+
+```{include} files/terminal_output_find_borders3_00.md
+```
+
+```{figure} images/find_borders3_01.png
+:alt: mosaic with original and processed input exposure
+:name: fig-find_borders3_01
+:width: 100%
+
+Full image with the detected boundaries. Note that for some columns these
+boundaries do not exist because the detection process did not work correctly.
+This effect is not very significant because, as we can verify in the terminal
+output, the number of columns with NaNs is small.
+```
+
+We can zoom in to better appreciate what happens with different slices. It is
+worth paying attention to what happens at the bottom and top of the detector.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border3_02-03
+
+```{image} images/find_borders3_02.png
+:alt: Lower border
+:width: 100%
+```
+
+```{image} images/find_borders3_03.png
+:alt: Upper border
+:width: 100%
+```
+
+Zoomed view of what happens in the first (left panel) and last (right panel)
+slices.
+````
+
+In this case it is worth noting that the slice appearing at the top edge (slice
+ID 15) falls partially outside the detector. The upper boundaries of that slice
+are underestimated because the useful detector information ends at pixel 2044.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border3_04-05
+
+```{image} images/find_borders3_04.png
+:alt: Lower border
+:width: 100%
+```
+
+```{image} images/find_borders3_05.png
+:alt: Upper border
+:width: 100%
+```
+
+Detail of the last slice (ID 15), using different cuts. It can be seen how the
+signal of this slice is truncated at the top because part of the slice falls
+outside the useful region of the detector.
+````
+
+We can easily visualize how the width of each slice varies as we move along
+NAXIS1, as well as the variation between different slices. It is enough to plot
+the 2D image stored in the `SLIWIDTH` extension of the file
+`slice_boundary_borders_from_flat_1-30.fits`.
+
+```console
+(venv_frida) $ numina-ximshow slice_boundary_borders_from_flat_1-30.fits \
+  --extnum 4 \
+  --cbar_orientation vertical \
+  --cbar_label "Slice width (pixels)" \
+  --ylabel "Slice number" \
+  --cmap viridis --z1z2 45,70
+```
+
+```{figure} images/find_borders3_06.png
+:alt: TBD
+:name: fig-find_borders3_06
+:width: 100%
+
+Slice width value for each detector column along NAXIS1. Note the clear
+difference between the even and odd slices, corresponding to the two ID
+families: 1 to 15 (even slices, bottom to top) and 16 to 30 (odd slices, top to
+bottom). Columns shown in white correspond to NaNs.
+```
+
+In this particular case, although slice ID 15 falls partially outside the
+useful region of the detector, the script
+`fridadrp-find_slice_boundary_borders_from_flat` has nonetheless been able to
+detect both boundaries of that slice. Since there can be cases (see below) in
+which the entire lower boundary of the first slice (ID 30) or the entire upper
+boundary of the last slice (ID 15) fall outside the detector, it is useful to
+run the boundary borders detection script again while avoiding attempts to fit
+non-existent boundaries.
+
+### Avoiding missing borders
+
+The script `fridadrp-find_slice_boundary_borders_from_flat` allows the use of
+the following arguments:
+
+* `--slice-ini`: default 1, numbering from 1 (ID 30, at the bottom of
+  the detector) to 30 (ID 15, at the top).
+
+* `--slice-end`: default 30 (ID 15, at the top of the detector), following
+  the same numbering.
+
+* `--row-ini`: lower row number (1-based index) along NAXIS2. The
+  default is 5 (first valid pixel after skipping the 4 initial border
+  pixels). Rows below `--row-ini` are set equal to zero in the image
+  when searching for slice boundaries.
+
+* `--row-end`: upper row number (1-based index) along NAXIS2. The
+  default is 2044 (last valid pixel to avoid the 4 final border
+  pixels). Rows above `--row-end` are set equal to zero in the image
+  when searching for slice boundaries.
+
+The idea is to use `--slice-ini 2` to avoid fitting the first slice (ID 30, at
+the bottom) or `--slice-end 29` to avoid fitting the last slice (ID 15, at the
+top).
+
+If we use `--slice-ini 2`, we must also use an appropriate value for
+`--row-ini`, so that we can ignore the first portion of the image at the bottom
+that partially contains slice ID 30.  Similarly, if we use `--slice-end 29`, we
+must use an appropriate value of `--row-end` to avoid using the upper part of
+the image where slice ID 15 may appear only partially.
+
+In principle this should also work with `--slice-ini` greater than 2 and
+`--slice-end` less than 29. We could even compute the boundaries of a single
+slice by making `--slice-ini` and `--slice-end` equal. In these cases,
+appropriate values of `--row-ini` and `--row-end` would need to be used.
+
+In the case of the image `0000000096-20260505-FRIDA-FridaSuccess-raw.fits`, the
+top slice, number 30 (slice ID 15), has its upper boundary truncated (it
+extends beyond row 2044, the last valid row on the detector along NAXIS2). In
+this case we can fit slices 1 to 29, without using the last one.
+
+```console
+(venv_frida) $ fridadrp-find_slice_boundary_borders_from_flat \
+  --flatfile 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --slice-end 29 \
+  --row-end 1986 \
+  --overwrite
+```
+
+```{include} files/terminal_output_find_borders4_00.md
+```
+
+In this case the generated output file is appropriately named
+`slice_boundary_borders_from_flat_1-29.fits` by default.
+
+We visualize the new result.
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --borders slice_boundary_borders_from_flat_1-29.fits \
+  --image 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --sliceid
+```
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border4_01-02
+
+```{image} images/find_borders4_01.png
+:alt: Full image
+:width: 100%
+```
+
+```{image} images/find_borders4_02.png
+:alt: Zoomed region
+:width: 100%
+```
+
+We can see that in this case the last slice (ID 15) has not been fitted.
+````
+
+### Polynomial fit of the slice borders
+
+The next step consists of performing a polynomial fit to the boundaries
+detected in the previous procedure. This task is carried out with the help of
+the script `fridadrp-fit_slice_boundary_borders_with_polynomials`.
+
+```{include} files/help2_fridadrp-fit_slice_boundary_borders_with_polynomials.md
+```
+
+```console
+(venv_frida) $ fridadrp-fit_slice_boundary_borders_with_polynomials \
+  --input slice_boundary_borders_from_flat_1-30.fits \
+  --output slice_boundary_polynomials_1-30.fits \
+  --deg 3 \
+  --overwrite
+```
+
+We start by fitting all 30 slices, even though we already know that slice ID 15
+is incorrect.
+
+```{include} files/terminal_output_find_borders5_00.md
+```
+
+The previous script saves the results in a FITS file whose name in this example 
+is `slice_boundary_polynomials_1-30.fits` (we have preserved the suffix `1-30`
+before the extension, to follow the same convention used to name the FITS file
+employed as input).
+
+The output file contains 3 extensions:
+
+```console
+(venv_frida) $ fitsinfo slice_boundary_polynomials_1-30.fits
+```
+
+```{code-block} console
+:class: my-special-block no-copybutton
+
+Filename: slice_boundary_polynomials_1-30.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU      59   ()      
+  1  L-BORDER      1 ImageHDU         8   (4, 30)   float64   
+  2  R-BORDER      1 ImageHDU         8   (4, 30)   float64   
+  3  SLIWIDTH      1 ImageHDU         8   (2048, 30)   float64 
+```
+
+The `L-BORDER` and `R-BORDER` extensions contain the coefficients of the
+polynomials fitted to each boundary (NAXIS1=4 coefficients, NAXIS2=30 slices).
+The extension `SLIWIDTH` contains the width of the slices as a function of the
+column number along NAXIS1 (for the NAXIS2=30 slices). It is interesting to
+compare the image stored in this last `SLIWIDTH` extension with the one
+obtained earlier using the values of the points detected as boundaries.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border5_01
+
+```{image} images/find_borders3_06.png
+:alt: Full image
+:width: 100%
+```
+
+```{image} images/find_borders5_01.png
+:alt: Zoomed region
+:width: 100%
+```
+
+Comparison of the slice widths stored in the `SLIWIDTH` extension of the files
+`slice_boundary_borders_from_flat_1-30.fits` (left panel) and
+`slice_boundary_polynomials_1-30.fits` (right panel). The polynomial fit
+generates a smooth variation with column number along NAXIS1.
+````
+
+We can check the polynomial fits graphically by overlaying the points
+previously determined as slice boundaries (which are the points used in the
+polynomial fits) together with the resulting polynomials.
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --borders slice_boundary_borders_from_flat_1-30.fits \
+  --poly slice_boundary_polynomials_1-30.fits \
+  --image 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --sliceid
+```
+
+```{figure} images/find_borders5_02.png
+:alt: TBD
+:name: fig-find_borders5_02
+:width: 100%
+
+Full image with the detected boundaries and the fitted polynomials.
+```
+
+We can zoom in to better appreciate what happens with different slices. It is
+worth paying attention to what happens at the bottom and top of the detector.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border5_03-04
+
+```{image} images/find_borders5_03.png
+:alt: Lower border
+:width: 100%
+```
+
+```{image} images/find_borders5_04.png
+:alt: Upper border
+:width: 100%
+```
+
+Zoomed view of what happens in the first (left panel) and last (right panel)
+slices.
+````
+
+As we already saw earlier when determining the slice boundaries, the upper
+boundary of slice ID 15 extends beyond the useful region of the detector.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border5_05-06
+
+```{image} images/find_borders5_05.png
+:alt: Lower border
+:width: 100%
+```
+
+```{image} images/find_borders5_06.png
+:alt: Upper border
+:width: 100%
+```
+
+Detail of the last slice (ID 15), using different cuts. It can be seen how the
+signal of this slice is truncated at the top because part of the slice falls
+outside the useful region of the detector. The polynomial fit of the upper
+boundary of that slice does not perform well, because a large fraction of the
+points have underestimated positions along the NAXIS2 axis.
+````
+
+We will now repeat the work carried out with the script
+`fridadrp-fit_slice_boundary_borders_with_polynomials`, using as input the file
+`slice_boundary_borders_from_flat_1-29.fits` (which does not contain boundary
+values for slice ID 15).
+
+```console
+(venv_frida) $ fridadrp-fit_slice_boundary_borders_with_polynomials \
+  --input slice_boundary_borders_from_flat_1-29.fits \
+  --output slice_boundary_polynomials_1-29.fits \
+  --deg 3 \
+  --overwrite
+```
+
+```{include} files/terminal_output_find_borders6_00.md
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --borders slice_boundary_borders_from_flat_1-29.fits \
+  --poly slice_boundary_polynomials_1-29.fits \
+  --image 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --sliceid
+```
+
+```{figure} images/find_borders6_01.png
+:alt: TBD
+:name: fig-find_borders6_01
+:width: 100%
+
+Full image with the detected boundaries and the polynomial fits, excluding
+slice ID 15.
+```
+
+### Predicting missing polynomial borders
+
+As we have seen above, there appears to be a relatively continuous variation in
+slice width when we consider them grouped into two families: IDs 1 to 15 on one
+hand and IDs 16 to 30 on the other. The script
+`fridadrp-predict_polynomial_slice_borders` makes use of this fact to try to
+predict the polynomial boundaries of slices that may be partially outside the
+detector. We have seen that this happens with several calibration images when
+changing grating, and it can result in the boundaries of the bottom slice (ID
+30) or the top slice (ID 15) not being determinable.
+
+```{include} files/help2_fridadrp-predict_polynomial_slice_borders.md
+```
+
+In the example at hand, we are going to predict the polynomial boundaries of
+slice ID 15 (number 30 counting from bottom to top on the detector).
+
+```console
+(venv_frida) $ fridadrp-predict_polynomial_slice_borders \
+  --poly slice_boundary_polynomials_1-29.fits \
+  --output slice_boundary_polynomials_1-30_fixed.fits \
+  --slicenum 30 \
+  --overwrite \
+  --plots
+```
+
+```{include} files/terminal_output_find_borders7_00.md
+```
+
+The script determines that the slice to be predicted (ID 15) belongs to the
+family of slices with ID between 1 and 15. For each column along NAXIS1, the
+code performs a polynomial fit of degree `--degslice 2` (default) to the
+position of each boundary as a function of slice number. This polynomial then
+allows the boundary position to be predicted for the slice indicated in
+`--slicenum`.
+
+Since we used the `--plots` argument, several plots are shown during the
+execution of this last script. First, the positions of the right and left
+boundaries (along the NAXIS2 axis) of the slices used in the fit are shown, for
+columns 1, 1025, and 2048 (along the NAXIS1 axis).
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border7_01-02
+
+```{image} images/find_borders7_01.png
+:alt: Left border polynomial
+:width: 100%
+```
+
+```{image} images/find_borders7_02.png
+:alt: Right border polynomial
+:width: 100%
+```
+
+Location of the polynomial boundaries for the slices used in the fit, for
+column 1 along the NAXIS1 axis.
+````
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border7_03-04
+
+```{image} images/find_borders7_03.png
+:alt: Left border polynomial
+:width: 100%
+```
+
+```{image} images/find_borders7_04.png
+:alt: Right border polynomial
+:width: 100%
+```
+
+Location of the polynomial boundaries for the slices used in the fit, for
+column 1025 along the NAXIS1 axis.
+````
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border7_05-06
+
+```{image} images/find_borders7_05.png
+:alt: Left border polynomial
+:width: 100%
+```
+
+```{image} images/find_borders7_06.png
+:alt: Right border polynomial
+:width: 100%
+```
+
+Location of the polynomial boundaries for the slices used in the fit, for
+column 2048 along the NAXIS1 axis.
+````
+
+Once the fits have been performed for all detector columns along NAXIS1, the
+resulting polynomials are used to predict the expected location of the
+polynomial boundaries of the target slice at each column. These positions are
+then fitted with a polynomial of the same degree as the one used for the
+polynomial fits already stored in the input file.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_border7_07-08
+
+```{image} images/find_borders7_07.png
+:alt: Left border polynomial
+:width: 100%
+```
+
+```{image} images/find_borders7_08.png
+:alt: Right border polynomial
+:width: 100%
+```
+
+Predicted left and right border polynomials for slice ID 15.
+````
+
+The result is stored in the output file specified by the `--output` argument.
+In this case the output file is called
+`slice_boundary_polynomials_1-30_fixed.fits` and has the same format as the
+input file `slice_boundary_polynomials_1-29_fixed.fits`.
+
+We can visualize the new result graphically.
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --borders slice_boundary_borders_from_flat_1-30.fits \
+  --poly slice_boundary_polynomials_1-30_fixed.fits \
+  --image 0000000096-20260505-FRIDA-FridaSuccess-raw.fits \
+  --sliceid \
+  --ylim 1900 2060
+```
+
+```{figure} images/find_borders7_09.png
+:alt: TBD
+:name: fig-find_borders7_09
+:width: 100%
+
+Graphical comparison between the boundaries (white points) obtained by the
+script `fridadrp-find_slice_boundary_borders_from_flat` and the prediction of
+the polynomial boundaries computed with the script
+`fridadrp-predict_polynomial_slice_borders` for slice ID 15. Note that the
+right boundary (upper in the image) of that slice clearly falls outside the
+useful region of the detector.
+```
+
+## Polynomial fit of spectral traces

@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; fridadrp-tutorials 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=932a37d4" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3defd07e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=d2c30f9d"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            fridadrp-tutorials
+              <img src="../../../_static/logo_FRIDA.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installing the development version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifu_simulator/index.html">Running the IFU simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_recipes/test1.html">Running a simple test recipe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Auxiliary tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">fridadrp-tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/auxiliary_tools/initial_slice_boundaries/files/terminal_output_find_borders5_00.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">─────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-fit_slice_boundary_borders_with_polynomials</span><span class="-Ansi -Ansi-BrightGreen"> ────────</span>
+Using fridadrp.tools.fit_slice_boundary_borders_with_polynomials version        
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Column ranges not specified. Using default range: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span>.                    
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous      
+Reading slice boundary borders from                                             
+<span class="-Ansi -Ansi-Blue">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Blue">fits</span>                                      
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>                                            
+Number of NaN values in collapsed left border : <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of NaN values in collapsed right border: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of initial valid columns to fit each boundary: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span>                      
+Number of valid columns after applying columns_to_analyze: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span>                 
+Polynomial degree: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>                                                            
+Fitting slice boundaries with polynomials<span class="-Ansi -Ansi-Yellow">...</span>                                    
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:10</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:03</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:13</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:03</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:10</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span><span class="-Ansi -Ansi-Bold">)</span>      
+coefs_left shape<span class="-Ansi -Ansi-Yellow">...</span>.: <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span><span class="-Ansi -Ansi-Bold">)</span>                                                   
+coefs_right shape<span class="-Ansi -Ansi-Yellow">...</span>: <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span><span class="-Ansi -Ansi-Bold">)</span>                                                   
+Slice boundary polynomials saved to: <span class="-Ansi -Ansi-Green">slice_boundary_polynomials_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Green">fits</span>       
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:08</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">778110</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2026, Nicolás Cardiel, Sergio Pascual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

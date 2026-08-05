@@ -1,0 +1,1187 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Determination of initial slice boundaries &mdash; fridadrp-tutorials 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=932a37d4" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3defd07e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=d2c30f9d"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Generation of data cube mosaics" href="../data_cube_mosaics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            fridadrp-tutorials
+              <img src="../../_static/logo_FRIDA.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installing the development version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ifu_simulator/index.html">Running the IFU simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../example_recipes/test1.html">Running a simple test recipe</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Auxiliary tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../data_cube_mosaics.html">Generation of data cube mosaics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Determination of initial slice boundaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-procedure">General procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polynomial-boundaries-of-the-slices">Polynomial boundaries of the slices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#slice-borders-at-a-single-column">Slice borders at a single column</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slice-borders-at-multiple-columns">Slice borders at multiple columns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoiding-missing-borders">Avoiding missing borders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polynomial-fit-of-the-slice-borders">Polynomial fit of the slice borders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#predicting-missing-polynomial-borders">Predicting missing polynomial borders</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#polynomial-fit-of-spectral-traces">Polynomial fit of spectral traces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fridadrp-tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Auxiliary tools</a></li>
+      <li class="breadcrumb-item active">Determination of initial slice boundaries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/auxiliary_tools/initial_slice_boundaries/initial_slice_boundaries.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+  .ss-layout-default-AB { grid-template-areas: 'A B'; }
+@media (max-width: 576px) {
+  .ss-layout-sm-A_B { grid-template-areas: 'A' 'B'; }
+}
+</style>
+<section class="tex2jax_ignore mathjax_ignore" id="determination-of-initial-slice-boundaries">
+<h1>Determination of initial slice boundaries<a class="headerlink" href="#determination-of-initial-slice-boundaries" title="Link to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that the code shown below is under development and may undergo
+modifications.</p>
+</div>
+<section id="general-procedure">
+<h2>General procedure<a class="headerlink" href="#general-procedure" title="Link to this heading"></a></h2>
+<p>To determine the boundaries of each of the 30 slices obtained on the H2RG
+detector when using FRIDA in IFS mode, we start with a QTH lamp exposure. As a
+test, we use the images:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0000000096-20260505-FRIDA-FridaSuccess-raw.fits</span></code>: QTH
+(Quartz-Tungsten-Halogen) lamp</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0000000132-20260506-FRIDA-FridaSuccess-raw.fits</span></code>: spectral traces</p></li>
+</ul>
+<p>Both images are available in the subdirectory
+<code class="docutils literal notranslate"><span class="pre">Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent</span></code>, which contains some of the
+first calibration images obtained.</p>
+<p>The general procedure uses the following scripts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fridadrp-find_slice_boundary_borders_from_flat</span></code>: determination of the
+boundaries of each slice.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fridadrp-fit_slice_boundary_borders_with_polynomials</span></code>: fitting of the
+boundaries using polynomials.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code>: overlay of the detected
+boundaries for each slice, as well as the resulting polynomial fits, on
+arbitrary images. This script also allows overlaying the polynomial fit on
+the spectral traces.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fridadrp-predict_polynoimal_slice_borders</span></code>: extrapolation of the boundaries
+of the first and last slices when either of these two falls outside the
+detector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fridadrp-find_traces_within_slice_boundary_polynomials</span></code>: polynomial fitting
+of the spectral traces contained within each slice.</p></li>
+</ul>
+</section>
+<section id="polynomial-boundaries-of-the-slices">
+<h2>Polynomial boundaries of the slices<a class="headerlink" href="#polynomial-boundaries-of-the-slices" title="Link to this heading"></a></h2>
+<section id="slice-borders-at-a-single-column">
+<h3>Slice borders at a single column<a class="headerlink" href="#slice-borders-at-a-single-column" title="Link to this heading"></a></h3>
+<p>After testing different approaches, a method that seems to work well consists
+of taking vertical cuts of the image and using the positions of the first and
+second derivatives. The first derivatives indicate approximately where the
+signal rises and falls occur. The second derivative (searched for in the
+neighborhood of each first derivative) allows us to approximate the region
+where the signal has maximum concavity (which provides a more generous slice
+width than the first derivative). Finally, we opted to fit a straight line
+between the first and second derivative of each signal rise (or fall), and
+extrapolate that line until it intersects a value coinciding with the minimum
+signal between each pair of slices (after adding 1% of the 90th-percentile
+signal of the slice whose edge we want to estimate).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-find_slice_boundary_borders_from_flat<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-find_slice_boundary_borders_from_flat</span> [<span class="-Ansi -Ansi-Cyan">-h</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--flatfile</span> <span class="-Ansi -Ansi-C36">FLATFILE</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--overwrite</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--slice-ini</span> <span class="-Ansi -Ansi-C36">SLICE_INI</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--slice-end</span> <span class="-Ansi -Ansi-C36">SLICE_END</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--row-ini</span> <span class="-Ansi -Ansi-C36">ROW_INI</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--row-end</span> <span class="-Ansi -Ansi-C36">ROW_END</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--savgol-ywindow</span> <span class="-Ansi -Ansi-C36">SAVGOL_YWINDOW</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--savgol-polyorder</span> <span class="-Ansi -Ansi-C36">SAVGOL_POLYORDER</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--plots</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+
+Find the slice boundaries from flat image
+
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--flatfile</span> <span class="-Ansi -Ansi-C36">FLATFILE</span>   Path to the flat file
+  <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output FITS file name
+  <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite output file if it exists
+  <span class="-Ansi -Ansi-Cyan">--slice-ini</span> <span class="-Ansi -Ansi-C36">SLICE_INI</span>
+                        Initial slice number (1-based index)
+  <span class="-Ansi -Ansi-Cyan">--slice-end</span> <span class="-Ansi -Ansi-C36">SLICE_END</span>
+                        Final slice number (1-based index)
+  <span class="-Ansi -Ansi-Cyan">--row-ini</span> <span class="-Ansi -Ansi-C36">ROW_INI</span>     Initial row number (1-based index) along NAXIS2
+  <span class="-Ansi -Ansi-Cyan">--row-end</span> <span class="-Ansi -Ansi-C36">ROW_END</span>     Final row number (1-based index) along NAXIS2
+  <span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>    Column range to analyze (1-based index) along NAXIS1.
+                        This option can be specified multiple times
+  <span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>     Size of the median filter along NAXIS1 axis (odd;
+                        default: 21)
+  <span class="-Ansi -Ansi-Cyan">--savgol-ywindow</span> <span class="-Ansi -Ansi-C36">SAVGOL_YWINDOW</span>
+                        Savitzky-Golay filter window size along NAXIS2 axis
+                        (default: 5)
+  <span class="-Ansi -Ansi-Cyan">--savgol-polyorder</span> <span class="-Ansi -Ansi-C36">SAVGOL_POLYORDER</span>
+                        Savitzky-Golay filter polynomial order along NAXIS2
+                        axis (default: 2)
+  <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots
+  <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
+                        Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+</pre></div>
+</div>
+<p>We start by running the script using a single column <code class="docutils literal notranslate"><span class="pre">--colrange</span> <span class="pre">501</span> <span class="pre">501</span></code>. This
+way, the code shows us several figures that allow us to understand how the
+calculations are being performed.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_slice_boundary_borders_from_flat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flatfile<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">501</span><span class="w"> </span><span class="m">501</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-find_slice_boundary_borders_from_flat</span><span class="-Ansi -Ansi-BrightGreen"> ───────────</span>
+Using fridadrp.tools.find_slice_boundary_borders_from_flat version              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">501</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">501</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous        
+Output file name is <span class="-Ansi -Ansi-Italic -Ansi-Magenta">None</span>. No output file will be created.                       
+------------------------------------------------------------------------------- 
+<span class="-Ansi -Ansi-Green">&#39;?&#39;</span>: show this help message                                                     
+<span class="-Ansi -Ansi-Green">&#39;a&#39;</span>: toggle imshow <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;equal&#39;</span> <span class="-Ansi -Ansi-Magenta">/</span> <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;auto&#39;</span>                               
+<span class="-Ansi -Ansi-Green">&#39;v&#39;</span>: set vmin and vmax manually                                                 
+<span class="-Ansi -Ansi-Green">&#39;,&#39;</span>: set vmin and vmax to min and max of the zoomed region                      
+<span class="-Ansi -Ansi-Green">&#39;/&#39;</span>: set vmin and vmax using zscale of the zoomed region                        
+<span class="-Ansi -Ansi-Green">&#39;q&#39;</span>: quit                                                                       
+------------------------------------------------------------------------------- 
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-borders1-01">
+<a class="reference internal image-reference" href="../../_images/find_borders1_01.png"><img alt="mosaic with original and processed input exposure" src="../../_images/find_borders1_01.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Mosaic showing the initial processing of the QTH image. Top left, initial
+image. Top right, image smoothed with a median filter along the horizontal
+axis. The bottom images show the first (left) and second (right) derivatives
+when moving vertically along the image. The derivatives are computed using a
+Savitzky-Golay filter.  The default parameters for this filter are
+<code class="docutils literal notranslate"><span class="pre">--savgol-ywindow</span> <span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">--savgol-polyorder</span> <span class="pre">2</span></code>.</span><a class="headerlink" href="#fig-find-borders1-01" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>When using the zoom option on any of the 4 images, that operation is applied
+identically to the other three.</p>
+<figure class="align-default" id="fig-find-borders1-01-zoom">
+<a class="reference internal image-reference" href="../../_images/find_borders1_01_zoom.png"><img alt="zoom mosaic with original and processed input exposure" src="../../_images/find_borders1_01_zoom.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Result of applying zoom to the previous figure (<a class="reference internal" href="#fig-find-borders1-01"><span class="std std-numref">Fig. 1</span></a>). This allows us to better
+visualize how both the first derivatives (with positive and negative sign) and
+the second derivatives (with positive sign) can be used as a first estimate of
+the slice boundaries.</span><a class="headerlink" href="#fig-find-borders1-01-zoom" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>After pressing <code class="docutils literal notranslate"><span class="pre">q</span></code> to close the previous figure, the code shows us, in a new
+figure, how the signal changes along the selected column (501 in this example).</p>
+<figure class="align-default" id="fig-find-borders1-02">
+<a class="reference internal image-reference" href="../../_images/find_borders1_02.png"><img alt="TBD" src="../../_images/find_borders1_02.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Vertical cut along column 501. Gray shows the original image. Blue
+shows the image after applying the median filter along the X axis (<code class="docutils literal notranslate"><span class="pre">--xmedian</span> <span class="pre">21</span></code> by default). The red filled circles show the positions where the first
+derivative has a maximum (large circle) and a minimum (small circle). The green
+filled circles indicate the positions where the second derivative has a maximum
+(i.e., has concave curvature seen from above); the large circle corresponds to
+the left edge and the small circle to the right edge. The black ‘x’ symbols
+mark the minimum between each pair of slices. The black filled circle indicates
+the 90th percentile of the smoothed image and is placed in the central region
+of each slice.</span><a class="headerlink" href="#fig-find-borders1-02" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The previous figure clearly shows that, although the second derivatives seem to
+bound the slice edges fairly well, they underestimate their dimensions. After
+several tests, a good alternative consists of performing a linear fit between
+the positions of the first and second derivatives on each side of each slice,
+and extrapolating that value until it reaches a value close to the minimum
+signal reached in the gap between slices. The following figure shows what
+happens in the gaps between all the slices.</p>
+<figure class="align-default" id="fig-find-borders1-03">
+<a class="reference internal image-reference" href="../../_images/find_borders1_03.png"><img alt="TBD" src="../../_images/find_borders1_03.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Mosaic showing what happens in the gaps between consecutive slices. The red and
+green filled circles again correspond to the first and second derivatives. On
+both sides of each slice, a linear fit has been performed to these points. The
+extrapolation outward from each slice is carried out until reaching a signal
+that exceeds the minimum value in the corresponding gap by an amount equal to
+1% of the difference between the median signal within the slice and the minimum
+value in the gap. The black filled circles indicate that extrapolated
+positions.</span><a class="headerlink" href="#fig-find-borders1-03" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>For the left edge of the first slice and the right edge of the last slice, the
+extrapolation thresholds corresponding to the right and left edges of the
+respective slices are used.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border1-04-05">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Left border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders1_04.png"><img alt="Left border" src="../../_images/find_borders1_04.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Right border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders1_05.png"><img alt="Right border" src="../../_images/find_borders1_05.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Determination of the extrapolation of the left edge for the first slice (ID 30)
+and the right edge for the last slice (ID 15).</span><a class="headerlink" href="#fig-find-border1-04-05" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Once the boundaries of all slices have been determined, the script shows us a
+summary mosaic with the result.</p>
+<figure class="align-default" id="fig-find-borders1-06">
+<a class="reference internal image-reference" href="../../_images/find_borders1_06.png"><img alt="TBD" src="../../_images/find_borders1_06.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Final determination of the boundaries of all slices for column 501 of the
+image. The black dashed lines indicate the limits obtained. The curves
+corresponding to the first derivative (solid red line) and second derivative
+(solid green line) are overplotted.</span><a class="headerlink" href="#fig-find-borders1-06" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Since we have only selected one column using <code class="docutils literal notranslate"><span class="pre">--colrange</span> <span class="pre">501</span> <span class="pre">501</span></code>, after
+pressing <code class="docutils literal notranslate"><span class="pre">q</span></code>, the script ends execution without generating any output file.</p>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Working on columns<span class="-Ansi -Ansi-Yellow">...</span>                                                           
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">3:19</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">3:41</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:28</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:51</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:52</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:14</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:33</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:55</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:44</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:15</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:37</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:32</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:06</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:28</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:25</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span><span class="-Ansi -Ansi-Bold">)</span>      
+Number of useful columns processed: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span> out of <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>                                  
+Slice boundary borders computed for column <span class="-Ansi -Ansi-Bold -Ansi-Cyan">501</span>. Not saved to FITS file since a  
+single column is specified.                                                     
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:26</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">822534</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>We can compare the slice widths as a function of the slice ID.</p>
+<figure class="align-default" id="fig-find-borders1-07">
+<a class="reference internal image-reference" href="../../_images/find_borders1_07.png"><img alt="TBD" src="../../_images/find_borders1_07.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Comparison of the widths of the different slices, grouped into the two ID
+families, with the slices centered around its mid point.</span><a class="headerlink" href="#fig-find-borders1-07" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-find-borders1-08">
+<a class="reference internal image-reference" href="../../_images/find_borders1_08.png"><img alt="TBD" src="../../_images/find_borders1_08.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Comparison of the widths of the different slices, grouped into the two ID
+families, with the slices aligned to the left border.</span><a class="headerlink" href="#fig-find-borders1-08" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-find-borders1-09">
+<a class="reference internal image-reference" href="../../_images/find_borders1_09.png"><img alt="TBD" src="../../_images/find_borders1_09.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Comparison of the widths of the different slices, grouped into the two ID
+families, with the slices aligned to the right border.</span><a class="headerlink" href="#fig-find-borders1-09" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Another way of representing the same information consists of plotting the slice
+width as a function of ID number.</p>
+<figure class="align-default" id="fig-find-borders1-10">
+<a class="reference internal image-reference" href="../../_images/find_borders1_10.png"><img alt="TBD" src="../../_images/find_borders1_10.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Comparison of the widths of the different slices, grouped into the two ID
+families. As will be discussed below, slice ID 15 shows a narrower width than
+expected. This is because it is partially located outside the useful region of
+the detector.</span><a class="headerlink" href="#fig-find-borders1-10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The most important aspect to highlight from the previous figure is that the
+variation in slice width appears to fit reasonably well to a 2nd degree
+polynomial. This will be useful later on, when we need to predict the location
+of the boundaries of a slice that may not appear complete on the detector.</p>
+</section>
+<section id="slice-borders-at-multiple-columns">
+<h3>Slice borders at multiple columns<a class="headerlink" href="#slice-borders-at-multiple-columns" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">--colrange</span></code> parameter (column number along NAXIS1, starting at 1) allows
+one or more ranges to be defined. If there are several ranges, <code class="docutils literal notranslate"><span class="pre">--colrange</span> <span class="pre">N1</span> <span class="pre">N2</span></code> must be repeated. For example, we could use: <code class="docutils literal notranslate"><span class="pre">--colrange</span> <span class="pre">10</span> <span class="pre">800</span> <span class="pre">--colrange</span> <span class="pre">1500</span> <span class="pre">2000</span></code>. If <code class="docutils literal notranslate"><span class="pre">--colrange</span></code> is not specified, the script uses all initially
+valid columns of the H2RG detector (from 5 to 2044; the detector has an outer
+border of 4 pixels that contains no useful signal).</p>
+<p>Now that we have shown how the boundary of each slice is calculated for a
+particular column, we can run the script for all columns.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_slice_boundary_borders_from_flat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flatfile<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-find_slice_boundary_borders_from_flat</span><span class="-Ansi -Ansi-BrightGreen"> ───────────</span>
+Using fridadrp.tools.find_slice_boundary_borders_from_flat version              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Column ranges not specified. Using default range: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span>.                    
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous      
+Working on columns<span class="-Ansi -Ansi-Yellow">...</span>                                                           
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:06</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:51</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:57</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:45</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:57</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:17</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:40</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:57</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:23</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:34</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:57</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:29</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:29</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:57</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:35</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:23</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:41</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:17</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:46</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:52</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:06</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+Number of useful columns processed: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span> out of <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span>                            
+Slice boundary borders saved to: <span class="-Ansi -Ansi-Green">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Green">fits</span>     
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:59</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">488915</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>Since in the last run we did not use the <code class="docutils literal notranslate"><span class="pre">--colrange</span></code> argument, the script
+makes use of all initially valid columns of the H2RG detector (columns 5 to
+2044 along NAXIS1).</p>
+<p>The result is stored in a FITS file, whose default name is
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-30.fits</span></code>. The suffix <code class="docutils literal notranslate"><span class="pre">1-30</span></code> before the
+extension indicates that the script has fitted all 30 slices (see below for
+other cases). The output file name can be modified using <code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">&lt;filename&gt;</span></code>.
+If the file already exists, the program raises an error unless <code class="docutils literal notranslate"><span class="pre">--overwrite</span></code> is
+used.</p>
+<p>The output file contains 3 extensions.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fitsinfo<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span>
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: slice_boundary_borders_from_flat_1-30.fits</span>
+<span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
+<span class="go">  0  PRIMARY       1 PrimaryHDU      63   ()      </span>
+<span class="go">  1  L-BORDER      1 ImageHDU         8   (2048, 30)   float64   </span>
+<span class="go">  2  R-BORDER      1 ImageHDU         8   (2048, 30)   float64   </span>
+<span class="go">  3  SLIWIDTH      1 ImageHDU         8   (2048, 30)   float64</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">L-BORDER</span></code> and <code class="docutils literal notranslate"><span class="pre">R-BORDER</span></code> extensions contain the coordinates (position
+along NAXIS2, using array indices, i.e., ranging from 0 to NAXIS2-1) of the
+points that could be computed. For some columns of the detector (positions
+along NAXIS1) these points could not be computed and their value is NaN. This
+happens when the peaks of the first and second derivatives do not maintain the
+expected order. Normally this is only a subset of the columns, so the
+boundaries should still be fittable. We leave this task for the script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-fit_slice_boundary_borders_with_polynomials</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code> extension contains the width of the slices as a function of
+column number (it inherits the NaNs from the two previous extensions).</p>
+<p>We can visualize the detected boundary borders using the script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-overplot_slice_boundary_polynomials</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] [<span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--borders</span> <span class="-Ansi -Ansi-C36">BORDERS</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>]
+                                                    <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>
+                                                    [<span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--sliceid</span>] [<span class="-Ansi -Ansi-Cyan">--traceid</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--pdf-mosaic</span> <span class="-Ansi -Ansi-C36">PDF_MOSAIC</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+
+Overplot the slice boundaries (borders and/or polynomials) and/or traces on
+image
+
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>           Path to the file with the boundary polynomials
+                        (optional)
+  <span class="-Ansi -Ansi-Cyan">--borders</span> <span class="-Ansi -Ansi-C36">BORDERS</span>     Path to the file with the boundary borders (optional)
+  <span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>       Path to the file with the slice trace polynomials
+                        (optional)
+  <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>         Image to display boundaries on
+  <span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span>     Vertical constant offset (pixels) to apply
+  <span class="-Ansi -Ansi-Cyan">--sliceid</span>             Overplot slice ID
+  <span class="-Ansi -Ansi-Cyan">--traceid</span>             Overplot trace ID
+  <span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>      X-axis limits for the plot (xmin, xmax); array indices
+                        (1-based along NAXIS1 axis)
+  <span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>      Y-axis limits for the plot (ymin, ymax); array indices
+                        (1-based along NAXIS2 axis)
+  <span class="-Ansi -Ansi-Cyan">--pdf-mosaic</span> <span class="-Ansi -Ansi-C36">PDF_MOSAIC</span>
+                        Output PDF file to save zoomed images of all the
+                        slices
+  <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
+                        Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+</pre></div>
+</div>
+<p>We run this script using as inputs both the QTH image and the FITS file
+generated by the script <code class="docutils literal notranslate"><span class="pre">fridadrp-find_slice_boundary_borders_from_flat</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--borders<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">─────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-overplot_slice_boundary_polynomials</span><span class="-Ansi -Ansi-BrightGreen"> ────────────</span>
+Using fridadrp.tools.overplot_slice_boundary_polynomials version                
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Reading slice boundary borders from                                             
+<span class="-Ansi -Ansi-Blue">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Blue">fits</span>                                      
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>                                            
+Number of NaN values in collapsed left border : <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of NaN values in collapsed right border: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Read <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> left borders and <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> right borders from                                  
+<span class="-Ansi -Ansi-Blue">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Blue">fits</span>.                                     
+------------------------------------------------------------------------------- 
+<span class="-Ansi -Ansi-Green">&#39;?&#39;</span>: show this help message                                                     
+<span class="-Ansi -Ansi-Green">&#39;a&#39;</span>: toggle imshow <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;equal&#39;</span> <span class="-Ansi -Ansi-Magenta">/</span> <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;auto&#39;</span>                               
+<span class="-Ansi -Ansi-Green">&#39;h&#39;</span>: reset zoom to initial limits                                               
+<span class="-Ansi -Ansi-Green">&#39;v&#39;</span>: set vmin and vmax manually                                                 
+<span class="-Ansi -Ansi-Green">&#39;,&#39;</span>: set vmin and vmax to min and max of the zoomed region                      
+<span class="-Ansi -Ansi-Green">&#39;/&#39;</span>: set vmin and vmax using zscale of the zoomed region                        
+<span class="-Ansi -Ansi-Green">&#39;q&#39;</span>: quit                                                                       
+------------------------------------------------------------------------------- 
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:07</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">709395</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-borders3-01">
+<a class="reference internal image-reference" href="../../_images/find_borders3_01.png"><img alt="mosaic with original and processed input exposure" src="../../_images/find_borders3_01.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Full image with the detected boundaries. Note that for some columns these
+boundaries do not exist because the detection process did not work correctly.
+This effect is not very significant because, as we can verify in the terminal
+output, the number of columns with NaNs is small.</span><a class="headerlink" href="#fig-find-borders3-01" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>We can zoom in to better appreciate what happens with different slices. It is
+worth paying attention to what happens at the bottom and top of the detector.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border3-02-03">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Lower border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders3_02.png"><img alt="Lower border" src="../../_images/find_borders3_02.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Upper border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders3_03.png"><img alt="Upper border" src="../../_images/find_borders3_03.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Zoomed view of what happens in the first (left panel) and last (right panel)
+slices.</span><a class="headerlink" href="#fig-find-border3-02-03" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>In this case it is worth noting that the slice appearing at the top edge (slice
+ID 15) falls partially outside the detector. The upper boundaries of that slice
+are underestimated because the useful detector information ends at pixel 2044.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border3-04-05">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Lower border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders3_04.png"><img alt="Lower border" src="../../_images/find_borders3_04.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Upper border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders3_05.png"><img alt="Upper border" src="../../_images/find_borders3_05.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Detail of the last slice (ID 15), using different cuts. It can be seen how the
+signal of this slice is truncated at the top because part of the slice falls
+outside the useful region of the detector.</span><a class="headerlink" href="#fig-find-border3-04-05" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>We can easily visualize how the width of each slice varies as we move along
+NAXIS1, as well as the variation between different slices. It is enough to plot
+the 2D image stored in the <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code> extension of the file
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-30.fits</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extnum<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_label<span class="w"> </span><span class="s2">&quot;Slice width (pixels)&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ylabel<span class="w"> </span><span class="s2">&quot;Slice number&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cmap<span class="w"> </span>viridis<span class="w"> </span>--z1z2<span class="w"> </span><span class="m">45</span>,70
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-borders3-06">
+<a class="reference internal image-reference" href="../../_images/find_borders3_06.png"><img alt="TBD" src="../../_images/find_borders3_06.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Slice width value for each detector column along NAXIS1. Note the clear
+difference between the even and odd slices, corresponding to the two ID
+families: 1 to 15 (even slices, bottom to top) and 16 to 30 (odd slices, top to
+bottom). Columns shown in white correspond to NaNs.</span><a class="headerlink" href="#fig-find-borders3-06" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>In this particular case, although slice ID 15 falls partially outside the
+useful region of the detector, the script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-find_slice_boundary_borders_from_flat</span></code> has nonetheless been able to
+detect both boundaries of that slice. Since there can be cases (see below) in
+which the entire lower boundary of the first slice (ID 30) or the entire upper
+boundary of the last slice (ID 15) fall outside the detector, it is useful to
+run the boundary borders detection script again while avoiding attempts to fit
+non-existent boundaries.</p>
+</section>
+<section id="avoiding-missing-borders">
+<h3>Avoiding missing borders<a class="headerlink" href="#avoiding-missing-borders" title="Link to this heading"></a></h3>
+<p>The script <code class="docutils literal notranslate"><span class="pre">fridadrp-find_slice_boundary_borders_from_flat</span></code> allows the use of
+the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--slice-ini</span></code>: default 1, numbering from 1 (ID 30, at the bottom of
+the detector) to 30 (ID 15, at the top).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--slice-end</span></code>: default 30 (ID 15, at the top of the detector), following
+the same numbering.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--row-ini</span></code>: lower row number (1-based index) along NAXIS2. The
+default is 5 (first valid pixel after skipping the 4 initial border
+pixels). Rows below <code class="docutils literal notranslate"><span class="pre">--row-ini</span></code> are set equal to zero in the image
+when searching for slice boundaries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--row-end</span></code>: upper row number (1-based index) along NAXIS2. The
+default is 2044 (last valid pixel to avoid the 4 final border
+pixels). Rows above <code class="docutils literal notranslate"><span class="pre">--row-end</span></code> are set equal to zero in the image
+when searching for slice boundaries.</p></li>
+</ul>
+<p>The idea is to use <code class="docutils literal notranslate"><span class="pre">--slice-ini</span> <span class="pre">2</span></code> to avoid fitting the first slice (ID 30, at
+the bottom) or <code class="docutils literal notranslate"><span class="pre">--slice-end</span> <span class="pre">29</span></code> to avoid fitting the last slice (ID 15, at the
+top).</p>
+<p>If we use <code class="docutils literal notranslate"><span class="pre">--slice-ini</span> <span class="pre">2</span></code>, we must also use an appropriate value for
+<code class="docutils literal notranslate"><span class="pre">--row-ini</span></code>, so that we can ignore the first portion of the image at the bottom
+that partially contains slice ID 30.  Similarly, if we use <code class="docutils literal notranslate"><span class="pre">--slice-end</span> <span class="pre">29</span></code>, we
+must use an appropriate value of <code class="docutils literal notranslate"><span class="pre">--row-end</span></code> to avoid using the upper part of
+the image where slice ID 15 may appear only partially.</p>
+<p>In principle this should also work with <code class="docutils literal notranslate"><span class="pre">--slice-ini</span></code> greater than 2 and
+<code class="docutils literal notranslate"><span class="pre">--slice-end</span></code> less than 29. We could even compute the boundaries of a single
+slice by making <code class="docutils literal notranslate"><span class="pre">--slice-ini</span></code> and <code class="docutils literal notranslate"><span class="pre">--slice-end</span></code> equal. In these cases,
+appropriate values of <code class="docutils literal notranslate"><span class="pre">--row-ini</span></code> and <code class="docutils literal notranslate"><span class="pre">--row-end</span></code> would need to be used.</p>
+<p>In the case of the image <code class="docutils literal notranslate"><span class="pre">0000000096-20260505-FRIDA-FridaSuccess-raw.fits</span></code>, the
+top slice, number 30 (slice ID 15), has its upper boundary truncated (it
+extends beyond row 2044, the last valid row on the detector along NAXIS2). In
+this case we can fit slices 1 to 29, without using the last one.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_slice_boundary_borders_from_flat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--flatfile<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--slice-end<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--row-end<span class="w"> </span><span class="m">1986</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-find_slice_boundary_borders_from_flat</span><span class="-Ansi -Ansi-BrightGreen"> ───────────</span>
+Using fridadrp.tools.find_slice_boundary_borders_from_flat version              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Column ranges not specified. Using default range: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span>.                    
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous      
+Working on columns<span class="-Ansi -Ansi-Yellow">...</span>                                                           
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:49</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:54</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:43</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:54</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:16</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:38</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:55</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:33</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:55</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:28</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:28</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:55</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:33</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:22</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:55</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:39</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:17</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:56</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:45</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:56</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:50</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:06</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:56</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:56</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:56</span><span class="-Ansi -Ansi-Bold">)</span>      
+Number of useful columns processed: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span> out of <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span>                            
+Slice boundary borders saved to: <span class="-Ansi -Ansi-Green">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">29.</span><span class="-Ansi -Ansi-Green">fits</span>     
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:57</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">355541</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>In this case the generated output file is appropriately named
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-29.fits</span></code> by default.</p>
+<p>We visualize the new result.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--borders<span class="w"> </span>slice_boundary_borders_from_flat_1-29.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid
+</pre></div>
+</div>
+<figure class="sphinx-subfigure align-default" id="fig-find-border4-01-02">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Full image</span>
+<a class="reference internal image-reference" href="../../_images/find_borders4_01.png"><img alt="Full image" src="../../_images/find_borders4_01.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Zoomed region</span>
+<a class="reference internal image-reference" href="../../_images/find_borders4_02.png"><img alt="Zoomed region" src="../../_images/find_borders4_02.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">We can see that in this case the last slice (ID 15) has not been fitted.</span><a class="headerlink" href="#fig-find-border4-01-02" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="polynomial-fit-of-the-slice-borders">
+<h3>Polynomial fit of the slice borders<a class="headerlink" href="#polynomial-fit-of-the-slice-borders" title="Link to this heading"></a></h3>
+<p>The next step consists of performing a polynomial fit to the boundaries
+detected in the previous procedure. This task is carried out with the help of
+the script <code class="docutils literal notranslate"><span class="pre">fridadrp-fit_slice_boundary_borders_with_polynomials</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-fit_slice_boundary_borders_with_polynomials<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-fit_slice_boundary_borders_with_polynomials</span>
+       [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--input</span> <span class="-Ansi -Ansi-C36">INPUT</span> [<span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>] <span class="-Ansi -Ansi-Cyan">--deg</span> <span class="-Ansi -Ansi-C36">DEG</span> [<span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>]
+       [<span class="-Ansi -Ansi-Cyan">--overwrite</span>] [<span class="-Ansi -Ansi-Cyan">--plots</span>] [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+       [<span class="-Ansi -Ansi-Cyan">--version</span>] [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+
+Fit the slice boundaries determined from flat image
+
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--input</span> <span class="-Ansi -Ansi-C36">INPUT</span>         Path to the FITS file with border data
+  <span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>    Column range to fit (1-based index). This option can
+                        be specified multiple times
+  <span class="-Ansi -Ansi-Cyan">--deg</span> <span class="-Ansi -Ansi-C36">DEG</span>             Degree of the polynomial to fit
+  <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output FITS file name
+  <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite output file if it exists
+  <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots
+  <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
+                        Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-fit_slice_boundary_borders_with_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>slice_boundary_polynomials_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<p>We start by fitting all 30 slices, even though we already know that slice ID 15
+is incorrect.</p>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">─────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-fit_slice_boundary_borders_with_polynomials</span><span class="-Ansi -Ansi-BrightGreen"> ────────</span>
+Using fridadrp.tools.fit_slice_boundary_borders_with_polynomials version        
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Column ranges not specified. Using default range: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span>.                    
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous      
+Reading slice boundary borders from                                             
+<span class="-Ansi -Ansi-Blue">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Blue">fits</span>                                      
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>                                            
+Number of NaN values in collapsed left border : <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of NaN values in collapsed right border: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of initial valid columns to fit each boundary: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span>                      
+Number of valid columns after applying columns_to_analyze: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span>                 
+Polynomial degree: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>                                                            
+Fitting slice boundaries with polynomials<span class="-Ansi -Ansi-Yellow">...</span>                                    
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:10</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:03</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:13</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:03</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:10</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span><span class="-Ansi -Ansi-Bold">)</span>      
+coefs_left shape<span class="-Ansi -Ansi-Yellow">...</span>.: <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span><span class="-Ansi -Ansi-Bold">)</span>                                                   
+coefs_right shape<span class="-Ansi -Ansi-Yellow">...</span>: <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span><span class="-Ansi -Ansi-Bold">)</span>                                                   
+Slice boundary polynomials saved to: <span class="-Ansi -Ansi-Green">slice_boundary_polynomials_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Green">fits</span>       
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:08</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">778110</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>The previous script saves the results in a FITS file whose name in this example
+is <code class="docutils literal notranslate"><span class="pre">slice_boundary_polynomials_1-30.fits</span></code> (we have preserved the suffix <code class="docutils literal notranslate"><span class="pre">1-30</span></code>
+before the extension, to follow the same convention used to name the FITS file
+employed as input).</p>
+<p>The output file contains 3 extensions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fitsinfo<span class="w"> </span>slice_boundary_polynomials_1-30.fits
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: slice_boundary_polynomials_1-30.fits</span>
+<span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
+<span class="go">  0  PRIMARY       1 PrimaryHDU      59   ()      </span>
+<span class="go">  1  L-BORDER      1 ImageHDU         8   (4, 30)   float64   </span>
+<span class="go">  2  R-BORDER      1 ImageHDU         8   (4, 30)   float64   </span>
+<span class="go">  3  SLIWIDTH      1 ImageHDU         8   (2048, 30)   float64 </span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">L-BORDER</span></code> and <code class="docutils literal notranslate"><span class="pre">R-BORDER</span></code> extensions contain the coefficients of the
+polynomials fitted to each boundary (NAXIS1=4 coefficients, NAXIS2=30 slices).
+The extension <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code> contains the width of the slices as a function of the
+column number along NAXIS1 (for the NAXIS2=30 slices). It is interesting to
+compare the image stored in this last <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code> extension with the one
+obtained earlier using the values of the points detected as boundaries.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border5-01">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Full image</span>
+<a class="reference internal image-reference" href="../../_images/find_borders3_06.png"><img alt="Full image" src="../../_images/find_borders3_06.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Zoomed region</span>
+<a class="reference internal image-reference" href="../../_images/find_borders5_01.png"><img alt="Zoomed region" src="../../_images/find_borders5_01.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Comparison of the slice widths stored in the <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code> extension of the files
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-30.fits</span></code> (left panel) and
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_polynomials_1-30.fits</span></code> (right panel). The polynomial fit
+generates a smooth variation with column number along NAXIS1.</span><a class="headerlink" href="#fig-find-border5-01" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>We can check the polynomial fits graphically by overlaying the points
+previously determined as slice boundaries (which are the points used in the
+polynomial fits) together with the resulting polynomials.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--borders<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>slice_boundary_polynomials_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-borders5-02">
+<a class="reference internal image-reference" href="../../_images/find_borders5_02.png"><img alt="TBD" src="../../_images/find_borders5_02.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Full image with the detected boundaries and the fitted polynomials.</span><a class="headerlink" href="#fig-find-borders5-02" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>We can zoom in to better appreciate what happens with different slices. It is
+worth paying attention to what happens at the bottom and top of the detector.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border5-03-04">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Lower border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders5_03.png"><img alt="Lower border" src="../../_images/find_borders5_03.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Upper border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders5_04.png"><img alt="Upper border" src="../../_images/find_borders5_04.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Zoomed view of what happens in the first (left panel) and last (right panel)
+slices.</span><a class="headerlink" href="#fig-find-border5-03-04" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>As we already saw earlier when determining the slice boundaries, the upper
+boundary of slice ID 15 extends beyond the useful region of the detector.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border5-05-06">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Lower border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders5_05.png"><img alt="Lower border" src="../../_images/find_borders5_05.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Upper border</span>
+<a class="reference internal image-reference" href="../../_images/find_borders5_06.png"><img alt="Upper border" src="../../_images/find_borders5_06.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Detail of the last slice (ID 15), using different cuts. It can be seen how the
+signal of this slice is truncated at the top because part of the slice falls
+outside the useful region of the detector. The polynomial fit of the upper
+boundary of that slice does not perform well, because a large fraction of the
+points have underestimated positions along the NAXIS2 axis.</span><a class="headerlink" href="#fig-find-border5-05-06" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>We will now repeat the work carried out with the script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-fit_slice_boundary_borders_with_polynomials</span></code>, using as input the file
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-29.fits</span></code> (which does not contain boundary
+values for slice ID 15).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-fit_slice_boundary_borders_with_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--input<span class="w"> </span>slice_boundary_borders_from_flat_1-29.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>slice_boundary_polynomials_1-29.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">─────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-fit_slice_boundary_borders_with_polynomials</span><span class="-Ansi -Ansi-BrightGreen"> ────────</span>
+Using fridadrp.tools.fit_slice_boundary_borders_with_polynomials version        
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Column ranges not specified. Using default range: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span>.                    
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous      
+Reading slice boundary borders from                                             
+<span class="-Ansi -Ansi-Blue">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">29.</span><span class="-Ansi -Ansi-Blue">fits</span>                                      
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">29</span>                                            
+Number of NaN values in collapsed left border : <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of NaN values in collapsed right border: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>                              
+Number of initial valid columns to fit each boundary: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span>                      
+Number of valid columns after applying columns_to_analyze: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1988</span>                 
+Polynomial degree: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>                                                            
+Fitting slice boundaries with polynomials<span class="-Ansi -Ansi-Yellow">...</span>                                    
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:10</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:04</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:13</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:07</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:03</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:10</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span><span class="-Ansi -Ansi-Bold">)</span>      
+Skipped slices <span class="-Ansi -Ansi-Bold">(</span>id<span class="-Ansi -Ansi-Bold">)</span>: #<span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span>                                                        
+coefs_left shape<span class="-Ansi -Ansi-Yellow">...</span>.: <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span><span class="-Ansi -Ansi-Bold">)</span>                                                   
+coefs_right shape<span class="-Ansi -Ansi-Yellow">...</span>: <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span><span class="-Ansi -Ansi-Bold">)</span>                                                   
+Slice boundary polynomials saved to: <span class="-Ansi -Ansi-Green">slice_boundary_polynomials_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">29.</span><span class="-Ansi -Ansi-Green">fits</span>       
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:08</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">551443</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--borders<span class="w"> </span>slice_boundary_borders_from_flat_1-29.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>slice_boundary_polynomials_1-29.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-borders6-01">
+<a class="reference internal image-reference" href="../../_images/find_borders6_01.png"><img alt="TBD" src="../../_images/find_borders6_01.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Full image with the detected boundaries and the polynomial fits, excluding
+slice ID 15.</span><a class="headerlink" href="#fig-find-borders6-01" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="predicting-missing-polynomial-borders">
+<h3>Predicting missing polynomial borders<a class="headerlink" href="#predicting-missing-polynomial-borders" title="Link to this heading"></a></h3>
+<p>As we have seen above, there appears to be a relatively continuous variation in
+slice width when we consider them grouped into two families: IDs 1 to 15 on one
+hand and IDs 16 to 30 on the other. The script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-predict_polynomial_slice_borders</span></code> makes use of this fact to try to
+predict the polynomial boundaries of slices that may be partially outside the
+detector. We have seen that this happens with several calibration images when
+changing grating, and it can result in the boundaries of the bottom slice (ID
+30) or the top slice (ID 15) not being determinable.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-predict_polynomial_slice_borders<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-predict_polynomial_slice_borders</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>
+                                                 <span class="-Ansi -Ansi-Cyan">--slicenum</span> <span class="-Ansi -Ansi-C36">SLICE_INDEX</span>
+                                                 [<span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>]
+                                                 <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span> [<span class="-Ansi -Ansi-Cyan">--overwrite</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--force</span>] [<span class="-Ansi -Ansi-Cyan">--plots</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+
+Predict slice boundary polynomials
+
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>           Path to the input file with the boundary polynomials
+  <span class="-Ansi -Ansi-Cyan">--slicenum</span> <span class="-Ansi -Ansi-C36">SLICE_INDEX</span>
+                        Slice number to be predicted (1 to 30, where 1 is the
+                        bottom slice and 30 is the top slice)
+  <span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>   Degree of the polynomial to be fitted (slice border
+                        vs. slice index; default 2)
+  <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output file name for the predicted polynomials
+  <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite existing output file
+  <span class="-Ansi -Ansi-Cyan">--force</span>               Force recomputation of existing polynomials in chosen
+                        slice
+  <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots of the polynomial fitting
+  <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
+                        Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+</pre></div>
+</div>
+<p>In the example at hand, we are going to predict the polynomial boundaries of
+slice ID 15 (number 30 counting from bottom to top on the detector).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-predict_polynomial_slice_borders<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>slice_boundary_polynomials_1-29.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--slicenum<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">───────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-predict_polynomial_slice_borders</span><span class="-Ansi -Ansi-BrightGreen"> ─────────────</span>
+Using fridadrp.tools.predict_polynomial_slice_borders version                   
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Reading slice boundary polynomials from                                         
+<span class="-Ansi -Ansi-Blue">slice_boundary_polynomials_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">29.</span><span class="-Ansi -Ansi-Blue">fits</span>                                            
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">29</span>                                            
+Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>left borders<span class="-Ansi -Ansi-Bold">)</span>.                      
+Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>right borders<span class="-Ansi -Ansi-Bold">)</span>.                     
+Predicting polynomial borders for slice number <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> <span class="-Ansi -Ansi-Bold">(</span>slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">)</span>                 
+Slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> belongs to the group of slices with ID:                             
+<span class="-Ansi -Ansi-Bold">[</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">6</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">7</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">8</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">9</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">11</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">12</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">13</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">14</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">]</span>.                            
+Using the polynomials of the following slice IDs to predict the new borders:    
+<span class="-Ansi -Ansi-Bold">[</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">6</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">7</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">8</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">9</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">11</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">12</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">13</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">14</span><span class="-Ansi -Ansi-Bold">]</span>                                 
+Fitting along NAXIS1<span class="-Ansi -Ansi-Yellow">...</span>                                                         
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:15</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:23</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:33</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:42</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:20</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:28</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:13</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:21</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:09</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:17</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:19</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:31</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:19</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:08</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:27</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:19</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:05</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:23</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:19</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:02</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:21</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:20</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:20</span><span class="-Ansi -Ansi-Bold">)</span>      
+Copied input polynomials file <span class="-Ansi -Ansi-Blue">slice_boundary_polynomials_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">29.</span><span class="-Ansi -Ansi-Blue">fits</span> to output    
+file <span class="-Ansi -Ansi-Green">find_borders7/slice_boundary_polynomials_1-30_fixed.fits</span>.                  
+Updating the output FITS file with the predicted polynomials for slice number <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>
+<span class="-Ansi -Ansi-Bold">(</span>slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">)</span>.                                                                  
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:23</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">972502</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>The script determines that the slice to be predicted (ID 15) belongs to the
+family of slices with ID between 1 and 15. For each column along NAXIS1, the
+code performs a polynomial fit of degree <code class="docutils literal notranslate"><span class="pre">--degslice</span> <span class="pre">2</span></code> (default) to the
+position of each boundary as a function of slice number. This polynomial then
+allows the boundary position to be predicted for the slice indicated in
+<code class="docutils literal notranslate"><span class="pre">--slicenum</span></code>.</p>
+<p>Since we used the <code class="docutils literal notranslate"><span class="pre">--plots</span></code> argument, several plots are shown during the
+execution of this last script. First, the positions of the right and left
+boundaries (along the NAXIS2 axis) of the slices used in the fit are shown, for
+columns 1, 1025, and 2048 (along the NAXIS1 axis).</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border7-01-02">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Left border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_01.png"><img alt="Left border polynomial" src="../../_images/find_borders7_01.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Right border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_02.png"><img alt="Right border polynomial" src="../../_images/find_borders7_02.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Location of the polynomial boundaries for the slices used in the fit, for
+column 1 along the NAXIS1 axis.</span><a class="headerlink" href="#fig-find-border7-01-02" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="sphinx-subfigure align-default" id="fig-find-border7-03-04">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Left border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_03.png"><img alt="Left border polynomial" src="../../_images/find_borders7_03.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Right border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_04.png"><img alt="Right border polynomial" src="../../_images/find_borders7_04.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Location of the polynomial boundaries for the slices used in the fit, for
+column 1025 along the NAXIS1 axis.</span><a class="headerlink" href="#fig-find-border7-03-04" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="sphinx-subfigure align-default" id="fig-find-border7-05-06">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Left border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_05.png"><img alt="Left border polynomial" src="../../_images/find_borders7_05.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Right border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_06.png"><img alt="Right border polynomial" src="../../_images/find_borders7_06.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Location of the polynomial boundaries for the slices used in the fit, for
+column 2048 along the NAXIS1 axis.</span><a class="headerlink" href="#fig-find-border7-05-06" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Once the fits have been performed for all detector columns along NAXIS1, the
+resulting polynomials are used to predict the expected location of the
+polynomial boundaries of the target slice at each column. These positions are
+then fitted with a polynomial of the same degree as the one used for the
+polynomial fits already stored in the input file.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-border7-07-08">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Left border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_07.png"><img alt="Left border polynomial" src="../../_images/find_borders7_07.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Right border polynomial</span>
+<a class="reference internal image-reference" href="../../_images/find_borders7_08.png"><img alt="Right border polynomial" src="../../_images/find_borders7_08.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Predicted left and right border polynomials for slice ID 15.</span><a class="headerlink" href="#fig-find-border7-07-08" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The result is stored in the output file specified by the <code class="docutils literal notranslate"><span class="pre">--output</span></code> argument.
+In this case the output file is called
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_polynomials_1-30_fixed.fits</span></code> and has the same format as the
+input file <code class="docutils literal notranslate"><span class="pre">slice_boundary_polynomials_1-29_fixed.fits</span></code>.</p>
+<p>We can visualize the new result graphically.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--borders<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000096</span>-20260505-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ylim<span class="w"> </span><span class="m">1900</span><span class="w"> </span><span class="m">2060</span>
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-borders7-09">
+<a class="reference internal image-reference" href="../../_images/find_borders7_09.png"><img alt="TBD" src="../../_images/find_borders7_09.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Graphical comparison between the boundaries (white points) obtained by the
+script <code class="docutils literal notranslate"><span class="pre">fridadrp-find_slice_boundary_borders_from_flat</span></code> and the prediction of
+the polynomial boundaries computed with the script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-predict_polynomial_slice_borders</span></code> for slice ID 15. Note that the
+right boundary (upper in the image) of that slice clearly falls outside the
+useful region of the detector.</span><a class="headerlink" href="#fig-find-borders7-09" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="polynomial-fit-of-spectral-traces">
+<h2>Polynomial fit of spectral traces<a class="headerlink" href="#polynomial-fit-of-spectral-traces" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../data_cube_mosaics.html" class="btn btn-neutral float-left" title="Generation of data cube mosaics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2026, Nicolás Cardiel, Sergio Pascual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
