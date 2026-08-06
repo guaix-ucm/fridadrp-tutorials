@@ -14,6 +14,7 @@
                                                     [[36m--xlim[0m [38;5;36mXLIM[0m [38;5;36mXLIM[0m]
                                                     [[36m--ylim[0m [38;5;36mYLIM[0m [38;5;36mYLIM[0m]
                                                     [[36m--pdf-mosaic[0m [38;5;36mPDF_MOSAIC[0m]
+                                                    [[36m--montage[0m [38;5;36m{png,pdf}[0m]
                                                     [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m]
                                                     [[36m--record[0m] [[36m--echo[0m]
                                                     [[36m--version[0m]
@@ -40,6 +41,8 @@
   [36m--pdf-mosaic[0m [38;5;36mPDF_MOSAIC[0m
                         [39mOutput PDF file to save zoomed images of all the[0m
                         [39mslices[0m
+  [36m--montage[0m [38;5;36m{png,pdf}[0m   [39mDisplay a montage of the final plots with traces for[0m
+                        [39mevery slice (requires ImageMagick's montage)[0m
   [36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m
                         [39mOutput directory (default: .)[0m
   [36m--record[0m              [39mRecord terminal output[0m

@@ -381,7 +381,7 @@ the 2D image stored in the `SLIWIDTH` extension of the file
 
 ```console
 (venv_frida) $ numina-ximshow slice_boundary_borders_from_flat_1-30.fits \
-  --extnum 4 \
+  --extname sliwidth \
   --cbar_orientation vertical \
   --cbar_label "Slice width (pixels)" \
   --ylabel "Slice number" \
@@ -823,3 +823,491 @@ useful region of the detector.
 ```
 
 ## Polynomial fit of spectral traces
+
+### Initial example
+
+Once we have obtained the boundaries of each slice and fitted them with
+polynomials, we can move on to the next phase, which consists of obtaining
+polynomial fits to the spectral traces. In this case we will use the script
+`fridadrp-find_traces_within_slice_boundary_polynomials`. 
+
+```{include} files/help2_fridadrp-find_traces_within_slice_boundary_polynomials.md
+```
+
+To illustrate the procedure, as input image we will use
+`0000000132-20260506-FRIDA-FridaSuccess-raw.fits`, which shows 5 spectral
+traces in each slice.
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image 0000000132-20260506-FRIDA-FridaSuccess-raw.fits \
+  --poly slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 0.0 \
+  --ntraces 5 \
+  --deg 3 \
+  --output traces_within_slice_polynomials.fits \
+  --pdf-out traces_within_slice_polynomials.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```{include} files/terminal_output_find_traces1_00.md
+```
+
+The first thing the script does is show us the image with the spectral traces,
+overlaying on it the location of the polynomial boundaries. It is possible to
+shift these boundaries in the vertical direction using `--voffset`. If this
+argument takes a single value, the offset is assumed to be constant in the
+vertical direction (positive: shifts the boundaries upward; negative: shifts
+the boundaries downward). If more than one number is provided, the shift is
+polynomial: the polynomial is computed using as its degree the number of points
+minus one, so that the polynomial is exact. In this latter case, the numbers
+entered are used as vertical offsets distributed uniformly along the NAXIS1
+axis. In this example we are simply using `--voffset 0.0`.
+
+It will be important to zoom in on the displayed image to better assess whether
+the polynomial boundaries are correct.
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_01-01_zoom
+
+```{image} images/find_traces1_01.png
+:alt: Full image
+:width: 100%
+```
+
+```{image} images/find_traces1_01_zoom.png
+:alt: Zoomed region
+:width: 100%
+```
+
+Full image (left panel) and zoom of the first slices (right panel), with the
+polynomial boundaries overlaid.
+````
+
+```{include} files/terminal_output_find_traces1_01.md
+```
+
+Since we used `--plotsliceid 15`, the script will show us this problematic
+slice in detail when it is reached (recall that it is partially outside the
+useful region of the detector). As we saw earlier for the case of the
+boundaries, it is also possible to predict the expected position of each of the
+5 traces by making use of the fits to the same trace in other slices of the
+same family. In this case the code tells us in the terminal that slice ID 15
+belongs to the same family as the slices with ID between 1 and 15.
+
+For each of the 5 traces, the polynomial fit is shown at 3 detector columns (5,
+1025, and 2044), as well as the resulting polynomial fit of the trace as a
+function of column number (note that the fit is performed over all the columns
+specified in `--colrange`).
+
+````{subfigure} ABCD
+:layout-sm: A|B|C|D
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_02-05
+
+```{image} images/find_traces1_02.png
+:alt: Column 5
+:width: 100%
+```
+
+```{image} images/find_traces1_03.png
+:alt: Colum 1025
+:width: 100%
+```
+
+```{image} images/find_traces1_04.png
+:alt: Colum 2044
+:width: 100%
+```
+
+```{image} images/find_traces1_05.png
+:alt: Trace fit
+:width: 100%
+```
+
+Polynomial fits of the position of trace 1 as a function of slice number for
+columns 5, 1025, and 2044 (first three panels), and final polynomial fit of the
+trace as a function of column number along NAXIS1 (right panel). Although in
+the last plot it may seem that many points are being rejected in the fit
+(shown in red), note that the scale on the vertical axis indicates that we are
+fitting a small fraction of a pixel.
+````
+
+```{include} files/terminal_output_find_traces1_02.md
+```
+
+````{subfigure} ABCD
+:layout-sm: A|B|C|D
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_06-09
+
+```{image} images/find_traces1_06.png
+:alt: Column 5
+:width: 100%
+```
+
+```{image} images/find_traces1_07.png
+:alt: Colum 1025
+:width: 100%
+```
+
+```{image} images/find_traces1_08.png
+:alt: Colum 2044
+:width: 100%
+```
+
+```{image} images/find_traces1_09.png
+:alt: Trace fit
+:width: 100%
+```
+
+Same as the previous figure, for the case of trace number 2.
+````
+
+```{include} files/terminal_output_find_traces1_03.md
+```
+
+````{subfigure} ABCD
+:layout-sm: A|B|C|D
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_10-13
+
+```{image} images/find_traces1_10.png
+:alt: Column 5
+:width: 100%
+```
+
+```{image} images/find_traces1_11.png
+:alt: Colum 1025
+:width: 100%
+```
+
+```{image} images/find_traces1_12.png
+:alt: Colum 2044
+:width: 100%
+```
+
+```{image} images/find_traces1_13.png
+:alt: Trace fit
+:width: 100%
+```
+
+Same as the previous figures, for the case of trace number 3.
+````
+
+```{include} files/terminal_output_find_traces1_04.md
+```
+
+````{subfigure} ABCD
+:layout-sm: A|B|C|D
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_14-17
+
+```{image} images/find_traces1_14.png
+:alt: Column 5
+:width: 100%
+```
+
+```{image} images/find_traces1_15.png
+:alt: Colum 1025
+:width: 100%
+```
+
+```{image} images/find_traces1_16.png
+:alt: Colum 2044
+:width: 100%
+```
+
+```{image} images/find_traces1_17.png
+:alt: Trace fit
+:width: 100%
+```
+
+Same as the previous figures, for the case of trace number 4.
+````
+
+```{include} files/terminal_output_find_traces1_05.md
+```
+
+````{subfigure} ABCD
+:layout-sm: A|B|C|D
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_18-21
+
+```{image} images/find_traces1_18.png
+:alt: Column 5
+:width: 100%
+```
+
+```{image} images/find_traces1_19.png
+:alt: Colum 1025
+:width: 100%
+```
+
+```{image} images/find_traces1_20.png
+:alt: Colum 2044
+:width: 100%
+```
+
+```{image} images/find_traces1_21.png
+:alt: Trace fit
+:width: 100%
+```
+
+Same as the previous figures, for the case of trace number 5.
+````
+
+```{include} files/terminal_output_find_traces1_06.md
+```
+
+Once the expected positions for the 5 traces have been estimated, the code
+attempts to refine the fit using the information in the image provided via
+`--image`, provided that the entire trace lies within the useful region of the
+detector. In this case this occurs for the first 4 traces (out of the total of
+5).
+
+```{figure} images/find_traces1_22.png
+:alt: TBD
+:name: fig-find_traces1_22
+:width: 60%
+
+Difference between the predicted position of trace number 1 and the fit to the
+signal in the input image. The correction is modeled by means of a polynomial
+fit.
+```
+
+```{include} files/terminal_output_find_traces1_07.md
+```
+
+```{figure} images/find_traces1_23.png
+:alt: TBD
+:name: fig-find_traces1_23
+:width: 60%
+
+Same as the previous figure, for the case of trace number 2.
+```
+
+```{include} files/terminal_output_find_traces1_08.md
+```
+
+```{figure} images/find_traces1_24.png
+:alt: TBD
+:name: fig-find_traces1_24
+:width: 60%
+
+Same as the previous figures, for the case of trace number 3.
+```
+
+```{include} files/terminal_output_find_traces1_09.md
+```
+
+```{figure} images/find_traces1_25.png
+:alt: TBD
+:name: fig-find_traces1_25
+:width: 60%
+
+Same as the previous figures, for the case of trace number 4.
+```
+
+```{include} files/terminal_output_find_traces1_10.md
+```
+
+Since trace number 5 falls outside the useful region of the detector, it is not
+possible to correct its position using the information in the input image.
+
+```{include} files/terminal_output_find_traces1_11.md
+```
+
+Instead, an average of the corrections made to the other four traces is used.
+
+```{figure} images/find_traces1_26.png
+:alt: TBD
+:name: fig-find_traces1_26
+:width: 60%
+
+Average correction computed using the corrections deduced for the 4 traces
+within the useful region of the detector.
+```
+
+Once all traces have been computed for the problematic slice, the program
+displays the result graphically.
+
+```{figure} images/find_traces1_27.png
+:alt: TBD
+:name: fig-find_traces1_27
+:width: 100%
+
+Graphical comparison of the extrapolated traces for slice ID 15. The magenta
+(dashed line) shows the direct extrapolation using the information from the
+same traces in the slices of the same family. The cyan (solid line) represents
+the refined fit using the information from the input image.
+```
+
+```{include} files/terminal_output_find_traces1_12.md
+```
+
+Two output files are generated:
+
+* `traces_within_slice_polynomials.fits`: FITS file containing the polynomial
+  boundaries and the polynomial traces. If `--voffset` was different from zero,
+  the saved polynomial boundaries take this shift into account, so they will
+  not be identical to those in the file specified via `--poly`.
+
+* `traces_within_slice_polynomials.pdf`: PDF file showing, for each slice, the
+  polynomial boundaries and the polynomial traces, overlaid on the image
+  specified via `--image`.
+
+The information in the file `traces_within_slice_polynomials.fits` is
+distributed across several extensions:
+
+```console
+(venv_fridat) $ fitsinfo traces_within_slice_polynomials.fits
+```
+
+```{code-block} console
+:class: my-special-block no-copybutton
+Filename: traces_within_slice_polynomials.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU      74   ()      
+  1  L-BORDER      1 ImageHDU         8   (4, 30)   float64   
+  2  R-BORDER      1 ImageHDU         8   (4, 30)   float64   
+  3  SLIWIDTH      1 ImageHDU         8   (2048, 30)   float64   
+  4  SLCNUM01      1 ImageHDU        11   (4, 5)   float64   
+  5  SLCNUM02      1 ImageHDU        11   (4, 5)   float64   
+  6  SLCNUM03      1 ImageHDU        11   (4, 5)   float64   
+  7  SLCNUM04      1 ImageHDU        11   (4, 5)   float64   
+  8  SLCNUM05      1 ImageHDU        11   (4, 5)   float64   
+  9  SLCNUM06      1 ImageHDU        11   (4, 5)   float64   
+ 10  SLCNUM07      1 ImageHDU        11   (4, 5)   float64   
+ 11  SLCNUM08      1 ImageHDU        11   (4, 5)   float64   
+ 12  SLCNUM09      1 ImageHDU        11   (4, 5)   float64   
+ 13  SLCNUM10      1 ImageHDU        11   (4, 5)   float64   
+ 14  SLCNUM11      1 ImageHDU        11   (4, 5)   float64   
+ 15  SLCNUM12      1 ImageHDU        11   (4, 5)   float64   
+ 16  SLCNUM13      1 ImageHDU        11   (4, 5)   float64   
+ 17  SLCNUM14      1 ImageHDU        11   (4, 5)   float64   
+ 18  SLCNUM15      1 ImageHDU        11   (4, 5)   float64   
+ 19  SLCNUM16      1 ImageHDU        11   (4, 5)   float64   
+ 20  SLCNUM17      1 ImageHDU        11   (4, 5)   float64   
+ 21  SLCNUM18      1 ImageHDU        11   (4, 5)   float64   
+ 22  SLCNUM19      1 ImageHDU        11   (4, 5)   float64   
+ 23  SLCNUM20      1 ImageHDU        11   (4, 5)   float64   
+ 24  SLCNUM21      1 ImageHDU        11   (4, 5)   float64   
+ 25  SLCNUM22      1 ImageHDU        11   (4, 5)   float64   
+ 26  SLCNUM23      1 ImageHDU        11   (4, 5)   float64   
+ 27  SLCNUM24      1 ImageHDU        11   (4, 5)   float64   
+ 28  SLCNUM25      1 ImageHDU        11   (4, 5)   float64   
+ 29  SLCNUM26      1 ImageHDU        11   (4, 5)   float64   
+ 30  SLCNUM27      1 ImageHDU        11   (4, 5)   float64   
+ 31  SLCNUM28      1 ImageHDU        11   (4, 5)   float64   
+ 32  SLCNUM29      1 ImageHDU        11   (4, 5)   float64   
+ 33  SLCNUM30      1 ImageHDU        11   (4, 5)   float64
+```
+
+The first extensions, `L-BORDER`, `R-BORDER`, and `SLIWIDTH`, are analogous to
+those explained above for the file
+`slice_boundary_borders_from_flat_1-30.fits`. There are 30 additional
+extensions, `SLCNUM??`, one per slice, containing the arrays that store the
+polynomial fit coefficients of the traces, where in this case NAXIS1=4 is the
+number of coefficients (degree-3 polynomial) and NAXIS2=5 is the number of
+traces.
+
+It is possible to use the script `fridadrp-overplot_slice_boundary_polynomials`
+again to display the result graphically. On this occasion, instead of using the
+`--poly` argument, `--traces` must be used (note that `--poly` is not necessary
+because the file containing the traces also contains the polynomials for the
+slice boundaries).
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+--traces traces_within_slice_polynomials.fits \
+--image 0000000132-20260506-FRIDA-FridaSuccess-raw.fits \
+--sliceid
+```
+
+```{figure} images/find_traces1_28.png
+:alt: TBD
+:name: fig-find_traces1_28
+:width: 100%
+
+Display of the image specified via `--image`, with the polynomial boundaries
+and traces stored in the file indicated via `--traces`. It is possible to zoom
+in and navigate the image to check the quality of the fits performed.
+```
+
+````{subfigure} AB
+:layout-sm: A|B
+:gap: 8px
+:subcaptions: above
+:name: fig-find_traces1_29-30
+
+```{image} images/find_traces1_29.png
+:alt: First slices
+:width: 100%
+```
+
+```{image} images/find_traces1_30.png
+:alt: Last slices
+:width: 100%
+```
+
+Zoomed-in view of the previous image, showing the first slices (left panel) and
+the last slices (right panel) in more detail.
+````
+
+The script `fridadrp-overplot_slice_boundary_polynomials` also has a
+`--pdf-mosaic` argument that allows generating a PDF file with the polynomial
+boundaries and traces plotted on the selected image, showing one slice per page
+of the file.
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials.fits \
+  --image 0000000132-20260506-FRIDA-FridaSuccess-raw.fits \
+  --traceid \
+  --pdf-mosaic traces_within_slice_polynomials_final.pdf
+```
+
+```{include} files/terminal_output_find_traces2_00.md
+```
+
+In this case the PDF file containing all the traces is called
+`traces_within_slice_polynomials_final.pdf`.
+
+We can also generate, from the PDF file just created, a mosaic (either in PDF
+or PNG format) containing all 30 plots in the same figure. For this, it is
+useful to use [ImageMagick's `montage`
+command](https://imagemagick.org/montage/). For example:
+
+```console
+(venv_frida) $ montage \
+  -density 300 \
+  traces_within_slice_polynomials_final.pdf \
+  -tile 6x5 \
+  -geometry 600x375+5+5 \
+  -background white \
+  traces_within_slice_polynomials_final_montage.pdf
+```
+
+An even more convenient way is to use `--montage png` or `--montage pdf` as an
+argument of `fridadrp-overplot_slice_boundary_polynomials`.
+
+```{figure} images/find_traces2_01.png
+:alt: TBD
+:name: fig-find_traces2_01
+:width: 100%
+
+Image resulting from using `--montage png` when running
+`fridadrp-overplot_slice_boundary_polynomials` in the last command shown above.
+```
+
+### TBD

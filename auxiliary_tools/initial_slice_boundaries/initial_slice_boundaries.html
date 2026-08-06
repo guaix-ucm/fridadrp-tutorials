@@ -63,7 +63,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#predicting-missing-polynomial-borders">Predicting missing polynomial borders</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#polynomial-fit-of-spectral-traces">Polynomial fit of spectral traces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polynomial-fit-of-spectral-traces">Polynomial fit of spectral traces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initial-example">Initial example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tbd">TBD</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -98,8 +102,10 @@
   
 <style>
   .ss-layout-default-AB { grid-template-areas: 'A B'; }
+  .ss-layout-default-ABCD { grid-template-areas: 'A B C D'; }
 @media (max-width: 576px) {
   .ss-layout-sm-A_B { grid-template-areas: 'A' 'B'; }
+  .ss-layout-sm-A_B_C_D { grid-template-areas: 'A' 'B' 'C' 'D'; }
 }
 </style>
 <section class="tex2jax_ignore mathjax_ignore" id="determination-of-initial-slice-boundaries">
@@ -471,6 +477,7 @@ column number (it inherits the NaNs from the two previous extensions).</p>
                                                     [<span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--pdf-mosaic</span> <span class="-Ansi -Ansi-C36">PDF_MOSAIC</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--version</span>]
@@ -497,6 +504,8 @@ image
   <span class="-Ansi -Ansi-Cyan">--pdf-mosaic</span> <span class="-Ansi -Ansi-C36">PDF_MOSAIC</span>
                         Output PDF file to save zoomed images of all the
                         slices
+  <span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>   Display a montage of the final plots with traces for
+                        every slice (requires ImageMagick&#39;s montage)
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
@@ -594,7 +603,7 @@ NAXIS1, as well as the variation between different slices. It is enough to plot
 the 2D image stored in the <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code> extension of the file
 <code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-30.fits</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--extnum<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extname<span class="w"> </span>sliwidth<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--cbar_label<span class="w"> </span><span class="s2">&quot;Slice width (pixels)&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--ylabel<span class="w"> </span><span class="s2">&quot;Slice number&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1151,6 +1160,560 @@ useful region of the detector.</span><a class="headerlink" href="#fig-find-borde
 </section>
 <section id="polynomial-fit-of-spectral-traces">
 <h2>Polynomial fit of spectral traces<a class="headerlink" href="#polynomial-fit-of-spectral-traces" title="Link to this heading"></a></h2>
+<section id="initial-example">
+<h3>Initial example<a class="headerlink" href="#initial-example" title="Link to this heading"></a></h3>
+<p>Once we have obtained the boundaries of each slice and fitted them with
+polynomials, we can move on to the next phase, which consists of obtaining
+polynomial fits to the spectral traces. In this case we will use the script
+<code class="docutils literal notranslate"><span class="pre">fridadrp-find_traces_within_slice_boundary_polynomials</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-find_traces_within_slice_boundary_polynomials</span>
+       [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span> <span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span> [<span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span> [<span class="-Ansi -Ansi-C36">VOFFSET</span> <span class="-Ansi -Ansi-C36">...</span>]]
+       <span class="-Ansi -Ansi-Cyan">--ntraces</span> <span class="-Ansi -Ansi-C36">NTRACES</span> [<span class="-Ansi -Ansi-Cyan">--nextend</span> <span class="-Ansi -Ansi-C36">NEXTEND</span>]
+       [<span class="-Ansi -Ansi-Cyan">--nclean-around-peaks</span> <span class="-Ansi -Ansi-C36">NCLEAN_AROUND_PEAKS</span>] <span class="-Ansi -Ansi-Cyan">--deg</span> <span class="-Ansi -Ansi-C36">DEG</span>
+       [<span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>] [<span class="-Ansi -Ansi-Cyan">--ymedian</span> <span class="-Ansi -Ansi-C36">YMEDIAN</span>] [<span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>]
+       [<span class="-Ansi -Ansi-Cyan">--theilsen</span>] [<span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>] [<span class="-Ansi -Ansi-Cyan">--degrefine</span> <span class="-Ansi -Ansi-C36">DEGREFINE</span>] [<span class="-Ansi -Ansi-Cyan">--norefine</span>]
+       <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span> [<span class="-Ansi -Ansi-Cyan">--overwrite</span>] [<span class="-Ansi -Ansi-Cyan">--plotsliceid</span> <span class="-Ansi -Ansi-C36">PLOTSLICEID</span>]
+       [<span class="-Ansi -Ansi-Cyan">--pdf-out</span> <span class="-Ansi -Ansi-C36">PDF_OUT</span>] [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+       [<span class="-Ansi -Ansi-Cyan">--version</span>] [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+
+Find traces within slice boundary polynomials
+
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>         Path to the input image file (FITS format)
+  <span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>           Path to the input file with the boundary polynomials
+  <span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span> [<span class="-Ansi -Ansi-C36">VOFFSET</span> <span class="-Ansi -Ansi-C36">...</span>]
+                        Vertical offset to apply to the slice boundaries
+                        (default: 0.0 pixels; + upward, - downward). If more
+                        than one value is provided, a polynomial of degree
+                        len(voffset)-1 will be fitted to the offsets and
+                        applied to the slice boundaries.
+  <span class="-Ansi -Ansi-Cyan">--ntraces</span> <span class="-Ansi -Ansi-C36">NTRACES</span>     Number of traces per slice to find
+  <span class="-Ansi -Ansi-Cyan">--nextend</span> <span class="-Ansi -Ansi-C36">NEXTEND</span>     Number of pixels to extend the slice boundaries for
+                        trace finding (default: 2)
+  <span class="-Ansi -Ansi-Cyan">--nclean-around-peaks</span> <span class="-Ansi -Ansi-C36">NCLEAN_AROUND_PEAKS</span>
+                        Number of pixels to clean at both sides of each peak
+                        (default: <span class="-Ansi -Ansi-Cyan">-1</span>; set to zero pixels moving outward from
+                        the peak while the signal keeps decreasing)
+  <span class="-Ansi -Ansi-Cyan">--deg</span> <span class="-Ansi -Ansi-C36">DEG</span>             Degree of the polynomial to fit each trace
+  <span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>    Column range to analyze (1-based index) along NAXIS1.
+                        This option can be specified multiple times
+  <span class="-Ansi -Ansi-Cyan">--ymedian</span> <span class="-Ansi -Ansi-C36">YMEDIAN</span>     Size of the median filter along NAXIS2 axis to be
+                        subtracted (odd; default: 0 -&gt; no filtering)
+  <span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>     Size of the median filter along NAXIS1 axis (odd;
+                        default: 21)
+  <span class="-Ansi -Ansi-Cyan">--theilsen</span>            Use initial Theil-Sen regression to reject outliers in
+                        the polynomial fitting
+  <span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>   Degree of the polynomial to fit traces across slices
+                        (default: 2)
+  <span class="-Ansi -Ansi-Cyan">--degrefine</span> <span class="-Ansi -Ansi-C36">DEGREFINE</span>
+                        Degree of the polynomial to refine the trace positions
+                        (default: 2)
+  <span class="-Ansi -Ansi-Cyan">--norefine</span>            Do not refine the extrapolated traces
+  <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output file name for the predicted polynomials
+  <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite existing output file
+  <span class="-Ansi -Ansi-Cyan">--plotsliceid</span> <span class="-Ansi -Ansi-C36">PLOTSLICEID</span>
+                        Display plots for slice id (this option can be
+                        specified multiple times)
+  <span class="-Ansi -Ansi-Cyan">--pdf-out</span> <span class="-Ansi -Ansi-C36">PDF_OUT</span>     Output PDF file for final plots with traces for every
+                        slice (default: None, no output)
+  <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
+                        Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+</pre></div>
+</div>
+<p>To illustrate the procedure, as input image we will use
+<code class="docutils literal notranslate"><span class="pre">0000000132-20260506-FRIDA-FridaSuccess-raw.fits</span></code>, which shows 5 spectral
+traces in each slice.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000132</span>-20260506-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-find_traces_within_slice_boundary_polynomials</span><span class="-Ansi -Ansi-BrightGreen"> ───────</span>
+Using fridadrp.tools.find_traces_within_slice_boundary_polynomials version      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Column ranges not specified. Using default range: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span>.                    
+Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2044</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2040</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous      
+No median filtering along NAXIS2 will be applied <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">ymedian</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span><span class="-Ansi -Ansi-Bold">)</span>.                   
+Applying median filtering along NAXIS1 with size <span class="-Ansi -Ansi-Bold -Ansi-Cyan">21</span>.                            
+Reading slice boundary polynomials from                                         
+<span class="-Ansi -Ansi-Blue">slice_boundary_polynomials_1-30_fixed.fits</span>                                      
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>                                            
+Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>left borders<span class="-Ansi -Ansi-Bold">)</span>.                      
+Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>right borders<span class="-Ansi -Ansi-Bold">)</span>.                     
+Applying constant vertical offset of <span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.0</span> pixels to slice boundary polynomials.  
+Press <span class="-Ansi -Ansi-Green">&#39;q&#39;</span> to close the plot or <span class="-Ansi -Ansi-Green">&#39;x&#39;</span> to close the plot and exit the program.      
+</pre></div>
+</div>
+<p>The first thing the script does is show us the image with the spectral traces,
+overlaying on it the location of the polynomial boundaries. It is possible to
+shift these boundaries in the vertical direction using <code class="docutils literal notranslate"><span class="pre">--voffset</span></code>. If this
+argument takes a single value, the offset is assumed to be constant in the
+vertical direction (positive: shifts the boundaries upward; negative: shifts
+the boundaries downward). If more than one number is provided, the shift is
+polynomial: the polynomial is computed using as its degree the number of points
+minus one, so that the polynomial is exact. In this latter case, the numbers
+entered are used as vertical offsets distributed uniformly along the NAXIS1
+axis. In this example we are simply using <code class="docutils literal notranslate"><span class="pre">--voffset</span> <span class="pre">0.0</span></code>.</p>
+<p>It will be important to zoom in on the displayed image to better assess whether
+the polynomial boundaries are correct.</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-01-01-zoom">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Full image</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_01.png"><img alt="Full image" src="../../_images/find_traces1_01.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Zoomed region</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_01_zoom.png"><img alt="Zoomed region" src="../../_images/find_traces1_01_zoom.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Full image (left panel) and zoom of the first slices (right panel), with the
+polynomial boundaries overlaid.</span><a class="headerlink" href="#fig-find-traces1-01-01-zoom" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Finding and fitting traces within slice boundary polynomials<span class="-Ansi -Ansi-Yellow">...</span>                 
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>%                                                                              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>%_____________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:06</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:52</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>%_________________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:11</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:45</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:56</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>%_____________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:18</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:41</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:59</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>%_________________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:24</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:36</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:59</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>%_____________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:30</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:30</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:59</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>%_________________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:35</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:24</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:59</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>%_____________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:42</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:18</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:00</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>%_________ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:48</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:12</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:00</span><span class="-Ansi -Ansi-Bold">)</span>      
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>%_____ <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:54</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:06</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">1:01</span><span class="-Ansi -Ansi-Bold">)</span>      
+Slice #<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> <span class="-Ansi -Ansi-Bold">(</span>ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">)</span> right boundary is out of the useful pixel range.              
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">40</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">50</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">60</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">70</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">80</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">90</span>% <span class="-Ansi -Ansi-Bold -Ansi-Cyan">100</span>% <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">elap</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span>|<span class="-Ansi -Ansi-Yellow">left</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00</span>|<span class="-Ansi -Ansi-Yellow">exp</span>=<span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:58</span><span class="-Ansi -Ansi-Bold">)</span>      
+Skipped slice: #<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> <span class="-Ansi -Ansi-Bold">(</span>ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">)</span>                                                      
+Extrapolating traces for the last slice <span class="-Ansi -Ansi-Bold">(</span>ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">)</span>                                 
+Slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> belongs to the group of slices with ID:                             
+<span class="-Ansi -Ansi-Bold">[</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">6</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">7</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">8</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">9</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">11</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">12</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">13</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">14</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Bold">]</span>.                            
+Fitting traces for the following slices <span class="-Ansi -Ansi-Bold">(</span>ID<span class="-Ansi -Ansi-Bold">)</span>:                                   
+<span class="-Ansi -Ansi-Bold">[</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">6</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">7</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">8</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">9</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">11</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">12</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">13</span>, <span class="-Ansi -Ansi-Bold -Ansi-Cyan">14</span><span class="-Ansi -Ansi-Bold">]</span>                                 
+Fitting trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> along NAXIS1<span class="-Ansi -Ansi-Yellow">...</span>                                
+</pre></div>
+</div>
+<p>Since we used <code class="docutils literal notranslate"><span class="pre">--plotsliceid</span> <span class="pre">15</span></code>, the script will show us this problematic
+slice in detail when it is reached (recall that it is partially outside the
+useful region of the detector). As we saw earlier for the case of the
+boundaries, it is also possible to predict the expected position of each of the
+5 traces by making use of the fits to the same trace in other slices of the
+same family. In this case the code tells us in the terminal that slice ID 15
+belongs to the same family as the slices with ID between 1 and 15.</p>
+<p>For each of the 5 traces, the polynomial fit is shown at 3 detector columns (5,
+1025, and 2044), as well as the resulting polynomial fit of the trace as a
+function of column number (note that the fit is performed over all the columns
+specified in <code class="docutils literal notranslate"><span class="pre">--colrange</span></code>).</p>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-02-05">
+<div class="sphinx-subfigure-grid ss-layout-default-ABCD ss-layout-sm-A_B_C_D" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Column 5</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_02.png"><img alt="Column 5" src="../../_images/find_traces1_02.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Colum 1025</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_03.png"><img alt="Colum 1025" src="../../_images/find_traces1_03.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: C;">
+<span class="caption">Colum 2044</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_04.png"><img alt="Colum 2044" src="../../_images/find_traces1_04.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: D;">
+<span class="caption">Trace fit</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_05.png"><img alt="Trace fit" src="../../_images/find_traces1_05.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">Polynomial fits of the position of trace 1 as a function of slice number for
+columns 5, 1025, and 2044 (first three panels), and final polynomial fit of the
+trace as a function of column number along NAXIS1 (right panel). Although in
+the last plot it may seem that many points are being rejected in the fit
+(shown in red), note that the scale on the vertical axis indicates that we are
+fitting a small fraction of a pixel.</span><a class="headerlink" href="#fig-find-traces1-02-05" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Fitting trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> along NAXIS1<span class="-Ansi -Ansi-Yellow">...</span>                                
+</pre></div>
+</div>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-06-09">
+<div class="sphinx-subfigure-grid ss-layout-default-ABCD ss-layout-sm-A_B_C_D" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Column 5</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_06.png"><img alt="Column 5" src="../../_images/find_traces1_06.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Colum 1025</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_07.png"><img alt="Colum 1025" src="../../_images/find_traces1_07.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: C;">
+<span class="caption">Colum 2044</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_08.png"><img alt="Colum 2044" src="../../_images/find_traces1_08.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: D;">
+<span class="caption">Trace fit</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_09.png"><img alt="Trace fit" src="../../_images/find_traces1_09.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Same as the previous figure, for the case of trace number 2.</span><a class="headerlink" href="#fig-find-traces1-06-09" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Fitting trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> along NAXIS1<span class="-Ansi -Ansi-Yellow">...</span>                                
+</pre></div>
+</div>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-10-13">
+<div class="sphinx-subfigure-grid ss-layout-default-ABCD ss-layout-sm-A_B_C_D" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Column 5</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_10.png"><img alt="Column 5" src="../../_images/find_traces1_10.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Colum 1025</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_11.png"><img alt="Colum 1025" src="../../_images/find_traces1_11.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: C;">
+<span class="caption">Colum 2044</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_12.png"><img alt="Colum 2044" src="../../_images/find_traces1_12.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: D;">
+<span class="caption">Trace fit</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_13.png"><img alt="Trace fit" src="../../_images/find_traces1_13.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">Same as the previous figures, for the case of trace number 3.</span><a class="headerlink" href="#fig-find-traces1-10-13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Fitting trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> along NAXIS1<span class="-Ansi -Ansi-Yellow">...</span>                                
+</pre></div>
+</div>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-14-17">
+<div class="sphinx-subfigure-grid ss-layout-default-ABCD ss-layout-sm-A_B_C_D" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Column 5</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_14.png"><img alt="Column 5" src="../../_images/find_traces1_14.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Colum 1025</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_15.png"><img alt="Colum 1025" src="../../_images/find_traces1_15.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: C;">
+<span class="caption">Colum 2044</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_16.png"><img alt="Colum 2044" src="../../_images/find_traces1_16.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: D;">
+<span class="caption">Trace fit</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_17.png"><img alt="Trace fit" src="../../_images/find_traces1_17.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">Same as the previous figures, for the case of trace number 4.</span><a class="headerlink" href="#fig-find-traces1-14-17" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Fitting trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> along NAXIS1<span class="-Ansi -Ansi-Yellow">...</span>                                
+</pre></div>
+</div>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-18-21">
+<div class="sphinx-subfigure-grid ss-layout-default-ABCD ss-layout-sm-A_B_C_D" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">Column 5</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_18.png"><img alt="Column 5" src="../../_images/find_traces1_18.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Colum 1025</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_19.png"><img alt="Colum 1025" src="../../_images/find_traces1_19.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: C;">
+<span class="caption">Colum 2044</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_20.png"><img alt="Colum 2044" src="../../_images/find_traces1_20.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: D;">
+<span class="caption">Trace fit</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_21.png"><img alt="Trace fit" src="../../_images/find_traces1_21.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 31 </span><span class="caption-text">Same as the previous figures, for the case of trace number 5.</span><a class="headerlink" href="#fig-find-traces1-18-21" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Refining the fitted traces for slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> using the smoothed image data<span class="-Ansi -Ansi-Yellow">...</span>     
+Refining trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Yellow">...</span>                                            
+</pre></div>
+</div>
+<p>Once the expected positions for the 5 traces have been estimated, the code
+attempts to refine the fit using the information in the image provided via
+<code class="docutils literal notranslate"><span class="pre">--image</span></code>, provided that the entire trace lies within the useful region of the
+detector. In this case this occurs for the first 4 traces (out of the total of
+5).</p>
+<figure class="align-default" id="fig-find-traces1-22">
+<a class="reference internal image-reference" href="../../_images/find_traces1_22.png"><img alt="TBD" src="../../_images/find_traces1_22.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 32 </span><span class="caption-text">Difference between the predicted position of trace number 1 and the fit to the
+signal in the input image. The correction is modeled by means of a polynomial
+fit.</span><a class="headerlink" href="#fig-find-traces1-22" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Refining trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Yellow">...</span>                                            
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-traces1-23">
+<a class="reference internal image-reference" href="../../_images/find_traces1_23.png"><img alt="TBD" src="../../_images/find_traces1_23.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 33 </span><span class="caption-text">Same as the previous figure, for the case of trace number 2.</span><a class="headerlink" href="#fig-find-traces1-23" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Refining trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Yellow">...</span>                                            
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-traces1-24">
+<a class="reference internal image-reference" href="../../_images/find_traces1_24.png"><img alt="TBD" src="../../_images/find_traces1_24.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 34 </span><span class="caption-text">Same as the previous figures, for the case of trace number 3.</span><a class="headerlink" href="#fig-find-traces1-24" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Refining trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span><span class="-Ansi -Ansi-Yellow">...</span>                                            
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-traces1-25">
+<a class="reference internal image-reference" href="../../_images/find_traces1_25.png"><img alt="TBD" src="../../_images/find_traces1_25.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 35 </span><span class="caption-text">Same as the previous figures, for the case of trace number 4.</span><a class="headerlink" href="#fig-find-traces1-25" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span> is out of bounds. Skipping refinement.                 
+</pre></div>
+</div>
+<p>Since trace number 5 falls outside the useful region of the detector, it is not
+possible to correct its position using the information in the input image.</p>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Applying average refinement to Trace <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span>/<span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> of slice ID <span class="-Ansi -Ansi-Bold -Ansi-Cyan">15</span>.                        
+</pre></div>
+</div>
+<p>Instead, an average of the corrections made to the other four traces is used.</p>
+<figure class="align-default" id="fig-find-traces1-26">
+<a class="reference internal image-reference" href="../../_images/find_traces1_26.png"><img alt="TBD" src="../../_images/find_traces1_26.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">Average correction computed using the corrections deduced for the 4 traces
+within the useful region of the detector.</span><a class="headerlink" href="#fig-find-traces1-26" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Once all traces have been computed for the problematic slice, the program
+displays the result graphically.</p>
+<figure class="align-default" id="fig-find-traces1-27">
+<a class="reference internal image-reference" href="../../_images/find_traces1_27.png"><img alt="TBD" src="../../_images/find_traces1_27.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Graphical comparison of the extrapolated traces for slice ID 15. The magenta
+(dashed line) shows the direct extrapolation using the information from the
+same traces in the slices of the same family. The cyan (solid line) represents
+the refined fit using the information from the input image.</span><a class="headerlink" href="#fig-find-traces1-27" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span>Saving final plots of traces for every slice in PDF file:                       
+<span class="-Ansi -Ansi-Green">traces_within_slice_polynomials.pdf</span>                                             
+Traces within slice boundary polynomials saved to                               
+<span class="-Ansi -Ansi-Green">traces_within_slice_polynomials.fits</span>                                            
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:01:31</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">152357</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>Two output files are generated:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">traces_within_slice_polynomials.fits</span></code>: FITS file containing the polynomial
+boundaries and the polynomial traces. If <code class="docutils literal notranslate"><span class="pre">--voffset</span></code> was different from zero,
+the saved polynomial boundaries take this shift into account, so they will
+not be identical to those in the file specified via <code class="docutils literal notranslate"><span class="pre">--poly</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">traces_within_slice_polynomials.pdf</span></code>: PDF file showing, for each slice, the
+polynomial boundaries and the polynomial traces, overlaid on the image
+specified via <code class="docutils literal notranslate"><span class="pre">--image</span></code>.</p></li>
+</ul>
+<p>The information in the file <code class="docutils literal notranslate"><span class="pre">traces_within_slice_polynomials.fits</span></code> is
+distributed across several extensions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_fridat)</span> <span class="gp">$ </span>fitsinfo<span class="w"> </span>traces_within_slice_polynomials.fits
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: traces_within_slice_polynomials.fits</span>
+<span class="go">No.    Name      Ver    Type      Cards   Dimensions   Format</span>
+<span class="go">  0  PRIMARY       1 PrimaryHDU      74   ()      </span>
+<span class="go">  1  L-BORDER      1 ImageHDU         8   (4, 30)   float64   </span>
+<span class="go">  2  R-BORDER      1 ImageHDU         8   (4, 30)   float64   </span>
+<span class="go">  3  SLIWIDTH      1 ImageHDU         8   (2048, 30)   float64   </span>
+<span class="go">  4  SLCNUM01      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go">  5  SLCNUM02      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go">  6  SLCNUM03      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go">  7  SLCNUM04      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go">  8  SLCNUM05      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go">  9  SLCNUM06      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 10  SLCNUM07      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 11  SLCNUM08      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 12  SLCNUM09      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 13  SLCNUM10      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 14  SLCNUM11      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 15  SLCNUM12      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 16  SLCNUM13      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 17  SLCNUM14      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 18  SLCNUM15      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 19  SLCNUM16      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 20  SLCNUM17      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 21  SLCNUM18      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 22  SLCNUM19      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 23  SLCNUM20      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 24  SLCNUM21      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 25  SLCNUM22      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 26  SLCNUM23      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 27  SLCNUM24      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 28  SLCNUM25      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 29  SLCNUM26      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 30  SLCNUM27      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 31  SLCNUM28      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 32  SLCNUM29      1 ImageHDU        11   (4, 5)   float64   </span>
+<span class="go"> 33  SLCNUM30      1 ImageHDU        11   (4, 5)   float64</span>
+</pre></div>
+</div>
+<p>The first extensions, <code class="docutils literal notranslate"><span class="pre">L-BORDER</span></code>, <code class="docutils literal notranslate"><span class="pre">R-BORDER</span></code>, and <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span></code>, are analogous to
+those explained above for the file
+<code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-30.fits</span></code>. There are 30 additional
+extensions, <code class="docutils literal notranslate"><span class="pre">SLCNUM??</span></code>, one per slice, containing the arrays that store the
+polynomial fit coefficients of the traces, where in this case NAXIS1=4 is the
+number of coefficients (degree-3 polynomial) and NAXIS2=5 is the number of
+traces.</p>
+<p>It is possible to use the script <code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code>
+again to display the result graphically. On this occasion, instead of using the
+<code class="docutils literal notranslate"><span class="pre">--poly</span></code> argument, <code class="docutils literal notranslate"><span class="pre">--traces</span></code> must be used (note that <code class="docutils literal notranslate"><span class="pre">--poly</span></code> is not necessary
+because the file containing the traces also contains the polynomials for the
+slice boundaries).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+--traces<span class="w"> </span>traces_within_slice_polynomials.fits<span class="w"> </span><span class="se">\</span>
+--image<span class="w"> </span><span class="m">0000000132</span>-20260506-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+--sliceid
+</pre></div>
+</div>
+<figure class="align-default" id="fig-find-traces1-28">
+<a class="reference internal image-reference" href="../../_images/find_traces1_28.png"><img alt="TBD" src="../../_images/find_traces1_28.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">Display of the image specified via <code class="docutils literal notranslate"><span class="pre">--image</span></code>, with the polynomial boundaries
+and traces stored in the file indicated via <code class="docutils literal notranslate"><span class="pre">--traces</span></code>. It is possible to zoom
+in and navigate the image to check the quality of the fits performed.</span><a class="headerlink" href="#fig-find-traces1-28" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="sphinx-subfigure align-default" id="fig-find-traces1-29-30">
+<div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<span class="caption">First slices</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_29.png"><img alt="First slices" src="../../_images/find_traces1_29.png" style="width: 100%;" />
+</a>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<span class="caption">Last slices</span>
+<a class="reference internal image-reference" href="../../_images/find_traces1_30.png"><img alt="Last slices" src="../../_images/find_traces1_30.png" style="width: 100%;" />
+</a>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 39 </span><span class="caption-text">Zoomed-in view of the previous image, showing the first slices (left panel) and
+the last slices (right panel) in more detail.</span><a class="headerlink" href="#fig-find-traces1-29-30" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The script <code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code> also has a
+<code class="docutils literal notranslate"><span class="pre">--pdf-mosaic</span></code> argument that allows generating a PDF file with the polynomial
+boundaries and traces plotted on the selected image, showing one slice per page
+of the file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span><span class="m">0000000132</span>-20260506-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_final.pdf
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">─────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-overplot_slice_boundary_polynomials</span><span class="-Ansi -Ansi-BrightGreen"> ────────────</span>
+Using fridadrp.tools.overplot_slice_boundary_polynomials version                
+<span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev248+g830b3980e.d20260804                                                 
+Reading slice boundary polynomials from                                         
+<span class="-Ansi -Ansi-Blue">traces_within_slice_polynomials.fits</span>                                            
+Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>                                            
+Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>left borders<span class="-Ansi -Ansi-Bold">)</span>.                      
+Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>right borders<span class="-Ansi -Ansi-Bold">)</span>.                     
+Read <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with <span class="-Ansi -Ansi-Bold -Ansi-Cyan">5</span> traces per slice from                                     
+<span class="-Ansi -Ansi-Blue">traces_within_slice_polynomials.fits</span>.                                           
+Saving final plots of traces for every slice in PDF file:                       
+<span class="-Ansi -Ansi-Green">traces_within_slice_polynomials_final.pdf</span>                                       
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:04</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">190234</span>                                              
+<span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
+</pre></div>
+</div>
+<p>In this case the PDF file containing all the traces is called
+<code class="docutils literal notranslate"><span class="pre">traces_within_slice_polynomials_final.pdf</span></code>.</p>
+<p>We can also generate, from the PDF file just created, a mosaic (either in PDF
+or PNG format) containing all 30 plots in the same figure. For this, it is
+useful to use <a class="reference external" href="https://imagemagick.org/montage/" rel="noreferrer" target="_blank">ImageMagick’s <code class="docutils literal notranslate"><span class="pre">montage</span></code>
+command</a>. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>montage<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-density<span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>traces_within_slice_polynomials_final.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-tile<span class="w"> </span>6x5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-geometry<span class="w"> </span>600x375+5+5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-background<span class="w"> </span>white<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>traces_within_slice_polynomials_final_montage.pdf
+</pre></div>
+</div>
+<p>An even more convenient way is to use <code class="docutils literal notranslate"><span class="pre">--montage</span> <span class="pre">png</span></code> or <code class="docutils literal notranslate"><span class="pre">--montage</span> <span class="pre">pdf</span></code> as an
+argument of <code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code>.</p>
+<figure class="align-default" id="fig-find-traces2-01">
+<a class="reference internal image-reference" href="../../_images/find_traces2_01.png"><img alt="TBD" src="../../_images/find_traces2_01.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Image resulting from using <code class="docutils literal notranslate"><span class="pre">--montage</span> <span class="pre">png</span></code> when running
+<code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code> in the last command shown above.</span><a class="headerlink" href="#fig-find-traces2-01" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="tbd">
+<h3>TBD<a class="headerlink" href="#tbd" title="Link to this heading"></a></h3>
+</section>
 </section>
 </section>
 
