@@ -65,7 +65,20 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#polynomial-fit-of-spectral-traces">Polynomial fit of spectral traces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#initial-example">Initial example</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tbd">TBD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-zj-low-medium-camera">Grating zJ Low, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-hk-low-medium-camera">Grating HK Low, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-z-medium-medium-camera">Grating z Medium, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-j-medium-medium-camera">Grating J Medium, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-h-medium-medium-camera">Grating H Medium, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-k-medium-medium-camera">Grating K Medium, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-h-high1-medium-camera">Grating H High1, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-h-high2-medium-camera">Grating H High2, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-h-high3-medium-camera">Grating H High3, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-h-high4-medium-camera">Grating H High4, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-k-high1-medium-camera">Grating K High1, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-k-high2-medium-camera">Grating K High2, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-k-high3-medium-camera">Grating K High3, Medium Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grating-k-high4-medium-camera">Grating K High4, Medium Camera</a></li>
 </ul>
 </li>
 </ul>
@@ -143,6 +156,9 @@ of the first and last slices when either of these two falls outside the
 detector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fridadrp-find_traces_within_slice_boundary_polynomials</span></code>: polynomial fitting
 of the spectral traces contained within each slice.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fridadrp--interpolate_traces_within_slices</span></code>: this script allows the
+interpolation of incorrect spectral traces using information from the same
+traces in slices of the same family.</p></li>
 </ul>
 </section>
 <section id="polynomial-boundaries-of-the-slices">
@@ -1710,9 +1726,619 @@ argument of <code class="docutils literal notranslate"><span class="pre">fridadr
 <code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code> in the last command shown above.</span><a class="headerlink" href="#fig-find-traces2-01" title="Link to this image"></a></p>
 </figcaption>
 </figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The work that follows has been carried out using only the polynomial boundaries obtained above. It appears that these boundaries, obtained for a single case, seem to work well even when changing grating.</p>
+<p>In the following sections, the fit to the spectral traces for the initial
+calibration sequence, available in the directory
+<code class="docutils literal notranslate"><span class="pre">Configuraciones-calibracion_de_distorsion-IFS</span></code>, is shown.</p>
+</div>
 </section>
-<section id="tbd">
-<h3>TBD<a class="headerlink" href="#tbd" title="Link to this heading"></a></h3>
+<section id="grating-zj-low-medium-camera">
+<h3>Grating zJ Low, Medium Camera<a class="headerlink" href="#grating-zj-low-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config13/0000007804-20260512-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">480</span><span class="w"> </span><span class="m">1660</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_007804.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_007804.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_007804.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config13/0000007804-20260512-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_007804_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_007804_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_007804_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_007804_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-hk-low-medium-camera">
+<h3>Grating HK Low, Medium Camera<a class="headerlink" href="#grating-hk-low-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config14/0000007810-20260512-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">335</span><span class="w"> </span><span class="m">1215</span><span class="w"> </span>--colrange<span class="w"> </span><span class="m">1775</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_007810.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_007810.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_007810.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config14/0000007810-20260512-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_007810_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_007810_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_007810_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_007810_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-z-medium-medium-camera">
+<h3>Grating z Medium, Medium Camera<a class="headerlink" href="#grating-z-medium-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config02/0000000150-20260510-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span>-27<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">400</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000150.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000150.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000150.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config02/0000000150-20260510-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000510_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000510_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000510_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000510_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-j-medium-medium-camera">
+<h3>Grating J Medium, Medium Camera<a class="headerlink" href="#grating-j-medium-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config01/0000000147-20260510-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000147.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000147.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000147.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config01/0000000147-20260510-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000147_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000147_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000147_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000147_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-h-medium-medium-camera">
+<h3>Grating H Medium, Medium Camera<a class="headerlink" href="#grating-h-medium-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config03/0000000153-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000153.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000153.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000153.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config03/0000000153-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000153_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000153_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000153_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000153_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-k-medium-medium-camera">
+<h3>Grating K Medium, Medium Camera<a class="headerlink" href="#grating-k-medium-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config04/0000000156-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000156.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000156.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000156.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config04/0000000156-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000156_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000156_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000156_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000156_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-h-high1-medium-camera">
+<h3>Grating H High1, Medium Camera<a class="headerlink" href="#grating-h-high1-medium-camera" title="Link to this heading"></a></h3>
+<p>In this case we need to use <code class="docutils literal notranslate"><span class="pre">--voffset</span> <span class="pre">3</span> <span class="pre">22</span></code> to apply a different vertical
+shift on the left side than on the right side.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000171.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000171.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000171.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000171_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000171_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000171_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000171_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>In this case the traces of the slices with ID 16 and 17 are incorrect. To fix
+them we can use the script <code class="docutils literal notranslate"><span class="pre">fridadrp-interpolate_traces_within_slices</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-interpolate_traces_within_slices</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>
+                                                 <span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>
+                                                 <span class="-Ansi -Ansi-Cyan">--sliceid</span> <span class="-Ansi -Ansi-C36">SLICEID</span>
+                                                 [<span class="-Ansi -Ansi-Cyan">--skip-sliceid</span> <span class="-Ansi -Ansi-C36">SKIP_SLICEID</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--norefine</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--degrefine</span> <span class="-Ansi -Ansi-C36">DEGREFINE</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--plots</span>] <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>
+                                                 [<span class="-Ansi -Ansi-Cyan">--overwrite</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+
+Interpolate/extrapolate traces within slices
+
+<span class="-Ansi -Ansi-C208">Options:</span>
+  <span class="-Ansi -Ansi-Cyan">-h</span>, <span class="-Ansi -Ansi-Cyan">--help</span>            show this help message and exit
+  <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>         Path to the input image file (FITS format)
+  <span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>       Path to the file with the slice trace polynomials
+  <span class="-Ansi -Ansi-Cyan">--sliceid</span> <span class="-Ansi -Ansi-C36">SLICEID</span>     Slice ID to process. This option can be specified
+                        multiple times
+  <span class="-Ansi -Ansi-Cyan">--skip-sliceid</span> <span class="-Ansi -Ansi-C36">SKIP_SLICEID</span>
+                        Slice ID to ignore in the interpolation/extrapolation.
+                        This option can be specified multiple times
+  <span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>    Column range to analyze (1-based index) along NAXIS1.
+                        This option can be specified multiple times
+  <span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>     Size of the median filter along NAXIS1 axis (odd;
+                        default: 21)
+  <span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>   Degree of the polynomial to fit traces across slices
+                        (default: 2)
+  <span class="-Ansi -Ansi-Cyan">--norefine</span>            Do not refine the interpolated/extrapolated traces
+                        using the smoothed image data
+  <span class="-Ansi -Ansi-Cyan">--degrefine</span> <span class="-Ansi -Ansi-C36">DEGREFINE</span>
+                        Degree of the polynomial to refine the trace positions
+                        (default: 2)
+  <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots of the interpolated/extrapolated traces
+  <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output file name for the predicted polynomials
+  <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite existing output file
+  <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
+                        Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
+  <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
+  <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
+                        Set the logging level
+</pre></div>
+</div>
+<p>If in this script we specify more than one slice using <code class="docutils literal notranslate"><span class="pre">--sliceid</span></code> several
+times, the order matters. The traces of each slice are
+interpolated/extrapolated in the order given. Once the traces of a particular
+slice have already been interpolated/extrapolated, they are then reused for the
+next slice (if it belongs to the same group as the new slice).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000171.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">17</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000171_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norefine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<p>If we do not use <code class="docutils literal notranslate"><span class="pre">--plots</span></code>, nothing is plotted.</p>
+<p>If we do not use <code class="docutils literal notranslate"><span class="pre">--norefine</span></code>, the code attempts to refine the traces using
+information from the image (smoothed with <code class="docutils literal notranslate"><span class="pre">--xmedian</span> <span class="pre">21</span></code> by default). The
+refinement does not always work well, especially when there is a very weak
+trace at the edges. In this particular case it is better not to refine.</p>
+<p>Important: there is a <code class="docutils literal notranslate"><span class="pre">--skip-sliceid</span></code> argument (which can be used multiple
+times) to indicate slice IDs corresponding to slices that we do not want to use
+as input in the interpolation/extrapolation. By default it is an empty list.</p>
+<p>We check the new traces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000171_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000171_fixed2.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000171_fixed2_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000171_fixed2_montage.png" src="../../_images/traces_within_slice_polynomials_000171_fixed2_montage.png" style="width: 100%;" />
+</a>
+<p>The result is better, but still not fully satisfactory: trace number 1 of the
+slices with ID 15, 16, 14, and 17 remains slightly elevated on the left side.</p>
+</section>
+<section id="grating-h-high2-medium-camera">
+<h3>Grating H High2, Medium Camera<a class="headerlink" href="#grating-h-high2-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span>-2<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000174.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000174.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000174.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000174_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000174_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000174_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000174_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>There are some problems with the traces of slices with ID 15, 16, and 17.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000174.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">17</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">16</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000174_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norefine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000174_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000174_fixed2.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000174_fixed2_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000174_fixed2_montage.png" src="../../_images/traces_within_slice_polynomials_000174_fixed2_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-h-high3-medium-camera">
+<h3>Grating H High3, Medium Camera<a class="headerlink" href="#grating-h-high3-medium-camera" title="Link to this heading"></a></h3>
+<p>Here the signal is weak, and it is noticeable that the DARK has not been
+properly subtracted. To fix this, we use <code class="docutils literal notranslate"><span class="pre">--ymedian</span> <span class="pre">101</span></code> (the default is
+<code class="docutils literal notranslate"><span class="pre">--ymedian</span> <span class="pre">0</span></code>, in which case no median filter is applied in the vertical
+direction and its result is not subtracted). If <code class="docutils literal notranslate"><span class="pre">--ymedian</span></code> is different from
+zero, this filtering and subtraction is performed before the one corresponding
+to <code class="docutils literal notranslate"><span class="pre">--xmedian</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config11/0000007797-20260511-FRIDA-FridaSuccess_raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ymedian<span class="w"> </span><span class="m">101</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_007797.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_007797.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_007797.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config11/0000007797-20260511-FRIDA-FridaSuccess_raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_007797_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_007797_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_007797_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_007797_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>Only the traces of the slices with ID 30, 29, 28, …, 16 are well fitted (half
+of the 30 total slices). Of the sequence with ID 1, 2, …, 15, only slice ID 3
+turns out well. The following therefore fail: slices ID 1, 2, 4, 5, 6, 7, 8, 9,
+10, 11, 12, 13, 14, and 15. We need an image with a longer exposure time.</p>
+</section>
+<section id="grating-h-high4-medium-camera">
+<h3>Grating H High4, Medium Camera<a class="headerlink" href="#grating-h-high4-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config12/0000007801-20260512-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_007801.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_007801.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_007801.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config12/0000007801-20260512-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_007801_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_007801_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_007801_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_007801_fixed_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-k-high1-medium-camera">
+<h3>Grating K High1, Medium Camera<a class="headerlink" href="#grating-k-high1-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span>-16<span class="w"> </span>-8<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000159.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000159.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000159.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000159_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000159_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000159_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000159_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>Here the slices with ID 15, 16, 17, 18, 19, and 30 are incorrect (the latter
+partially outside the detector).  Slice ID 15 can be well predicted from group
+1..15. It is then of interest to process slices ID 19, 18, 17, and 16 (in that
+order, since this way we move progressively further away from the extrapolation
+of the slices with ID 29..20). Finally, we can predict slice 30 from the slices
+with ID 29..16 (having already corrected slices ID 16, 17, 18, and 19).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000159.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">19</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">18</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">17</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000159_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norefine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000159_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000159_fixed2.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000159_fixed2_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000159_fixed2_montage.png" src="../../_images/traces_within_slice_polynomials_000159_fixed2_montage.png" style="width: 100%;" />
+</a>
+</section>
+<section id="grating-k-high2-medium-camera">
+<h3>Grating K High2, Medium Camera<a class="headerlink" href="#grating-k-high2-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span>-26<span class="w"> </span>-16<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000162.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000162.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000162.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000162_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000162_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000162_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000162_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>Here the slices with ID 15, 16, 14, 17, 18, 19, and 30 are incorrect (the latter
+partially outside the detector).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000162.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">14</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">19</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">18</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">17</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">16</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000162_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norefine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000162_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000162_fixed2.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000162_fixed2_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000162_fixed2_montage.png" src="../../_images/traces_within_slice_polynomials_000162_fixed2_montage.png" style="width: 100%;" />
+</a>
+<p>Traces number 1 of slices with ID 15, 16, 14, 17, 13, 18, and 19 remain
+slightly elevated on the left side. It would be worth trying with a better
+image.</p>
+</section>
+<section id="grating-k-high3-medium-camera">
+<h3>Grating K High3, Medium Camera<a class="headerlink" href="#grating-k-high3-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span>-46<span class="w"> </span>-36<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000165.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000165.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000165.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000165_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000165_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000165_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000165_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>Here the slices with ID 19, 18, 13, 17, 14, 16, 15, and 30 are incorrect (the
+latter partially outside the detector).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000165.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">13</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">14</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">19</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">18</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">17</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">16</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000165_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norefine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000165_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000165_fixed2.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000165_fixed2_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000165_fixed2_montage.png" src="../../_images/traces_within_slice_polynomials_000165_fixed2_montage.png" style="width: 100%;" />
+</a>
+<p>Traces number 1 of slices ID 16, 17, and 18 remain slightly elevated on the
+left side. It would be worth trying with a better image.</p>
+</section>
+<section id="grating-k-high4-medium-camera">
+<h3>Grating K High4, Medium Camera<a class="headerlink" href="#grating-k-high4-medium-camera" title="Link to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--poly<span class="w"> </span>../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--voffset<span class="w"> </span>-56<span class="w"> </span>-46<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colrange<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2044</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ntraces<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--deg<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--theilsen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000168.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-out<span class="w"> </span>traces_within_slice_polynomials_000168.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotsliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000168.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000168_fixed.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000168_fixed_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000168_fixed_montage.png" src="../../_images/traces_within_slice_polynomials_000168_fixed_montage.png" style="width: 100%;" />
+</a>
+<p>Here the slices with ID 15, 16, 14, 17, 13, 18, and 30 are incorrect (the
+latter partially outside the detector).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000168.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">13</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">14</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sliceid<span class="w"> </span><span class="m">18</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">17</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">16</span><span class="w"> </span>--sliceid<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>traces_within_slice_polynomials_000168_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--norefine<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$  </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traces<span class="w"> </span>traces_within_slice_polynomials_000168_fixed.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pdf-mosaic<span class="w"> </span>traces_within_slice_polynomials_000168_fixed2.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--montage<span class="w"> </span>png<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--traceid
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/traces_within_slice_polynomials_000168_fixed2_montage.png"><img alt="../../_images/traces_within_slice_polynomials_000168_fixed2_montage.png" src="../../_images/traces_within_slice_polynomials_000168_fixed2_montage.png" style="width: 100%;" />
+</a>
+<p>Traces number 1 of slices ID 15, 16, 14, 17, 13, and 18 remain slightly
+elevated on the left side. It would be worth trying with a better image.</p>
 </section>
 </section>
 </section>

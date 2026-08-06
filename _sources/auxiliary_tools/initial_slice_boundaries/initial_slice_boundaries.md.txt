@@ -41,6 +41,10 @@ The general procedure uses the following scripts:
 - `fridadrp-find_traces_within_slice_boundary_polynomials`: polynomial fitting
   of the spectral traces contained within each slice.
 
+- `fridadrp--interpolate_traces_within_slices`: this script allows the
+  interpolation of incorrect spectral traces using information from the same
+  traces in slices of the same family.
+
 ## Polynomial boundaries of the slices
 
 ### Slice borders at a single column
@@ -1310,4 +1314,651 @@ Image resulting from using `--montage png` when running
 `fridadrp-overplot_slice_boundary_polynomials` in the last command shown above.
 ```
 
-### TBD
+```{warning}
+
+The work that follows has been carried out using only the polynomial boundaries obtained above. It appears that these boundaries, obtained for a single case, seem to work well even when changing grating.
+
+In the following sections, the fit to the spectral traces for the initial
+calibration sequence, available in the directory
+`Configuraciones-calibracion_de_distorsion-IFS`, is shown.
+```
+
+### Grating zJ Low, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config13/0000007804-20260512-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 6 \
+  --colrange 480 1660 \
+  --ntraces 6 \
+  --deg 2 \
+  --theilsen \
+  --output traces_within_slice_polynomials_007804.fits \
+  --pdf-out traces_within_slice_polynomials_007804.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_007804.fits \
+  --image config13/0000007804-20260512-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_007804_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_007804_fixed_montage.png
+:width: 100%
+```
+
+### Grating HK Low, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config14/0000007810-20260512-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 6 \
+  --colrange 335 1215 --colrange 1775 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_007810.fits \
+  --pdf-out traces_within_slice_polynomials_007810.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_007810.fits \
+  --image config14/0000007810-20260512-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_007810_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_007810_fixed_montage.png
+:width: 100%
+```
+
+### Grating z Medium, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config02/0000000150-20260510-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset -27 \
+  --colrange 400 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000150.fits \
+  --pdf-out traces_within_slice_polynomials_000150.pdf \
+  --plotsliceid 30 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000150.fits \
+  --image config02/0000000150-20260510-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000510_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000510_fixed_montage.png
+:width: 100%
+```
+
+### Grating J Medium, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config01/0000000147-20260510-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 9 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000147.fits \
+  --pdf-out traces_within_slice_polynomials_000147.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000147.fits \
+  --image config01/0000000147-20260510-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000147_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000147_fixed_montage.png
+:width: 100%
+```
+
+### Grating H Medium, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config03/0000000153-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 4 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000153.fits \
+  --pdf-out traces_within_slice_polynomials_000153.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000153.fits \
+  --image config03/0000000153-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000153_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000153_fixed_montage.png
+:width: 100%
+```
+
+### Grating K Medium, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config04/0000000156-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 0 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000156.fits \
+  --pdf-out traces_within_slice_polynomials_000156.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000156.fits \
+  --image config04/0000000156-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000156_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000156_fixed_montage.png
+:width: 100%
+```
+
+### Grating H High1, Medium Camera
+
+In this case we need to use `--voffset 3 22` to apply a different vertical
+shift on the left side than on the right side.
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 3 22 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000171.fits \
+  --pdf-out traces_within_slice_polynomials_000171.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000171.fits \
+  --image config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000171_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000171_fixed_montage.png
+:width: 100%
+```
+
+In this case the traces of the slices with ID 16 and 17 are incorrect. To fix
+them we can use the script `fridadrp-interpolate_traces_within_slices`.
+
+```{include} files/help2_fridadrp-interpolate_traces_within_slices.md
+```
+
+If in this script we specify more than one slice using `--sliceid` several
+times, the order matters. The traces of each slice are
+interpolated/extrapolated in the order given. Once the traces of a particular
+slice have already been interpolated/extrapolated, they are then reused for the
+next slice (if it belongs to the same group as the new slice).
+
+```console
+(venv_frida) $ fridadrp-interpolate_traces_within_slices \
+  --image config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits \
+  --traces traces_within_slice_polynomials_000171.fits \
+  --sliceid 17 --sliceid 16 \
+  --output traces_within_slice_polynomials_000171_fixed.fits \
+  --norefine \
+  --plots \
+  --overwrite
+```
+
+If we do not use `--plots`, nothing is plotted.
+
+If we do not use `--norefine`, the code attempts to refine the traces using
+information from the image (smoothed with `--xmedian 21` by default). The
+refinement does not always work well, especially when there is a very weak
+trace at the edges. In this particular case it is better not to refine.
+
+Important: there is a `--skip-sliceid` argument (which can be used multiple
+times) to indicate slice IDs corresponding to slices that we do not want to use
+as input in the interpolation/extrapolation. By default it is an empty list.
+
+We check the new traces:
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000171_fixed.fits \
+  --image config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000171_fixed2.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000171_fixed2_montage.png
+:width: 100%
+```
+
+The result is better, but still not fully satisfactory: trace number 1 of the
+slices with ID 15, 16, 14, and 17 remains slightly elevated on the left side.
+
+### Grating H High2, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset -2 17 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000174.fits \
+  --pdf-out traces_within_slice_polynomials_000174.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000174.fits \
+  --image config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000174_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000174_fixed_montage.png
+:width: 100%
+```
+
+There are some problems with the traces of slices with ID 15, 16, and 17.
+
+```console
+(venv_frida) $ fridadrp-interpolate_traces_within_slices \
+  --image config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits \
+  --traces traces_within_slice_polynomials_000174.fits \
+  --sliceid 17 --sliceid 16 --sliceid 15 \
+  --output traces_within_slice_polynomials_000174_fixed.fits \
+  --norefine \
+  --plots \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000174_fixed.fits \
+  --image config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000174_fixed2.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000174_fixed2_montage.png
+:width: 100%
+```
+
+### Grating H High3, Medium Camera
+
+Here the signal is weak, and it is noticeable that the DARK has not been
+properly subtracted. To fix this, we use `--ymedian 101` (the default is
+`--ymedian 0`, in which case no median filter is applied in the vertical
+direction and its result is not subtracted). If `--ymedian` is different from
+zero, this filtering and subtraction is performed before the one corresponding
+to `--xmedian`.
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config11/0000007797-20260511-FRIDA-FridaSuccess_raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 13 15 \
+  --ymedian 101 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_007797.fits \
+  --pdf-out traces_within_slice_polynomials_007797.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_007797.fits \
+  --image config11/0000007797-20260511-FRIDA-FridaSuccess_raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_007797_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_007797_fixed_montage.png
+:width: 100%
+```
+
+Only the traces of the slices with ID 30, 29, 28, ..., 16 are well fitted (half
+of the 30 total slices). Of the sequence with ID 1, 2, ..., 15, only slice ID 3
+turns out well. The following therefore fail: slices ID 1, 2, 4, 5, 6, 7, 8, 9,
+10, 11, 12, 13, 14, and 15. We need an image with a longer exposure time.
+
+### Grating H High4, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config12/0000007801-20260512-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset 12 15 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_007801.fits \
+  --pdf-out traces_within_slice_polynomials_007801.pdf \
+  --plotsliceid 15 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_007801.fits \
+  --image config12/0000007801-20260512-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_007801_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_007801_fixed_montage.png
+:width: 100%
+```
+
+### Grating K High1, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset -16 -8 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000159.fits \
+  --pdf-out traces_within_slice_polynomials_000159.pdf \
+  --plotsliceid 30 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000159.fits \
+  --image config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000159_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000159_fixed_montage.png
+:width: 100%
+```
+
+Here the slices with ID 15, 16, 17, 18, 19, and 30 are incorrect (the latter
+partially outside the detector).  Slice ID 15 can be well predicted from group
+1..15. It is then of interest to process slices ID 19, 18, 17, and 16 (in that
+order, since this way we move progressively further away from the extrapolation
+of the slices with ID 29..20). Finally, we can predict slice 30 from the slices
+with ID 29..16 (having already corrected slices ID 16, 17, 18, and 19).
+
+```console
+(venv_frida) $ fridadrp-interpolate_traces_within_slices \
+  --image config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits \
+  --traces traces_within_slice_polynomials_000159.fits \
+  --sliceid 15 --sliceid 19 --sliceid 18 --sliceid 17 --sliceid 16 \
+  --sliceid 30 \
+  --output traces_within_slice_polynomials_000159_fixed.fits \
+  --norefine \
+  --plots \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000159_fixed.fits \
+  --image config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000159_fixed2.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000159_fixed2_montage.png
+:width: 100%
+```
+
+### Grating K High2, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset -26 -16 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000162.fits \
+  --pdf-out traces_within_slice_polynomials_000162.pdf \
+  --plotsliceid 30 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000162.fits \
+  --image config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000162_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000162_fixed_montage.png
+:width: 100%
+```
+
+Here the slices with ID 15, 16, 14, 17, 18, 19, and 30 are incorrect (the latter
+partially outside the detector).
+
+```console
+(venv_frida) $ fridadrp-interpolate_traces_within_slices \
+  --image config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits \
+  --traces traces_within_slice_polynomials_000162.fits \
+  --sliceid 14 --sliceid 15 \
+  --sliceid 19 --sliceid 18 --sliceid 17 --sliceid 16 --sliceid 30 \
+  --output traces_within_slice_polynomials_000162_fixed.fits \
+  --norefine \
+  --plots \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000162_fixed.fits \
+  --image config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000162_fixed2.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000162_fixed2_montage.png
+:width: 100%
+```
+
+Traces number 1 of slices with ID 15, 16, 14, 17, 13, 18, and 19 remain
+slightly elevated on the left side. It would be worth trying with a better
+image.
+
+### Grating K High3, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset -46 -36 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000165.fits \
+  --pdf-out traces_within_slice_polynomials_000165.pdf \
+  --plotsliceid 30 \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000165.fits \
+  --image config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000165_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000165_fixed_montage.png
+:width: 100%
+```
+
+Here the slices with ID 19, 18, 13, 17, 14, 16, 15, and 30 are incorrect (the
+latter partially outside the detector).
+
+```console
+(venv_frida) $ fridadrp-interpolate_traces_within_slices \
+  --image config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits \
+  --traces traces_within_slice_polynomials_000165.fits \
+  --sliceid 13 --sliceid 14 --sliceid 15 \
+  --sliceid 19 --sliceid 18 --sliceid 17 --sliceid 16 --sliceid 30 \
+  --output traces_within_slice_polynomials_000165_fixed.fits \
+  --norefine \
+  --plots \
+  --overwrite
+```
+
+```console
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000165_fixed.fits \
+  --image config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000165_fixed2.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000165_fixed2_montage.png
+:width: 100%
+```
+
+Traces number 1 of slices ID 16, 17, and 18 remain slightly elevated on the
+left side. It would be worth trying with a better image.
+
+### Grating K High4, Medium Camera
+
+```console
+(venv_frida) $ fridadrp-find_traces_within_slice_boundary_polynomials \
+  --image config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits \
+  --poly ../Comfiguraciones-IM-IFS-pruebas_con_el_DFAgent/slice_boundary_polynomials_1-30_fixed.fits \
+  --voffset -56 -46 \
+  --colrange 5 2044 \
+  --ntraces 6 \
+  --deg 3 \
+  --theilsen \
+  --output traces_within_slice_polynomials_000168.fits \
+  --pdf-out traces_within_slice_polynomials_000168.pdf \
+  --plotsliceid 30 \
+  --overwrite
+```
+
+```console 
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000168.fits \
+  --image config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000168_fixed.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000168_fixed_montage.png
+:width: 100%
+```
+
+Here the slices with ID 15, 16, 14, 17, 13, 18, and 30 are incorrect (the
+latter partially outside the detector).
+
+```console
+(venv_frida) $ fridadrp-interpolate_traces_within_slices \
+  --image config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits \
+  --traces traces_within_slice_polynomials_000168.fits \
+  --sliceid 13 --sliceid 14 --sliceid 15 \
+  --sliceid 18 --sliceid 17 --sliceid 16 --sliceid 30 \
+  --output traces_within_slice_polynomials_000168_fixed.fits \
+  --norefine \
+  --plots \
+  --overwrite
+```
+
+```console
+(venv_frida) $  fridadrp-overplot_slice_boundary_polynomials \
+  --traces traces_within_slice_polynomials_000168_fixed.fits \
+  --image config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits \
+  --pdf-mosaic traces_within_slice_polynomials_000168_fixed2.pdf \
+  --montage png \
+  --traceid
+```
+
+```{image} images/traces_within_slice_polynomials_000168_fixed2_montage.png
+:width: 100%
+```
+
+Traces number 1 of slices ID 15, 16, 14, 17, 13, and 18 remain slightly
+elevated on the left side. It would be worth trying with a better image.
