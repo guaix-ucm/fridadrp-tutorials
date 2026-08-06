@@ -3,7 +3,7 @@
 ```{warning}
 
 Please note that the code shown below is under development and may undergo
-modifications.
+modifications. If problems arise, try first installing the development versions of **numina** and **fridadrp**.
 ```
 
 ## General procedure
