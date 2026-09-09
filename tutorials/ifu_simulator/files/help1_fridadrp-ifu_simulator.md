@@ -1,5 +1,5 @@
 ```console
-(venv_numina) $ fridadrp-ifu_simulator
+(venv_frida) $ fridadrp-ifu_simulator
 ```
 
 ```{code-block} ansi-shell-session

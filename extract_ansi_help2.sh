@@ -17,7 +17,7 @@ txtfile="${local_dir}/help2_${fdum}.txt"
 mdfile0="${local_dir}/help2_${fdum}.md0"
 mdfile="${local_dir}/help2_${fdum}.md"
 echo "\`\`\`console" > ${mdfile0}
-echo "(venv_numina) \$ ${fdum} --help" >> ${mdfile0}
+echo "(venv_frida) \$ ${fdum} --help" >> ${mdfile0}
 echo "\`\`\`" >> ${mdfile0}
 echo "" >> ${mdfile0}
 FORCE_COLOR=1 ${fdum} --help > ${txtfile}

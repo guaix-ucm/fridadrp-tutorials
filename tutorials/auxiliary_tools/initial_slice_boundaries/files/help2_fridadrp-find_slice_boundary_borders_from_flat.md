@@ -1,5 +1,5 @@
 ```console
-(venv_numina) $ fridadrp-find_slice_boundary_borders_from_flat --help
+(venv_frida) $ fridadrp-find_slice_boundary_borders_from_flat --help
 ```
 
 ```{code-block} ansi-shell-session
