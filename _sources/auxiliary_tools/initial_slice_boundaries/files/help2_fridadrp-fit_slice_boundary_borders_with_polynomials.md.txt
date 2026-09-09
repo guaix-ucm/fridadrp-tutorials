@@ -1,5 +1,5 @@
 ```console
-(venv_numina) $ fridadrp-fit_slice_boundary_borders_with_polynomials --help
+(venv_frida) $ fridadrp-fit_slice_boundary_borders_with_polynomials --help
 ```
 
 ```{code-block} ansi-shell-session

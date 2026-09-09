@@ -1,5 +1,5 @@
 ```console
-(venv_numina) $ fridadrp-interpolate_traces_within_slices --help
+(venv_frida) $ fridadrp-interpolate_traces_within_slices --help
 ```
 
 ```{code-block} ansi-shell-session

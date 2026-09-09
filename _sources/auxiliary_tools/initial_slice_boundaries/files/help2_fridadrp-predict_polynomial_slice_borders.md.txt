@@ -1,5 +1,5 @@
 ```console
-(venv_numina) $ fridadrp-predict_polynomial_slice_borders --help
+(venv_frida) $ fridadrp-predict_polynomial_slice_borders --help
 ```
 
 ```{code-block} ansi-shell-session

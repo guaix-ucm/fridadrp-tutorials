@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=932a37d4" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-new-tab-link.css?v=d87cb1ac" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3defd07e" />
 
   
@@ -176,7 +177,7 @@ between the first and second derivative of each signal rise (or fall), and
 extrapolate that line until it intersects a value coinciding with the minimum
 signal between each pair of slices (after adding 1% of the 90th-percentile
 signal of the slice whose edge we want to estimate).</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-find_slice_boundary_borders_from_flat<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_slice_boundary_borders_from_flat<span class="w"> </span>--help
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-find_slice_boundary_borders_from_flat</span> [<span class="-Ansi -Ansi-Cyan">-h</span>]
@@ -245,12 +246,12 @@ Using fridadrp.tools.find_slice_boundary_borders_from_flat version
 Columns to analyze: from <span class="-Ansi -Ansi-Bold -Ansi-Cyan">501</span> to <span class="-Ansi -Ansi-Bold -Ansi-Cyan">501</span> <span class="-Ansi -Ansi-Bold">(</span>total <span class="-Ansi -Ansi-Bold -Ansi-Cyan">1</span> columns<span class="-Ansi -Ansi-Bold">)</span> - Mode: continuous        
 Output file name is <span class="-Ansi -Ansi-Italic -Ansi-Magenta">None</span>. No output file will be created.                       
 ------------------------------------------------------------------------------- 
-<span class="-Ansi -Ansi-Green">&#39;?&#39;</span>: show this help message                                                     
-<span class="-Ansi -Ansi-Green">&#39;a&#39;</span>: toggle imshow <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;equal&#39;</span> <span class="-Ansi -Ansi-Magenta">/</span> <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;auto&#39;</span>                               
-<span class="-Ansi -Ansi-Green">&#39;v&#39;</span>: set vmin and vmax manually                                                 
-<span class="-Ansi -Ansi-Green">&#39;,&#39;</span>: set vmin and vmax to min and max of the zoomed region                      
-<span class="-Ansi -Ansi-Green">&#39;/&#39;</span>: set vmin and vmax using zscale of the zoomed region                        
-<span class="-Ansi -Ansi-Green">&#39;q&#39;</span>: quit                                                                       
+<span class="-Ansi -Ansi-Green">'?'</span>: show this help message                                                     
+<span class="-Ansi -Ansi-Green">'a'</span>: toggle imshow <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">'equal'</span> <span class="-Ansi -Ansi-Magenta">/</span> <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">'auto'</span>                               
+<span class="-Ansi -Ansi-Green">'v'</span>: set vmin and vmax manually                                                 
+<span class="-Ansi -Ansi-Green">','</span>: set vmin and vmax to min and max of the zoomed region                      
+<span class="-Ansi -Ansi-Green">'/'</span>: set vmin and vmax using zscale of the zoomed region                        
+<span class="-Ansi -Ansi-Green">'q'</span>: quit                                                                       
 ------------------------------------------------------------------------------- 
 </pre></div>
 </div>
@@ -481,7 +482,7 @@ The <code class="docutils literal notranslate"><span class="pre">SLIWIDTH</span>
 column number (it inherits the NaNs from the two previous extensions).</p>
 <p>We can visualize the detected boundary borders using the script
 <code class="docutils literal notranslate"><span class="pre">fridadrp-overplot_slice_boundary_polynomials</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-overplot_slice_boundary_polynomials<span class="w"> </span>--help
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-overplot_slice_boundary_polynomials</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] [<span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>]
@@ -521,7 +522,7 @@ image
                         Output PDF file to save zoomed images of all the
                         slices
   <span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>   Display a montage of the final plots with traces for
-                        every slice (requires ImageMagick&#39;s montage)
+                        every slice (requires ImageMagick's montage)
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
@@ -550,13 +551,13 @@ Number of NaN values in collapsed right border: <span class="-Ansi -Ansi-Bold -A
 Read <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> left borders and <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> right borders from                                  
 <span class="-Ansi -Ansi-Blue">slice_boundary_borders_from_flat_1-</span><span class="-Ansi -Ansi-Bold -Ansi-Cyan">30.</span><span class="-Ansi -Ansi-Blue">fits</span>.                                     
 ------------------------------------------------------------------------------- 
-<span class="-Ansi -Ansi-Green">&#39;?&#39;</span>: show this help message                                                     
-<span class="-Ansi -Ansi-Green">&#39;a&#39;</span>: toggle imshow <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;equal&#39;</span> <span class="-Ansi -Ansi-Magenta">/</span> <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">&#39;auto&#39;</span>                               
-<span class="-Ansi -Ansi-Green">&#39;h&#39;</span>: reset zoom to initial limits                                               
-<span class="-Ansi -Ansi-Green">&#39;v&#39;</span>: set vmin and vmax manually                                                 
-<span class="-Ansi -Ansi-Green">&#39;,&#39;</span>: set vmin and vmax to min and max of the zoomed region                      
-<span class="-Ansi -Ansi-Green">&#39;/&#39;</span>: set vmin and vmax using zscale of the zoomed region                        
-<span class="-Ansi -Ansi-Green">&#39;q&#39;</span>: quit                                                                       
+<span class="-Ansi -Ansi-Green">'?'</span>: show this help message                                                     
+<span class="-Ansi -Ansi-Green">'a'</span>: toggle imshow <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">'equal'</span> <span class="-Ansi -Ansi-Magenta">/</span> <span class="-Ansi -Ansi-Yellow">aspect</span>=<span class="-Ansi -Ansi-Green">'auto'</span>                               
+<span class="-Ansi -Ansi-Green">'h'</span>: reset zoom to initial limits                                               
+<span class="-Ansi -Ansi-Green">'v'</span>: set vmin and vmax manually                                                 
+<span class="-Ansi -Ansi-Green">','</span>: set vmin and vmax to min and max of the zoomed region                      
+<span class="-Ansi -Ansi-Green">'/'</span>: set vmin and vmax using zscale of the zoomed region                        
+<span class="-Ansi -Ansi-Green">'q'</span>: quit                                                                       
 ------------------------------------------------------------------------------- 
 Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:07</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">709395</span>                                              
 <span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
@@ -621,8 +622,8 @@ the 2D image stored in the <code class="docutils literal notranslate"><span clas
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--extname<span class="w"> </span>sliwidth<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--cbar_label<span class="w"> </span><span class="s2">&quot;Slice width (pixels)&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--ylabel<span class="w"> </span><span class="s2">&quot;Slice number&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar_label<span class="w"> </span><span class="s2">"Slice width (pixels)"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ylabel<span class="w"> </span><span class="s2">"Slice number"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--cmap<span class="w"> </span>viridis<span class="w"> </span>--z1z2<span class="w"> </span><span class="m">45</span>,70
 </pre></div>
 </div>
@@ -741,7 +742,7 @@ Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:57</sp
 <p>The next step consists of performing a polynomial fit to the boundaries
 detected in the previous procedure. This task is carried out with the help of
 the script <code class="docutils literal notranslate"><span class="pre">fridadrp-fit_slice_boundary_borders_with_polynomials</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-fit_slice_boundary_borders_with_polynomials<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-fit_slice_boundary_borders_with_polynomials<span class="w"> </span>--help
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-fit_slice_boundary_borders_with_polynomials</span>
@@ -981,7 +982,7 @@ predict the polynomial boundaries of slices that may be partially outside the
 detector. We have seen that this happens with several calibration images when
 changing grating, and it can result in the boundaries of the bottom slice (ID
 30) or the top slice (ID 15) not being determinable.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-predict_polynomial_slice_borders<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-predict_polynomial_slice_borders<span class="w"> </span>--help
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-predict_polynomial_slice_borders</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>
@@ -1182,7 +1183,7 @@ useful region of the detector.</span><a class="headerlink" href="#fig-find-borde
 polynomials, we can move on to the next phase, which consists of obtaining
 polynomial fits to the spectral traces. In this case we will use the script
 <code class="docutils literal notranslate"><span class="pre">fridadrp-find_traces_within_slice_boundary_polynomials</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-find_traces_within_slice_boundary_polynomials<span class="w"> </span>--help
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-find_traces_within_slice_boundary_polynomials</span>
@@ -1273,7 +1274,7 @@ Number of slices defined: <span class="-Ansi -Ansi-Yellow">SLCNUMT</span>=<span 
 Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>left borders<span class="-Ansi -Ansi-Bold">)</span>.                      
 Reading <span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span> slices with polynomial degree <span class="-Ansi -Ansi-Bold -Ansi-Cyan">3</span> <span class="-Ansi -Ansi-Bold">(</span>right borders<span class="-Ansi -Ansi-Bold">)</span>.                     
 Applying constant vertical offset of <span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.0</span> pixels to slice boundary polynomials.  
-Press <span class="-Ansi -Ansi-Green">&#39;q&#39;</span> to close the plot or <span class="-Ansi -Ansi-Green">&#39;x&#39;</span> to close the plot and exit the program.      
+Press <span class="-Ansi -Ansi-Green">'q'</span> to close the plot or <span class="-Ansi -Ansi-Green">'x'</span> to close the plot and exit the program.      
 </pre></div>
 </div>
 <p>The first thing the script does is show us the image with the spectral traces,
@@ -1926,7 +1927,7 @@ shift on the left side than on the right side.</p>
 </a>
 <p>In this case the traces of the slices with ID 16 and 17 are incorrect. To fix
 them we can use the script <code class="docutils literal notranslate"><span class="pre">fridadrp-interpolate_traces_within_slices</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_numina)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fridadrp-interpolate_traces_within_slices<span class="w"> </span>--help
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-interpolate_traces_within_slices</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>

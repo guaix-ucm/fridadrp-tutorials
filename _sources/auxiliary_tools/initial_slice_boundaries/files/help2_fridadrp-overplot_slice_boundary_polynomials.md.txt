@@ -1,5 +1,5 @@
 ```console
-(venv_numina) $ fridadrp-overplot_slice_boundary_polynomials --help
+(venv_frida) $ fridadrp-overplot_slice_boundary_polynomials --help
 ```
 
 ```{code-block} ansi-shell-session
