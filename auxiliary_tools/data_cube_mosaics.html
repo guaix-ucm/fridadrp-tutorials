@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-new-tab-link.css?v=d87cb1ac" />
       <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3defd07e" />
+      <link rel="stylesheet" type="text/css" href="../_static/click-extra.css?v=59573e2f" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -320,12 +321,11 @@ output file.</p>
 <span class="n">test0c_ifu_3D_method0</span><span class="o">.</span><span class="n">fits</span>
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-generate_mosaic_of_3d_cubes<span class="w"> </span><span class="se">\ </span>
-<span class="go">  list0_3d_cubes.txt \</span>
-<span class="go">  all0_3d.fits \</span>
-<span class="go">  --reproject_method adaptive \</span>
-<span class="go">  --footprint \</span>
-<span class="go">  --verbose</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-generate_mosaic_of_3d_cubes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>list0_3d_cubes.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>all0_3d.fits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reproject_method<span class="w"> </span>adaptive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--footprint
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span>input_list: list0_3d_cubes.txt
@@ -570,8 +570,7 @@ refraction, the result is not satisfactory.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-generate_mosaic_of_3d_cubes<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>list1_3d_cubes.txt<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>combination_test1_3d.fits<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--footprint<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--verbose
+<span class="w">  </span>--footprint
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span>input_list: list1_3d_cubes.txt

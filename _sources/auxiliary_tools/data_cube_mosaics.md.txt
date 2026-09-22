@@ -225,12 +225,11 @@ test0c_ifu_3D_method0.fits
 ```
 
 ```{code-block} console
-(venv_frida) $ numina-generate_mosaic_of_3d_cubes \ 
+(venv_frida) $ numina-generate_mosaic_of_3d_cubes \
   list0_3d_cubes.txt \
   all0_3d.fits \
   --reproject_method adaptive \
-  --footprint \
-  --verbose
+  --footprint
 ```
 
 ```{literalinclude} mosaics/execution_combination_test0_3d.txt
@@ -440,8 +439,7 @@ refraction, the result is not satisfactory.
 (venv_frida) $ numina-generate_mosaic_of_3d_cubes \
   list1_3d_cubes.txt \
   combination_test1_3d.fits \
-  --footprint \
-  --verbose
+  --footprint
 ```
 
 ```{literalinclude} mosaics/execution_combination_test1_3d.txt
