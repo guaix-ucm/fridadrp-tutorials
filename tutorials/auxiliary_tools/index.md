@@ -9,6 +9,6 @@ procedures:
 ```{toctree}
 :maxdepth: 2
 
-data_cube_mosaics
+data_cube_mosaics/data_cube_mosaics
 initial_slice_boundaries/initial_slice_boundaries
 ```

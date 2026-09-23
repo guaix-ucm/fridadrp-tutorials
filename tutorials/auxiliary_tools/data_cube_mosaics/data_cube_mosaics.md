@@ -24,8 +24,8 @@ package facilitates the combination of 2D FITS images.
 ### Generation of individual exposures
 
 For this example we are using the files {download}`scene_m51_2d.yaml
-<mosaics/scene_m51_2d.yaml>` and {download}`m51_dss1.fits
-<mosaics/m51_dss1.fits>`.
+<files/scene_m51_2d.yaml>` and {download}`m51_dss1.fits
+<files/m51_dss1.fits>`.
 
 Execute `fridadrp-ifu_simulator` to generate the images to be combined:
 
@@ -92,13 +92,13 @@ the auxiliary script `numina-ximshow` for this purpose
   --z1z2 minmax
 ```
 
-```{image} mosaics/test0a_2d.png
+```{image} images/test0a_2d.png
 :width: 32%
 ```
-```{image} mosaics/test0b_2d.png
+```{image} images/test0b_2d.png
 :width: 32%
 ```
-```{image} mosaics/test0c_2d.png
+```{image} images/test0c_2d.png
 :width: 32%
 ```
 
@@ -114,13 +114,13 @@ direction are summed):
 (venv_frida) $ numina-extract_2d_slice_from_3d_cube test0c_ifu_3D_method0.fits
 ```
 
-```{image} mosaics/test0a_3d_collapsed.png
+```{image} images/test0a_3d_collapsed.png
 :width: 32%
 ```
-```{image} mosaics/test0b_3d_collapsed.png
+```{image} images/test0b_3d_collapsed.png
 :width: 32%
 ```
-```{image} mosaics/test0c_3d_collapsed.png
+```{image} images/test0c_3d_collapsed.png
 :width: 32%
 ```
 
@@ -158,7 +158,7 @@ script `numina-generate_mosaic_of_2d_images`:
   --verbose
 ```
 
-```{literalinclude} mosaics/execution_combination_test0_2d.txt
+```{literalinclude} files/execution_combination_test0_2d.txt
 :class: my-special-block no-copybutton
 ```
 
@@ -178,10 +178,10 @@ number of counts shows such a different value in both images.
   --z1z2 minmax
 ```
 
-```{image} mosaics/combined_test0_2d.png
+```{image} images/combined_test0_2d.png
 :width: 49%
 ```
-```{image} mosaics/single_test0a_2d.png
+```{image} images/single_test0a_2d.png
 :width: 49%
 ```
 
@@ -189,7 +189,7 @@ The following figure shows the result of combining the two exposures obtained
 with the 'fine' camera, represented on top of the first exposure calculated
 with an oversampling of 10 (file `testa_ifu_white2D_method0_os10.fits`).
 
-```{image} mosaics/combined_with_bw_background.png
+```{image} images/combined_with_bw_background.png
 :align: center
 :width: 70%
 ```
@@ -232,7 +232,7 @@ test0c_ifu_3D_method0.fits
   --footprint
 ```
 
-```{literalinclude} mosaics/execution_combination_test0_3d.txt
+```{literalinclude} files/execution_combination_test0_3d.txt
 :class: my-special-block no-copybutton
 ```
 
@@ -258,7 +258,7 @@ We can visualize the result using `ds9`:
   -view multi yes
 ```
 
-```{image} mosaics/result_example1_with_ds9.png
+```{image} images/result_example1_with_ds9.png
 :align: center
 :width: 70%
 ```
@@ -277,7 +277,7 @@ airmasses and position angles.
 ### Generation of individual exposures
 
 For this example we are using the file {download}`scene_m51_3d.yaml
-<mosaics/scene_m51_3d.yaml>`.
+<files/scene_m51_3d.yaml>`.
 
 Execute `fridadrp-ifu_simulator`:
 
@@ -349,7 +349,7 @@ We can quickly visualize the result with the help of the `ds9` program.
   -view multi yes
 ```
 
-```{image} mosaics/individual_3d_m51_exposures_with_ds9.png
+```{image} images/individual_3d_m51_exposures_with_ds9.png
 :width: 100%
 ```
 
@@ -407,7 +407,7 @@ test1c_ifu_3D_method0.fits
 After executing the last command, select 'Read All' when ``qfitsview`` asks for
 the extension to read.
 
-```{image} mosaics/individual_3d_m51_exposures_with_qfitsview.png
+```{image} images/individual_3d_m51_exposures_with_qfitsview.png
 :width: 100%
 ```
 
@@ -420,13 +420,13 @@ of atmospheric refraction is clearly noticeable.
 (venv_frida) $ numina-extract_2d_slice_from_3d_cube test1c_ifu_3D_method0.fits
 ```
 
-```{image} mosaics/test1a_3d_collapsed.png
+```{image} images/test1a_3d_collapsed.png
 :width: 32%
 ```
-```{image} mosaics/test1b_3d_collapsed.png
+```{image} images/test1b_3d_collapsed.png
 :width: 32%
 ```
-```{image} mosaics/test1c_3d_collapsed.png
+```{image} images/test1c_3d_collapsed.png
 :width: 32%
 ```
 
@@ -442,7 +442,7 @@ refraction, the result is not satisfactory.
   --footprint
 ```
 
-```{literalinclude} mosaics/execution_combination_test1_3d.txt
+```{literalinclude} files/execution_combination_test1_3d.txt
 :class: my-special-block no-copybutton
 ```
 
@@ -466,7 +466,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
 The initial spatial cut shown by qfitsview corresponds to pixel 1024 along
 NAXIS3. The corresponding image looks apparently normal.
 
-```{image} mosaics/combined_test1_3d_1024.png
+```{image} images/combined_test1_3d_1024.png
 :width: 70%
 :align: center
 ```
@@ -474,10 +474,10 @@ NAXIS3. The corresponding image looks apparently normal.
 However, when we display the cut corresponding to pixel 1 or pixel 2048, the
 result is clearly not satisfactory.
 
-```{image} mosaics/combined_test1_3d_0001.png
+```{image} images/combined_test1_3d_0001.png
 :width: 49%
 ```
-```{image} mosaics/combined_test1_3d_2048.png
+```{image} images/combined_test1_3d_2048.png
 :width: 49%
 ```
 
@@ -500,11 +500,11 @@ images we are working with.
   --plots
 ```
 
-```{literalinclude} mosaics/execution_compute_adr_wavelength_airmass3.txt
+```{literalinclude} files/execution_compute_adr_wavelength_airmass3.txt
 :class: my-special-block no-copybutton
 ```
 
-```{image} mosaics/adr_prediction.png
+```{image} images/adr_prediction.png
 :align: center
 :width: 60%
 ```
@@ -536,7 +536,7 @@ obtained with an airmass of 1.0.
   --verbose --plots
 ```
 
-```{image} mosaics/adr_test1b.png
+```{image} images/adr_test1b.png
 :align: center
 :width: 100%
 ```
@@ -547,7 +547,7 @@ obtained with an airmass of 1.0.
   --verbose --plots
 ```
 
-```{image} mosaics/adr_test1c.png
+```{image} images/adr_test1c.png
 :align: center
 :width: 100%
 ```
@@ -637,7 +637,7 @@ using the cross-correlation technique.
   adrcross adrtheor
 ```
 
-```{image} mosaics/adrcross_adrtheor.png
+```{image} images/adrcross_adrtheor.png
 :align: center
 :width: 100%
 ```
@@ -654,7 +654,7 @@ the preferred extension (in this case, `ADRCROSS` or `ADRTHEOR`).
   --verbose
 ```
 
-```{literalinclude} mosaics/execution_adr_correction_from_extension_test1b.txt
+```{literalinclude} files/execution_adr_correction_from_extension_test1b.txt
 :class: my-special-block no-copybutton
 ```
 
@@ -667,7 +667,7 @@ the preferred extension (in this case, `ADRCROSS` or `ADRTHEOR`).
   --verbose
 ```
 
-```{literalinclude} mosaics/execution_adr_correction_from_extension_test1c.txt
+```{literalinclude} files/execution_adr_correction_from_extension_test1c.txt
 :class: my-special-block no-copybutton
 ```
 
@@ -698,7 +698,7 @@ test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
   --verbose
 ```
 
-```{literalinclude} mosaics/execution_combination_test1_3d_ADR.txt
+```{literalinclude} files/execution_combination_test1_3d_ADR.txt
 :class: my-special-block no-copybutton
 ```
 
@@ -722,7 +722,7 @@ test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
   -view multi yes
 ```
 
-```{image} mosaics/result_example1_ADRTHEOR_with_ds9.png
+```{image} images/result_example1_ADRTHEOR_with_ds9.png
 :align: center
 :width: 100%
 ```
@@ -755,7 +755,7 @@ atmospheric refraction.
   -view multi yes
 ```
 
-```{image} mosaics/result_example1_without_with_ADR_ds9.png
+```{image} images/result_example1_without_with_ADR_ds9.png
 :align: center
 :width: 100%
 ```
