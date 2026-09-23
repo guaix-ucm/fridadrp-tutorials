@@ -1,7 +1,6 @@
 # directories with FITS files resulting from the execution of
 # fridadrp-ifu_simulator
 tutorials/ifu_simulator/scene??/work
-tutorials/auxiliary_tools/data_cube_mosaics/files/terminal_output*.md
 
 *~
 *.swp
