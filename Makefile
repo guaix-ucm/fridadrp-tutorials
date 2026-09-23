@@ -33,6 +33,13 @@ clean:
 %: Makefile
 ifneq ($(ON_GITHUB),true)
 	@echo "Running preliminary scripts..."
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_adr_correction_from_extension_test1b.sh
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_adr_correction_from_extension_test1c.sh
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_combination_test0_2d.sh
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_combination_test0_3d.sh
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_combination_test1_3d.sh
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_combination_test1_3d_ADR.sh
+	tutorials/auxiliary_tools/data_cube_mosaics/files/run_extract_blocks_ansi_compute_adr_wavelength_airmass3.sh
 	tutorials/auxiliary_tools/initial_slice_boundaries/files/run_extract_blocks_ansi_find_borders1.sh
 	tutorials/auxiliary_tools/initial_slice_boundaries/files/run_extract_blocks_ansi_find_borders2.sh
 	tutorials/auxiliary_tools/initial_slice_boundaries/files/run_extract_blocks_ansi_find_borders3.sh

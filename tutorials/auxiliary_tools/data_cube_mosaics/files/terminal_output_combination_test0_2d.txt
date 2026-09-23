@@ -1,0 +1,46 @@
+[92m──────────────── [0m[1;35mWelcome to numina-generate_mosaic_of_2d_images[0m[92m ────────────────[0m
+Using numina.tools.generate_mosaic_of_2d_images version                         
+[1;36m0.37[0m.[1;36m1.[0mdev27+g99dd01c60.d20260903                                               
+                                                                                
+* Reading: test0a_ifu_white2D_method0_os1.fits                                  
+hdu2d_image.header[1m[[0m[32m'NAXIS1'[0m[1m][0m=[1;36m64[0m                                                 
+hdu2d_image.header[1m[[0m[32m'NAXIS2'[0m[1m][0m=[1;36m60[0m                                                 
+generating mask from np.nan values                                              
+Number of masked pixels [35m/[0m total: [1;36m0[0m [35m/[0m [1;36m3840[0m                                       
+                                                                                
+* Reading: test0b_ifu_white2D_method0_os1.fits                                  
+hdu2d_image.header[1m[[0m[32m'NAXIS1'[0m[1m][0m=[1;36m64[0m                                                 
+hdu2d_image.header[1m[[0m[32m'NAXIS2'[0m[1m][0m=[1;36m60[0m                                                 
+generating mask from np.nan values                                              
+Number of masked pixels [35m/[0m total: [1;36m0[0m [35m/[0m [1;36m3840[0m                                       
+                                                                                
+* Reading: test0c_ifu_white2D_method0_os1.fits                                  
+hdu2d_image.header[1m[[0m[32m'NAXIS1'[0m[1m][0m=[1;36m64[0m                                                 
+hdu2d_image.header[1m[[0m[32m'NAXIS2'[0m[1m][0m=[1;36m60[0m                                                 
+generating mask from np.nan values                                              
+Number of masked pixels [35m/[0m total: [1;36m0[0m [35m/[0m [1;36m3840[0m                                       
+Total number of images to be combined: [1;36m3[0m                                        
+                                                                                
+[33mwcs_mosaic2d[0m=[35mWCS[0m Keywords                                                       
+                                                                                
+Number of WCS axes: [1;36m2[0m                                                           
+CTYPE : [32m'RA---TAN'[0m [32m'DEC--TAN'[0m                                                   
+CRVAL : [1;36m9.259258514947486e-06[0m [1;36m0.0[0m                                               
+CRPIX : [1;36m125.16666693574912[0m [1;36m120.50000000417657[0m                                   
+PC1_1 PC1_2  : [1;36m1.0[0m [1;36m0.0[0m                                                          
+PC2_1 PC2_2  : [1;36m0.0[0m [1;36m1.0[0m                                                          
+CDELT : [1;36m-2.7777777777777245e-06[0m [1;36m2.7777777777777245e-06[0m                          
+NAXIS : [1;36m0[0m  [1;36m0[0m                                                                    
+[33mshape_mosaic2d[0m=[1m([0m[1;36m240[0m, [1;36m256[0m[1m)[0m                                                       
+Reprojection method: adaptive                                                   
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Combination function: mean                                                      
+                                                                                
+Saving combined 2D image: combination_test0_2d.fits                             
+Total time elapsed: [1;92m0:00:00[0m.[1;36m223410[0m                                              
+[92m────────────────────────────────── [0m[1;35m Goodbye! [0m[92m ──────────────────────────────────[0m

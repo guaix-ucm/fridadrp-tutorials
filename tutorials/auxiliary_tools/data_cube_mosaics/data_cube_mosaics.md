@@ -154,12 +154,10 @@ script `numina-generate_mosaic_of_2d_images`:
 ```{code-block} console
 (venv_frida) $ numina-generate_mosaic_of_2d_images \
   list0_2d_images.txt \
-  combination_test0_2d.fits \
-  --verbose
+  combination_test0_2d.fits
 ```
 
-```{literalinclude} files/execution_combination_test0_2d.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_combination_test0_2d_00.md
 ```
 
 Next, we compare the result of the combination of the 3 simulated exposures
@@ -228,12 +226,11 @@ test0c_ifu_3D_method0.fits
 (venv_frida) $ numina-generate_mosaic_of_3d_cubes \
   list0_3d_cubes.txt \
   all0_3d.fits \
-  --reproject_method adaptive \
+  --reproject-method adaptive \
   --footprint
 ```
 
-```{literalinclude} files/execution_combination_test0_3d.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_combination_test0_3d_00.md
 ```
 
 We can visualize the result using `ds9`:
@@ -442,8 +439,7 @@ refraction, the result is not satisfactory.
   --footprint
 ```
 
-```{literalinclude} files/execution_combination_test1_3d.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_combination_test1_3d_00.md
 ```
 
 ```{code-block} console
@@ -492,16 +488,15 @@ images we are working with.
 ```{code-block} console
 (venv_frida) $ numina-compute_adr_wavelength \
   --airmass 3 \
-  --reference_wave_vacuum 1.7 \
-  --wave_ini 1.0 \
-  --wave_end 2.5 \
-  --wave_step 0.1 \
-  --wave_unit micron \
+  --reference-wave-vacuum 1.7 \
+  --wave-ini 1.0 \
+  --wave-end 2.5 \
+  --wave-step 0.1 \
+  --wave-unit micron \
   --plots
 ```
 
-```{literalinclude} files/execution_compute_adr_wavelength_airmass3.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_compute_adr_wavelength_airmass3_00.md
 ```
 
 ```{image} images/adr_prediction.png
@@ -533,7 +528,7 @@ obtained with an airmass of 1.0.
 ```{code-block} console
 (venv_frida) $ numina-include_adrtheor_in_3d_cube \
   test1b_ifu_3D_method0.fits \
-  --verbose --plots
+  --plots
 ```
 
 ```{image} images/adr_test1b.png
@@ -544,7 +539,7 @@ obtained with an airmass of 1.0.
 ```{code-block} console
 (venv_frida) $ numina-include_adrtheor_in_3d_cube \
   test1c_ifu_3D_method0.fits \
-  --verbose --plots
+  --plots
 ```
 
 ```{image} images/adr_test1c.png
@@ -589,7 +584,7 @@ cross-correlation.
   100 \
   --iterate \
   --extname adrcross \
-  --verbose --iterate --plots
+  --iterate --plots
 ```
 
 ```{code-block} console
@@ -598,7 +593,7 @@ cross-correlation.
   100 \
   --iterate \
   --extname adrcross \
-  --verbose --iterate --plots
+  --iterate --plots
 ```
 
 The previous procedure has added a new extension `ADRCROSS` to each of the
@@ -648,14 +643,12 @@ the preferred extension (in this case, `ADRCROSS` or `ADRTHEOR`).
 ```{code-block} console
 (venv_frida) $ numina-adr_correction_from_extension_in_3d_cube \
   test1b_ifu_3D_method0.fits \
-  --extname_adr adrtheor \
-  --extname_mask None \
-  --output test1b_ifu_3D_method0_corrected_ADRTHEOR.fits \
-  --verbose
+  --extname-adr adrtheor \
+  --extname-mask None \
+  --output test1b_ifu_3D_method0_corrected_ADRTHEOR.fits
 ```
 
-```{literalinclude} files/execution_adr_correction_from_extension_test1b.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_adr_correction_from_extension_test1b_00.md
 ```
 
 ```{code-block} console
@@ -663,12 +656,10 @@ the preferred extension (in this case, `ADRCROSS` or `ADRTHEOR`).
   test1c_ifu_3D_method0.fits \
   --extname_adr adrtheor \
   --extname_mask None \
-  --output test1c_ifu_3D_method0_corrected_ADRTHEOR.fits \
-  --verbose
+  --output test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
 ```
 
-```{literalinclude} files/execution_adr_correction_from_extension_test1c.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_adr_correction_from_extension_test1c_00.md
 ```
 
 Next, we add the 3 cubes (the first one uncorrected and the second and third
@@ -694,12 +685,10 @@ test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
 ```{code-block} console
 (venv_frida) $ numina-generate_mosaic_of_3d_cubes \
   list1_3d_images_ADRTHEOR.txt \
-  combination_test1_3d_ADRTHEOR.fits \
-  --verbose
+  combination_test1_3d_ADRTHEOR.fits
 ```
 
-```{literalinclude} files/execution_combination_test1_3d_ADR.txt
-:class: my-special-block no-copybutton
+```{include} files/terminal_output_combination_test1_3d_ADR_00.md
 ```
 
 ```{code-block} console
