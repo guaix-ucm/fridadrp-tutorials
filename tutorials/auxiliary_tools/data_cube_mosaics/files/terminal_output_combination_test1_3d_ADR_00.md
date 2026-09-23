@@ -1,0 +1,171 @@
+```{code-block} ansi-shell-session
+:class: my-special-block no-copybutton
+
+[92m──────────────── [0m[1;35mWelcome to numina-generate_mosaic_of_3d_cubes[0m[92m ─────────────────[0m
+Using numina.tools.generate_mosaic_of_3d_cubes version                          
+[1;36m0.37[0m.[1;36m1.[0mdev27+g99dd01c60.d20260903                                               
+Total number of images to be combined: [1;36m3[0m                                        
+                                                                                
+--- Image [1;36m1[0m/[1;36m3[0m ---                                                               
+                                                                                
+Working with file [1m([0mextension[1m)[0m: test1a_ifu_3D_method0.fits [1m([0mPRIMARY[1m)[0m             
+hdu.header[1m[[0m[32m"NAXIS1"[0m[1m][0m=[1;36m64[0m, hdu.header[1m[[0m[32m"NAXIS2"[0m[1m][0m=[1;36m60[0m, hdu.header[1m[[0m[32m"NAXIS3"[0m[1m][0m=[1;36m2048[0m     
+[33mwcs2d_celestial[0m=[35mWCS[0m Keywords                                                    
+                                                                                
+Number of WCS axes: [1;36m2[0m                                                           
+CTYPE : [32m'RA---TAN'[0m [32m'DEC--TAN'[0m                                                   
+CRVAL : [1;36m0.0[0m [1;36m0.0[0m                                                                 
+CRPIX : [1;36m32.5[0m [1;36m30.5[0m                                                               
+CD1_1 CD1_2  : [1;36m-2.7777777777777e-06[0m [1;36m0.0[0m                                         
+CD2_1 CD2_2  : [1;36m0.0[0m [1;36m2.77777777777777e-06[0m                                         
+NAXIS : [1;36m64[0m  [1;36m60[0m                                                                  
+Image [1;36m1[0m: [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+                                                                                
+--- Image [1;36m2[0m/[1;36m3[0m ---                                                               
+                                                                                
+Working with file [1m([0mextension[1m)[0m: test1b_ifu_3D_method0_corrected_ADRTHEOR.fits    
+[1m([0mPRIMARY[1m)[0m                                                                       
+hdu.header[1m[[0m[32m"NAXIS1"[0m[1m][0m=[1;36m86[0m, hdu.header[1m[[0m[32m"NAXIS2"[0m[1m][0m=[1;36m84[0m, hdu.header[1m[[0m[32m"NAXIS3"[0m[1m][0m=[1;36m2048[0m     
+[33mwcs2d_celestial[0m=[35mWCS[0m Keywords                                                    
+                                                                                
+Number of WCS axes: [1;36m2[0m                                                           
+CTYPE : [32m'RA---TAN'[0m [32m'DEC--TAN'[0m                                                   
+CRVAL : [1;36m4.2964952914991e-31[0m [1;36m0.0[0m                                                 
+CRPIX : [1;36m43.113605168211[0m [1;36m43.030437226442[0m                                         
+PC1_1 PC1_2  : [1;36m1.0[0m [1;36m0.0[0m                                                          
+PC2_1 PC2_2  : [1;36m0.0[0m [1;36m1.0[0m                                                          
+CDELT : [1;36m-2.7777777777777e-06[0m [1;36m2.7777777777777e-06[0m                                
+NAXIS : [1;36m86[0m  [1;36m84[0m                                                                  
+Image [1;36m2[0m: [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+                                                                                
+--- Image [1;36m3[0m/[1;36m3[0m ---                                                               
+                                                                                
+Working with file [1m([0mextension[1m)[0m: test1c_ifu_3D_method0_corrected_ADRTHEOR.fits    
+[1m([0mPRIMARY[1m)[0m                                                                       
+hdu.header[1m[[0m[32m"NAXIS1"[0m[1m][0m=[1;36m86[0m, hdu.header[1m[[0m[32m"NAXIS2"[0m[1m][0m=[1;36m84[0m, hdu.header[1m[[0m[32m"NAXIS3"[0m[1m][0m=[1;36m2048[0m     
+[33mwcs2d_celestial[0m=[35mWCS[0m Keywords                                                    
+                                                                                
+Number of WCS axes: [1;36m2[0m                                                           
+CTYPE : [32m'RA---TAN'[0m [32m'DEC--TAN'[0m                                                   
+CRVAL : [1;36m4.2964952914991e-31[0m [1;36m0.0[0m                                                 
+CRPIX : [1;36m44.225782186039[0m [1;36m43.030437234618[0m                                         
+PC1_1 PC1_2  : [1;36m1.0[0m [1;36m0.0[0m                                                          
+PC2_1 PC2_2  : [1;36m0.0[0m [1;36m1.0[0m                                                          
+CDELT : [1;36m-2.7777777777777e-06[0m [1;36m2.7777777777777e-06[0m                                
+NAXIS : [1;36m86[0m  [1;36m84[0m                                                                  
+Image [1;36m3[0m: [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+                                                                                
+--- WCS FOR 2D CELESTIAL MOSAIC ---                                             
+                                                                                
+Celestial scales:                                                               
+Image [1;36m1[0m: [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+Image [1;36m2[0m: [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+Image [1;36m3[0m: [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+Mosaic : [1;36m0.010[0m arcsec, [1;36m0.010[0m arcsec                                             
+                                                                                
+[33mwcs_mosaic2d[0m=[35mWCS[0m Keywords                                                       
+                                                                                
+Number of WCS axes: [1;36m2[0m                                                           
+CTYPE : [32m'RA---TAN'[0m [32m'DEC--TAN'[0m                                                   
+CRVAL : [1;36m7.160825485831836e-31[0m [1;36m0.0[0m                                               
+CRPIX : [1;36m44.22578218656901[0m [1;36m43.03043723364317[0m                                     
+PC1_1 PC1_2  : [1;36m1.0[0m [1;36m0.0[0m                                                          
+PC2_1 PC2_2  : [1;36m0.0[0m [1;36m1.0[0m                                                          
+CDELT : [1;36m-2.7777777777777e-06[0m [1;36m2.7777777777777e-06[0m                                
+NAXIS : [1;36m0[0m  [1;36m0[0m                                                                    
+NAXIS1, NAXIS2 of 2D mosaic: [1;36m87[0m, [1;36m84[0m                                             
+                                                                                
+--- Image [1;36m1[0m/[1;36m3[0m ---                                                               
+                                                                                
+Working with file [1m([0mextension[1m)[0m: test1a_ifu_3D_method0.fits [1m([0mPRIMARY[1m)[0m             
+hdu.header[1m[[0m[32m"NAXIS1"[0m[1m][0m=[1;36m64[0m, hdu.header[1m[[0m[32m"NAXIS2"[0m[1m][0m=[1;36m60[0m, hdu.header[1m[[0m[32m"NAXIS3"[0m[1m][0m=[1;36m2048[0m     
+[33mwcs1d_spectral[0m=[35mWCS[0m Keywords                                                     
+                                                                                
+Number of WCS axes: [1;36m1[0m                                                           
+CTYPE : [32m'WAVE'[0m                                                                  
+CRVAL : [1;36m1.9344e-06[0m                                                              
+CRPIX : [1;36m1.0[0m                                                                     
+CD1_1  : [1;36m2.85e-10[0m                                                               
+NAXIS : [1;36m2048[0m                                                                    
+CUNIT : m                                                                       
+                                                                                
+--- Image [1;36m2[0m/[1;36m3[0m ---                                                               
+                                                                                
+Working with file [1m([0mextension[1m)[0m: test1b_ifu_3D_method0_corrected_ADRTHEOR.fits    
+[1m([0mPRIMARY[1m)[0m                                                                       
+hdu.header[1m[[0m[32m"NAXIS1"[0m[1m][0m=[1;36m86[0m, hdu.header[1m[[0m[32m"NAXIS2"[0m[1m][0m=[1;36m84[0m, hdu.header[1m[[0m[32m"NAXIS3"[0m[1m][0m=[1;36m2048[0m     
+[33mwcs1d_spectral[0m=[35mWCS[0m Keywords                                                     
+                                                                                
+Number of WCS axes: [1;36m1[0m                                                           
+CTYPE : [32m'WAVE'[0m                                                                  
+CRVAL : [1;36m1.9344e-06[0m                                                              
+CRPIX : [1;36m1.0[0m                                                                     
+PC1_1  : [1;36m1.0[0m                                                                    
+CDELT : [1;36m2.85000000000032e-10[0m                                                    
+NAXIS : [1;36m2048[0m                                                                    
+CUNIT : m                                                                       
+                                                                                
+--- Image [1;36m3[0m/[1;36m3[0m ---                                                               
+                                                                                
+Working with file [1m([0mextension[1m)[0m: test1c_ifu_3D_method0_corrected_ADRTHEOR.fits    
+[1m([0mPRIMARY[1m)[0m                                                                       
+hdu.header[1m[[0m[32m"NAXIS1"[0m[1m][0m=[1;36m86[0m, hdu.header[1m[[0m[32m"NAXIS2"[0m[1m][0m=[1;36m84[0m, hdu.header[1m[[0m[32m"NAXIS3"[0m[1m][0m=[1;36m2048[0m     
+[33mwcs1d_spectral[0m=[35mWCS[0m Keywords                                                     
+                                                                                
+Number of WCS axes: [1;36m1[0m                                                           
+CTYPE : [32m'WAVE'[0m                                                                  
+CRVAL : [1;36m1.9344e-06[0m                                                              
+CRPIX : [1;36m1.0[0m                                                                     
+PC1_1  : [1;36m1.0[0m                                                                    
+CDELT : [1;36m2.85000000000032e-10[0m                                                    
+NAXIS : [1;36m2048[0m                                                                    
+CUNIT : m                                                                       
+                                                                                
+--- WCS FOR 1D SPECTRAL MOSAIC ---                                              
+                                                                                
+[33mcrval3out[0m=[1m<[0m[1;95mSpectralCoord[0m[39m [0m[1;36m1.9344e-06[0m[39m m>[0m                                          
+[33mcdelt3out[0m[39m=<Quantity [0m[1;36m2.85e-10[0m[39m m [0m[35m/[0m[39m pix>[0m                                           
+[33mnaxis3out[0m[39m=[0m[1;36m2048[0m                                                                  
+[33mwavemax[0m[39m=<Quantity [0m[1;36m2.517795e-06[0m[39m m[0m[1m>[0m                                               
+                                                                                
+[33mwcs1d_spectral_mosaic[0m=[35mWCS[0m Keywords                                              
+                                                                                
+Number of WCS axes: [1;36m1[0m                                                           
+CTYPE : [32m'WAVE'[0m                                                                  
+CRVAL : [1;36m1.9344e-06[0m                                                              
+CRPIX : [1;36m1.0[0m                                                                     
+PC1_1  : [1;36m1.0[0m                                                                    
+CDELT : [1;36m2.84999999999608e-10[0m                                                    
+NAXIS : [1;36m2048[0m  [1;36m0[0m                                                                 
+                                                                                
+--- BUILDING THE 3D MOSAIC ---                                                  
+                                                                                
+NAXIS1, NAXIS2, NAXIS3 of 3D mosaic: [1;36m87[0m, [1;36m84[0m, [1;36m2048[0m                               
+Combined image will require [1;36m57.09[0m Mbyte                                         
+                                                                                
+* Working with: test1a_ifu_3D_method0.fits                                      
+Old and new wavelength borders are the same.                                    
+-> Copying original data without spectral resampling.                           
+Celestial WCS reprojection method: adaptive                                     
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Processing time for test1a_ifu_3D_method0.fits: [1;92m0:00:00[0m.[1;36m702767[0m                  
+                                                                                
+* Working with: test1b_ifu_3D_method0_corrected_ADRTHEOR.fits                   
+Old and new wavelength borders are the same.                                    
+-> Copying original data without spectral resampling.                           
+Celestial WCS reprojection method: adaptive                                     
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Processing time for test1b_ifu_3D_method0_corrected_ADRTHEOR.fits:              
+[1;92m0:00:01[0m.[1;36m160152[0m                                                                  
+                                                                                
+* Working with: test1c_ifu_3D_method0_corrected_ADRTHEOR.fits                   
+Old and new wavelength borders are the same.                                    
+-> Copying original data without spectral resampling.                           
+Celestial WCS reprojection method: adaptive                                     
+Calling _reproject_adaptive_2d in non-dask mode                                 
+Processing time for test1c_ifu_3D_method0_corrected_ADRTHEOR.fits:              
+[1;92m0:00:01[0m.[1;36m355959[0m                                                                  
+Saving: combination_test1_3d_ADRTHEOR.fits                                      
+Total time elapsed: [1;92m0:00:03[0m.[1;36m312159[0m                                              
+[92m────────────────────────────────── [0m[1;35m Goodbye! [0m[92m ──────────────────────────────────[0m
+```
