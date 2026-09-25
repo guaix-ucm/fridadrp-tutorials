@@ -654,8 +654,8 @@ the preferred extension (in this case, `ADRCROSS` or `ADRTHEOR`).
 ```{code-block} console
 (venv_frida) $ numina-adr_correction_from_extension_in_3d_cube \
   test1c_ifu_3D_method0.fits \
-  --extname_adr adrtheor \
-  --extname_mask None \
+  --extname-adr adrtheor \
+  --extname-mask None \
   --output test1c_ifu_3D_method0_corrected_ADRTHEOR.fits
 ```
 
