@@ -17,10 +17,10 @@
                                                       [[36m--xmedian[0m [38;5;36mXMEDIAN[0m]
                                                       [[36m--savgol-ywindow[0m [38;5;36mSAVGOL_YWINDOW[0m]
                                                       [[36m--savgol-polyorder[0m [38;5;36mSAVGOL_POLYORDER[0m]
-                                                      [[36m--plots[0m]
+                                                      [[36m--plots[0m] [[36m--version[0m]
                                                       [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m]
-                                                      [[36m--record[0m] [[36m--echo[0m]
-                                                      [[36m--version[0m]
+                                                      [[36m--no-color[0m] [[36m--record[0m]
+                                                      [[36m--echo[0m]
                                                       [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
 
 [39mFind the slice boundaries from flat image[0m
@@ -47,11 +47,12 @@
                         [39mSavitzky-Golay filter polynomial order along NAXIS2[0m
                         [39maxis (default: 2)[0m
   [36m--plots[0m               [39mDisplay plots[0m
+  [36m--version[0m             [39mDisplay version information and exit[0m
   [36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m
                         [39mOutput directory (default: .)[0m
+  [36m--no-color[0m            [39mDisable color output[0m
   [36m--record[0m              [39mRecord terminal output[0m
   [36m--echo[0m                [39mDisplay full command line[0m
-  [36m--version[0m             [39mDisplay version[0m
   [36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m
                         [39mSet the logging level[0m
 ```

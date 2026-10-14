@@ -85,16 +85,17 @@
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-overplot_slice_boundary_polynomials</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] [<span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--borders</span> <span class="-Ansi -Ansi-C36">BORDERS</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>]
-                                                    <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>
+                                                    [<span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--sliceid</span>] [<span class="-Ansi -Ansi-Cyan">--traceid</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--pdf-mosaic</span> <span class="-Ansi -Ansi-C36">PDF_MOSAIC</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>]
-                                                    [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
-                                                    [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--no-color</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Overplot the slice boundaries (borders and/or polynomials) and/or traces on
@@ -120,11 +121,12 @@ image
                         slices
   <span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>   Display a montage of the final plots with traces for
                         every slice (requires ImageMagick's montage)
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>

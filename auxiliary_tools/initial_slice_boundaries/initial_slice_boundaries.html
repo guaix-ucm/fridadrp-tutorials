@@ -193,10 +193,10 @@ signal of the slice whose edge we want to estimate).</p>
                                                       [<span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>]
                                                       [<span class="-Ansi -Ansi-Cyan">--savgol-ywindow</span> <span class="-Ansi -Ansi-C36">SAVGOL_YWINDOW</span>]
                                                       [<span class="-Ansi -Ansi-Cyan">--savgol-polyorder</span> <span class="-Ansi -Ansi-C36">SAVGOL_POLYORDER</span>]
-                                                      [<span class="-Ansi -Ansi-Cyan">--plots</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--plots</span>] [<span class="-Ansi -Ansi-Cyan">--version</span>]
                                                       [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
-                                                      [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
-                                                      [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--no-color</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>]
+                                                      [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                       [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Find the slice boundaries from flat image
@@ -223,11 +223,12 @@ Find the slice boundaries from flat image
                         Savitzky-Golay filter polynomial order along NAXIS2
                         axis (default: 2)
   <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>
@@ -489,16 +490,17 @@ column number (it inherits the NaNs from the two previous extensions).</p>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-overplot_slice_boundary_polynomials</span> [<span class="-Ansi -Ansi-Cyan">-h</span>] [<span class="-Ansi -Ansi-Cyan">--poly</span> <span class="-Ansi -Ansi-C36">POLY</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--borders</span> <span class="-Ansi -Ansi-C36">BORDERS</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>]
-                                                    <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>
+                                                    [<span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--sliceid</span>] [<span class="-Ansi -Ansi-Cyan">--traceid</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--pdf-mosaic</span> <span class="-Ansi -Ansi-C36">PDF_MOSAIC</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>]
-                                                    [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
-                                                    [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--no-color</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Overplot the slice boundaries (borders and/or polynomials) and/or traces on
@@ -524,11 +526,12 @@ image
                         slices
   <span class="-Ansi -Ansi-Cyan">--montage</span> <span class="-Ansi -Ansi-C36">{png,pdf}</span>   Display a montage of the final plots with traces for
                         every slice (requires ImageMagick's montage)
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>
@@ -622,8 +625,8 @@ the 2D image stored in the <code class="docutils literal notranslate"><span clas
 <code class="docutils literal notranslate"><span class="pre">slice_boundary_borders_from_flat_1-30.fits</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>numina-ximshow<span class="w"> </span>slice_boundary_borders_from_flat_1-30.fits<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--extname<span class="w"> </span>sliwidth<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--cbar_orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--cbar_label<span class="w"> </span><span class="s2">"Slice width (pixels)"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar-orientation<span class="w"> </span>vertical<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cbar-label<span class="w"> </span><span class="s2">"Slice width (pixels)"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--ylabel<span class="w"> </span><span class="s2">"Slice number"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--cmap<span class="w"> </span>viridis<span class="w"> </span>--z1z2<span class="w"> </span><span class="m">45</span>,70
 </pre></div>
@@ -748,8 +751,9 @@ the script <code class="docutils literal notranslate"><span class="pre">fridadrp
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-C208">Usage:</span> <span class="-Ansi -Ansi-C244">fridadrp-fit_slice_boundary_borders_with_polynomials</span>
        [<span class="-Ansi -Ansi-Cyan">-h</span>] <span class="-Ansi -Ansi-Cyan">--input</span> <span class="-Ansi -Ansi-C36">INPUT</span> [<span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>] <span class="-Ansi -Ansi-Cyan">--deg</span> <span class="-Ansi -Ansi-C36">DEG</span> [<span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>]
-       [<span class="-Ansi -Ansi-Cyan">--overwrite</span>] [<span class="-Ansi -Ansi-Cyan">--plots</span>] [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
-       [<span class="-Ansi -Ansi-Cyan">--version</span>] [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+       [<span class="-Ansi -Ansi-Cyan">--overwrite</span>] [<span class="-Ansi -Ansi-Cyan">--plots</span>] [<span class="-Ansi -Ansi-Cyan">--version</span>] [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+       [<span class="-Ansi -Ansi-Cyan">--no-color</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
+       [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Fit the slice boundaries determined from flat image
 
@@ -762,11 +766,12 @@ Fit the slice boundaries determined from flat image
   <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output FITS file name
   <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite output file if it exists
   <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>
@@ -991,9 +996,10 @@ changing grating, and it can result in the boundaries of the bottom slice (ID
                                                  [<span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>]
                                                  <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span> [<span class="-Ansi -Ansi-Cyan">--overwrite</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--force</span>] [<span class="-Ansi -Ansi-Cyan">--plots</span>]
-                                                 [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
-                                                 [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--no-color</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Predict slice boundary polynomials
@@ -1011,11 +1017,12 @@ Predict slice boundary polynomials
   <span class="-Ansi -Ansi-Cyan">--force</span>               Force recomputation of existing polynomials in chosen
                         slice
   <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots of the polynomial fitting
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>
@@ -1194,8 +1201,8 @@ polynomial fits to the spectral traces. In this case we will use the script
        [<span class="-Ansi -Ansi-Cyan">--colrange</span> <span class="-Ansi -Ansi-C36">MIN</span> <span class="-Ansi -Ansi-C36">MAX</span>] [<span class="-Ansi -Ansi-Cyan">--ymedian</span> <span class="-Ansi -Ansi-C36">YMEDIAN</span>] [<span class="-Ansi -Ansi-Cyan">--xmedian</span> <span class="-Ansi -Ansi-C36">XMEDIAN</span>]
        [<span class="-Ansi -Ansi-Cyan">--theilsen</span>] [<span class="-Ansi -Ansi-Cyan">--degslice</span> <span class="-Ansi -Ansi-C36">DEGSLICE</span>] [<span class="-Ansi -Ansi-Cyan">--degrefine</span> <span class="-Ansi -Ansi-C36">DEGREFINE</span>] [<span class="-Ansi -Ansi-Cyan">--norefine</span>]
        <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span> [<span class="-Ansi -Ansi-Cyan">--overwrite</span>] [<span class="-Ansi -Ansi-Cyan">--plotsliceid</span> <span class="-Ansi -Ansi-C36">PLOTSLICEID</span>]
-       [<span class="-Ansi -Ansi-Cyan">--pdf-out</span> <span class="-Ansi -Ansi-C36">PDF_OUT</span>] [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
-       [<span class="-Ansi -Ansi-Cyan">--version</span>] [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
+       [<span class="-Ansi -Ansi-Cyan">--pdf-out</span> <span class="-Ansi -Ansi-C36">PDF_OUT</span>] [<span class="-Ansi -Ansi-Cyan">--version</span>] [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>] [<span class="-Ansi -Ansi-Cyan">--no-color</span>]
+       [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>] [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Find traces within slice boundary polynomials
 
@@ -1238,11 +1245,12 @@ Find traces within slice boundary polynomials
                         specified multiple times)
   <span class="-Ansi -Ansi-Cyan">--pdf-out</span> <span class="-Ansi -Ansi-C36">PDF_OUT</span>     Output PDF file for final plots with traces for every
                         slice (default: None, no output)
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>
@@ -1590,7 +1598,7 @@ specified via <code class="docutils literal notranslate"><span class="pre">--ima
 </ul>
 <p>The information in the file <code class="docutils literal notranslate"><span class="pre">traces_within_slice_polynomials.fits</span></code> is
 distributed across several extensions:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_fridat)</span> <span class="gp">$ </span>fitsinfo<span class="w"> </span>traces_within_slice_polynomials.fits
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fitsinfo<span class="w"> </span>traces_within_slice_polynomials.fits
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Filename: traces_within_slice_polynomials.fits</span>
@@ -1941,10 +1949,10 @@ them we can use the script <code class="docutils literal notranslate"><span clas
                                                  [<span class="-Ansi -Ansi-Cyan">--norefine</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--degrefine</span> <span class="-Ansi -Ansi-C36">DEGREFINE</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--plots</span>] <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>
-                                                 [<span class="-Ansi -Ansi-Cyan">--overwrite</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--overwrite</span>] [<span class="-Ansi -Ansi-Cyan">--version</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>]
-                                                 [<span class="-Ansi -Ansi-Cyan">--record</span>] [<span class="-Ansi -Ansi-Cyan">--echo</span>]
-                                                 [<span class="-Ansi -Ansi-Cyan">--version</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--no-color</span>] [<span class="-Ansi -Ansi-Cyan">--record</span>]
+                                                 [<span class="-Ansi -Ansi-Cyan">--echo</span>]
                                                  [<span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>]
 
 Interpolate/extrapolate traces within slices
@@ -1972,11 +1980,12 @@ Interpolate/extrapolate traces within slices
   <span class="-Ansi -Ansi-Cyan">--plots</span>               Display plots of the interpolated/extrapolated traces
   <span class="-Ansi -Ansi-Cyan">--output</span> <span class="-Ansi -Ansi-C36">OUTPUT</span>       Output file name for the predicted polynomials
   <span class="-Ansi -Ansi-Cyan">--overwrite</span>           Overwrite existing output file
+  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version information and exit
   <span class="-Ansi -Ansi-Cyan">--output-dir</span> <span class="-Ansi -Ansi-C36">OUTPUT_DIR</span>
                         Output directory (default: .)
+  <span class="-Ansi -Ansi-Cyan">--no-color</span>            Disable color output
   <span class="-Ansi -Ansi-Cyan">--record</span>              Record terminal output
   <span class="-Ansi -Ansi-Cyan">--echo</span>                Display full command line
-  <span class="-Ansi -Ansi-Cyan">--version</span>             Display version
   <span class="-Ansi -Ansi-Cyan">--log-level</span> <span class="-Ansi -Ansi-C36">{DEBUG,INFO,WARNING,ERROR,CRITICAL}</span>
                         Set the logging level
 </pre></div>

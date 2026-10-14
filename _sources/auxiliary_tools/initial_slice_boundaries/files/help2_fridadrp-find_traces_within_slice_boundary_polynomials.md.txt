@@ -12,8 +12,8 @@
        [[36m--colrange[0m [38;5;36mMIN[0m [38;5;36mMAX[0m] [[36m--ymedian[0m [38;5;36mYMEDIAN[0m] [[36m--xmedian[0m [38;5;36mXMEDIAN[0m]
        [[36m--theilsen[0m] [[36m--degslice[0m [38;5;36mDEGSLICE[0m] [[36m--degrefine[0m [38;5;36mDEGREFINE[0m] [[36m--norefine[0m]
        [36m--output[0m [38;5;36mOUTPUT[0m [[36m--overwrite[0m] [[36m--plotsliceid[0m [38;5;36mPLOTSLICEID[0m]
-       [[36m--pdf-out[0m [38;5;36mPDF_OUT[0m] [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m] [[36m--record[0m] [[36m--echo[0m]
-       [[36m--version[0m] [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
+       [[36m--pdf-out[0m [38;5;36mPDF_OUT[0m] [[36m--version[0m] [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m] [[36m--no-color[0m]
+       [[36m--record[0m] [[36m--echo[0m] [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
 
 [39mFind traces within slice boundary polynomials[0m
 
@@ -56,11 +56,12 @@
                         [39mspecified multiple times)[0m
   [36m--pdf-out[0m [38;5;36mPDF_OUT[0m     [39mOutput PDF file for final plots with traces for every[0m
                         [39mslice (default: None, no output)[0m
+  [36m--version[0m             [39mDisplay version information and exit[0m
   [36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m
                         [39mOutput directory (default: .)[0m
+  [36m--no-color[0m            [39mDisable color output[0m
   [36m--record[0m              [39mRecord terminal output[0m
   [36m--echo[0m                [39mDisplay full command line[0m
-  [36m--version[0m             [39mDisplay version[0m
   [36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m
                         [39mSet the logging level[0m
 ```
