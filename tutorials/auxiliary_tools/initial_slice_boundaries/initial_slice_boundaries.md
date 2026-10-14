@@ -386,8 +386,8 @@ the 2D image stored in the `SLIWIDTH` extension of the file
 ```console
 (venv_frida) $ numina-ximshow slice_boundary_borders_from_flat_1-30.fits \
   --extname sliwidth \
-  --cbar_orientation vertical \
-  --cbar_label "Slice width (pixels)" \
+  --cbar-orientation vertical \
+  --cbar-label "Slice width (pixels)" \
   --ylabel "Slice number" \
   --cmap viridis --z1z2 45,70
 ```
@@ -1174,7 +1174,7 @@ The information in the file `traces_within_slice_polynomials.fits` is
 distributed across several extensions:
 
 ```console
-(venv_fridat) $ fitsinfo traces_within_slice_polynomials.fits
+(venv_frida) $ fitsinfo traces_within_slice_polynomials.fits
 ```
 
 ```{code-block} console

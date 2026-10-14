@@ -15,10 +15,10 @@
                                                  [[36m--norefine[0m]
                                                  [[36m--degrefine[0m [38;5;36mDEGREFINE[0m]
                                                  [[36m--plots[0m] [36m--output[0m [38;5;36mOUTPUT[0m
-                                                 [[36m--overwrite[0m]
+                                                 [[36m--overwrite[0m] [[36m--version[0m]
                                                  [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m]
-                                                 [[36m--record[0m] [[36m--echo[0m]
-                                                 [[36m--version[0m]
+                                                 [[36m--no-color[0m] [[36m--record[0m]
+                                                 [[36m--echo[0m]
                                                  [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
 
 [39mInterpolate/extrapolate traces within slices[0m
@@ -46,11 +46,12 @@
   [36m--plots[0m               [39mDisplay plots of the interpolated/extrapolated traces[0m
   [36m--output[0m [38;5;36mOUTPUT[0m       [39mOutput file name for the predicted polynomials[0m
   [36m--overwrite[0m           [39mOverwrite existing output file[0m
+  [36m--version[0m             [39mDisplay version information and exit[0m
   [36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m
                         [39mOutput directory (default: .)[0m
+  [36m--no-color[0m            [39mDisable color output[0m
   [36m--record[0m              [39mRecord terminal output[0m
   [36m--echo[0m                [39mDisplay full command line[0m
-  [36m--version[0m             [39mDisplay version[0m
   [36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m
                         [39mSet the logging level[0m
 ```

@@ -10,9 +10,10 @@
                                                  [[36m--degslice[0m [38;5;36mDEGSLICE[0m]
                                                  [36m--output[0m [38;5;36mOUTPUT[0m [[36m--overwrite[0m]
                                                  [[36m--force[0m] [[36m--plots[0m]
-                                                 [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m]
-                                                 [[36m--record[0m] [[36m--echo[0m]
                                                  [[36m--version[0m]
+                                                 [[36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m]
+                                                 [[36m--no-color[0m] [[36m--record[0m]
+                                                 [[36m--echo[0m]
                                                  [[36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m]
 
 [39mPredict slice boundary polynomials[0m
@@ -30,11 +31,12 @@
   [36m--force[0m               [39mForce recomputation of existing polynomials in chosen[0m
                         [39mslice[0m
   [36m--plots[0m               [39mDisplay plots of the polynomial fitting[0m
+  [36m--version[0m             [39mDisplay version information and exit[0m
   [36m--output-dir[0m [38;5;36mOUTPUT_DIR[0m
                         [39mOutput directory (default: .)[0m
+  [36m--no-color[0m            [39mDisable color output[0m
   [36m--record[0m              [39mRecord terminal output[0m
   [36m--echo[0m                [39mDisplay full command line[0m
-  [36m--version[0m             [39mDisplay version[0m
   [36m--log-level[0m [38;5;36m{DEBUG,INFO,WARNING,ERROR,CRITICAL}[0m
                         [39mSet the logging level[0m
 ```
