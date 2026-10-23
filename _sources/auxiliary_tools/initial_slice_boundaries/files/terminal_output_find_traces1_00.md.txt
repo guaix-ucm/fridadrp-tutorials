@@ -2,8 +2,10 @@
 :class: my-special-block no-copybutton
 
 [92m────── [0m[1;35mWelcome to fridadrp-find_traces_within_slice_boundary_polynomials[0m[92m ───────[0m
-Using fridadrp.tools.find_traces_within_slice_boundary_polynomials version      
-[1;36m0.1[0m.dev248+g830b3980e.d20260804                                                 
+Using fridadrp.tools.find_traces_within_slice_boundary_polynomials              
+version: [32m'0.1.dev248+g830b3980e.d20260804'[0m                                      
+[1m([0mnumina version: [32m'0.40.1.dev28+gaa71cc8e9'[0m[1m)[0m                                     
+[92m────────────────────────────────────────────────────────────────────────────────[0m
 Column ranges not specified. Using default range: [1;36m5[0m to [1;36m2044[0m.                    
 Columns to analyze: from [1;36m5[0m to [1;36m2044[0m [1m([0mtotal [1;36m2040[0m columns[1m)[0m - Mode: continuous      
 No median filtering along NAXIS2 will be applied [1m([0m[33mymedian[0m=[1;36m0[0m[1m)[0m.                   
