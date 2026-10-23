@@ -168,8 +168,8 @@ respective slices are used.
 :width: 100%
 ```
 
-Determination of the extrapolation of the left edge for the first slice (ID 30)
-and the right edge for the last slice (ID 15).
+Determination of the extrapolation of the left edge for the first slice (ID 1)
+and the right edge for the last slice (ID 16).
 ````
 
 Once the boundaries of all slices have been determined, the script shows us a
@@ -230,7 +230,7 @@ width as a function of ID number.
 :width: 100%
 
 Comparison of the widths of the different slices, grouped into the two ID
-families. As will be discussed below, slice ID 15 shows a narrower width than
+families. As will be discussed below, slice ID 16 shows a narrower width than
 expected. This is because it is partially located outside the useful region of
 the detector.
 ```
@@ -354,7 +354,7 @@ slices.
 ````
 
 In this case it is worth noting that the slice appearing at the top edge (slice
-ID 15) falls partially outside the detector. The upper boundaries of that slice
+ID 16) falls partially outside the detector. The upper boundaries of that slice
 are underestimated because the useful detector information ends at pixel 2044.
 
 ````{subfigure} AB
@@ -373,7 +373,7 @@ are underestimated because the useful detector information ends at pixel 2044.
 :width: 100%
 ```
 
-Detail of the last slice (ID 15), using different cuts. It can be seen how the
+Detail of the last slice (ID 16), using different cuts. It can be seen how the
 signal of this slice is truncated at the top because part of the slice falls
 outside the useful region of the detector.
 ````
@@ -403,7 +403,7 @@ families: 1 to 15 (even slices, bottom to top) and 16 to 30 (odd slices, top to
 bottom). Columns shown in white correspond to NaNs.
 ```
 
-In this particular case, although slice ID 15 falls partially outside the
+In this particular case, although slice ID 16 falls partially outside the
 useful region of the detector, the script
 `fridadrp-find_slice_boundary_borders_from_flat` has nonetheless been able to
 detect both boundaries of that slice. Since there can be cases (see below) in
@@ -417,10 +417,10 @@ non-existent boundaries.
 The script `fridadrp-find_slice_boundary_borders_from_flat` allows the use of
 the following arguments:
 
-* `--slice-ini`: default 1, numbering from 1 (ID 30, at the bottom of
-  the detector) to 30 (ID 15, at the top).
+* `--slice-ini`: default 1, numbering from 1 (ID 1, at the bottom of
+  the detector) to 30 (ID 16, at the top).
 
-* `--slice-end`: default 30 (ID 15, at the top of the detector), following
+* `--slice-end`: default 30 (ID 16, at the top of the detector), following
   the same numbering.
 
 * `--row-ini`: lower row number (1-based index) along NAXIS2. The
@@ -433,15 +433,15 @@ the following arguments:
   pixels). Rows above `--row-end` are set equal to zero in the image
   when searching for slice boundaries.
 
-The idea is to use `--slice-ini 2` to avoid fitting the first slice (ID 30, at
-the bottom) or `--slice-end 29` to avoid fitting the last slice (ID 15, at the
+The idea is to use `--slice-ini 2` to avoid fitting the first slice (ID 1, at
+the bottom) or `--slice-end 29` to avoid fitting the last slice (ID 16, at the
 top).
 
 If we use `--slice-ini 2`, we must also use an appropriate value for
 `--row-ini`, so that we can ignore the first portion of the image at the bottom
 that partially contains slice ID 30.  Similarly, if we use `--slice-end 29`, we
 must use an appropriate value of `--row-end` to avoid using the upper part of
-the image where slice ID 15 may appear only partially.
+the image where slice ID 16 may appear only partially.
 
 In principle this should also work with `--slice-ini` greater than 2 and
 `--slice-end` less than 29. We could even compute the boundaries of a single
@@ -449,7 +449,7 @@ slice by making `--slice-ini` and `--slice-end` equal. In these cases,
 appropriate values of `--row-ini` and `--row-end` would need to be used.
 
 In the case of the image `0000000096-20260505-FRIDA-FridaSuccess-raw.fits`, the
-top slice, number 30 (slice ID 15), has its upper boundary truncated (it
+top slice, number 30 (slice ID 16), has its upper boundary truncated (it
 extends beyond row 2044, the last valid row on the detector along NAXIS2). In
 this case we can fit slices 1 to 29, without using the last one.
 
@@ -492,7 +492,7 @@ We visualize the new result.
 :width: 100%
 ```
 
-We can see that in this case the last slice (ID 15) has not been fitted.
+We can see that in this case the last slice (ID 16) has not been fitted.
 ````
 
 ### Polynomial fit of the slice borders
@@ -547,6 +547,15 @@ column number along NAXIS1 (for the NAXIS2=30 slices). It is interesting to
 compare the image stored in this last `SLIWIDTH` extension with the one
 obtained earlier using the values of the points detected as boundaries.
 
+```console
+(venv_frida) $ numina-ximshow slice_boundary_polynomials_1-30.fits \
+  --extname sliwidth \
+  --cbar-orientation vertical \
+  --cbar-label "Slice width (pixels)" \
+  --ylabel "Slice number" \
+  --cmap viridis --z1z2 45,70
+```
+
 ````{subfigure} AB
 :layout-sm: A|B
 :gap: 8px
@@ -554,12 +563,12 @@ obtained earlier using the values of the points detected as boundaries.
 :name: fig-find_border5_01
 
 ```{image} images/find_borders3_06.png
-:alt: Full image
+:alt: SLIWIDTH from slice borders
 :width: 100%
 ```
 
 ```{image} images/find_borders5_01.png
-:alt: Zoomed region
+:alt: SLIWIDTH from slice polynomials
 :width: 100%
 ```
 
@@ -613,7 +622,7 @@ slices.
 ````
 
 As we already saw earlier when determining the slice boundaries, the upper
-boundary of slice ID 15 extends beyond the useful region of the detector.
+boundary of slice ID 16 extends beyond the useful region of the detector.
 
 ````{subfigure} AB
 :layout-sm: A|B
@@ -631,7 +640,7 @@ boundary of slice ID 15 extends beyond the useful region of the detector.
 :width: 100%
 ```
 
-Detail of the last slice (ID 15), using different cuts. It can be seen how the
+Detail of the last slice (ID 16), using different cuts. It can be seen how the
 signal of this slice is truncated at the top because part of the slice falls
 outside the useful region of the detector. The polynomial fit of the upper
 boundary of that slice does not perform well, because a large fraction of the
@@ -641,7 +650,7 @@ points have underestimated positions along the NAXIS2 axis.
 We will now repeat the work carried out with the script
 `fridadrp-fit_slice_boundary_borders_with_polynomials`, using as input the file
 `slice_boundary_borders_from_flat_1-29.fits` (which does not contain boundary
-values for slice ID 15).
+values for slice ID 16).
 
 ```console
 (venv_frida) $ fridadrp-fit_slice_boundary_borders_with_polynomials \
@@ -668,7 +677,7 @@ values for slice ID 15).
 :width: 100%
 
 Full image with the detected boundaries and the polynomial fits, excluding
-slice ID 15.
+slice ID 16.
 ```
 
 ### Predicting missing polynomial borders
@@ -686,7 +695,7 @@ changing grating, and it can result in the boundaries of the bottom slice (ID
 ```
 
 In the example at hand, we are going to predict the polynomial boundaries of
-slice ID 15 (number 30 counting from bottom to top on the detector).
+slice ID 16 (number 30 counting from bottom to top on the detector).
 
 ```console
 (venv_frida) $ fridadrp-predict_polynomial_slice_borders \
@@ -700,8 +709,8 @@ slice ID 15 (number 30 counting from bottom to top on the detector).
 ```{include} files/terminal_output_find_borders7_00.md
 ```
 
-The script determines that the slice to be predicted (ID 15) belongs to the
-family of slices with ID between 1 and 15. For each column along NAXIS1, the
+The script determines that the slice to be predicted (ID 16) belongs to the
+family of slices with ID between 16 and 30. For each column along NAXIS1, the
 code performs a polynomial fit of degree `--degslice 2` (default) to the
 position of each boundary as a function of slice number. This polynomial then
 allows the boundary position to be predicted for the slice indicated in
@@ -794,7 +803,7 @@ polynomial fits already stored in the input file.
 :width: 100%
 ```
 
-Predicted left and right border polynomials for slice ID 15.
+Predicted left and right border polynomials for slice ID 16.
 ````
 
 The result is stored in the output file specified by the `--output` argument.
@@ -821,7 +830,7 @@ We can visualize the new result graphically.
 Graphical comparison between the boundaries (white points) obtained by the
 script `fridadrp-find_slice_boundary_borders_from_flat` and the prediction of
 the polynomial boundaries computed with the script
-`fridadrp-predict_polynomial_slice_borders` for slice ID 15. Note that the
+`fridadrp-predict_polynomial_slice_borders` for slice ID 16. Note that the
 right boundary (upper in the image) of that slice clearly falls outside the
 useful region of the detector.
 ```
@@ -832,7 +841,7 @@ useful region of the detector.
 
 Once we have obtained the boundaries of each slice and fitted them with
 polynomials, we can move on to the next phase, which consists of obtaining
-polynomial fits to the spectral traces. In this case we will use the script
+polynomial fits to the **spectral traces**. In this case we will use the script
 `fridadrp-find_traces_within_slice_boundary_polynomials`. 
 
 ```{include} files/help2_fridadrp-find_traces_within_slice_boundary_polynomials.md
@@ -851,7 +860,7 @@ traces in each slice.
   --deg 3 \
   --output traces_within_slice_polynomials.fits \
   --pdf-out traces_within_slice_polynomials.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -895,13 +904,13 @@ polynomial boundaries overlaid.
 ```{include} files/terminal_output_find_traces1_01.md
 ```
 
-Since we used `--plotsliceid 15`, the script will show us this problematic
+Since we used `--plotsliceid 16`, the script will show us this problematic
 slice in detail when it is reached (recall that it is partially outside the
 useful region of the detector). As we saw earlier for the case of the
 boundaries, it is also possible to predict the expected position of each of the
 5 traces by making use of the fits to the same trace in other slices of the
-same family. In this case the code tells us in the terminal that slice ID 15
-belongs to the same family as the slices with ID between 1 and 15.
+same family. In this case the code tells us in the terminal that slice ID 16
+belongs to the same family as the slices with ID between 16 and 30.
 
 For each of the 5 traces, the polynomial fit is shown at 3 detector columns (5,
 1025, and 2044), as well as the resulting polynomial fit of the trace as a
@@ -1150,7 +1159,7 @@ displays the result graphically.
 :name: fig-find_traces1_27
 :width: 100%
 
-Graphical comparison of the extrapolated traces for slice ID 15. The magenta
+Graphical comparison of the extrapolated traces for slice ID 16. The magenta
 (dashed line) shows the direct extrapolation using the information from the
 same traces in the slices of the same family. The cyan (solid line) represents
 the refined fit using the information from the input image.
@@ -1336,7 +1345,7 @@ calibration sequence, available in the directory
   --theilsen \
   --output traces_within_slice_polynomials_007804.fits \
   --pdf-out traces_within_slice_polynomials_007804.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1366,7 +1375,7 @@ calibration sequence, available in the directory
   --theilsen \
   --output traces_within_slice_polynomials_007810.fits \
   --pdf-out traces_within_slice_polynomials_007810.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1396,7 +1405,7 @@ calibration sequence, available in the directory
   --theilsen \
   --output traces_within_slice_polynomials_000150.fits \
   --pdf-out traces_within_slice_polynomials_000150.pdf \
-  --plotsliceid 30 \
+  --plotsliceid 1 \
   --overwrite
 ```
 
@@ -1426,7 +1435,7 @@ calibration sequence, available in the directory
   --theilsen \
   --output traces_within_slice_polynomials_000147.fits \
   --pdf-out traces_within_slice_polynomials_000147.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1456,7 +1465,7 @@ calibration sequence, available in the directory
   --theilsen \
   --output traces_within_slice_polynomials_000153.fits \
   --pdf-out traces_within_slice_polynomials_000153.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1486,7 +1495,7 @@ calibration sequence, available in the directory
   --theilsen \
   --output traces_within_slice_polynomials_000156.fits \
   --pdf-out traces_within_slice_polynomials_000156.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1519,7 +1528,7 @@ shift on the left side than on the right side.
   --theilsen \
   --output traces_within_slice_polynomials_000171.fits \
   --pdf-out traces_within_slice_polynomials_000171.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1536,7 +1545,7 @@ shift on the left side than on the right side.
 :width: 100%
 ```
 
-In this case the traces of the slices with ID 16 and 17 are incorrect. To fix
+In this case the traces of the slices with ID 15 and 14 are incorrect. To fix
 them we can use the script `fridadrp-interpolate_traces_within_slices`.
 
 ```{include} files/help2_fridadrp-interpolate_traces_within_slices.md
@@ -1552,7 +1561,7 @@ next slice (if it belongs to the same group as the new slice).
 (venv_frida) $ fridadrp-interpolate_traces_within_slices \
   --image config09/0000000171-20260511-FRIDA-FridaSuccess-raw.fits \
   --traces traces_within_slice_polynomials_000171.fits \
-  --sliceid 17 --sliceid 16 \
+  --sliceid 14 --sliceid 15 \
   --output traces_within_slice_polynomials_000171_fixed.fits \
   --norefine \
   --plots \
@@ -1586,7 +1595,7 @@ We check the new traces:
 ```
 
 The result is better, but still not fully satisfactory: trace number 1 of the
-slices with ID 15, 16, 14, and 17 remains slightly elevated on the left side.
+slices with ID 16, 15, 17, and 14 remains slightly elevated on the left side.
 
 ### Grating H High2, Medium Camera
 
@@ -1601,7 +1610,7 @@ slices with ID 15, 16, 14, and 17 remains slightly elevated on the left side.
   --theilsen \
   --output traces_within_slice_polynomials_000174.fits \
   --pdf-out traces_within_slice_polynomials_000174.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1618,13 +1627,13 @@ slices with ID 15, 16, 14, and 17 remains slightly elevated on the left side.
 :width: 100%
 ```
 
-There are some problems with the traces of slices with ID 15, 16, and 17.
+There are some problems with the traces of slices with ID 16, 15, and 14.
 
 ```console
 (venv_frida) $ fridadrp-interpolate_traces_within_slices \
   --image config10/0000000174-20260511-FRIDA-FridaSuccess-raw.fits \
   --traces traces_within_slice_polynomials_000174.fits \
-  --sliceid 17 --sliceid 16 --sliceid 15 \
+  --sliceid 14 --sliceid 15 --sliceid 16 \
   --output traces_within_slice_polynomials_000174_fixed.fits \
   --norefine \
   --plots \
@@ -1665,7 +1674,7 @@ to `--xmedian`.
   --theilsen \
   --output traces_within_slice_polynomials_007797.fits \
   --pdf-out traces_within_slice_polynomials_007797.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1682,10 +1691,11 @@ to `--xmedian`.
 :width: 100%
 ```
 
-Only the traces of the slices with ID 30, 29, 28, ..., 16 are well fitted (half
-of the 30 total slices). Of the sequence with ID 1, 2, ..., 15, only slice ID 3
-turns out well. The following therefore fail: slices ID 1, 2, 4, 5, 6, 7, 8, 9,
-10, 11, 12, 13, 14, and 15. We need an image with a longer exposure time.
+Only the traces of the slices with ID 1, 2, 3,..., 15 are well fitted (half of
+the 30 total slices). Of the sequence with ID 16, 17,..., 30, only slice ID 28
+turns out well. The following therefore fail: slices ID 16, 17, 18, 19, 20, 21,
+22, 23, 24, 25, 26, 27, 29 and 30.  We need an image with a longer exposure
+time.
 
 ### Grating H High4, Medium Camera
 
@@ -1700,7 +1710,7 @@ turns out well. The following therefore fail: slices ID 1, 2, 4, 5, 6, 7, 8, 9,
   --theilsen \
   --output traces_within_slice_polynomials_007801.fits \
   --pdf-out traces_within_slice_polynomials_007801.pdf \
-  --plotsliceid 15 \
+  --plotsliceid 16 \
   --overwrite
 ```
 
@@ -1730,7 +1740,7 @@ turns out well. The following therefore fail: slices ID 1, 2, 4, 5, 6, 7, 8, 9,
   --theilsen \
   --output traces_within_slice_polynomials_000159.fits \
   --pdf-out traces_within_slice_polynomials_000159.pdf \
-  --plotsliceid 30 \
+  --plotsliceid 1 \
   --overwrite
 ```
 
@@ -1747,19 +1757,19 @@ turns out well. The following therefore fail: slices ID 1, 2, 4, 5, 6, 7, 8, 9,
 :width: 100%
 ```
 
-Here the slices with ID 15, 16, 17, 18, 19, and 30 are incorrect (the latter
-partially outside the detector).  Slice ID 15 can be well predicted from group
-1..15. It is then of interest to process slices ID 19, 18, 17, and 16 (in that
+Here the slices with ID 16, 15, 14, 13, 12, and 1 are incorrect (the latter
+partially outside the detector). Slice ID 16 can be well predicted from group
+16..30, it is then of interest to process slices ID 12, 13, 14, and 15 (in that
 order, since this way we move progressively further away from the extrapolation
-of the slices with ID 29..20). Finally, we can predict slice 30 from the slices
-with ID 29..16 (having already corrected slices ID 16, 17, 18, and 19).
+of the slices with ID 3..11). Finally, we can predict slice 1 from the slices
+with ID 3..15 (having already corrected slices ID 15, 14, 13, and 12).
 
 ```console
 (venv_frida) $ fridadrp-interpolate_traces_within_slices \
   --image config05/0000000159-20260511-FRIDA-FridaSuccess-raw.fits \
   --traces traces_within_slice_polynomials_000159.fits \
-  --sliceid 15 --sliceid 19 --sliceid 18 --sliceid 17 --sliceid 16 \
-  --sliceid 30 \
+  --sliceid 16 --sliceid 12 --sliceid 13 --sliceid 14 --sliceid 15 \
+  --sliceid 1 \
   --output traces_within_slice_polynomials_000159_fixed.fits \
   --norefine \
   --plots \
@@ -1792,7 +1802,7 @@ with ID 29..16 (having already corrected slices ID 16, 17, 18, and 19).
   --theilsen \
   --output traces_within_slice_polynomials_000162.fits \
   --pdf-out traces_within_slice_polynomials_000162.pdf \
-  --plotsliceid 30 \
+  --plotsliceid 1 \
   --overwrite
 ```
 
@@ -1809,15 +1819,15 @@ with ID 29..16 (having already corrected slices ID 16, 17, 18, and 19).
 :width: 100%
 ```
 
-Here the slices with ID 15, 16, 14, 17, 18, 19, and 30 are incorrect (the latter
+Here the slices with ID 16, 15, 17, 14, 13, 12 and 1 are incorrect (the latter
 partially outside the detector).
 
 ```console
 (venv_frida) $ fridadrp-interpolate_traces_within_slices \
   --image config06/0000000162-20260511-FRIDA-FridaSuccess-raw.fits \
   --traces traces_within_slice_polynomials_000162.fits \
-  --sliceid 14 --sliceid 15 \
-  --sliceid 19 --sliceid 18 --sliceid 17 --sliceid 16 --sliceid 30 \
+  --sliceid 17 --sliceid 16 \
+  --sliceid 12 --sliceid 13 --sliceid 14 --sliceid 15 --sliceid 1 \
   --output traces_within_slice_polynomials_000162_fixed.fits \
   --norefine \
   --plots \
@@ -1837,7 +1847,7 @@ partially outside the detector).
 :width: 100%
 ```
 
-Traces number 1 of slices with ID 15, 16, 14, 17, 13, 18, and 19 remain
+Traces number 1 of slices with ID 16, 15, 17, 14, 18, 13, and 12 remain
 slightly elevated on the left side. It would be worth trying with a better
 image.
 
@@ -1854,7 +1864,7 @@ image.
   --theilsen \
   --output traces_within_slice_polynomials_000165.fits \
   --pdf-out traces_within_slice_polynomials_000165.pdf \
-  --plotsliceid 30 \
+  --plotsliceid 1 \
   --overwrite
 ```
 
@@ -1870,16 +1880,15 @@ image.
 ```{image} images/traces_within_slice_polynomials_000165_fixed_montage.png
 :width: 100%
 ```
-
-Here the slices with ID 19, 18, 13, 17, 14, 16, 15, and 30 are incorrect (the
+Here the slices with ID 12, 13, 18, 14, 17, 15, 16, and 1 are incorrect (the
 latter partially outside the detector).
 
 ```console
 (venv_frida) $ fridadrp-interpolate_traces_within_slices \
   --image config07/0000000165-20260511-FRIDA-FridaSuccess-raw.fits \
   --traces traces_within_slice_polynomials_000165.fits \
-  --sliceid 13 --sliceid 14 --sliceid 15 \
-  --sliceid 19 --sliceid 18 --sliceid 17 --sliceid 16 --sliceid 30 \
+  --sliceid 18 --sliceid 17 --sliceid 16 \
+  --sliceid 12 --sliceid 13 --sliceid 14 --sliceid 15 --sliceid 1 \
   --output traces_within_slice_polynomials_000165_fixed.fits \
   --norefine \
   --plots \
@@ -1899,7 +1908,7 @@ latter partially outside the detector).
 :width: 100%
 ```
 
-Traces number 1 of slices ID 16, 17, and 18 remain slightly elevated on the
+Traces number 1 of slices ID 15, 14, and 13 remain slightly elevated on the
 left side. It would be worth trying with a better image.
 
 ### Grating K High4, Medium Camera
@@ -1915,7 +1924,7 @@ left side. It would be worth trying with a better image.
   --theilsen \
   --output traces_within_slice_polynomials_000168.fits \
   --pdf-out traces_within_slice_polynomials_000168.pdf \
-  --plotsliceid 30 \
+  --plotsliceid 1 \
   --overwrite
 ```
 
@@ -1931,16 +1940,15 @@ left side. It would be worth trying with a better image.
 ```{image} images/traces_within_slice_polynomials_000168_fixed_montage.png
 :width: 100%
 ```
-
-Here the slices with ID 15, 16, 14, 17, 13, 18, and 30 are incorrect (the
+Here the slices with ID 16, 15, 17, 14, 18, 13, and 1 are incorrect (the
 latter partially outside the detector).
 
 ```console
 (venv_frida) $ fridadrp-interpolate_traces_within_slices \
   --image config08/0000000168-20260511-FRIDA-FridaSuccess-raw.fits \
   --traces traces_within_slice_polynomials_000168.fits \
-  --sliceid 13 --sliceid 14 --sliceid 15 \
-  --sliceid 18 --sliceid 17 --sliceid 16 --sliceid 30 \
+  --sliceid 18 --sliceid 17 --sliceid 16 \
+  --sliceid 13 --sliceid 14 --sliceid 15 --sliceid 1 \
   --output traces_within_slice_polynomials_000168_fixed.fits \
   --norefine \
   --plots \
@@ -1960,5 +1968,5 @@ latter partially outside the detector).
 :width: 100%
 ```
 
-Traces number 1 of slices ID 15, 16, 14, 17, 13, and 18 remain slightly
+Traces number 1 of slices ID 16, 15, 17, 14, 18, and 13 remain slightly
 elevated on the left side. It would be worth trying with a better image.

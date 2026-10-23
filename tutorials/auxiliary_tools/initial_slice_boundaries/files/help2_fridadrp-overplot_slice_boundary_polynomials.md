@@ -13,6 +13,7 @@
                                                     [[36m--sliceid[0m] [[36m--traceid[0m]
                                                     [[36m--xlim[0m [38;5;36mXLIM[0m [38;5;36mXLIM[0m]
                                                     [[36m--ylim[0m [38;5;36mYLIM[0m [38;5;36mYLIM[0m]
+                                                    [[36m--vlim[0m [38;5;36mVLIM[0m [38;5;36mVLIM[0m]
                                                     [[36m--pdf-mosaic[0m [38;5;36mPDF_MOSAIC[0m]
                                                     [[36m--montage[0m [38;5;36m{png,pdf}[0m]
                                                     [[36m--version[0m]
@@ -39,6 +40,7 @@
                         [39m(1-based along NAXIS1 axis)[0m
   [36m--ylim[0m [38;5;36mYLIM[0m [38;5;36mYLIM[0m      [39mY-axis limits for the plot (ymin, ymax); array indices[0m
                         [39m(1-based along NAXIS2 axis)[0m
+  [36m--vlim[0m [38;5;36mVLIM[0m [38;5;36mVLIM[0m      [39mBackground and foreground limits (vmin, vmax)[0m
   [36m--pdf-mosaic[0m [38;5;36mPDF_MOSAIC[0m
                         [39mOutput PDF file to save zoomed images of all the[0m
                         [39mslices[0m

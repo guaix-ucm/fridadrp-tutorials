@@ -1,6 +1,8 @@
 [92m────── [0m[1;35mWelcome to fridadrp-find_traces_within_slice_boundary_polynomials[0m[92m ───────[0m
-Using fridadrp.tools.find_traces_within_slice_boundary_polynomials version      
-[1;36m0.1[0m.dev248+g830b3980e.d20260804                                                 
+Using fridadrp.tools.find_traces_within_slice_boundary_polynomials              
+version: [32m'0.1.dev248+g830b3980e.d20260804'[0m                                      
+[1m([0mnumina version: [32m'0.40.1.dev28+gaa71cc8e9'[0m[1m)[0m                                     
+[92m────────────────────────────────────────────────────────────────────────────────[0m
 Column ranges not specified. Using default range: [1;36m5[0m to [1;36m2044[0m.                    
 Columns to analyze: from [1;36m5[0m to [1;36m2044[0m [1m([0mtotal [1;36m2040[0m columns[1m)[0m - Mode: continuous      
 No median filtering along NAXIS2 will be applied [1m([0m[33mymedian[0m=[1;36m0[0m[1m)[0m.                   
@@ -12,40 +14,40 @@ Reading [1;36m30[0m slices with polynomial degree [1;36m3[0m [1m([0mleft b
 Reading [1;36m30[0m slices with polynomial degree [1;36m3[0m [1m([0mright borders[1m)[0m.                     
 Applying constant vertical offset of [1;36m0.0[0m pixels to slice boundary polynomials.  
 Press [32m'q'[0m to close the plot or [32m'x'[0m to close the plot and exit the program.      
-Finding and fitting traces within slice boundary polynomials[33m...[0m                 
+Finding and fitting traces within slice boundary polynomials[39m...[0m                 
 [1;36m0[0m%                                                                              
-[1;36m0[0m% [1;36m10[0m%_____________________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:06[0m|[33mleft[0m=[1;92m0[0m[1;92m:52[0m|[33mexp[0m=[1;92m0[0m[1;92m:58[0m[1m)[0m      
-[1;36m0[0m% [1;36m10[0m% [1;36m20[0m%_________________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:11[0m|[33mleft[0m=[1;92m0[0m[1;92m:45[0m|[33mexp[0m=[1;92m0[0m[1;92m:56[0m[1m)[0m      
-[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m%_____________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:18[0m|[33mleft[0m=[1;92m0[0m[1;92m:41[0m|[33mexp[0m=[1;92m0[0m[1;92m:59[0m[1m)[0m      
-[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m%_________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:24[0m|[33mleft[0m=[1;92m0[0m[1;92m:36[0m|[33mexp[0m=[1;92m0[0m[1;92m:59[0m[1m)[0m      
-[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m%_____________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:30[0m|[33mleft[0m=[1;92m0[0m[1;92m:30[0m|[33mexp[0m=[1;92m0[0m[1;92m:59[0m[1m)[0m      
-[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m%_________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:35[0m|[33mleft[0m=[1;92m0[0m[1;92m:24[0m|[33mexp[0m=[1;92m0[0m[1;92m:59[0m[1m)[0m      
+[1;36m0[0m% [1;36m10[0m%_____________________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:06[0m|[33mleft[0m=[1;92m0[0m[1;92m:53[0m|[33mexp[0m=[1;92m0[0m[1;92m:58[0m[1m)[0m      
+[1;36m0[0m% [1;36m10[0m% [1;36m20[0m%_________________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:11[0m|[33mleft[0m=[1;92m0[0m[1;92m:46[0m|[33mexp[0m=[1;92m0[0m[1;92m:57[0m[1m)[0m      
+[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m%_____________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:18[0m|[33mleft[0m=[1;92m0[0m[1;92m:42[0m|[33mexp[0m=[1;92m0[0m[1;92m:59[0m[1m)[0m      
+[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m%_________________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:24[0m|[33mleft[0m=[1;92m0[0m[1;92m:36[0m|[33mexp[0m=[1;92m1[0m[1;92m:00[0m[1m)[0m      
+[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m%_____________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:30[0m|[33mleft[0m=[1;92m0[0m[1;92m:30[0m|[33mexp[0m=[1;92m1[0m[1;92m:00[0m[1m)[0m      
+[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m%_________________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:36[0m|[33mleft[0m=[1;92m0[0m[1;92m:24[0m|[33mexp[0m=[1;92m1[0m[1;92m:00[0m[1m)[0m      
 [1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m% [1;36m70[0m%_____________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:42[0m|[33mleft[0m=[1;92m0[0m[1;92m:18[0m|[33mexp[0m=[1;92m1[0m[1;92m:00[0m[1m)[0m      
 [1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m% [1;36m70[0m% [1;36m80[0m%_________ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:48[0m|[33mleft[0m=[1;92m0[0m[1;92m:12[0m|[33mexp[0m=[1;92m1[0m[1;92m:00[0m[1m)[0m      
-[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m% [1;36m70[0m% [1;36m80[0m% [1;36m90[0m%_____ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:54[0m|[33mleft[0m=[1;92m0[0m[1;92m:06[0m|[33mexp[0m=[1;92m1[0m[1;92m:01[0m[1m)[0m      
-Slice #[1;36m30[0m [1m([0mID [1;36m15[0m[1m)[0m right boundary is out of the useful pixel range.              
+[1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m% [1;36m70[0m% [1;36m80[0m% [1;36m90[0m%_____ [1m([0m[33melap[0m=[1;92m0[0m[1;92m:54[0m|[33mleft[0m=[1;92m0[0m[1;92m:06[0m|[33mexp[0m=[1;92m1[0m[1;92m:00[0m[1m)[0m      
+Slice #[1;36m30[0m [1m([0mID [1;36m16[0m[1m)[0m right boundary is out of the useful pixel range.              
 [1;36m0[0m% [1;36m10[0m% [1;36m20[0m% [1;36m30[0m% [1;36m40[0m% [1;36m50[0m% [1;36m60[0m% [1;36m70[0m% [1;36m80[0m% [1;36m90[0m% [1;36m100[0m% [1m([0m[33melap[0m=[1;92m0[0m[1;92m:58[0m|[33mleft[0m=[1;92m0[0m[1;92m:00[0m|[33mexp[0m=[1;92m0[0m[1;92m:58[0m[1m)[0m      
-Skipped slice: #[1;36m30[0m [1m([0mID [1;36m15[0m[1m)[0m                                                      
-Extrapolating traces for the last slice [1m([0mID [1;36m15[0m[1m)[0m                                 
-Slice ID [1;36m15[0m belongs to the group of slices with ID:                             
-[1m[[0m[1;36m1[0m, [1;36m2[0m, [1;36m3[0m, [1;36m4[0m, [1;36m5[0m, [1;36m6[0m, [1;36m7[0m, [1;36m8[0m, [1;36m9[0m, [1;36m10[0m, [1;36m11[0m, [1;36m12[0m, [1;36m13[0m, [1;36m14[0m, [1;36m15[0m[1m][0m.                            
+Skipped slice: #[1;36m30[0m [1m([0mID [1;36m16[0m[1m)[0m                                                      
+Extrapolating traces for the last slice [1m([0mID [1;36m16[0m[1m)[0m                                 
+Slice ID [1;36m16[0m belongs to the group of slices with ID:                             
+[1m[[0m[1;36m30[0m, [1;36m29[0m, [1;36m28[0m, [1;36m27[0m, [1;36m26[0m, [1;36m25[0m, [1;36m24[0m, [1;36m23[0m, [1;36m22[0m, [1;36m21[0m, [1;36m20[0m, [1;36m19[0m, [1;36m18[0m, [1;36m17[0m, [1;36m16[0m[1m][0m.                   
 Fitting traces for the following slices [1m([0mID[1m)[0m:                                   
-[1m[[0m[1;36m1[0m, [1;36m2[0m, [1;36m3[0m, [1;36m4[0m, [1;36m5[0m, [1;36m6[0m, [1;36m7[0m, [1;36m8[0m, [1;36m9[0m, [1;36m10[0m, [1;36m11[0m, [1;36m12[0m, [1;36m13[0m, [1;36m14[0m[1m][0m                                 
-Fitting trace [1;36m1[0m/[1;36m5[0m of slice ID [1;36m15[0m along NAXIS1[33m...[0m                                
-Fitting trace [1;36m2[0m/[1;36m5[0m of slice ID [1;36m15[0m along NAXIS1[33m...[0m                                
-Fitting trace [1;36m3[0m/[1;36m5[0m of slice ID [1;36m15[0m along NAXIS1[33m...[0m                                
-Fitting trace [1;36m4[0m/[1;36m5[0m of slice ID [1;36m15[0m along NAXIS1[33m...[0m                                
-Fitting trace [1;36m5[0m/[1;36m5[0m of slice ID [1;36m15[0m along NAXIS1[33m...[0m                                
-Refining the fitted traces for slice ID [1;36m15[0m using the smoothed image data[33m...[0m     
-Refining trace [1;36m1[0m/[1;36m5[0m of slice ID [1;36m15[0m[33m...[0m                                            
-Refining trace [1;36m2[0m/[1;36m5[0m of slice ID [1;36m15[0m[33m...[0m                                            
-Refining trace [1;36m3[0m/[1;36m5[0m of slice ID [1;36m15[0m[33m...[0m                                            
-Refining trace [1;36m4[0m/[1;36m5[0m of slice ID [1;36m15[0m[33m...[0m                                            
-Trace [1;36m5[0m/[1;36m5[0m of slice ID [1;36m15[0m is out of bounds. Skipping refinement.                 
-Applying average refinement to Trace [1;36m5[0m/[1;36m5[0m of slice ID [1;36m15[0m.                        
+[1m[[0m[1;36m30[0m, [1;36m29[0m, [1;36m28[0m, [1;36m27[0m, [1;36m26[0m, [1;36m25[0m, [1;36m24[0m, [1;36m23[0m, [1;36m22[0m, [1;36m21[0m, [1;36m20[0m, [1;36m19[0m, [1;36m18[0m, [1;36m17[0m[1m][0m                        
+Fitting trace [1;36m1[0m/[1;36m5[0m of slice ID [1;36m16[0m along NAXIS1[39m...[0m                                
+Fitting trace [1;36m2[0m/[1;36m5[0m of slice ID [1;36m16[0m along NAXIS1[39m...[0m                                
+Fitting trace [1;36m3[0m/[1;36m5[0m of slice ID [1;36m16[0m along NAXIS1[39m...[0m                                
+Fitting trace [1;36m4[0m/[1;36m5[0m of slice ID [1;36m16[0m along NAXIS1[39m...[0m                                
+Fitting trace [1;36m5[0m/[1;36m5[0m of slice ID [1;36m16[0m along NAXIS1[39m...[0m                                
+Refining the fitted traces for slice ID [1;36m16[0m using the smoothed image data[39m...[0m     
+Refining trace [1;36m1[0m/[1;36m5[0m of slice ID [1;36m16[0m[39m...[0m                                            
+Refining trace [1;36m2[0m/[1;36m5[0m of slice ID [1;36m16[0m[39m...[0m                                            
+Refining trace [1;36m3[0m/[1;36m5[0m of slice ID [1;36m16[0m[39m...[0m                                            
+Refining trace [1;36m4[0m/[1;36m5[0m of slice ID [1;36m16[0m[39m...[0m                                            
+Trace [1;36m5[0m/[1;36m5[0m of slice ID [1;36m16[0m is out of bounds. Skipping refinement.                 
+Applying average refinement to Trace [1;36m5[0m/[1;36m5[0m of slice ID [1;36m16[0m.                        
 Saving final plots of traces for every slice in PDF file:                       
 [32mtraces_within_slice_polynomials.pdf[0m                                             
 Traces within slice boundary polynomials saved to                               
 [32mtraces_within_slice_polynomials.fits[0m                                            
-Total time elapsed: [1;92m0:01:31[0m.[1;36m152357[0m                                              
+Total time elapsed: [1;92m0:01:31[0m.[1;36m994139[0m                                              
 [92m────────────────────────────────── [0m[1;35m Goodbye! [0m[92m ──────────────────────────────────[0m
