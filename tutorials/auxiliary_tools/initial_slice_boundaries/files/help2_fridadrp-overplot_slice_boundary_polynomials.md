@@ -9,8 +9,9 @@
                                                     [[36m--borders[0m [38;5;36mBORDERS[0m]
                                                     [[36m--traces[0m [38;5;36mTRACES[0m]
                                                     [[36m--image[0m [38;5;36mIMAGE[0m]
-                                                    [[36m--voffset[0m [38;5;36mVOFFSET[0m]
-                                                    [[36m--sliceid[0m] [[36m--traceid[0m]
+                                                    [[36m--voffset[0m [38;5;36mVOFFSET[0m [[38;5;36mVOFFSET[0m [38;5;36m...[0m]]
+                                                    [[36m--show-sliceid[0m]
+                                                    [[36m--show-traceid[0m]
                                                     [[36m--xlim[0m [38;5;36mXLIM[0m [38;5;36mXLIM[0m]
                                                     [[36m--ylim[0m [38;5;36mYLIM[0m [38;5;36mYLIM[0m]
                                                     [[36m--vlim[0m [38;5;36mVLIM[0m [38;5;36mVLIM[0m]
@@ -33,9 +34,14 @@
   [36m--traces[0m [38;5;36mTRACES[0m       [39mPath to the file with the slice trace polynomials[0m
                         [39m(optional)[0m
   [36m--image[0m [38;5;36mIMAGE[0m         [39mImage to display boundaries on[0m
-  [36m--voffset[0m [38;5;36mVOFFSET[0m     [39mVertical constant offset (pixels) to apply[0m
-  [36m--sliceid[0m             [39mOverplot slice ID[0m
-  [36m--traceid[0m             [39mOverplot trace ID[0m
+  [36m--voffset[0m [38;5;36mVOFFSET[0m [[38;5;36mVOFFSET[0m [38;5;36m...[0m]
+                        [39mVertical offset to apply to the slice boundaries[0m
+                        [39m(default: 0.0 pixels; + upward, - downward). If more[0m
+                        [39mthan one value is provided, a polynomial of degree[0m
+                        [39mlen(voffset)-1 will be fitted to the offsets and[0m
+                        [39mapplied to the slice boundaries.[0m
+  [36m--show-sliceid[0m        [39mOverplot slice ID[0m
+  [36m--show-traceid[0m        [39mOverplot trace ID[0m
   [36m--xlim[0m [38;5;36mXLIM[0m [38;5;36mXLIM[0m      [39mX-axis limits for the plot (xmin, xmax); array indices[0m
                         [39m(1-based along NAXIS1 axis)[0m
   [36m--ylim[0m [38;5;36mYLIM[0m [38;5;36mYLIM[0m      [39mY-axis limits for the plot (ymin, ymax); array indices[0m
