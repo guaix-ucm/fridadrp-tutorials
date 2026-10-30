@@ -86,8 +86,9 @@
                                                     [<span class="-Ansi -Ansi-Cyan">--borders</span> <span class="-Ansi -Ansi-C36">BORDERS</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>]
-                                                    [<span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span>]
-                                                    [<span class="-Ansi -Ansi-Cyan">--sliceid</span>] [<span class="-Ansi -Ansi-Cyan">--traceid</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span> [<span class="-Ansi -Ansi-C36">VOFFSET</span> <span class="-Ansi -Ansi-C36">...</span>]]
+                                                    [<span class="-Ansi -Ansi-Cyan">--show-sliceid</span>]
+                                                    [<span class="-Ansi -Ansi-Cyan">--show-traceid</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>]
                                                     [<span class="-Ansi -Ansi-Cyan">--vlim</span> <span class="-Ansi -Ansi-C36">VLIM</span> <span class="-Ansi -Ansi-C36">VLIM</span>]
@@ -110,9 +111,14 @@ image
   <span class="-Ansi -Ansi-Cyan">--traces</span> <span class="-Ansi -Ansi-C36">TRACES</span>       Path to the file with the slice trace polynomials
                         (optional)
   <span class="-Ansi -Ansi-Cyan">--image</span> <span class="-Ansi -Ansi-C36">IMAGE</span>         Image to display boundaries on
-  <span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span>     Vertical constant offset (pixels) to apply
-  <span class="-Ansi -Ansi-Cyan">--sliceid</span>             Overplot slice ID
-  <span class="-Ansi -Ansi-Cyan">--traceid</span>             Overplot trace ID
+  <span class="-Ansi -Ansi-Cyan">--voffset</span> <span class="-Ansi -Ansi-C36">VOFFSET</span> [<span class="-Ansi -Ansi-C36">VOFFSET</span> <span class="-Ansi -Ansi-C36">...</span>]
+                        Vertical offset to apply to the slice boundaries
+                        (default: 0.0 pixels; + upward, - downward). If more
+                        than one value is provided, a polynomial of degree
+                        len(voffset)-1 will be fitted to the offsets and
+                        applied to the slice boundaries.
+  <span class="-Ansi -Ansi-Cyan">--show-sliceid</span>        Overplot slice ID
+  <span class="-Ansi -Ansi-Cyan">--show-traceid</span>        Overplot trace ID
   <span class="-Ansi -Ansi-Cyan">--xlim</span> <span class="-Ansi -Ansi-C36">XLIM</span> <span class="-Ansi -Ansi-C36">XLIM</span>      X-axis limits for the plot (xmin, xmax); array indices
                         (1-based along NAXIS1 axis)
   <span class="-Ansi -Ansi-Cyan">--ylim</span> <span class="-Ansi -Ansi-C36">YLIM</span> <span class="-Ansi -Ansi-C36">YLIM</span>      Y-axis limits for the plot (ymin, ymax); array indices

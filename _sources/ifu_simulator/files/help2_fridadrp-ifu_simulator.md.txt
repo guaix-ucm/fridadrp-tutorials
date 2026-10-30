@@ -29,7 +29,7 @@
                               [[36m--output_dir[0m [38;5;36mOUTPUT_DIR[0m] [[36m--record[0m] [[36m--echo[0m]
                               [[36m--version[0m]
 
-[39mdescription: simulator of FRIDA IFU images (0.1.dev272+gfd6555b53)[0m
+[39mdescription: simulator of FRIDA IFU images (0.1.dev286+gf9d88ae48.d20261028)[0m
 
 [38;5;208mOptions:[0m
   [36m-h[0m, [36m--help[0m            [39mshow this help message and exit[0m
