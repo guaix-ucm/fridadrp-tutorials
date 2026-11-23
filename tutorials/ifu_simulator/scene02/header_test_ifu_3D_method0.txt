@@ -18,7 +18,13 @@ CRPIX1  =                 32.5 / Pixel coordinate of reference point
 CRPIX2  =                 30.5 / Pixel coordinate of reference point            
 CRPIX3  =                  1.0 / Pixel coordinate of reference point            
 CD1_1   = -2.7777777777777E-06 / Coordinate transformation matrix element       
-CD2_2   =  2.7777777777778E-06 / Coordinate transformation matrix element       
+CD1_2   =                  0.0 / Coordinate transformation matrix element       
+CD1_3   =                  0.0 / Coordinate transformation matrix element       
+CD2_1   =                  0.0 / Coordinate transformation matrix element       
+CD2_2   = 2.77777777777777E-06 / Coordinate transformation matrix element       
+CD2_3   =                  0.0 / Coordinate transformation matrix element       
+CD3_1   =                  0.0 / Coordinate transformation matrix element       
+CD3_2   =                  0.0 / Coordinate transformation matrix element       
 CD3_3   =             2.85E-10 / Coordinate transformation matrix element       
 CUNIT1  = 'deg'                / Units of coordinate increment and value        
 CUNIT2  = 'deg'                / Units of coordinate increment and value        
@@ -51,12 +57,12 @@ DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)
 RADEG   =                  0.0 / Telescope right ascension (degrees)            
 DECDEG  =                  0.0 / Telescope declination (degrees)                
 HISTORY -------------------------                                               
-HISTORY Date: 2026-03-05 20:22:37                                               
+HISTORY Date: 2026-11-23 17:08:49                                               
 HISTORY -------------------------                                               
-HISTORY Node: iblax.fis.ucm.es                                                  
-HISTORY Python: /Users/cardiel/venv_frida/bin/python3.13                        
+HISTORY Node: Nicolass-MacBook-Pro.local                                        
+HISTORY Python: /Users/cardiel/venv_gtc/bin/python3.15                          
 HISTORY $ fridadrp-ifu_simulator                                                
-HISTORY (version: 0.1.dev156+gb081f58ec)                                        
+HISTORY (version: 0.1.dev306+g8354f89d3)                                        
 HISTORY --scene scene02.yaml                                                    
 HISTORY --flux_factor 10.0                                                      
 HISTORY --grating medium-K                                                      
