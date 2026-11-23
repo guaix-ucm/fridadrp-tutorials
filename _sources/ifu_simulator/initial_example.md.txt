@@ -233,7 +233,7 @@ information (note the use of `-match frame wcs`).
 `NAXIS1=64`, `NAXIS2=60` and `NAXIS3=2048`.
 
 ```{code-block} console
-(venv_frida) $ fitsheader test_ifu_3D_method0.fits 
+(venv_frida) $ fitsheader work/test_ifu_3D_method0.fits 
 ```
 
 ```{include} scene00/header_test_ifu_3D_method0.txt
@@ -242,7 +242,7 @@ information (note the use of `-match frame wcs`).
 It is possible to have a look to this image using QFitsView
 
 ```{code-block} console
-(venv_frida) $ qfitsview test_ifu_3D_method0.fits
+(venv_frida) $ qfitsview work/test_ifu_3D_method0.fits
 ```
 
 ```{image} scene00/test_ifu_3D_method0_plot1.png
@@ -284,9 +284,9 @@ use of the corresponding geometric distortions. The shape of this new image is
 `NAXIS1=2048` and `NAXIS2=2048`.
 
 Note that in this case, the slices appear in the following order when moving
-vertically upwards in the image from the bottom left corner: 30, 1, 29, 2, 28,
-3, 27, 4, 26, 5, 25, 6, 24, 7, 23, 8, 22, 9, 21, 10, 20, 11, 19, 12, 18, 13,
-17, 14, 16, 15.
+vertically upwards in the image from the bottom: 1, 30, 2, 29, 3, 28, 4, 27, 5,
+26, 6, 25, 7, 24, 8, 23, 9, 22, 10, 21, 11, 20, 12, 19, 13, 18, 14, 17, 15, and
+16.
 
 This simulated image also includes the following effects:
 

@@ -2,7 +2,7 @@
 :class: my-special-block no-copybutton
 
 [92m────────────────────── [0m[1;35mWelcome to fridadrp-ifu_simulator[0m[92m ───────────────────────[0m
-Using fridadrp.tools.frida_ifu_simulator version [1;36m0.1[0m.dev156+gb081f58ec          
+Using fridadrp.tools.frida_ifu_simulator version [1;36m0.1[0m.dev306+g8354f89d3          
 Output directory: work                                                          
 Scene file: scene02.yaml                                                        
 [32m* Processing: Gaussian center[0m                                                   
@@ -19,13 +19,13 @@ Saving file: test_ifu_white2D_method0_os1.fits [1m([0m[33mBITPIX[0m=[1;36m1
 Saving file: test_ifu_white2D_method0_os10.fits [1m([0m[33mBITPIX[0m=[1;36m16[0m[1m)[0m                     
 Saving file: test_ifu_3D_method0.fits [1m([0m[33mBITPIX[0m=[1;36m16[0m[1m)[0m                               
 .........[1;36m10[0m.........[1;36m20[0m.........[1;36m30[0m
-Delta time: [1;36m0.8952891826629639[0m                                                  
+Delta time: [1;36m1.3263909816741943[0m                                                  
 Saving file: test_rss_2D_method0.fits [1m([0m[33mBITPIX[0m=[1;36m16[0m[1m)[0m                               
 Saving file: test_detector_2D_method0.fits [1m([0m[33mBITPIX[0m=[1;36m-32[0m[1m)[0m                         
 .........[1;36m10[0m.........[1;36m20[0m.........[1;36m30[0m
-Delta time: [1;36m2.550081968307495[0m                                                   
+Delta time: [1;36m4.066239833831787[0m                                                   
 Saving file: test_rss_2D_method1.fits [1m([0m[33mBITPIX[0m=[1;36m-32[0m[1m)[0m                              
 Saving file: test_ifu_3D_method1.fits [1m([0m[33mBITPIX[0m=[1;36m-32[0m[1m)[0m                              
-Total time elapsed: [1;92m0:00:04[0m.[1;36m276027[0m                                              
+Total time elapsed: [1;92m0:00:06[0m.[1;36m677123[0m                                              
 [92m────────────────────────────────── [0m[1;35m Goodbye! [0m[92m ──────────────────────────────────[0m
 ```

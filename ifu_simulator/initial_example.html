@@ -130,7 +130,7 @@ effectively allows a command to span multiple lines.</p>
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-ansi-shell-session notranslate"><div class="highlight"><pre><span></span><span class="-Ansi -Ansi-BrightGreen">────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta">Welcome to fridadrp-ifu_simulator</span><span class="-Ansi -Ansi-BrightGreen"> ───────────────────────</span>
-Using fridadrp.tools.frida_ifu_simulator version <span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev156+gb081f58ec          
+Using fridadrp.tools.frida_ifu_simulator version <span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.1</span>.dev306+g8354f89d3          
 Output directory: work                                                          
 Scene file: scene00.yaml                                                        
 <span class="-Ansi -Ansi-Green">* Processing: constant flux</span>                                                     
@@ -139,14 +139,14 @@ Saving file: test_ifu_white2D_method0_os1.fits <span class="-Ansi -Ansi-Bold">(<
 Saving file: test_ifu_white2D_method0_os10.fits <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">BITPIX</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">16</span><span class="-Ansi -Ansi-Bold">)</span>                     
 Saving file: test_ifu_3D_method0.fits <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">BITPIX</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">16</span><span class="-Ansi -Ansi-Bold">)</span>                               
 .........<span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>.........<span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>.........<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>
-Delta time: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.47272586822509766</span>                                                 
+Delta time: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">0.7994911670684814</span>                                                  
 Saving file: test_rss_2D_method0.fits <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">BITPIX</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">16</span><span class="-Ansi -Ansi-Bold">)</span>                               
 Saving file: test_detector_2D_method0.fits <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">BITPIX</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">-32</span><span class="-Ansi -Ansi-Bold">)</span>                         
 .........<span class="-Ansi -Ansi-Bold -Ansi-Cyan">10</span>.........<span class="-Ansi -Ansi-Bold -Ansi-Cyan">20</span>.........<span class="-Ansi -Ansi-Bold -Ansi-Cyan">30</span>
-Delta time: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">2.519665002822876</span>                                                   
+Delta time: <span class="-Ansi -Ansi-Bold -Ansi-Cyan">4.17271614074707</span>                                                    
 Saving file: test_rss_2D_method1.fits <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">BITPIX</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">-32</span><span class="-Ansi -Ansi-Bold">)</span>                              
 Saving file: test_ifu_3D_method1.fits <span class="-Ansi -Ansi-Bold">(</span><span class="-Ansi -Ansi-Yellow">BITPIX</span>=<span class="-Ansi -Ansi-Bold -Ansi-Cyan">-32</span><span class="-Ansi -Ansi-Bold">)</span>                              
-Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:03</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">763125</span>                                              
+Total time elapsed: <span class="-Ansi -Ansi-Bold -Ansi-BrightGreen">0:00:06</span>.<span class="-Ansi -Ansi-Bold -Ansi-Cyan">318620</span>                                              
 <span class="-Ansi -Ansi-BrightGreen">────────────────────────────────── </span><span class="-Ansi -Ansi-Bold -Ansi-Magenta"> Goodbye! </span><span class="-Ansi -Ansi-BrightGreen"> ──────────────────────────────────</span>
 </pre></div>
 </div>
@@ -348,7 +348,7 @@ information (note the use of <code class="docutils literal notranslate"><span cl
 <h3>Image <code>test_ifu_3D_method0.fits</code><a class="headerlink" href="#image-test-ifu-3d-method0-fits" title="Link to this heading"></a></h3>
 <p>3D data cube of the simulated photons. In this case
 <code class="docutils literal notranslate"><span class="pre">NAXIS1=64</span></code>, <code class="docutils literal notranslate"><span class="pre">NAXIS2=60</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS3=2048</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fitsheader<span class="w"> </span>test_ifu_3D_method0.fits<span class="w"> </span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>fitsheader<span class="w"> </span>work/test_ifu_3D_method0.fits<span class="w"> </span>
 </pre></div>
 </div>
 <div class="my-special-block no-copybutton highlight-default notranslate"><div class="highlight"><pre><span></span># HDU 0 in work/test_ifu_3D_method0.fits:
@@ -368,7 +368,13 @@ CRPIX1  =                 32.5 / Pixel coordinate of reference point
 CRPIX2  =                 30.5 / Pixel coordinate of reference point            
 CRPIX3  =                  1.0 / Pixel coordinate of reference point            
 CD1_1   = -2.7777777777777E-06 / Coordinate transformation matrix element       
-CD2_2   =  2.7777777777778E-06 / Coordinate transformation matrix element       
+CD1_2   =                  0.0 / Coordinate transformation matrix element       
+CD1_3   =                  0.0 / Coordinate transformation matrix element       
+CD2_1   =                  0.0 / Coordinate transformation matrix element       
+CD2_2   = 2.77777777777777E-06 / Coordinate transformation matrix element       
+CD2_3   =                  0.0 / Coordinate transformation matrix element       
+CD3_1   =                  0.0 / Coordinate transformation matrix element       
+CD3_2   =                  0.0 / Coordinate transformation matrix element       
 CD3_3   =             2.85E-10 / Coordinate transformation matrix element       
 CUNIT1  = 'deg'                / Units of coordinate increment and value        
 CUNIT2  = 'deg'                / Units of coordinate increment and value        
@@ -401,12 +407,12 @@ DEC     = '00:00:00.000'       / Telescope declination (DD:MM:SS)
 RADEG   =                  0.0 / Telescope right ascension (degrees)            
 DECDEG  =                  0.0 / Telescope declination (degrees)                
 HISTORY -------------------------                                               
-HISTORY Date: 2026-03-05 20:20:44                                               
+HISTORY Date: 2026-11-23 16:59:09                                               
 HISTORY -------------------------                                               
-HISTORY Node: iblax.fis.ucm.es                                                  
-HISTORY Python: /Users/cardiel/venv_frida/bin/python3.13                        
+HISTORY Node: Nicolass-MacBook-Pro.local                                        
+HISTORY Python: /Users/cardiel/venv_gtc/bin/python3.15                          
 HISTORY $ fridadrp-ifu_simulator                                                
-HISTORY (version: 0.1.dev156+gb081f58ec)                                        
+HISTORY (version: 0.1.dev306+g8354f89d3)                                        
 HISTORY --scene scene00.yaml                                                    
 HISTORY --flux_factor 1.0                                                       
 HISTORY --grating medium-K                                                      
@@ -440,7 +446,7 @@ HISTORY --version False
 </pre></div>
 </div>
 <p>It is possible to have a look to this image using QFitsView</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>qfitsview<span class="w"> </span>test_ifu_3D_method0.fits
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv_frida)</span> <span class="gp">$ </span>qfitsview<span class="w"> </span>work/test_ifu_3D_method0.fits
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/test_ifu_3D_method0_plot1.png"><img alt="image test_ifu_3D_method0.fits, plot 1" src="../_images/test_ifu_3D_method0_plot1.png" style="width: 100%;" />
@@ -471,9 +477,9 @@ photon in the previous RSS image is transferred to the Hawaii detector making
 use of the corresponding geometric distortions. The shape of this new image is
 <code class="docutils literal notranslate"><span class="pre">NAXIS1=2048</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2=2048</span></code>.</p>
 <p>Note that in this case, the slices appear in the following order when moving
-vertically upwards in the image from the bottom left corner: 30, 1, 29, 2, 28,
-3, 27, 4, 26, 5, 25, 6, 24, 7, 23, 8, 22, 9, 21, 10, 20, 11, 19, 12, 18, 13,
-17, 14, 16, 15.</p>
+vertically upwards in the image from the bottom: 1, 30, 2, 29, 3, 28, 4, 27, 5,
+26, 6, 25, 7, 24, 8, 23, 9, 22, 10, 21, 11, 20, 12, 19, 13, 18, 14, 17, 15, and
+16.</p>
 <p>This simulated image also includes the following effects:</p>
 <ul class="simple">
 <li><p><strong>bias</strong>: the input bias level (assumed constant).</p></li>
